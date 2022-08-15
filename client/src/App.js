@@ -8,6 +8,8 @@ import Signup from "./components/Sign-Up/SignupMain";
 import Loading from "./components/Loading";
 import Alert from "./components/Alert";
 import Successful from "./components/Successful";
+import ClientLogin from "./components/Login/pages/ClientLogin";
+import ProviderLogin from "./components/Login/pages/ProviderLogin";
 
 const client = new ApolloClient({
   uri: "/graphql",
@@ -24,6 +26,8 @@ const App = () => (
         <Route path="/loading" element={<Loading />} /> {/* Loading to see */}
         <Route path="/alert" element={<Alert />} /> {/* Loading to see */}
         <Route path="/success" element={<Successful />} /> {/* Loading to see */}
+        <Route path="/CL" element={<ClientLogin />} /> {/* Loading to see */}
+        <Route path="/PL" element={<ProviderLogin />} /> {/* Loading to see */}
       </Routes>
     </Router>
   </ApolloProvider>
