@@ -3,7 +3,6 @@ const bcrypt = require('bcrypt');
 const Appointment = require('./Appointment')
 const ServiceCategory = require('./ServiceCategory')
 const ServiceType = require('./ServiceType')
-const ServiceListing = require('./ServiceListing')
 const { Schema } = mongoose;
 
 const serviceUserSchema = new Schema({
@@ -41,7 +40,6 @@ const serviceUserSchema = new Schema({
     },
     serviceCategory: [ServiceCategory.schema],
     serviceType: [ServiceType.schema],
-    serviceListing: [ServiceListing.schema],
     appointments: [Appointment.schema],
 });
 
