@@ -1,7 +1,8 @@
 import React from 'react'
+import Navbar from './Navbar'
 
 export default function Home() {
   return (
-    <span className="text-5xl text-red-800">Hey there!</span>
+    <Navbar />
   )
 }
