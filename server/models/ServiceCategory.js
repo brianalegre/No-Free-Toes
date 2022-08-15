@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
-const serviceType = require('./ServiceType')
+const ServiceType = require('./ServiceType')
 
 const serviceCategorySchema = new Schema ({
     categoryName: {
