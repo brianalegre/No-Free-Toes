@@ -6,11 +6,18 @@ const visitorNavLinks = [
   {
     name: "Home",
     link: "/",
+    class: "py-5 px-3 hover:text-pink-600 transition duration-300"
   },
   {
     name: "Login",
     link: "#",
+    class: "py-5 px-3 hover:text-pink-600 transition duration-300"
   },
+  {
+    name: "Sign Up",
+    link: "#",
+    class: "py-2 px-3 bg-green-300 hover:bg-green-700 text-black hover:text-gray-100 rounded transition duration-300"
+  }
 ];
 
 const memberNavLinks = [
@@ -38,7 +45,7 @@ const memberNavLinks = [
 
 const visitorLgNav = visitorNavLinks.map((navlinks) => (
   <>
-    <a href={navlinks.link} className="py-5 px-3">
+    <a href={navlinks.link} className={navlinks.class}>
       {navlinks.name}
     </a>
   </>
@@ -48,7 +55,7 @@ const visitorMobileNav = visitorNavLinks.map((navlinks) => (
   <>
     <a
       href={navlinks.link}
-      className="block py-2 px-4 text-sm hover:bg-gray-200"
+      className="block py-2 px-4 text-sm text-black hover:text-pink-500"
     >
       {navlinks.name}
     </a>
@@ -83,8 +90,8 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-gray-100">
-      <div className="xl:max-w-7xl mx-auto px-4">
+    <nav className="bg-gradient-to-r from-red-100 to-red-300">
+      <div className="xl:max-w-8xl mx-auto px-4">
         <div className="flex justify-between">
           <div className="flex space-x-4">
             <div>
@@ -96,19 +103,12 @@ export default function Navbar() {
           </div>
 
           {/* large screen visitor nav */}
-          <div className="hidden md:flex items-center space-x-1">
+          <div className="hidden md:flex items-center gap-x-16">
 
             {/* FOR USE WHEN WE IMPLEMENT LOGGED IN FUNCTIONALITY */}
             {/* {isLoggedIn ? visitorLgNav : memberLgNav} */}
             {visitorLgNav}
 
-            {/* NEED TO REMOVE THIS SIGNUP BUTTON IF MEMBER IS LOGGED IN (useState hook) */}
-            <a
-              href="#"
-              className="py-2 px-3 bg-green-300 hover:bg-green-700 text-black hover:text-gray-100 rounded transition duration-300"
-            >
-              Sign Up
-            </a>
           </div>
 
           {/* hamburger menu button */}
@@ -140,13 +140,6 @@ export default function Navbar() {
         {/* {isLoggedIn ? visitorMobileNav : memberMobileNav} */}
         {visitorMobileNav}
 
-        {/* NEED TO REMOVE THIS SIGNUP BUTTON IF MEMBER IS LOGGED IN (useState hook) */}
-        <a
-          href="#"
-          className="block py-2 px-4 text-sm hover:bg-green-700 hover:text-gray-100 transition duration-300"
-        >
-          Sign Up
-        </a>
       </div>
     </nav>
   );
