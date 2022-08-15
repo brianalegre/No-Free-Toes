@@ -74,7 +74,7 @@ const memberMobileNav = memberNavLinks.map((navlinks) => (
   <>
     <a
       href={navlinks.link}
-      className="block py-2 px-4 text-sm hover:bg-gray-200"
+      className="block py-2 px-4 text-sm text-black hover:text-pink-500"
     >
       {navlinks.name}
     </a>
