@@ -16,50 +16,59 @@ const servicesArray = [
   {
     name: "Haircut",
     image: haircutIcon,
+    link: "#"
   },
   {
     name: "Massage",
     image: massageIcon,
+    link: "#"
   },
   {
     name: "Eyelashes",
     image: eyelashesIcon,
+    link: "#"
   },
   {
     name: "Nailcare",
-    image: nailCareIcon
+    image: nailCareIcon,
+    link: "#"
   },
   {
     name: "Dance",
     image: danceIcon,
+    link: "#"
   },
   {
-    name: "Personal Training",
-    image: personalTrainingIcon
+    name: "Fitness",
+    image: personalTrainingIcon,
+    link: "#"
   },
   {
     name: "Pet Care",
-    image: petCareIcon
+    image: petCareIcon,
+    link: "#"
   },
   {
     name: "Tutoring",
-    image: tutoringIcon
+    image: tutoringIcon,
+    link: "#"
   },
   {
     name: "Media",
-    image: mediaIcon
+    image: mediaIcon,
+    link: "#"
   },
   {
     name: "Singing",
-    image: singingIcon
+    image: singingIcon,
+    link: "#"
   },
-
 ];
 
 const categoryItems = servicesArray.map((services, i) => (
   <div key={'services' + i} className="align-items-center">
-    <img src={services.image} alt="" className="w-16 h-16" />
-    <span className="relative">{services.name}</span>
+    <img src={services.image} alt="" className="w-16 h-16 mb-2" />
+    <span className="relative left-1">{services.name}</span>
   </div>
 ));
 
