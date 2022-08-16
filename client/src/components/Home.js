@@ -43,22 +43,22 @@ const servicesArray = [
   },
   {
     name: "Tutoring",
-    images: tutoringIcon
+    image: tutoringIcon
   },
   {
     name: "Media",
-    images: mediaIcon
+    image: mediaIcon
   },
   {
     name: "Singing",
-    images: singingIcon
-  }
+    image: singingIcon
+  },
 
 ];
 
-const categoryItems = servicesArray.map((services) => (
-  <div className="align-items-center">
-    <img src={services.image} alt="" className="w-16 h-16"/>
+const categoryItems = servicesArray.map((services, i) => (
+  <div key={'services' + i} className="align-items-center">
+    <img src={services.image} alt="" className="w-16 h-16" />
     <span className="relative">{services.name}</span>
   </div>
 ));
