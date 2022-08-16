@@ -67,7 +67,7 @@ const servicesArray = [
 
 const categoryItems = servicesArray.map((services, i) => (
   <div key={'services' + i} className="align-items-center">
-    <img src={services.image} alt="" className="w-16 h-16 mb-2" />
+    <img src={services.image} alt={services.name + " icon"} className="w-16 h-16 mb-2" />
     <span className="relative left-1">{services.name}</span>
   </div>
 ));
