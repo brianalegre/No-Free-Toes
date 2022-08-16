@@ -1,7 +1,67 @@
 import React from "react";
 import Navbar from "./Navbar";
 import heroImg from "../images/hero_image.svg";
-import haircutIcon from "../images/icons/haircuticon.svg"
+import danceIcon from "../images/icons/dance_icon.svg";
+import eyelashesIcon from "../images/icons/eyelashes_icon.svg";
+import haircutIcon from "../images/icons/haircut_icon.svg";
+import massageIcon from "../images/icons/massage_icon.svg";
+import nailCareIcon from "../images/icons/nailcare_icon.svg"
+import personalTrainingIcon from "../images/icons/personaltraining_icon.svg"
+import petCareIcon from "../images/icons/petcare_icon.svg"
+import mediaIcon from "../images/icons/media_icon.svg"
+import tutoringIcon from "../images/icons/tutoring_icon.svg"
+import singingIcon from "../images/icons/singing_icon.svg"
+
+const servicesArray = [
+  {
+    name: "Haircut",
+    image: haircutIcon,
+  },
+  {
+    name: "Massage",
+    image: massageIcon,
+  },
+  {
+    name: "Eyelashes",
+    image: eyelashesIcon,
+  },
+  {
+    name: "Nailcare",
+    image: nailCareIcon
+  },
+  {
+    name: "Dance",
+    image: danceIcon,
+  },
+  {
+    name: "Personal Training",
+    image: personalTrainingIcon
+  },
+  {
+    name: "Pet Care",
+    image: petCareIcon
+  },
+  {
+    name: "Tutoring",
+    images: tutoringIcon
+  },
+  {
+    name: "Media",
+    images: mediaIcon
+  },
+  {
+    name: "Singing",
+    images: singingIcon
+  }
+
+];
+
+const categoryItems = servicesArray.map((services) => (
+  <div className="align-items-center">
+    <img src={services.image} alt="" className="w-16 h-16"/>
+    <span className="relative">{services.name}</span>
+  </div>
+));
 
 export default function Home() {
   return (
@@ -63,36 +123,7 @@ export default function Home() {
       </div>
 
       <main className="px-16 py-12 place-items-center lg:px-32 lg:py-12 grid grid-cols-2 md:grid-cols-5 gap-x-12 gap-y-24">
-        <div>
-          <img src={haircutIcon} alt="lorem picsum" />
-        </div>
-        <div>
-          <img src={haircutIcon} alt="lorem picsum" />
-        </div>
-        <div>
-          <img src={haircutIcon} alt="lorem picsum" />
-        </div>
-        <div>
-          <img src={haircutIcon} alt="lorem picsum" />
-        </div>
-        <div>
-          <img src={haircutIcon} alt="lorem picsum" />
-        </div>
-        <div>
-          <img src={haircutIcon} alt="lorem picsum" />
-        </div>
-        <div>
-          <img src={haircutIcon} alt="lorem picsum" />
-        </div>
-        <div>
-          <img src={haircutIcon} alt="lorem picsum" />
-        </div>
-        <div>
-          <img src={haircutIcon} alt="lorem picsum" />
-        </div>
-        <div>
-          <img src={haircutIcon} alt="lorem picsum" />
-        </div>
+        {categoryItems}
       </main>
     </>
   );
