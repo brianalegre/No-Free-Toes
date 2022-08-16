@@ -103,7 +103,7 @@ export default function Navbar() {
           </div>
 
           {/* large screen visitor nav */}
-          <div className="hidden md:flex items-center gap-x-16">
+          <div className="hidden lg:flex items-center gap-x-16">
 
             {/* FOR USE WHEN WE IMPLEMENT LOGGED IN FUNCTIONALITY */}
             {/* {isLoggedIn ? visitorLgNav : memberLgNav} */}
@@ -112,7 +112,7 @@ export default function Navbar() {
           </div>
 
           {/* hamburger menu button */}
-          <div className="md:hidden flex items-center">
+          <div className="lg:hidden flex items-center">
             <button onClick={mobileBtnHandler} className="mobile-menu-button">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -132,14 +132,13 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-
+      
       {/* mobile nav */}
-      <div className={isActive ? "hidden md:hidden" : "md:hidden"}>
+      <div className={isActive ? "hidden lg:hidden" : "lg:hidden"}>
 
         {/* FOR USE WHEN WE IMPLEMENT LOGGED IN FUNCTIONALITY */}
         {/* {isLoggedIn ? visitorMobileNav : memberMobileNav} */}
         {visitorMobileNav}
-
       </div>
     </nav>
   );
