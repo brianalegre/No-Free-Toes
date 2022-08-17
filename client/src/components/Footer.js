@@ -61,7 +61,7 @@ const teamMembers = teamArray.map((members, i) => (
 export default function Footer() {
   return (
     <>
-      <footer className="bg-gray-900">
+      <footer className="bg-gray-900 bottom-0 w-full">
         <div className="max-w-screen-xl px-4 py-6 mx-auto sm:px-6 lg:px-8 lg:pt-20">
           <div className="md:grid md:grid-cols-1 gap-8 lg:grid-cols-2">
             <div>

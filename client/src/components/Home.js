@@ -1,6 +1,4 @@
 import React from "react";
-import Navbar from "./Navbar";
-import Footer from "./Footer";
 import heroImg from "../images/hero_image.svg";
 import danceIcon from "../images/icons/dance_icon.svg";
 import eyelashesIcon from "../images/icons/eyelashes_icon.svg";
@@ -12,7 +10,7 @@ import petCareIcon from "../images/icons/petcare_icon.svg";
 import mediaIcon from "../images/icons/media_icon.svg";
 import tutoringIcon from "../images/icons/tutoring_icon.svg";
 import singingIcon from "../images/icons/singing_icon.svg";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const servicesArray = [
   {
@@ -68,24 +66,17 @@ const servicesArray = [
 ];
 
 const categoryItems = servicesArray.map((services, i) => (
-  <div key={"services" + i} className="align-items-center">
-    <button>
-      <Link to={services.link}>
-      <img
-        src={services.image}
-        alt={services.name + " icon"}
-        className="w-16 h-16 lg:w-18 lg:h-18 mb-2"
-      />
-      <span className="relative self-center left-0.5">{services.name}</span>
-      </Link>
-    </button>
+  <div key={'services' + i} className="align-items-center">
+    <img src={services.image} alt={services.name + " icon"} className="w-20 h-20 mb-5 min-w-20 min-h-20" />
+    <div className="flex justify-center">
+      <span className="">{services.name}</span>
+    </div>
   </div>
 ));
 
 export default function Home() {
   return (
     <>
-      <Navbar />
 
       {/* HERO SECTION */}
       <div className="container mx-auto flex flex-col md:flex-row items-center my-12">
@@ -110,43 +101,42 @@ export default function Home() {
       </div>
 
       <div className="bg-slate-50 py-12">
-      <div className="text-black flex items-center justify-center pb-6">
-        <form
-          role="search"
-          className="mb-4 md:flex md:flex-wrap md:justify-between input-group"
-        >
-          <div className="border rounded overflow-hidden flex">
-            <label for="userInput" className="sr-only">
-              Search Services
-            </label>
-            <input
-              type="search"
-              name="search-service"
-              autocomplete="on"
-              className="pl-6 lg:pl-8 py-2"
-              id="userInput"
-              placeholder="Search for a service.."
-              size="30"
-            />
-            <button className="flex items-center bg-green-700 justify-center px-4">
-              <svg
-                className="h-4 w-4 text-grey-dark"
-                fill="white"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-              >
-                <path d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z" />
-              </svg>
-            </button>
-          </div>
-        </form>
-      </div>
+        <div className="text-black flex items-center justify-center pb-6">
+          <form
+            role="search"
+            className="mb-4 md:flex md:flex-wrap md:justify-between input-group"
+          >
+            <div className="border rounded overflow-hidden flex">
+              <label htmlFor="userInput" className="sr-only">
+                Search Services
+              </label>
+              <input
+                type="search"
+                name="search-service"
+                autoComplete="on"
+                className="pl-6 lg:pl-8 py-2"
+                id="userInput"
+                placeholder="Search for a service.."
+                size="30"
+              />
+              <button className="flex items-center bg-green-700 justify-center px-4">
+                <svg
+                  className="h-4 w-4 text-grey-dark"
+                  fill="white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z" />
+                </svg>
+              </button>
+            </div>
+          </form>
+        </div>
 
-      <main className="px-16 py-12 place-items-center lg:h-3/4 lg:px-32 lg:py-12 grid grid-cols-2 md:grid-cols-5 gap-x-12 gap-y-24">
-        {categoryItems}
-      </main>
+        <main className="px-16 py-12 place-items-center lg:h-3/4 lg:px-32 lg:py-12 grid grid-cols-2 md:grid-cols-5 gap-x-12 gap-y-24">
+          {categoryItems}
+        </main>
       </div>
-      <Footer />
     </>
   );
 }
