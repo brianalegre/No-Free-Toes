@@ -1,9 +1,6 @@
 // IMPORT REACT
 import React from "react";
 
-// IMPORT COMPONENTS
-import Navbar from "../Navbar";
-
 // IMPORT IMAGES
 // const defaultImg = "../images/man.png";
 const defaultImg = ".././assets/images/man.png";
@@ -14,11 +11,9 @@ const serviceCategoryUsers = '';
 function CategoryPage() {
   return (
     <>
-      {/* LOAD NAVBAR */}
-      <Navbar />
 
       {/* LOAD SERVICE USERS FOR CATEGORY  */}
-      <div className='text-center font-extrabold text-3xl pt-10'>
+      <div className='text-center my-4 text-2xl text-bold lg:text-5xl pt-10'>
         <h1 className='text-black'>Category: Haircut</h1>
       </div>
 
@@ -65,7 +60,7 @@ function CategoryPage() {
             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">I'm a modern day hair stylist, who loves to make you look fabulous.</p>
           </div>
           {/* <button type="button" className="text-black bg-green-300 hover:bg-green-700 focus:ring-4 focus:ring-green-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-300 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-200">View Profile</button> */}
-          <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">View Profile</button>
+          <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-3 mb-3 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">View Profile</button>
         </div>
       </div>
 
@@ -86,7 +81,7 @@ function CategoryPage() {
             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">I'm a modern day hair stylist, who loves to make you look fabulous.</p>
           </div>
           {/* <button type="button" className="text-black bg-green-300 hover:bg-green-700 focus:ring-4 focus:ring-green-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-300 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-200">View Profile</button> */}
-          <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">View Profile</button>
+          <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-3 mb-3 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">View Profile</button>
         </div>
       </div>
     </>

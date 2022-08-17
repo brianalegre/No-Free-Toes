@@ -1,5 +1,4 @@
 import React from "react";
-import Navbar from "./Navbar";
 import heroImg from "../images/hero_image.svg";
 import danceIcon from "../images/icons/dance_icon.svg";
 import eyelashesIcon from "../images/icons/eyelashes_icon.svg";
@@ -67,15 +66,16 @@ const servicesArray = [
 
 const categoryItems = servicesArray.map((services, i) => (
   <div key={'services' + i} className="align-items-center">
-    <img src={services.image} alt={services.name + " icon"} className="w-16 h-16 mb-2" />
-    <span className="relative left-1">{services.name}</span>
+    <img src={services.image} alt={services.name + " icon"} className="w-20 h-20 mb-5 min-w-20 min-h-20" />
+    <div className="flex justify-center">
+      <span className="">{services.name}</span>
+    </div>
   </div>
 ));
 
 export default function Home() {
   return (
     <>
-      <Navbar />
 
       {/* HERO SECTION */}
       <div className="container mx-auto flex flex-col md:flex-row items-center my-12">
