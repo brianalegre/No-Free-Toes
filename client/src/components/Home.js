@@ -105,13 +105,13 @@ export default function Home() {
           className="mb-4 md:flex md:flex-wrap md:justify-between input-group"
         >
           <div className="border rounded overflow-hidden flex">
-            <label for="userInput" className="sr-only">
+            <label htmlFor="userInput" className="sr-only">
               Search Services
             </label>
             <input
               type="search"
               name="search-service"
-              autocomplete="on"
+              autoComplete="on"
               className="pl-6 lg:pl-8 py-2"
               id="userInput"
               placeholder="Search for a service.."
