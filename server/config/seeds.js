@@ -6,21 +6,31 @@ const normalUserSeed = [
     {
         firstName: 'normalUserFirst',
         lastName: 'normalUserLast',
-        bio: 'First testing bio',
+        email: 'normalUserEmail',
+        password: 'normalUserPassword',
+        location: 'normalUserLocation'
     },
 ];
 
 // ServiceUser Data
 const serviceUserSeed = [
     {
-        firstName: '1serviceUserFirst',
-        lastName: '1serviceUserLast',
-        bio: 'testing 123123',
+        firstName: 'serviceUserFirst1',
+        lastName: 'serviceUserLast1',
+        email: 'serviceUserEmail1',
+        password: 'serviceUserPassword1',
+        photo: 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
+        bio: 'First testing bio',
+        location: 'serviceUserLocation1',
     },
     {
-      firstName: '2serviceUserFirst',
-      lastName: '2serviceUserLast',
+      firstName: 'serviceUserFirst2',
+      lastName: 'serviceUserLast2',
+      email: 'serviceUserEmail2',
+      password: 'serviceUserPassword2',
+      photo: 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
       bio: 'Second testing bio',
+      location: 'serviceUserLocation2',
   },
 ];
 

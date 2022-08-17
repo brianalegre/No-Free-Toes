@@ -22,6 +22,11 @@ const serviceUserSchema = new Schema({
         unique: true,
         trim: true
     },
+    password: {
+        type: String,
+        required: true,
+        minLength: 8
+    },
     photo: {
         type: String,
         default: 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png'
@@ -29,11 +34,6 @@ const serviceUserSchema = new Schema({
     bio: {
         type: String,
         required: true
-    },
-    password: {
-        type: String,
-        required: true,
-        minLength: 8
     },
     location: {
         type: String,
