@@ -29,7 +29,7 @@ return (
         </div>
     </form>
 </div>
-);n
+);
 };
 
 export default ClientLogin;
