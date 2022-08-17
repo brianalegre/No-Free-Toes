@@ -26,17 +26,17 @@ const teamMembers = teamArray.map((members) => (
       <a href={members.github}>
         <button
           type="button"
-          class="w-38 text-white bg-transparent font-medium hover:text-red-300 text-sm px-5 py-2.5 text-center inline-flex items-center mr-2"
+          className="w-38 text-white bg-transparent font-medium hover:text-red-300 text-sm px-5 py-2.5 text-center inline-flex items-center mr-2"
         >
           <svg
             aria-hidden="true"
-            class="mr-2 -ml-1 w-5 h-5"
+            className="mr-2 -ml-1 w-5 h-5"
             fill="currentColor"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
           >
             <svg
-              class="mr-2 -ml-1 w-4 h-4"
+              className="mr-2 -ml-1 w-4 h-4"
               aria-hidden="true"
               focusable="false"
               data-prefix="fab"
@@ -61,13 +61,13 @@ const teamMembers = teamArray.map((members) => (
 export default function Footer() {
   return (
     <>
-      <footer class="bg-gray-900">
-        <div class="max-w-screen-xl px-4 py-6 mx-auto sm:px-6 lg:px-8 lg:pt-20">
-          <div class="md:grid md:grid-cols-1 gap-8 lg:grid-cols-2">
+      <footer className="bg-gray-900">
+        <div className="max-w-screen-xl px-4 py-6 mx-auto sm:px-6 lg:px-8 lg:pt-20">
+          <div className="md:grid md:grid-cols-1 gap-8 lg:grid-cols-2">
             
             <div>
-              <div class="flex justify-center">
-                <div class="justify-center">
+              <div className="flex justify-center">
+                <div className="justify-center">
                   <a
                     href="/"
                     className="flex items-center justify-center px-2 text-red-300"
@@ -81,14 +81,14 @@ export default function Footer() {
               </div>
             </div>
 
-            <div class="grid grid-cols-1">
-              <div class="text-center">
+            <div className="grid grid-cols-1">
+              <div className="text-center">
 
-                <p class="text-lg font-medium text-red-600">
+                <p className="text-lg font-medium text-red-600">
                   Made with ❤ by
                 </p>
-                <div class="mt-4 text-left pl-8 sm:text-center">
-                  <ul class="sm:inline-flex">
+                <div className="mt-4 text-left pl-8 sm:text-center">
+                  <ul className="sm:inline-flex">
                     <div className="grid grid-cols-2">{teamMembers}</div></ul>
                 </div>
               </div>
@@ -96,9 +96,9 @@ export default function Footer() {
             </div>
           </div>
 
-          <div class="mt-6 sm:pt-6 sm:mt-12 border-t border-gray-400">
-            <div class="text-center sm:flex sm:justify-between sm:text-left">
-              <p class="mt-4 text-sm text-white sm:order-first sm:mt-0">
+          <div className="mt-6 sm:pt-6 sm:mt-12 border-t border-gray-400">
+            <div className="text-center sm:flex sm:justify-between sm:text-left">
+              <p className="mt-4 text-sm text-white sm:order-first sm:mt-0">
                 &copy; 2022 No Free Toes Scheduler
               </p>
             </div>
