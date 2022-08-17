@@ -6,15 +6,22 @@ const normalUserSeed = [
     {
         firstName: 'normalUserFirst',
         lastName: 'normalUserLast',
+        bio: 'First testing bio',
     },
 ];
 
 // ServiceUser Data
 const serviceUserSeed = [
     {
-        firstName: 'serviceUserFirst',
-        lastName: 'serviceUserLast',
+        firstName: '1serviceUserFirst',
+        lastName: '1serviceUserLast',
+        bio: 'testing 123123',
     },
+    {
+      firstName: '2serviceUserFirst',
+      lastName: '2serviceUserLast',
+      bio: 'Second testing bio',
+  },
 ];
 
 // ServiceCategory Data
@@ -36,23 +43,40 @@ const serviceTypeSeed = [
     {
         serviceName: 'Haircut',
         servicePrice: 20,
-        serviceCategory: serviceCategorySeed[0]._id
+        serviceCategory: serviceCategorySeed[0].categoryName
     },
     {
         serviceName: 'Haircut and Beard Trim',
         servicePrice: 25,
-        serviceCategory: serviceCategorySeed[0]._id
+        serviceCategory: serviceCategorySeed[0].categoryName
     },
     {
         serviceName: 'Eyelash Extensions',
         servicePrice: 50,
-        serviceCategory: serviceCategorySeed[2]._id
+        serviceCategory: serviceCategorySeed[2].categoryName
     },
     {
         serviceName: 'Pedicure',
         servicePrice: 30,
-        serviceCategory: serviceCategorySeed[3]._id
+        serviceCategory: serviceCategorySeed[3].categoryName
     },
+]
+
+const serviceCommentSeed = [
+    {
+        commentText: 'Nice haircut, lookin fabulous! Thanks Brian!',
+        commentCreated: Date.now(),
+        serviceRating: 5,
+        normalUser: normalUserSeed[0].firstName,
+        serviceUser: serviceUserSeed[0].firstName
+    },
+    {
+      commentText: 'Nails did, lookin fabulous! Thanks Kevin!',
+      commentCreated: Date.now(),
+      serviceRating: 4,
+      normalUser: normalUserSeed[0].firstName,
+      serviceUser: serviceUserSeed[1].firstName
+  },
 ]
 
 
@@ -61,6 +85,7 @@ connection.once('open', async () => {
     await ServiceUser.deleteMany({});
     await ServiceCategory.deleteMany({});
     await ServiceType.deleteMany({});
+    await ServiceComment.deleteMany({});
 
     await NormalUser.collection.insertMany(normalUserSeed);
     console.log('SUCCESSFULLY SEEDED NORMAL USERS');
@@ -70,6 +95,8 @@ connection.once('open', async () => {
     console.log('SUCCESSFULLY SEEDED SERVICE CATEGORIES');
     await ServiceType.collection.insertMany(serviceTypeSeed);
     console.log('SUCCESSFULLY SEEDED SERVICE TYPES');
+    await ServiceComment.collection.insertMany(serviceCommentSeed);
+    console.log('SUCCESSFULLY SEEDED SERVICE COMMENTS');
 
 
     process.exit(0);
