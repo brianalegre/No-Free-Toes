@@ -4,63 +4,64 @@ import danceIcon from "../images/icons/dance_icon.svg";
 import eyelashesIcon from "../images/icons/eyelashes_icon.svg";
 import haircutIcon from "../images/icons/haircut_icon.svg";
 import massageIcon from "../images/icons/massage_icon.svg";
-import nailCareIcon from "../images/icons/nailcare_icon.svg"
-import personalTrainingIcon from "../images/icons/personaltraining_icon.svg"
-import petCareIcon from "../images/icons/petcare_icon.svg"
-import mediaIcon from "../images/icons/media_icon.svg"
-import tutoringIcon from "../images/icons/tutoring_icon.svg"
-import singingIcon from "../images/icons/singing_icon.svg"
+import nailCareIcon from "../images/icons/nailcare_icon.svg";
+import personalTrainingIcon from "../images/icons/personaltraining_icon.svg";
+import petCareIcon from "../images/icons/petcare_icon.svg";
+import mediaIcon from "../images/icons/media_icon.svg";
+import tutoringIcon from "../images/icons/tutoring_icon.svg";
+import singingIcon from "../images/icons/singing_icon.svg";
+// import { Link } from "react-router-dom";
 
 const servicesArray = [
   {
     name: "Haircut",
     image: haircutIcon,
-    link: "#"
+    link: "/category/haircut",
   },
   {
     name: "Massage",
     image: massageIcon,
-    link: "#"
+    link: "/category/massage",
   },
   {
     name: "Eyelashes",
     image: eyelashesIcon,
-    link: "#"
+    link: "/category/eyelashes",
   },
   {
     name: "Nailcare",
     image: nailCareIcon,
-    link: "#"
+    link: "/category/nailcare",
   },
   {
     name: "Dance",
     image: danceIcon,
-    link: "#"
+    link: "/category/dance",
   },
   {
     name: "Fitness",
     image: personalTrainingIcon,
-    link: "#"
+    link: "/category/fitness",
   },
   {
     name: "Pet Care",
     image: petCareIcon,
-    link: "#"
+    link: "/category/petcare",
   },
   {
     name: "Tutoring",
     image: tutoringIcon,
-    link: "#"
+    link: "/category/tutoring",
   },
   {
     name: "Media",
     image: mediaIcon,
-    link: "#"
+    link: "/category/media",
   },
   {
     name: "Singing",
     image: singingIcon,
-    link: "#"
+    link: "/category/singing",
   },
 ];
 
@@ -99,41 +100,43 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="text-black bg-white flex items-center justify-center pb-12">
-        <form
-          role="search"
-          className="mb-4 md:flex md:flex-wrap md:justify-between input-group"
-        >
-          <div className="border rounded overflow-hidden flex">
-            <label htmlFor="userInput" className="sr-only">
-              Search Services
-            </label>
-            <input
-              type="search"
-              name="search-service"
-              autoComplete="on"
-              className="pl-6 lg:pl-8 py-2"
-              id="userInput"
-              placeholder="Search for a service.."
-              size="30"
-            />
-            <button className="flex items-center bg-green-700 justify-center px-4">
-              <svg
-                className="h-4 w-4 text-grey-dark"
-                fill="white"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-              >
-                <path d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z" />
-              </svg>
-            </button>
-          </div>
-        </form>
-      </div>
+      <div className="bg-slate-50 py-12">
+        <div className="text-black flex items-center justify-center pb-6">
+          <form
+            role="search"
+            className="mb-4 md:flex md:flex-wrap md:justify-between input-group"
+          >
+            <div className="border rounded overflow-hidden flex">
+              <label htmlFor="userInput" className="sr-only">
+                Search Services
+              </label>
+              <input
+                type="search"
+                name="search-service"
+                autoComplete="on"
+                className="pl-6 lg:pl-8 py-2"
+                id="userInput"
+                placeholder="Search for a service.."
+                size="30"
+              />
+              <button className="flex items-center bg-green-700 justify-center px-4">
+                <svg
+                  className="h-4 w-4 text-grey-dark"
+                  fill="white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z" />
+                </svg>
+              </button>
+            </div>
+          </form>
+        </div>
 
-      <main className="px-16 py-12 place-items-center lg:px-32 lg:py-12 grid grid-cols-2 md:grid-cols-5 gap-x-12 gap-y-24">
-        {categoryItems}
-      </main>
+        <main className="px-16 py-12 place-items-center lg:h-3/4 lg:px-32 lg:py-12 grid grid-cols-2 md:grid-cols-5 gap-x-12 gap-y-24">
+          {categoryItems}
+        </main>
+      </div>
     </>
   );
 }

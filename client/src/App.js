@@ -5,6 +5,8 @@ import "./index.css";
 import Home from "./components/Home";
 import Navbar from "./components/Navbar"
 import CategoryPage from "./components/Category/Category";
+import SingleServicePage from "./components/ServiceType/ServiceType";
+import Footer from "./components/Footer"
 
 const client = new ApolloClient({
   uri: "/graphql",
@@ -18,9 +20,11 @@ const App = () => (
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/category/" element={<CategoryPage />} />
-      </Routes>
-    </Router>
-  </ApolloProvider>
+        <Route path="/category/:servicetype" element={<SingleServicePage />} />
+      </Routes >
+      <Footer />
+    </Router >
+  </ApolloProvider >
 );
 
 export default App;
