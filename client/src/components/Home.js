@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 import heroImg from "../images/hero_image.svg";
 import danceIcon from "../images/icons/dance_icon.svg";
 import eyelashesIcon from "../images/icons/eyelashes_icon.svg";
@@ -73,9 +74,9 @@ const categoryItems = servicesArray.map((services, i) => (
       <img
         src={services.image}
         alt={services.name + " icon"}
-        className="w-16 h-16 mb-2"
+        className="w-16 h-16 lg:w-18 lg:h-18 mb-2"
       />
-      <span className="relative left-1">{services.name}</span>
+      <span className="relative self-center left-0.5">{services.name}</span>
       </Link>
     </button>
   </div>
@@ -141,10 +142,11 @@ export default function Home() {
         </form>
       </div>
 
-      <main className="px-16 py-12 place-items-center lg:px-32 lg:py-12 grid grid-cols-2 md:grid-cols-5 gap-x-12 gap-y-24">
+      <main className="px-16 py-12 place-items-center lg:h-3/4 lg:px-32 lg:py-12 grid grid-cols-2 md:grid-cols-5 gap-x-12 gap-y-24">
         {categoryItems}
       </main>
       </div>
+      <Footer />
     </>
   );
 }

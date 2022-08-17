@@ -30,10 +30,6 @@ const memberNavLinks = [
     link: "#",
   },
   {
-    name: "Dashboard",
-    link: "#",
-  },
-  {
     name: "Account",
     link: "#",
   },
