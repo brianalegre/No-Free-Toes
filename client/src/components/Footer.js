@@ -20,9 +20,9 @@ const teamArray = [
   },
 ];
 
-const teamMembers = teamArray.map((members) => (
+const teamMembers = teamArray.map((members, i) => (
   <>
-    <li>
+    <li className={'Github Logo ' + i}>
       <a href={members.github}>
         <button
           type="button"
@@ -64,7 +64,6 @@ export default function Footer() {
       <footer className="bg-gray-900">
         <div className="max-w-screen-xl px-4 py-6 mx-auto sm:px-6 lg:px-8 lg:pt-20">
           <div className="md:grid md:grid-cols-1 gap-8 lg:grid-cols-2">
-            
             <div>
               <div className="flex justify-center">
                 <div className="justify-center">
@@ -72,7 +71,12 @@ export default function Footer() {
                     href="/"
                     className="flex items-center justify-center px-2 text-red-300"
                   >
-                    <img src={mainLogo} className="h-12 w-12 sm:h-24 sm:w-24 mr-3" alt="logo" />
+                    <img
+                      key="Footer Logo"
+                      src={mainLogo}
+                      className="h-12 w-12 sm:h-24 sm:w-24 mr-3"
+                      alt="logo"
+                    />
                     <span className="text-2xl font-bold">
                       No Free Toes Scheduler
                     </span>
@@ -83,16 +87,15 @@ export default function Footer() {
 
             <div className="grid grid-cols-1">
               <div className="text-center">
-
                 <p className="text-lg font-medium text-red-600">
                   Made with ❤ by
                 </p>
                 <div className="mt-4 text-left pl-8 sm:text-center">
                   <ul className="sm:inline-flex">
-                    <div className="grid grid-cols-2">{teamMembers}</div></ul>
+                    <div className="grid grid-cols-2">{teamMembers}</div>
+                  </ul>
                 </div>
               </div>
-
             </div>
           </div>
 
