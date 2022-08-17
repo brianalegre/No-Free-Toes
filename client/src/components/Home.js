@@ -1,74 +1,84 @@
 import React from "react";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 import heroImg from "../images/hero_image.svg";
 import danceIcon from "../images/icons/dance_icon.svg";
 import eyelashesIcon from "../images/icons/eyelashes_icon.svg";
 import haircutIcon from "../images/icons/haircut_icon.svg";
 import massageIcon from "../images/icons/massage_icon.svg";
-import nailCareIcon from "../images/icons/nailcare_icon.svg"
-import personalTrainingIcon from "../images/icons/personaltraining_icon.svg"
-import petCareIcon from "../images/icons/petcare_icon.svg"
-import mediaIcon from "../images/icons/media_icon.svg"
-import tutoringIcon from "../images/icons/tutoring_icon.svg"
-import singingIcon from "../images/icons/singing_icon.svg"
+import nailCareIcon from "../images/icons/nailcare_icon.svg";
+import personalTrainingIcon from "../images/icons/personaltraining_icon.svg";
+import petCareIcon from "../images/icons/petcare_icon.svg";
+import mediaIcon from "../images/icons/media_icon.svg";
+import tutoringIcon from "../images/icons/tutoring_icon.svg";
+import singingIcon from "../images/icons/singing_icon.svg";
+import { Link } from "react-router-dom";
 
 const servicesArray = [
   {
     name: "Haircut",
     image: haircutIcon,
-    link: "#"
+    link: "/category/haircut",
   },
   {
     name: "Massage",
     image: massageIcon,
-    link: "#"
+    link: "/category/massage",
   },
   {
     name: "Eyelashes",
     image: eyelashesIcon,
-    link: "#"
+    link: "/category/eyelashes",
   },
   {
     name: "Nailcare",
     image: nailCareIcon,
-    link: "#"
+    link: "/category/nailcare",
   },
   {
     name: "Dance",
     image: danceIcon,
-    link: "#"
+    link: "/category/dance",
   },
   {
     name: "Fitness",
     image: personalTrainingIcon,
-    link: "#"
+    link: "/category/fitness",
   },
   {
     name: "Pet Care",
     image: petCareIcon,
-    link: "#"
+    link: "/category/petcare",
   },
   {
     name: "Tutoring",
     image: tutoringIcon,
-    link: "#"
+    link: "/category/tutoring",
   },
   {
     name: "Media",
     image: mediaIcon,
-    link: "#"
+    link: "/category/media",
   },
   {
     name: "Singing",
     image: singingIcon,
-    link: "#"
+    link: "/category/singing",
   },
 ];
 
 const categoryItems = servicesArray.map((services, i) => (
-  <div key={'services' + i} className="align-items-center">
-    <img src={services.image} alt={services.name + " icon"} className="w-16 h-16 mb-2" />
-    <span className="relative left-1">{services.name}</span>
+  <div key={"services" + i} className="align-items-center">
+    <button>
+      <Link to={services.link}>
+      <img
+        src={services.image}
+        alt={services.name + " icon"}
+        className="w-16 h-16 lg:w-18 lg:h-18 mb-2"
+      />
+      <span className="relative self-center left-0.5">{services.name}</span>
+      </Link>
+    </button>
   </div>
 ));
 
@@ -99,7 +109,8 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="text-black bg-white flex items-center justify-center pb-12">
+      <div className="bg-slate-50 py-12">
+      <div className="text-black flex items-center justify-center pb-6">
         <form
           role="search"
           className="mb-4 md:flex md:flex-wrap md:justify-between input-group"
@@ -131,9 +142,11 @@ export default function Home() {
         </form>
       </div>
 
-      <main className="px-16 py-12 place-items-center lg:px-32 lg:py-12 grid grid-cols-2 md:grid-cols-5 gap-x-12 gap-y-24">
+      <main className="px-16 py-12 place-items-center lg:h-3/4 lg:px-32 lg:py-12 grid grid-cols-2 md:grid-cols-5 gap-x-12 gap-y-24">
         {categoryItems}
       </main>
+      </div>
+      <Footer />
     </>
   );
 }
