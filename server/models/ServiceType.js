@@ -7,6 +7,11 @@ const serviceTypeSchema = new Schema({
         required: true,
         trim: true
     },
+    servicePrice: {
+        type: Number,
+        required: true,
+        min: .99
+    },
     serviceCategory: {
             type: Schema.Types.ObjectId,
             ref: 'ServiceCategory',

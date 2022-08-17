@@ -1,60 +1,86 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-  type Category {
-    _id: ID
-    name: String
-  }
+    type ServiceCategory {
+        _id: ID
+        categoryName: String
+    }
 
-  type Product {
-    _id: ID
-    name: String
-    description: String
-    image: String
-    quantity: Int
-    price: Float
-    category: Category
-  }
+    type ServiceType {
+        _id: ID
+        serviceTypeName: String
+        serviceCategory: ServiceCategory
+    }
 
-  type Order {
-    _id: ID
-    purchaseDate: String
-    products: [Product]
-  }
+    type Appointment {
+        _id: ID
+        appointmentDate: String
+        serviceType: ServiceType
+        normalUser: NormalUser
+        serviceUser: ServiceUser
+    }
 
-  type User {
-    _id: ID
-    firstName: String
-    lastName: String
-    email: String
-    orders: [Order]
-  }
+    type NormalUser {
+        _id: ID
+        firstName: String
+        lastName: String
+        email: String
+        password: String
+        location: String
+        appointments: [Appointment]
 
-  type Checkout {
-    session: ID
-  }
+    }
 
-  type Auth {
-    token: ID
-    user: User
-  }
+    type ServiceUser {
+        _id: ID
+        firstName: String
+        lastName: String
+        email: String
+        photo: String
+        bio: String
+        password: String
+        location: String
+        serviceCategory: [ServiceCategory]
+        serviceType: [ServiceType]
+        appointments: [Appointment]
+    }
 
-  type Query {
-    categories: [Category]
-    products(category: ID, name: String): [Product]
-    product(_id: ID!): Product
-    user: User
-    order(_id: ID!): Order
-    checkout(products: [ID]!): Checkout
-  }
+    type ServiceComment {
+        _id: ID
+        commentText: String
+        commentCreated: String
+        serviceRating: Int
+        normalUser: NormalUser
+        serviceUser: ServiceUser
+    }
+    
+    type Query {
+        serviceType(_id: ID!): ServiceType
+        serviceTypes: [ServiceType]
+        serviceCategory(_id: ID!): ServiceCategory
+        serviceCategories: [ServiceCategory]
+        normalUser(_id: ID!): NormalUser
+        normalUsers: [NormalUser]
+        serviceUser(_id: ID!): ServiceUser
+        serviceUsers: ServiceUser
+        appointment(_id: ID!): Appointment
+        appointments: [Appointment]
+        serviceComment(_id: ID!): ServiceComment
+        serviceComments: [ServiceComment]
+    }
 
-  type Mutation {
-    addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
-    addOrder(products: [ID]!): Order
-    updateUser(firstName: String, lastName: String, email: String, password: String): User
-    updateProduct(_id: ID!, quantity: Int!): Product
-    login(email: String!, password: String!): Auth
-  }
+    type Mutation {
+        addServiceCategory(categoryName: String!): ServiceCategory
+        addServiceType(serviceTypeName: String!, serviceCategory: ID!): ServiceType
+        addNormalUser(firstName: String!, lastName: String!, email: String!, password: String!, location: String!): NormalUser
+        removeNormalUser(_id: ID!): NormalUser
+        addServiceUser(firstName: String!, lastName: String!, email: String!, password: String!, location: String!, serviceCategory: [ID]!, serviceType: [ID]!): ServiceUser
+        removeServiceUser(_id: ID!): ServiceUser
+        addAppointment(appointmentDate: String!, serviceType: ID!, normalUser: ID!, serviceUser: ID!): Appointment
+        removeAppointment(_id: ID!): Appointment
+        addServiceComment(commentText: String!, serviceUser: ID!): ServiceComment
+        removeServiceComment(_id: ID!): ServiceComment
+    }
 `;
 
 module.exports = typeDefs;
