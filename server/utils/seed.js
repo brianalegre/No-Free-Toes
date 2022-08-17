@@ -36,23 +36,13 @@ const serviceTypeSeed = [
     {
         serviceName: 'Haircut',
         servicePrice: 20,
-        serviceCategory: serviceCategorySeed[0]._id
+        serviceCategory: 'Haircut'
     },
     {
         serviceName: 'Haircut and Beard Trim',
         servicePrice: 25,
-        serviceCategory: serviceCategorySeed[0]._id
-    },
-    {
-        serviceName: 'Eyelash Extensions',
-        servicePrice: 50,
-        serviceCategory: serviceCategorySeed[2]._id
-    },
-    {
-        serviceName: 'Pedicure',
-        servicePrice: 30,
-        serviceCategory: serviceCategorySeed[3]._id
-    },
+        serviceCategory: 'Haircut'
+    }
 ]
 
 
