@@ -22,7 +22,7 @@ const teamArray = [
 
 const teamMembers = teamArray.map((members, i) => (
   <>
-    <li className={'Github Logo ' + i}>
+    <li key={'Github Logo ' + i}>
       <a href={members.github}>
         <button
           type="button"
