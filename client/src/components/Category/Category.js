@@ -1,6 +1,9 @@
 // IMPORT REACT
 import React from "react";
 
+// IMPORT LINK OBJECT FROM REACT-ROUTER-DOM
+import { Link } from "react-router-dom"
+
 // IMPORT IMAGES
 // const defaultImg = "../images/man.png";
 const defaultImg = ".././assets/images/man.png";
@@ -62,7 +65,7 @@ function CategoryPage() {
             <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">I'm a modern day hair stylist, who loves to make you look fabulous.</p>
           </div>
           {/* <button type="button" className="text-black bg-green-300 hover:bg-green-700 focus:ring-4 focus:ring-green-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-300 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-200">View Profile</button> */}
-          <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-3 mb-3 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">View Profile</button>
+          <Link to="/service/test1"><button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-3 mb-3 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">View Profile</button></Link>
         </div>
       </div>
 
@@ -83,7 +86,7 @@ function CategoryPage() {
             <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">I'm a modern day hair stylist, who loves to make you look fabulous.</p>
           </div>
           {/* <button type="button" className="text-black bg-green-300 hover:bg-green-700 focus:ring-4 focus:ring-green-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-300 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-200">View Profile</button> */}
-          <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-3 mb-3 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">View Profile</button>
+          <Link to="/service/test2"><button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-3 mb-3 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">View Profile</button></Link>
         </div>
       </div>
 
@@ -104,7 +107,7 @@ function CategoryPage() {
             <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">I'm a modern day hair stylist, who loves to make you look fabulous.</p>
           </div>
           {/* <button type="button" className="text-black bg-green-300 hover:bg-green-700 focus:ring-4 focus:ring-green-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-300 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-200">View Profile</button> */}
-          <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-3 mb-3 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">View Profile</button>
+          <Link to="/service/test3"><button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-3 mb-3 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">View Profile</button></Link>
         </div>
       </div>
 
@@ -125,7 +128,7 @@ function CategoryPage() {
             <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">I'm a modern day hair stylist, who loves to make you look fabulous.</p>
           </div>
           {/* <button type="button" className="text-black bg-green-300 hover:bg-green-700 focus:ring-4 focus:ring-green-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-300 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-200">View Profile</button> */}
-          <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-3 mb-3 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">View Profile</button>
+          <Link to="/service/test4"><button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-3 mb-3 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">View Profile</button></Link>
         </div>
       </div>
 
