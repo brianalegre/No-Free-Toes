@@ -10,7 +10,7 @@ import petCareIcon from "../images/icons/petcare_icon.svg";
 import mediaIcon from "../images/icons/media_icon.svg";
 import tutoringIcon from "../images/icons/tutoring_icon.svg";
 import singingIcon from "../images/icons/singing_icon.svg";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const servicesArray = [
   {
@@ -66,18 +66,25 @@ const servicesArray = [
 ];
 
 const categoryItems = servicesArray.map((services, i) => (
-  <div key={'services' + i} className="align-items-center">
-    <img src={services.image} alt={services.name + " icon"} className="w-20 h-20 mb-5 min-w-20 min-h-20" />
-    <div className="flex justify-center">
-      <span className="">{services.name}</span>
-    </div>
+  <div key={"services" + i} className="align-items-center">
+    <button>
+      <Link to={services.link}>
+        <img
+          src={services.image}
+          alt={services.name + " icon"}
+          className="w-20 h-20 mb-5 min-w-20 min-h-20"
+        />
+        <div className="flex justify-center">
+          <span className="">{services.name}</span>
+        </div>
+      </Link>
+    </button>
   </div>
 ));
 
 export default function Home() {
   return (
     <>
-
       {/* HERO SECTION */}
       <div className="container mx-auto flex flex-col md:flex-row items-center my-12">
         <div className="pl-24 w-full lg:w-1/2 lg:py-6">
