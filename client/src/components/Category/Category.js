@@ -8,17 +8,16 @@ import Navbar from "../Navbar";
 // const defaultImg = "../images/man.png";
 const defaultImg = ".././assets/images/man.png";
 
-
-
-
-
+// IMPORT SERVICE USERS
 const serviceCategoryUsers = '';
 
 function CategoryPage() {
   return (
     <>
+      {/* LOAD NAVBAR */}
       <Navbar />
 
+      {/* LOAD SERVICE USERS FOR CATEGORY  */}
       <div className='text-center font-extrabold text-3xl pt-10'>
         <h1 className='text-black'>Category: Haircut</h1>
       </div>
