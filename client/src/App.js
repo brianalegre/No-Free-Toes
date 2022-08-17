@@ -5,7 +5,6 @@ import "./index.css";
 import Home from "./components/Home";
 import Navbar from "./components/Navbar"
 import CategoryPage from "./components/Category/Category";
-import SingleServicePage from "./components/ServiceType/ServiceType";
 import Footer from "./components/Footer"
 
 const client = new ApolloClient({
@@ -19,8 +18,7 @@ const App = () => (
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/category/" element={<CategoryPage />} />
-        <Route path="/category/:servicetype" element={<SingleServicePage />} />
+        <Route path="/category/:servicetype" element={<CategoryPage />} />
       </Routes >
       <Footer />
     </Router >

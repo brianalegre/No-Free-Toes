@@ -20,10 +20,10 @@ const teamArray = [
   },
 ];
 
-const teamMembers = teamArray.map((members, i) => (
+const teamMembers = teamArray.map((member, i) => (
   <>
-    <li key={'Github Logo ' + i}>
-      <a href={members.github}>
+    <li key={"Github Logo " + i}>
+      <a href={member.github}>
         <button
           type="button"
           className="w-38 text-white bg-transparent font-medium hover:text-red-300 text-sm px-5 py-2.5 text-center inline-flex items-center mr-2"
@@ -51,7 +51,7 @@ const teamMembers = teamArray.map((members, i) => (
               ></path>
             </svg>
           </svg>
-          {members.name}
+          {member.name}
         </button>
       </a>
     </li>
