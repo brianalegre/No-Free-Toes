@@ -1,6 +1,22 @@
 const connection = require('../config/connection');
 const { NormalUser, ServiceUser, ServiceCategory, ServiceComment, ServiceType } = require('../models');
+const moment = require('moment');
+const icon = '../haircut_icon.svg';
+const dateSeed = moment(Date.now()).format('ll')
 
+// ServiceCategory Data
+const serviceCategorySeed = [
+    { categoryName: 'Haircut', categoryIcon: icon },
+    { categoryName: 'Massage' },
+    { categoryName: 'Eyelashes' },
+    { categoryName: 'Nailcare' },
+    { categoryName: 'Dance' },
+    { categoryName: 'Personal Training' },
+    { categoryName: 'Pet Care' },
+    { categoryName: 'Tutoring' },
+    { categoryName: 'Media' },
+    { categoryName: 'Singing' },
+];
 // NormalUser Data
 const normalUserSeed = [
     {
@@ -15,38 +31,57 @@ const normalUserSeed = [
 // ServiceUser Data
 const serviceUserSeed = [
     {
-        firstName: 'serviceUserFirst1',
-        lastName: 'serviceUserLast1',
-        email: 'serviceUserEmail1',
-        password: 'serviceUserPassword1',
+        firstName: 'Brian',
+        lastName: 'Alegre',
+        email: 'brian@gmail.com',
+        password: 'brian123',
+        serviceCategory: serviceCategorySeed[0].categoryName,
         photo: 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
         bio: 'First testing bio',
-        location: 'serviceUserLocation1',
+        location: 'Garden Grove, CA',
     },
     {
-      firstName: 'serviceUserFirst2',
-      lastName: 'serviceUserLast2',
-      email: 'serviceUserEmail2',
-      password: 'serviceUserPassword2',
-      photo: 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
-      bio: 'Second testing bio',
-      location: 'serviceUserLocation2',
-  },
+        firstName: 'Kevin',
+        lastName: 'Lazaro',
+        email: 'kevin@gmail.com',
+        password: 'kevin123',
+        serviceCategory: serviceCategorySeed[1].categoryName,
+        photo: 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
+        bio: 'Second testing bio',
+        location: 'Hacienda Heights, CA',
+    },
+    {
+        firstName: 'Allec',
+        lastName: 'Arzadon',
+        email: 'allec@gmail.com',
+        password: 'allec123',
+        serviceCategory: serviceCategorySeed[2].categoryName,
+        photo: 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
+        bio: 'Third testing bio',
+        location: 'Anaheim, CA',
+    },
+    {
+        firstName: 'Philip',
+        lastName: 'Hwang',
+        email: 'philip@gmail.com',
+        password: 'philip123',
+        serviceCategory: serviceCategorySeed[3].categoryName,
+        photo: 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
+        bio: 'fourth testing bio',
+        location: 'Irvine, CA',
+    },
+    {
+        firstName: 'Chad',
+        lastName: 'Tao',
+        email: 'chad@gmail.com',
+        password: 'chad123',
+        serviceCategory: serviceCategorySeed[4].categoryName,
+        photo: 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
+        bio: 'fifth testing bio',
+        location: 'Los Angeles, CA',
+    },
 ];
 
-// ServiceCategory Data
-const serviceCategorySeed = [
-    {categoryName: 'Haircut'},
-    {categoryName: 'Massage'},
-    {categoryName: 'Eyelashes'},
-    {categoryName: 'Nailcare'},
-    {categoryName: 'Dance'},
-    {categoryName: 'Personal Training'},
-    {categoryName: 'Pet Care'},
-    {categoryName: 'Tutoring'},
-    {categoryName: 'Media'},
-    {categoryName: 'Singing'},
-];
 
 // ServiceType Data
 const serviceTypeSeed = [
@@ -75,18 +110,18 @@ const serviceTypeSeed = [
 const serviceCommentSeed = [
     {
         commentText: 'Nice haircut, lookin fabulous! Thanks Brian!',
-        commentCreated: Date.now(),
+        commentCreated: dateSeed,
         serviceRating: 5,
         normalUser: normalUserSeed[0].firstName,
         serviceUser: serviceUserSeed[0].firstName
     },
     {
-      commentText: 'Nails did, lookin fabulous! Thanks Kevin!',
-      commentCreated: Date.now(),
-      serviceRating: 4,
-      normalUser: normalUserSeed[0].firstName,
-      serviceUser: serviceUserSeed[1].firstName
-  },
+        commentText: 'Nails did, lookin fabulous! Thanks Kevin!',
+        commentCreated: dateSeed,
+        serviceRating: 4,
+        normalUser: normalUserSeed[0].firstName,
+        serviceUser: serviceUserSeed[1].firstName
+    },
 ]
 
 
