@@ -7,6 +7,9 @@ const serviceCategorySchema = new Schema ({
         required: true,
         trim: true
     },
+    categoryIcon: {
+        type: String
+    }
 });
 
 const ServiceCategory = mongoose.model('ServiceCategory', serviceCategorySchema);

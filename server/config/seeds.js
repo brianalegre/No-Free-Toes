@@ -1,7 +1,7 @@
 const connection = require('../config/connection');
 const { NormalUser, ServiceUser, ServiceCategory, ServiceComment, ServiceType } = require('../models');
 const moment = require('moment');
-const icon = '../haircut_icon.svg';
+const icon = '.././assets/images/haircut_icon.svg';
 const dateSeed = moment(Date.now()).format('ll')
 
 // ServiceCategory Data
