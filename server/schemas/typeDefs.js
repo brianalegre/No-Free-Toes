@@ -67,7 +67,7 @@ const typeDefs = gql`
         normalUser(_id: ID!): NormalUser
         normalUsers: [NormalUser]
         serviceUser(_id: ID!): ServiceUser
-        serviceUsers: ServiceUser
+        serviceUsers: [ServiceUser]
         appointment(_id: ID!): Appointment
         appointments: [Appointment]
         serviceComment(_id: ID!): ServiceComment
