@@ -45,7 +45,7 @@ const typeDefs = gql`
         photo: String
         bio: String
         location: String
-        serviceCategory: ServiceCategory
+        serviceCategory: [ServiceCategory]
         serviceType: [ServiceType]
         appointments: [Appointment]
     }

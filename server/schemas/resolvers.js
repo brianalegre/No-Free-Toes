@@ -15,9 +15,17 @@ const resolvers = {
         normalUsers: async () => {
             return await NormalUser.find();
         },
-        // GET ALL SERVICE USERS
+        // // GET ALL SERVICE USERS
+        // serviceUsers: async () => {
+        //     return await ServiceUser.find();
+        // },
+        //  GET ALL SERVICE USERS + CATEGORIES
         serviceUsers: async () => {
-            return await ServiceUser.find();
+            return await ServiceUser.find({}).populate('serviceCategory');
+        },
+        //  GET ALL SERVICECATEGORIES
+        serviceCategories: async () => {
+            return await ServiceCategory.find({});
         },
     }
 }
