@@ -95,7 +95,9 @@ const typeDefs = gql`
         # Appointments
         addAppointment(appointmentDate: String!, serviceType: ID!, normalUser: ID!, serviceUser: ID!): Appointment
         removeAppointment(_id: ID!): Appointment
-        addServiceComment(commentText: String!, serviceUser: ID!): ServiceComment
+        
+        # Service Comments
+        addServiceComment(commentText: String!, serviceUser: ID!, normalUser: ID!): ServiceComment
         removeServiceComment(_id: ID!): ServiceComment
     }
 `;
