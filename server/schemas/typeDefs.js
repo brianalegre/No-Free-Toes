@@ -74,7 +74,7 @@ const typeDefs = gql`
         addServiceType(serviceTypeName: String!, serviceCategory: ID!): ServiceType
         addNormalUser(firstName: String!, lastName: String!, email: String!, password: String!, location: String!): NormalUser
         removeNormalUser(_id: ID!): NormalUser
-        addServiceUser(firstName: String!, lastName: String!, email: String!, password: String!, location: String!, serviceCategory: [ID]!, serviceType: [ID]!): ServiceUser
+        addServiceUser(firstName: String!, lastName: String!, email: String!, password: String!, bio:String!, location: String!, serviceCategory: [ID]!, serviceType: [ID]!): ServiceUser
         removeServiceUser(_id: ID!): ServiceUser
         addAppointment(appointmentDate: String!, serviceType: ID!, normalUser: ID!, serviceUser: ID!): Appointment
         removeAppointment(_id: ID!): Appointment
