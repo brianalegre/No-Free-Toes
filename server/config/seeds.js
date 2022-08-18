@@ -1,21 +1,22 @@
 const connection = require('../config/connection');
 const { NormalUser, ServiceUser, ServiceCategory, ServiceComment, ServiceType } = require('../models');
 const moment = require('moment');
-const icon = '.././assets/images/haircut_icon.svg';
-const dateSeed = moment(Date.now()).format('ll')
+const haircutIcon = '.././assets/images/haircut_icon.svg';
+const eyelashesIcon = '.././assets/images/eyelashes_icon.svg';
+const currentDate = moment(Date.now()).format('ll')
 
 // ServiceCategory Data
 const serviceCategorySeed = [
-    { categoryName: 'Haircut', categoryIcon: icon },
-    { categoryName: 'Massage' },
-    { categoryName: 'Eyelashes' },
-    { categoryName: 'Nailcare' },
-    { categoryName: 'Dance' },
-    { categoryName: 'Personal Training' },
-    { categoryName: 'Pet Care' },
-    { categoryName: 'Tutoring' },
-    { categoryName: 'Media' },
-    { categoryName: 'Singing' },
+    { categoryName: 'Haircut', categoryIcon: haircutIcon },
+    { categoryName: 'Massage', categoryIcon: eyelashesIcon },
+    { categoryName: 'Eyelashes', categoryIcon: haircutIcon },
+    { categoryName: 'Nailcare', categoryIcon: eyelashesIcon },
+    { categoryName: 'Dance', categoryIcon: haircutIcon },
+    { categoryName: 'Personal Training', categoryIcon: eyelashesIcon },
+    { categoryName: 'Pet Care', categoryIcon: haircutIcon },
+    { categoryName: 'Tutoring', categoryIcon: eyelashesIcon },
+    { categoryName: 'Media', categoryIcon: haircutIcon },
+    { categoryName: 'Singing', categoryIcon: eyelashesIcon },
 ];
 // NormalUser Data
 const normalUserSeed = [
@@ -88,21 +89,29 @@ const serviceTypeSeed = [
     {
         serviceName: 'Haircut',
         servicePrice: 20,
+        serviceDuration: 30,
+        serviceDescription: 'Student barber, been cutting hair for two weeks',
         serviceCategory: serviceCategorySeed[0].categoryName
     },
     {
         serviceName: 'Haircut and Beard Trim',
         servicePrice: 25,
+        serviceDuration: 60,
+        serviceDescription: 'Specializing in fades, lineup beard',
         serviceCategory: serviceCategorySeed[0].categoryName
     },
     {
         serviceName: 'Eyelash Extensions',
         servicePrice: 50,
+        serviceDuration: 40,
+        serviceDescription: 'Uses high quality synthetic eyelash, ABG approved',
         serviceCategory: serviceCategorySeed[2].categoryName
     },
     {
         serviceName: 'Pedicure',
         servicePrice: 30,
+        serviceDuration: 40,
+        serviceDescription: 'Nails did acrylic finish',
         serviceCategory: serviceCategorySeed[3].categoryName
     },
 ]
@@ -110,14 +119,14 @@ const serviceTypeSeed = [
 const serviceCommentSeed = [
     {
         commentText: 'Nice haircut, lookin fabulous! Thanks Brian!',
-        commentCreated: dateSeed,
+        commentCreated: currentDate,
         serviceRating: 5,
         normalUser: normalUserSeed[0].firstName,
         serviceUser: serviceUserSeed[0].firstName
     },
     {
         commentText: 'Nails did, lookin fabulous! Thanks Kevin!',
-        commentCreated: dateSeed,
+        commentCreated: currentDate,
         serviceRating: 4,
         normalUser: normalUserSeed[0].firstName,
         serviceUser: serviceUserSeed[1].firstName

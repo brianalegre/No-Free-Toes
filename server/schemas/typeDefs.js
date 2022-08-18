@@ -4,12 +4,17 @@ const typeDefs = gql`
     type ServiceCategory {
         _id: ID
         categoryName: String
+        categoryIcon: String
     }
 
     type ServiceType {
         _id: ID
-        serviceTypeName: String
+        serviceName: String
+        servicePrice: Number
+        serviceDuration: Number
+        serviceDescription: String
         serviceCategory: ServiceCategory
+        
     }
 
     type Appointment {
@@ -36,11 +41,11 @@ const typeDefs = gql`
         firstName: String
         lastName: String
         email: String
+        password: String
         photo: String
         bio: String
-        password: String
         location: String
-        serviceCategory: [ServiceCategory]
+        serviceCategory: ServiceCategory
         serviceType: [ServiceType]
         appointments: [Appointment]
     }
@@ -70,12 +75,20 @@ const typeDefs = gql`
     }
 
     type Mutation {
+        # Service Category
         addServiceCategory(categoryName: String!): ServiceCategory
-        addServiceType(serviceTypeName: String!, serviceCategory: ID!): ServiceType
-        addNormalUser(firstName: String!, lastName: String!, email: String!, password: String!, location: String!): NormalUser
+        # Service Type
+        addServiceType(serviceName: String!, servicePrice: Number!, serviceDuration: Number!, serviceDescription: String,  serviceCategory: ID!): ServiceType
+        editServiceType(serviceName: String, servicePrice: Number, serviceDuration: Number, serviceDescription: String): ServiceType
+        # Normal User
+        addNormalUser(firstName: String!, lastName: String!, email: String!, password: String!, photo: String, location: String!): NormalUser
+        editNormalUser(firstName: String, lastName: String, email: String, password: String, photo: String, location: String): NormalUser
         removeNormalUser(_id: ID!): NormalUser
-        addServiceUser(firstName: String!, lastName: String!, email: String!, password: String!, bio:String!, location: String!, serviceCategory: [ID]!, serviceType: [ID]!): ServiceUser
+        # Service User
+        addServiceUser(firstName: String!, lastName: String!, email: String!, password: String!, photo: String, bio:String!, location: String!, serviceCategory: ID!, serviceType: [ID]!): ServiceUser
+        editServiceUser(firstName: String, lastName: String, email: String, password: String, photo: String, bio:String, location: String, serviceCategory: ID, serviceType: [ID]): ServiceUser
         removeServiceUser(_id: ID!): ServiceUser
+        # Appointments
         addAppointment(appointmentDate: String!, serviceType: ID!, normalUser: ID!, serviceUser: ID!): Appointment
         removeAppointment(_id: ID!): Appointment
         addServiceComment(commentText: String!, serviceUser: ID!): ServiceComment
