@@ -10,8 +10,8 @@ const typeDefs = gql`
     type ServiceType {
         _id: ID
         serviceName: String
-        servicePrice: Number
-        serviceDuration: Number
+        servicePrice: Float
+        serviceDuration: Float
         serviceDescription: String
         serviceCategory: ServiceCategory
         
@@ -78,8 +78,8 @@ const typeDefs = gql`
         # Service Category
         addServiceCategory(categoryName: String!): ServiceCategory
         # Service Type
-        addServiceType(serviceName: String!, servicePrice: Number!, serviceDuration: Number!, serviceDescription: String,  serviceCategory: ID!): ServiceType
-        editServiceType(serviceName: String, servicePrice: Number, serviceDuration: Number, serviceDescription: String): ServiceType
+        addServiceType(serviceName: String!, servicePrice: Float!, serviceDuration: Float!, serviceDescription: String,  serviceCategory: ID!): ServiceType
+        editServiceType(serviceName: String, servicePrice: Float, serviceDuration: Float, serviceDescription: String): ServiceType
         # Normal User
         addNormalUser(firstName: String!, lastName: String!, email: String!, password: String!, photo: String, location: String!): NormalUser
         editNormalUser(firstName: String, lastName: String, email: String, password: String, photo: String, location: String): NormalUser
