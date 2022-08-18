@@ -11,15 +11,10 @@ const { AuthenticationError } = require('apollo-server-express');
 
 const resolvers = {
     Query: {
-        // SINGLE USER
-        me: async () => (user, args) => {
-            return User.findOne({
-                $or: [
-                    { _id: user ? user._id : args.id },
-                    { username: args.username }
-                ],
-            })
-        }
+        // GET ALL NORMAL USERS
+        normalUsers: async () => {
+            return await NormalUser.find();
+        },
     }
 }
 
