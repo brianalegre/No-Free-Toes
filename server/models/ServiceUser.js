@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const Appointment = require('./Appointment')
-const ServiceCategory = require('./ServiceCategory')
 const ServiceType = require('./ServiceType')
 const { Schema } = mongoose;
 
@@ -39,7 +38,11 @@ const serviceUserSchema = new Schema({
         type: String,
         trim: true
     },
-    serviceCategory: [ServiceCategory.schema],
+    serviceCategory: {
+        type: Schema.Types.ObjectId,
+        ref: 'ServiceCategory',
+        required: true
+    },
     serviceType: [ServiceType.schema],
     appointments: [Appointment.schema],
 });
