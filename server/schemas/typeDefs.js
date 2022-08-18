@@ -77,17 +77,21 @@ const typeDefs = gql`
     type Mutation {
         # Service Category
         addServiceCategory(categoryName: String!): ServiceCategory
+
         # Service Type
         addServiceType(serviceName: String!, servicePrice: Float!, serviceDuration: Float!, serviceDescription: String,  serviceCategory: ID!): ServiceType
         editServiceType(serviceName: String, servicePrice: Float, serviceDuration: Float, serviceDescription: String): ServiceType
+        
         # Normal User
         addNormalUser(firstName: String!, lastName: String!, email: String!, password: String!, photo: String, location: String!): NormalUser
         editNormalUser(firstName: String, lastName: String, email: String, password: String, photo: String, location: String): NormalUser
         removeNormalUser(_id: ID!): NormalUser
+        
         # Service User
         addServiceUser(firstName: String!, lastName: String!, email: String!, password: String!, photo: String, bio:String!, location: String!, serviceCategory: ID!, serviceType: [ID]!): ServiceUser
         editServiceUser(firstName: String, lastName: String, email: String, password: String, photo: String, bio:String, location: String, serviceCategory: ID, serviceType: [ID]): ServiceUser
         removeServiceUser(_id: ID!): ServiceUser
+        
         # Appointments
         addAppointment(appointmentDate: String!, serviceType: ID!, normalUser: ID!, serviceUser: ID!): Appointment
         removeAppointment(_id: ID!): Appointment
