@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const appointmentSchema = new Schema ({
+const appointmentSchema = new Schema({
     appointmentDate: {
         type: Date,
         required: true

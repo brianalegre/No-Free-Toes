@@ -1,155 +1,157 @@
-const db = require('./connection');
-const { User, Product, Category } = require('../models');
+const connection = require('../config/connection');
+const { NormalUser, ServiceUser, ServiceCategory, ServiceComment, ServiceType } = require('../models');
+const moment = require('moment');
+const haircutIcon = '.././assets/images/haircut_icon.svg';
+const eyelashesIcon = '.././assets/images/eyelashes_icon.svg';
+const currentDate = moment(Date.now()).format('ll')
 
-db.once('open', async () => {
-  await Category.deleteMany();
-
-  const categories = await Category.insertMany([
-    { name: 'Food' },
-    { name: 'Household Supplies' },
-    { name: 'Electronics' },
-    { name: 'Books' },
-    { name: 'Toys' }
-  ]);
-
-  console.log('categories seeded');
-
-  await Product.deleteMany();
-
-  const products = await Product.insertMany([
+// ServiceCategory Data
+const serviceCategorySeed = [
+    { categoryName: 'Haircut', categoryIcon: haircutIcon },
+    { categoryName: 'Massage', categoryIcon: eyelashesIcon },
+    { categoryName: 'Eyelashes', categoryIcon: haircutIcon },
+    { categoryName: 'Nailcare', categoryIcon: eyelashesIcon },
+    { categoryName: 'Dance', categoryIcon: haircutIcon },
+    { categoryName: 'Personal Training', categoryIcon: eyelashesIcon },
+    { categoryName: 'Pet Care', categoryIcon: haircutIcon },
+    { categoryName: 'Tutoring', categoryIcon: eyelashesIcon },
+    { categoryName: 'Media', categoryIcon: haircutIcon },
+    { categoryName: 'Singing', categoryIcon: eyelashesIcon },
+];
+// NormalUser Data
+const normalUserSeed = [
     {
-      name: 'Tin of Cookies',
-      description:
-        'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-      image: 'cookie-tin.jpg',
-      category: categories[0]._id,
-      price: 2.99,
-      quantity: 500
+        firstName: 'normalUserFirst',
+        lastName: 'normalUserLast',
+        email: 'normalUserEmail',
+        password: 'normalUserPassword',
+        location: 'normalUserLocation'
+    },
+];
+
+// ServiceUser Data
+const serviceUserSeed = [
+    {
+        firstName: 'Brian',
+        lastName: 'Alegre',
+        email: 'brian@gmail.com',
+        password: 'brian123',
+        serviceCategory: serviceCategorySeed[0].categoryName,
+        photo: 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
+        bio: 'First testing bio',
+        location: 'Garden Grove, CA',
     },
     {
-      name: 'Canned Coffee',
-      description:
-        'Praesent sed lacinia mauris. Nulla congue nibh magna, at feugiat nunc scelerisque quis. Donec iaculis rutrum vulputate. Suspendisse lectus sem, vulputate ac lectus sed, placerat consequat dui.',
-      image: 'canned-coffee.jpg',
-      category: categories[0]._id,
-      price: 1.99,
-      quantity: 500
+        firstName: 'Kevin',
+        lastName: 'Lazaro',
+        email: 'kevin@gmail.com',
+        password: 'kevin123',
+        serviceCategory: serviceCategorySeed[1].categoryName,
+        photo: 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
+        bio: 'Second testing bio',
+        location: 'Hacienda Heights, CA',
     },
     {
-      name: 'Toilet Paper',
-      category: categories[1]._id,
-      description:
-        'Donec volutpat erat erat, sit amet gravida justo sodales in. Phasellus tempus euismod urna. Proin ultrices nisi ut ipsum congue, vitae porttitor libero suscipit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam lacinia a nisi non congue.',
-      image: 'toilet-paper.jpg',
-      price: 7.99,
-      quantity: 20
+        firstName: 'Allec',
+        lastName: 'Arzadon',
+        email: 'allec@gmail.com',
+        password: 'allec123',
+        serviceCategory: serviceCategorySeed[2].categoryName,
+        photo: 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
+        bio: 'Third testing bio',
+        location: 'Anaheim, CA',
     },
     {
-      name: 'Handmade Soap',
-      category: categories[1]._id,
-      description:
-        'Praesent placerat, odio vel euismod venenatis, lectus arcu laoreet felis, et fringilla sapien turpis vestibulum nisl.',
-      image: 'soap.jpg',
-      price: 3.99,
-      quantity: 50
+        firstName: 'Philip',
+        lastName: 'Hwang',
+        email: 'philip@gmail.com',
+        password: 'philip123',
+        serviceCategory: serviceCategorySeed[3].categoryName,
+        photo: 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
+        bio: 'fourth testing bio',
+        location: 'Irvine, CA',
     },
     {
-      name: 'Set of Wooden Spoons',
-      category: categories[1]._id,
-      description:
-        'Vivamus ut turpis in purus pretium mollis. Donec turpis odio, semper vel interdum ut, vulputate at ex. Duis dignissim nisi vel tortor imperdiet finibus. Aenean aliquam sagittis rutrum.',
-      image: 'wooden-spoons.jpg',
-      price: 14.99,
-      quantity: 100
+        firstName: 'Chad',
+        lastName: 'Tao',
+        email: 'chad@gmail.com',
+        password: 'chad123',
+        serviceCategory: serviceCategorySeed[4].categoryName,
+        photo: 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
+        bio: 'fifth testing bio',
+        location: 'Los Angeles, CA',
     },
-    {
-      name: 'Camera',
-      category: categories[2]._id,
-      description:
-        'Vestibulum risus metus, luctus non tortor quis, tincidunt consectetur ex. Nullam vitae lobortis ligula, ut sagittis massa. Curabitur consectetur, tellus at pulvinar venenatis, erat augue cursus erat, eu ullamcorper eros lectus ultrices ipsum. Integer rutrum, augue vitae auctor venenatis, turpis turpis elementum orci, at sagittis risus mi a leo.',
-      image: 'camera.jpg',
-      price: 399.99,
-      quantity: 30
-    },
-    {
-      name: 'Tablet',
-      category: categories[2]._id,
-      description:
-        'In sodales, ipsum quis ultricies porttitor, tellus urna aliquam arcu, eget venenatis purus ligula ut nisi. Fusce ut felis dolor. Mauris justo ante, aliquet non tempus in, tempus ac lorem. Aliquam lacinia dolor eu sem eleifend ultrices. Etiam mattis metus metus. Sed ligula dui, placerat non turpis vitae, suscipit volutpat elit. Phasellus sagittis, diam elementum suscipit fringilla, libero mauris scelerisque ex, ac interdum diam erat non sapien.',
-      image: 'tablet.jpg',
-      price: 199.99,
-      quantity: 30
-    },
-    {
-      name: 'Tales at Bedtime',
-      category: categories[3]._id,
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ornare diam quis eleifend rutrum. Aliquam nulla est, volutpat non enim nec, pharetra gravida augue. Donec vitae dictum neque. Pellentesque arcu lorem, fringilla non ligula ac, tristique bibendum erat. Ut a semper nibh. Quisque a mi et mi tempor ultricies. Maecenas eu ipsum eu enim hendrerit accumsan at euismod urna.',
-      image: 'bedtime-book.jpg',
-      price: 9.99,
-      quantity: 100
-    },
-    {
-      name: 'Spinning Top',
-      category: categories[4]._id,
-      description: 'Ut vulputate hendrerit nibh, a placerat elit cursus interdum.',
-      image: 'spinning-top.jpg',
-      price: 1.99,
-      quantity: 1000
-    },
-    {
-      name: 'Set of Plastic Horses',
-      category: categories[4]._id,
-      description:
-        'Sed a mauris condimentum, elementum enim in, rhoncus dui. Phasellus lobortis leo odio, sit amet pharetra turpis porta quis.',
-      image: 'plastic-horses.jpg',
-      price: 2.99,
-      quantity: 1000
-    },
-    {
-      name: 'Teddy Bear',
-      category: categories[4]._id,
-      description:
-        'Vestibulum et erat finibus erat suscipit vulputate sed vitae dui. Ut laoreet tellus sit amet justo bibendum ultrices. Donec vitae felis vestibulum, congue augue eu, finibus turpis.',
-      image: 'teddy-bear.jpg',
-      price: 7.99,
-      quantity: 100
-    },
-    {
-      name: 'Alphabet Blocks',
-      category: categories[4]._id,
-      description:
-        'Morbi consectetur viverra urna, eu fringilla turpis faucibus sit amet. Suspendisse potenti. Donec at dui ac sapien eleifend hendrerit vel sit amet lectus.',
-      image: 'alphabet-blocks.jpg',
-      price: 9.99,
-      quantity: 600
-    }
-  ]);
+];
 
-  console.log('products seeded');
 
-  await User.deleteMany();
+// ServiceType Data
+const serviceTypeSeed = [
+    {
+        serviceName: 'Haircut',
+        servicePrice: 20,
+        serviceDuration: 30,
+        serviceDescription: 'Student barber, been cutting hair for two weeks',
+        serviceCategory: serviceCategorySeed[0].categoryName
+    },
+    {
+        serviceName: 'Haircut and Beard Trim',
+        servicePrice: 25,
+        serviceDuration: 60,
+        serviceDescription: 'Specializing in fades, lineup beard',
+        serviceCategory: serviceCategorySeed[0].categoryName
+    },
+    {
+        serviceName: 'Eyelash Extensions',
+        servicePrice: 50,
+        serviceDuration: 40,
+        serviceDescription: 'Uses high quality synthetic eyelash, ABG approved',
+        serviceCategory: serviceCategorySeed[2].categoryName
+    },
+    {
+        serviceName: 'Pedicure',
+        servicePrice: 30,
+        serviceDuration: 40,
+        serviceDescription: 'Nails did acrylic finish',
+        serviceCategory: serviceCategorySeed[3].categoryName
+    },
+]
 
-  await User.create({
-    firstName: 'Pamela',
-    lastName: 'Washington',
-    email: 'pamela@testmail.com',
-    password: 'password12345',
-    orders: [
-      {
-        products: [products[0]._id, products[0]._id, products[1]._id]
-      }
-    ]
-  });
+const serviceCommentSeed = [
+    {
+        commentText: 'Nice haircut, lookin fabulous! Thanks Brian!',
+        commentCreated: currentDate,
+        serviceRating: 5,
+        normalUser: normalUserSeed[0].firstName,
+        serviceUser: serviceUserSeed[0].firstName
+    },
+    {
+        commentText: 'Nails did, lookin fabulous! Thanks Kevin!',
+        commentCreated: currentDate,
+        serviceRating: 4,
+        normalUser: normalUserSeed[0].firstName,
+        serviceUser: serviceUserSeed[1].firstName
+    },
+]
 
-  await User.create({
-    firstName: 'Elijah',
-    lastName: 'Holt',
-    email: 'eholt@testmail.com',
-    password: 'password12345'
-  });
 
-  console.log('users seeded');
+connection.once('open', async () => {
+    await NormalUser.deleteMany({});
+    await ServiceUser.deleteMany({});
+    await ServiceCategory.deleteMany({});
+    await ServiceType.deleteMany({});
+    await ServiceComment.deleteMany({});
 
-  process.exit();
-});
+    await NormalUser.collection.insertMany(normalUserSeed);
+    console.log('SUCCESSFULLY SEEDED NORMAL USERS');
+    await ServiceUser.collection.insertMany(serviceUserSeed);
+    console.log('SUCCESSFULLY SEEDED SERVICE USERS');
+    await ServiceCategory.collection.insertMany(serviceCategorySeed);
+    console.log('SUCCESSFULLY SEEDED SERVICE CATEGORIES');
+    await ServiceType.collection.insertMany(serviceTypeSeed);
+    console.log('SUCCESSFULLY SEEDED SERVICE TYPES');
+    await ServiceComment.collection.insertMany(serviceCommentSeed);
+    console.log('SUCCESSFULLY SEEDED SERVICE COMMENTS');
+
+
+    process.exit(0);
+})
