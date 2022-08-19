@@ -11,4 +11,17 @@ export const QUERY_ALL_NORMALUSERS = gql`
   }
 `;
 
+export const serviceUsersCategory = gql`
+  query getServiceUsersCategory($category: ID) {
+    serviceUsers(category: $category) {
+      _id
+      firstName
+      lastName
+      category {
+        _id
+      }
+    }
+  }
+`;
+
 

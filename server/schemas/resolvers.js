@@ -27,6 +27,20 @@ const resolvers = {
         serviceCategories: async () => {
             return await ServiceCategory.find({});
         },
+        // GET ALL SERVICEUSERS BY CATEGORY
+        serviceUsersCategory: async (parent, { category, name }) => {
+            const params = {};
+
+            if (category) {
+                params.category = category;
+            }
+
+            if (name) {
+                params.name = {
+                    $regex: name
+                };
+            }
+        }
     }
 }
 
