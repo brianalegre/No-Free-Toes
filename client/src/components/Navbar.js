@@ -10,12 +10,12 @@ const visitorNavLinks = [
   },
   {
     name: "Login",
-    link: "#",
+    link: "/login",
     class: "py-5 px-3 hover:text-pink-600 transition duration-300",
   },
   {
     name: "Sign Up",
-    link: "#",
+    link: "/signup",
     class:
       "py-2 px-3 bg-green-300 hover:bg-green-700 text-black hover:text-gray-100 rounded transition duration-300",
   },
