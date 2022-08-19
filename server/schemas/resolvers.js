@@ -38,10 +38,8 @@ const resolvers = {
         // GET SINGLE CATEGORY
         serviceCategory: async (parent, args) => {
             return await ServiceCategory.findById(args._id);
-        }
-
-
-        // // GET ALL SERVICEUSERS BY CATEGORY
+        },
+        // GET ALL SERVICEUSERS BY CATEGORY
         // serviceUsersCategory: async (parent, { category, name }) => {
         //     const params = {};
 

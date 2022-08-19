@@ -42,11 +42,11 @@ export const QUERY_ALL_SERVICEUSERS = gql`
 `
 
 export const QUERY_ALL_SERVICECATEGORIES = gql`
-  {
-    serviceCategories {
-      _id
-      categoryName
-      categoryIcon
-    }
+query ServiceCategories {
+  serviceCategories {
+    _id
+    categoryName
+    categoryIcon
   }
+}
 `

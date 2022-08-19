@@ -1,88 +1,123 @@
-import React from "react";
+import React, { useState } from 'react';
 import heroImg from "../images/hero_image.svg";
-import danceIcon from "../images/icons/dance_icon.svg";
-import eyelashesIcon from "../images/icons/eyelashes_icon.svg";
-import haircutIcon from "../images/icons/haircut_icon.svg";
-import massageIcon from "../images/icons/massage_icon.svg";
-import nailCareIcon from "../images/icons/nailcare_icon.svg";
-import personalTrainingIcon from "../images/icons/personaltraining_icon.svg";
-import petCareIcon from "../images/icons/petcare_icon.svg";
-import mediaIcon from "../images/icons/media_icon.svg";
-import tutoringIcon from "../images/icons/tutoring_icon.svg";
-import singingIcon from "../images/icons/singing_icon.svg";
-import { Link } from "react-router-dom";
+// import danceIcon from "../images/icons/dance_icon.svg";
+// import eyelashesIcon from "../images/icons/eyelashes_icon.svg";
+// import haircutIcon from "../images/icons/haircut_icon.svg";
+// import massageIcon from "../images/icons/massage_icon.svg";
+// import nailCareIcon from "../images/icons/nailcare_icon.svg";
+// import personalTrainingIcon from "../images/icons/personaltraining_icon.svg";
+// import petCareIcon from "../images/icons/petcare_icon.svg";
+// import mediaIcon from "../images/icons/media_icon.svg";
+// import tutoringIcon from "../images/icons/tutoring_icon.svg";
+// import singingIcon from "../images/icons/singing_icon.svg";
+import { Link, useNavigate } from "react-router-dom";
 
-const servicesArray = [
-  {
-    name: "Haircut",
-    image: haircutIcon,
-    link: "/category/haircut",
-  },
-  {
-    name: "Massage",
-    image: massageIcon,
-    link: "/category/massage",
-  },
-  {
-    name: "Eyelashes",
-    image: eyelashesIcon,
-    link: "/category/eyelashes",
-  },
-  {
-    name: "Nailcare",
-    image: nailCareIcon,
-    link: "/category/nailcare",
-  },
-  {
-    name: "Dance",
-    image: danceIcon,
-    link: "/category/dance",
-  },
-  {
-    name: "Fitness",
-    image: personalTrainingIcon,
-    link: "/category/fitness",
-  },
-  {
-    name: "Pet Care",
-    image: petCareIcon,
-    link: "/category/petcare",
-  },
-  {
-    name: "Tutoring",
-    image: tutoringIcon,
-    link: "/category/tutoring",
-  },
-  {
-    name: "Media",
-    image: mediaIcon,
-    link: "/category/media",
-  },
-  {
-    name: "Singing",
-    image: singingIcon,
-    link: "/category/singing",
-  },
-];
 
-const categoryItems = servicesArray.map((services, i) => (
-  <div key={"services" + i} className="align-items-center">
-    <button>
-      <Link to={services.link}>
-        <img
-          src={services.image}
-          alt={services.name + " icon"}
-          className="w-20 h-20 mb-5 min-w-20 min-h-20"
-        />
-        <div className="flex justify-center">
-          <span className="">{services.name}</span>
-        </div>
-      </Link>
-    </button>
-  </div>
-));
+// IMPORT QUERY
+import { useQuery, useMutation } from "@apollo/client";
+import { QUERY_ALL_SERVICECATEGORIES } from "../utils/queries";
+
+
+
+// const servicesArray = [
+//   {
+//     name: "Haircut",
+//     image: haircutIcon,
+//     link: "/category/haircut",
+//   },
+//   {
+//     name: "Massage",
+//     image: massageIcon,
+//     link: "/category/massage",
+//   },
+//   {
+//     name: "Eyelashes",
+//     image: eyelashesIcon,
+//     link: "/category/eyelashes",
+//   },
+//   {
+//     name: "Nailcare",
+//     image: nailCareIcon,
+//     link: "/category/nailcare",
+//   },
+//   {
+//     name: "Dance",
+//     image: danceIcon,
+//     link: "/category/dance",
+//   },
+//   {
+//     name: "Fitness",
+//     image: personalTrainingIcon,
+//     link: "/category/fitness",
+//   },
+//   {
+//     name: "Pet Care",
+//     image: petCareIcon,
+//     link: "/category/petcare",
+//   },
+//   {
+//     name: "Tutoring",
+//     image: tutoringIcon,
+//     link: "/category/tutoring",
+//   },
+//   {
+//     name: "Media",
+//     image: mediaIcon,
+//     link: "/category/media",
+//   },
+//   {
+//     name: "Singing",
+//     image: singingIcon,
+//     link: "/category/singing",
+//   },
+// ];
+
+
+
+
+// const categoryItems = servicesArray.map((services, i) => (
+//   <div key={"services" + i} className="align-items-center">
+//     <button>
+//       <Link to={services.link}>
+//         <img
+//           src={services.image}
+//           alt={services.name + " icon"}
+//           className="w-20 h-20 mb-5 min-w-20 min-h-20"
+//         />
+//         <div className="flex justify-center">
+//           <span className="">{services.name}</span>
+//         </div>
+//       </Link>
+//     </button>
+//   </div>
+// ));
 
 export default function Home() {
+
+  // GET DATA FROM QUERY
+  const { loading, data } = useQuery(QUERY_ALL_SERVICECATEGORIES)
+
+  // DATA FROM QUERY
+  const serviceCategories = data?.serviceCategories || [];
+
+  // MAP DATA FROM QUERY TO ARRAY OF OBJECTS
+  const serviceCategoriesArray = serviceCategories.map((categoryItem, i) => (
+    <div key={"services" + i} className="align-items-center">
+      <button>{categoryItem.categoryName}
+        {/* <Link to={categoryItem.categoryName}>
+          <img
+            src={categoryItem.categoryIcon}
+            alt={"icon"}
+            className="w-20 h-20 mb-5 min-w-20 min-h-20"
+          />
+          <div className="flex justify-center">
+            <span className="">{categoryItem.name}</span>
+          </div>
+        </Link> */}
+      </button>
+    </div>
+  ))
+
   return (
     <>
       {/* HERO SECTION */}
@@ -101,7 +136,7 @@ export default function Home() {
             appointments. Click the button below to get started.
           </p>
           <button className="py-2 px-3 text-lg bg-green-300 hover:bg-green-700 text-black hover:text-gray-100 rounded transition duration-300">
-          <a href="/signup"> Sign Up Today!</a>
+            <a href="/signup"> Sign Up Today!</a>
           </button>
         </div>
       </div>
@@ -140,7 +175,8 @@ export default function Home() {
         </div>
 
         <main className="px-16 py-12 place-items-center lg:h-3/4 lg:px-32 lg:py-12 grid grid-cols-2 md:grid-cols-5 gap-x-12 gap-y-24">
-          {categoryItems}
+          {/* {categoryItems} */}
+          {serviceCategoriesArray}
         </main>
       </div>
     </>
