@@ -9,6 +9,9 @@ import Footer from "./components/Footer"
 import Login from "./components/Login"
 import LoginClient from "./components/Login/pages/ClientLogin"
 import LoginProvider from "./components/Login/pages/ProviderLogin"
+import Signup from "./components/Signup/SignUp"
+import SignupClient from "./components/Signup/pages/ClientSignup"
+import SignupProvider from "./components/Signup/pages/ProviderSignup"
 
 const client = new ApolloClient({
   uri: "/graphql",
@@ -25,6 +28,9 @@ const App = () => (
         <Route path="/login" element={<Login />} />
         <Route path="/login/client" element={<LoginClient />} />
         <Route path="/login/provider" element={<LoginProvider />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/signup/client" element={<SignupClient />} />
+        <Route path="/signup/provider" element={<SignupProvider />} />
       </Routes >
       <Footer />
     </Router >

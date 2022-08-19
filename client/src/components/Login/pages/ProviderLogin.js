@@ -1,10 +1,10 @@
-// import React, { useState } from 'react';
+import React, { useState } from 'react';
 // import { useMutation } from '@apollo/client';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // import { LOGIN } from '../utils/mutations';
 // import Auth from '../utils/auth';
 
-// function Login(props) {
+function Login(props) {
 //   const [formState, setFormState] = useState({ email: '', password: '' });
 //   const [login, { error }] = useMutation(LOGIN);
 
@@ -29,43 +29,42 @@
 //     });
 //   };
 
-//   return (
-//     <div className="container my-1">
-//       <Link to="/signup">← Go to Signup</Link>
+  return (
+    <div className=" p-4 w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
 
-//       <h2>Login</h2>
-//       <form onSubmit={handleFormSubmit}>
-//         <div className="flex-row space-between my-2">
-//           <label htmlFor="email">Email address:</label>
-//           <input
-//             placeholder="youremail@test.com"
-//             name="email"
-//             type="email"
-//             id="email"
-//             onChange={handleChange}
-//           />
-//         </div>
-//         <div className="flex-row space-between my-2">
-//           <label htmlFor="pwd">Password:</label>
-//           <input
-//             placeholder="******"
-//             name="password"
-//             type="password"
-//             id="pwd"
-//             onChange={handleChange}
-//           />
-//         </div>
-//         {error ? (
-//           <div>
-//             <p className="error-text">The provided credentials are incorrect</p>
-//           </div>
-//         ) : null}
-//         <div className="flex-row flex-end">
-//           <button type="submit">Submit</button>
-//         </div>
-//       </form>
-//     </div>
-//   );
-// }
+      <h2>Login</h2>
+     <form class="space-y-6" action="#">
+        <div className="flex-row space-between my-2">
+          <label htmlFor="email">Email address:</label>
+          <input
+            placeholder="youremail@test.com"
+            name="email"
+            type="email"
+            id="email"
+            // onChange={handleChange}
+          />
+        </div>
+        <div className="flex-row space-between my-2">
+          <label htmlFor="pwd">Password:</label>
+          <input
+            placeholder="******"
+            name="password"
+            type="password"
+            id="pwd"
+            // onChange={handleChange}
+          />
+        </div>
+        {/* {error ? (
+          <div>
+            <p className="error-text">The provided credentials are incorrect</p>
+          </div>
+        ) : null} */}
+        <div className="flex-row flex-end">
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+  );
+}
 
-// export default Login;
+export default Login;
