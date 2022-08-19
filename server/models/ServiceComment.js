@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-
 const { Schema } = mongoose;
+const moment = require('moment');
 
 const serviceCommentSchema = new Schema({
     commentText: {
@@ -10,7 +10,6 @@ const serviceCommentSchema = new Schema({
     commentCreated: {
         type: Date,
         required: true,
-        default: Date.now
     },
     serviceRating: {
         type: Number,

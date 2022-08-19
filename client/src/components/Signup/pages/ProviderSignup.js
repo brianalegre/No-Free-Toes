@@ -11,7 +11,7 @@ const ProviderSignup = () => {
     username: "",
     email: "",
     password: "",
-    confirmpassword: "password",
+    confirmpassword: "",
     location: "",
     
   });
@@ -124,7 +124,7 @@ const ProviderSignup = () => {
               className="block text-gray-700 text-sm font-bold mb-2"
               htmlFor="email"
             >
-              Email
+              Location
             </label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -149,9 +149,6 @@ const ProviderSignup = () => {
       {/* {error && (
         <div className="my-3 p-3 bg-danger text-white">{error.message}</div>
       )} */}
-      <p className="text-center text-white text-xs">
-        &copy;2022 GitFit Corp. All rights reserved.
-      </p>
     </div>
   );
 };

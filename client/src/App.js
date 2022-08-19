@@ -5,6 +5,7 @@ import "./index.css";
 import Home from "./components/Home";
 import Navbar from "./components/Navbar"
 import CategoryPage from "./components/Category/Category";
+import ServicePage from "./components/ServicePage/ServicePage"
 import Footer from "./components/Footer"
 import Login from "./components/Login"
 import LoginClient from "./components/Login/pages/ClientLogin"
@@ -19,21 +20,21 @@ const client = new ApolloClient({
 });
 
 const App = () => (
-  <ApolloProvider client={client}>
+  <ApolloProvider client={client} >
     <Router>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/category/:servicetype" element={<CategoryPage />} />
-        <Route path="/login" element={<Login />} />
         <Route path="/login/client" element={<LoginClient />} />
         <Route path="/login/provider" element={<LoginProvider />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/signup/client" element={<SignupClient />} />
         <Route path="/signup/provider" element={<SignupProvider />} />
-      </Routes >
+        <Route path="/service/:service" element={<ServicePage />} />
+        </Routes >
       <Footer />
-    </Router >
+      </Router >
   </ApolloProvider >
 );
 

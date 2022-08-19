@@ -10,14 +10,24 @@ const serviceTypeSchema = new Schema({
     servicePrice: {
         type: Number,
         required: true,
-        min: .99
+        min: 0.99
+    },
+    // service duration in minutes
+    serviceDuration: {
+        type: Number,
+        required: true,
+        min: 0
+    },
+    serviceDescription: {
+        type: String,
+        trim: true
     },
     serviceCategory: {
-            type: Schema.Types.ObjectId,
-            ref: 'ServiceCategory',
-            required: true
-        }
-    
+        type: Schema.Types.ObjectId,
+        ref: 'ServiceCategory',
+        required: true
+    }
+
 });
 
 const ServiceType = mongoose.model('ServiceType', serviceTypeSchema);

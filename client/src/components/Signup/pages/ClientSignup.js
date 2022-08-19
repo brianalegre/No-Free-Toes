@@ -11,6 +11,9 @@ const ClientSignup = () => {
     username: "",
     email: "",
     password: "",
+    confirmpassword: "",
+    location: "",
+    
   });
 //   const [addUser, { error, data }] = useMutation(ADD_USER);
 
@@ -93,10 +96,42 @@ const ClientSignup = () => {
             </label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              placeholder="******"
+              placeholder="********"
               name="password"
               type="password"
               value={formState.password}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="mb-6">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="confirmpassword"
+            >
+              Confirm Password
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              placeholder="********"
+              name="password"
+              type="password"
+              value={formState.password}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="mb-6">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="email"
+            >
+              Location
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              placeholder="Your location"
+              name="location"
+              type="location"
+              value={formState.location}
               onChange={handleChange}
             />
           </div>
@@ -114,9 +149,6 @@ const ClientSignup = () => {
       {/* {error && (
         <div className="my-3 p-3 bg-danger text-white">{error.message}</div>
       )} */}
-      <p className="text-center text-white text-xs">
-        &copy;2022 GitFit Corp. All rights reserved.
-      </p>
     </div>
   );
 };
