@@ -19,8 +19,8 @@ const App = () => (
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/category/:servicetype" element={<CategoryPage />} />
-        <Route path="/service/:service" element={<ServicePage />} />
+        <Route path="/category/:serviceType" element={<CategoryPage />} />
+        <Route path="/service/:serviceUserId" element={<ServicePage />} />
       </Routes >
       <Footer />
     </Router >
