@@ -1,7 +1,8 @@
 import React from "react";
 import ServiceUserProfile from "./subcomponents/ServiceUserProfile";
-import Tabs from "./subcomponents/Tabs"
+import Tabs from "./subcomponents/Tabs";
 import Services from "./subcomponents/Services";
+import About from "./subcomponents/About";
 
 export default function ServicePage() {
   return (
@@ -14,12 +15,16 @@ export default function ServicePage() {
             <ServiceUserProfile />
 
             <div className="bg-white">
-              {/* TABS */}
               <Tabs />
 
               {/* TABLE COMPONENT */}
-              <Services />
+              <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 bg-gray-100">
+                <div className="inline-block min-w-full">
+                </div>
+              </div>
             </div>
+            {/* <Services /> */}
+            <About />
           </div>
         </div>
       </div>
