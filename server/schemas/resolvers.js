@@ -31,8 +31,10 @@ const resolvers = {
         serviceCategories: async () => {
             return await ServiceCategory.find({});
         },
-
-
+        // GET ALL SERVICE COMMENTS
+        serviceComments: async () => {
+            return await ServiceComment.find({});
+        },
         // GET SINGLE CATEGORY
         serviceCategory: async (parent, args) => {
             return await ServiceCategory.findById(args._id);
@@ -54,7 +56,7 @@ const resolvers = {
         //     }
         // }
     },
-    
+
 }
 
 
