@@ -10,7 +10,7 @@ const serviceTypeSchema = new Schema({
     servicePrice: {
         type: Number,
         required: true,
-        min: .99
+        min: 0.99
     },
     // service duration in minutes
     serviceDuration: {
