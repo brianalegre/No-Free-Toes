@@ -7,7 +7,7 @@ import Navbar from "./components/Navbar"
 import CategoryPage from "./components/Category/Category";
 import ServicePage from "./components/ServicePage/ServicePage"
 import Footer from "./components/Footer"
-import Login from "./components/Login"
+import Login from "./components/Login/Login"
 import LoginClient from "./components/Login/pages/ClientLogin"
 import LoginProvider from "./components/Login/pages/ProviderLogin"
 import Signup from "./components/Signup/SignUp"
@@ -26,6 +26,7 @@ const App = () => (
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/category/:servicetype" element={<CategoryPage />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/login/client" element={<LoginClient />} />
         <Route path="/login/provider" element={<LoginProvider />} />
         <Route path="/signup" element={<Signup />} />
