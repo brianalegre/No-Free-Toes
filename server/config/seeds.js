@@ -7,7 +7,7 @@ const moment = require('moment');
 const haircutIcon = '.././assets/images/haircut_icon.svg';
 const eyelashesIcon = '.././assets/images/eyelashes_icon.svg';
 const currentDate = moment(Date.now()).format('ll')
-
+const log = (...m) => m.forEach(m => console.log(m));
 
 db.once('open', async () => {
     // DELETE SERVICECATEGORY DATA
@@ -54,7 +54,7 @@ db.once('open', async () => {
     await ServiceUser.deleteMany();
 
     // CREATE SERVICEUSER DATA
-    const serviceUserSeedOne = await ServiceUser.create([
+    const serviceUserSeedOne = await ServiceUser.create(
         {
             firstName: 'Brian',
             lastName: 'Alegre',
@@ -64,9 +64,10 @@ db.once('open', async () => {
             photo: 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
             bio: 'First testing bio',
             location: 'Garden Grove, CA',
-        },
-    ]);
+        }
+    );
 
+    log('HELLO', serviceUserSeedOne);
     // CREATE SERVICEUSER DATA
     const serviceUserSeedTwo = await ServiceUser.create([
         {
@@ -166,26 +167,26 @@ db.once('open', async () => {
     console.log('SUCCESSFULLY SEEDED SERVICE TYPES');
 
 
-    // // CREATE SERVICE COMMENTS DATA
-    // await ServiceComment.insertMany([
-    //     {
-    //         commentText: 'Nice haircut, lookin fabulous! Thanks Brian!',
-    //         commentCreated: currentDate,
-    //         serviceRating: 5,
-    //         normalUser: normalUserSeed._id,
-    //         serviceUser: serviceUserSeedOne._id,
-    //     },
-    //     {
-    //         commentText: 'Nails did, lookin fabulous! Thanks Kevin!',
-    //         commentCreated: currentDate,
-    //         serviceRating: 4,
-    //         normalUser: normalUserSeed._id,
-    //         serviceUser: serviceUserSeedTwo._id
-    //     },
-    // ]);
+    // CREATE SERVICE COMMENTS DATA
+    await ServiceComment.insertMany([
+        {
+            commentText: 'Nice haircut, lookin fabulous! Thanks Brian!',
+            commentCreated: currentDate,
+            serviceRating: 5,
+            normalUser: normalUserSeed._id,
+            serviceUser: serviceUserSeedOne._id,
+        },
+        // {
+        //     commentText: 'Nails did, lookin fabulous! Thanks Kevin!',
+        //     commentCreated: currentDate,
+        //     serviceRating: 4,
+        //     normalUser: normalUserSeed._id,
+        //     serviceUser: serviceUserSeedTwo._id
+        // },
+    ]);
 
-    // // LOG TO BACKEND CONSOLE
-    // console.log('SUCCESSFULLY SEEDED SERVICE COMMENTS');
+    // LOG TO BACKEND CONSOLE
+    console.log('SUCCESSFULLY SEEDED SERVICE COMMENTS');
 
 
     process.exit();
