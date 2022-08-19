@@ -1,5 +1,4 @@
 // NEW SEED FILE USED FOR TESTING
-
 const db = require('./connection');
 
 const { NormalUser, ServiceUser, ServiceCategory, ServiceComment, ServiceType } = require('../models');
@@ -167,26 +166,26 @@ db.once('open', async () => {
     console.log('SUCCESSFULLY SEEDED SERVICE TYPES');
 
 
-    // CREATE SERVICE COMMENTS DATA
-    await ServiceComment.insertMany([
-        {
-            commentText: 'Nice haircut, lookin fabulous! Thanks Brian!',
-            commentCreated: currentDate,
-            serviceRating: 5,
-            normalUser: normalUserSeed._id,
-            serviceUser: serviceUserSeedOne._id,
-        },
-        // {
-        //     commentText: 'Nails did, lookin fabulous! Thanks Kevin!',
-        //     commentCreated: currentDate,
-        //     serviceRating: 4,
-        //     normalUser: normalUserSeed._id,
-        //     serviceUser: serviceUserSeedTwo._id
-        // },
-    ]);
+    // // CREATE SERVICE COMMENTS DATA
+    // await ServiceComment.insertMany([
+    //     {
+    //         commentText: 'Nice haircut, lookin fabulous! Thanks Brian!',
+    //         commentCreated: currentDate,
+    //         serviceRating: 5,
+    //         normalUser: normalUserSeed._id,
+    //         serviceUser: serviceUserSeedOne._id,
+    //     },
+    //     {
+    //         commentText: 'Nails did, lookin fabulous! Thanks Kevin!',
+    //         commentCreated: currentDate,
+    //         serviceRating: 4,
+    //         normalUser: normalUserSeed._id,
+    //         serviceUser: serviceUserSeedTwo._id
+    //     },
+    // ]);
 
-    // LOG TO BACKEND CONSOLE
-    console.log('SUCCESSFULLY SEEDED SERVICE COMMENTS');
+    // // LOG TO BACKEND CONSOLE
+    // console.log('SUCCESSFULLY SEEDED SERVICE COMMENTS');
 
 
     process.exit();

@@ -15,10 +15,10 @@ const resolvers = {
         normalUsers: async () => {
             return await NormalUser.find();
         },
-        // // GET ALL SERVICE USERS
-        // serviceUsers: async () => {
-        //     return await ServiceUser.find();
-        // },
+        // GET ALL SERVICE USERS
+        serviceUsers: async () => {
+            return await ServiceUser.find();
+        },
         //  GET ALL SERVICE USERS + CATEGORIES
         serviceUsers: async () => {
             return await ServiceUser.find({}).populate('serviceCategory');
