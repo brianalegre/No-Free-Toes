@@ -7,7 +7,6 @@ const moment = require('moment');
 const haircutIcon = '.././assets/images/haircut_icon.svg';
 const eyelashesIcon = '.././assets/images/eyelashes_icon.svg';
 const currentDate = moment(Date.now()).format('ll')
-const log = (...m) => m.forEach(m => console.log(m));
 
 db.once('open', async () => {
     // DELETE SERVICECATEGORY DATA
@@ -67,9 +66,8 @@ db.once('open', async () => {
         }
     );
 
-    log('HELLO', serviceUserSeedOne);
     // CREATE SERVICEUSER DATA
-    const serviceUserSeedTwo = await ServiceUser.create([
+    const serviceUserSeedTwo = await ServiceUser.create(
         {
             firstName: 'Kevin',
             lastName: 'Lazaro',
@@ -80,10 +78,10 @@ db.once('open', async () => {
             bio: 'Second testing bio',
             location: 'Hacienda Heights, CA',
         },
-    ]);
+    );
 
     // CREATE SERVICEUSER DATA
-    const serviceUserSeedThree = await ServiceUser.create([
+    const serviceUserSeedThree = await ServiceUser.create(
         {
             firstName: 'Allec',
             lastName: 'Arzadon',
@@ -95,10 +93,10 @@ db.once('open', async () => {
             location: 'Anaheim, CA',
 
         },
-    ]);
+    );
 
     // CREATE SERVICEUSER DATA
-    const serviceUserSeedFour = await ServiceUser.create([
+    const serviceUserSeedFour = await ServiceUser.create(
         {
             firstName: 'Philip',
             lastName: 'Hwang',
@@ -109,10 +107,10 @@ db.once('open', async () => {
             bio: 'fourth testing bio',
             location: 'Irvine, CA',
         },
-    ]);
+    );
 
     // CREATE SERVICEUSER DATA
-    const serviceUserSeedFive = await ServiceUser.create([
+    const serviceUserSeedFive = await ServiceUser.create(
         {
             firstName: 'Chad',
             lastName: 'Tao',
@@ -123,7 +121,7 @@ db.once('open', async () => {
             bio: 'fifth testing bio',
             location: 'Los Angeles, CA',
         },
-    ]);
+    );
 
     // LOG TO BACKEND CONSOLE
     console.log('SUCCESSFULLY SEEDED SERVICE USERS');
@@ -176,13 +174,13 @@ db.once('open', async () => {
             normalUser: normalUserSeed._id,
             serviceUser: serviceUserSeedOne._id,
         },
-        // {
-        //     commentText: 'Nails did, lookin fabulous! Thanks Kevin!',
-        //     commentCreated: currentDate,
-        //     serviceRating: 4,
-        //     normalUser: normalUserSeed._id,
-        //     serviceUser: serviceUserSeedTwo._id
-        // },
+        {
+            commentText: 'Nails did, lookin fabulous! Thanks Kevin!',
+            commentCreated: currentDate,
+            serviceRating: 4,
+            normalUser: normalUserSeed._id,
+            serviceUser: serviceUserSeedTwo._id
+        },
     ]);
 
     // LOG TO BACKEND CONSOLE
