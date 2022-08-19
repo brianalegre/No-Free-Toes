@@ -27,20 +27,27 @@ const resolvers = {
         serviceCategories: async () => {
             return await ServiceCategory.find({});
         },
-        // GET ALL SERVICEUSERS BY CATEGORY
-        serviceUsersCategory: async (parent, { category, name }) => {
-            const params = {};
 
-            if (category) {
-                params.category = category;
-            }
-
-            if (name) {
-                params.name = {
-                    $regex: name
-                };
-            }
+        // GET SINGLE CATEGORY
+        serviceCategory: async (parent, args) => {
+            return await ServiceCategory.findById(args._id);
         }
+
+
+        // // GET ALL SERVICEUSERS BY CATEGORY
+        // serviceUsersCategory: async (parent, { category, name }) => {
+        //     const params = {};
+
+        //     if (category) {
+        //         params.category = category;
+        //     }
+
+        //     if (name) {
+        //         params.name = {
+        //             $regex: name
+        //         };
+        //     }
+        // }
     }
 }
 
