@@ -15,6 +15,10 @@ const resolvers = {
         normalUsers: async () => {
             return await NormalUser.find();
         },
+        // GET SINGLE NORMAL USER
+        normalUser: async () => {
+            return await NormalUser.findOne();
+        },
         // GET ALL SERVICE USERS
         serviceUsers: async () => {
             return await ServiceUser.find();
@@ -27,6 +31,7 @@ const resolvers = {
         serviceCategories: async () => {
             return await ServiceCategory.find({});
         },
+
 
         // GET SINGLE CATEGORY
         serviceCategory: async (parent, args) => {
@@ -48,7 +53,8 @@ const resolvers = {
         //         };
         //     }
         // }
-    }
+    },
+    
 }
 
 

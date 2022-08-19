@@ -8,7 +8,6 @@ const haircutIcon = '.././assets/images/haircut_icon.svg';
 const eyelashesIcon = '.././assets/images/eyelashes_icon.svg';
 const currentDate = moment(Date.now()).format('ll')
 
-
 db.once('open', async () => {
     // DELETE SERVICECATEGORY DATA
     await ServiceCategory.deleteMany();
@@ -54,7 +53,7 @@ db.once('open', async () => {
     await ServiceUser.deleteMany();
 
     // CREATE SERVICEUSER DATA
-    const serviceUserSeedOne = await ServiceUser.create([
+    const serviceUserSeedOne = await ServiceUser.create(
         {
             firstName: 'Brian',
             lastName: 'Alegre',
@@ -64,11 +63,11 @@ db.once('open', async () => {
             photo: 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
             bio: 'First testing bio',
             location: 'Garden Grove, CA',
-        },
-    ]);
+        }
+    );
 
     // CREATE SERVICEUSER DATA
-    const serviceUserSeedTwo = await ServiceUser.create([
+    const serviceUserSeedTwo = await ServiceUser.create(
         {
             firstName: 'Kevin',
             lastName: 'Lazaro',
@@ -79,10 +78,10 @@ db.once('open', async () => {
             bio: 'Second testing bio',
             location: 'Hacienda Heights, CA',
         },
-    ]);
+    );
 
     // CREATE SERVICEUSER DATA
-    const serviceUserSeedThree = await ServiceUser.create([
+    const serviceUserSeedThree = await ServiceUser.create(
         {
             firstName: 'Allec',
             lastName: 'Arzadon',
@@ -94,10 +93,10 @@ db.once('open', async () => {
             location: 'Anaheim, CA',
 
         },
-    ]);
+    );
 
     // CREATE SERVICEUSER DATA
-    const serviceUserSeedFour = await ServiceUser.create([
+    const serviceUserSeedFour = await ServiceUser.create(
         {
             firstName: 'Philip',
             lastName: 'Hwang',
@@ -108,10 +107,10 @@ db.once('open', async () => {
             bio: 'fourth testing bio',
             location: 'Irvine, CA',
         },
-    ]);
+    );
 
     // CREATE SERVICEUSER DATA
-    const serviceUserSeedFive = await ServiceUser.create([
+    const serviceUserSeedFive = await ServiceUser.create(
         {
             firstName: 'Chad',
             lastName: 'Tao',
@@ -122,7 +121,7 @@ db.once('open', async () => {
             bio: 'fifth testing bio',
             location: 'Los Angeles, CA',
         },
-    ]);
+    );
 
     // LOG TO BACKEND CONSOLE
     console.log('SUCCESSFULLY SEEDED SERVICE USERS');
@@ -166,26 +165,26 @@ db.once('open', async () => {
     console.log('SUCCESSFULLY SEEDED SERVICE TYPES');
 
 
-    // // CREATE SERVICE COMMENTS DATA
-    // await ServiceComment.insertMany([
-    //     {
-    //         commentText: 'Nice haircut, lookin fabulous! Thanks Brian!',
-    //         commentCreated: currentDate,
-    //         serviceRating: 5,
-    //         normalUser: normalUserSeed._id,
-    //         serviceUser: serviceUserSeedOne._id,
-    //     },
-    //     {
-    //         commentText: 'Nails did, lookin fabulous! Thanks Kevin!',
-    //         commentCreated: currentDate,
-    //         serviceRating: 4,
-    //         normalUser: normalUserSeed._id,
-    //         serviceUser: serviceUserSeedTwo._id
-    //     },
-    // ]);
+    // CREATE SERVICE COMMENTS DATA
+    await ServiceComment.insertMany([
+        {
+            commentText: 'Nice haircut, lookin fabulous! Thanks Brian!',
+            commentCreated: currentDate,
+            serviceRating: 5,
+            normalUser: normalUserSeed._id,
+            serviceUser: serviceUserSeedOne._id,
+        },
+        {
+            commentText: 'Nails did, lookin fabulous! Thanks Kevin!',
+            commentCreated: currentDate,
+            serviceRating: 4,
+            normalUser: normalUserSeed._id,
+            serviceUser: serviceUserSeedTwo._id
+        },
+    ]);
 
-    // // LOG TO BACKEND CONSOLE
-    // console.log('SUCCESSFULLY SEEDED SERVICE COMMENTS');
+    // LOG TO BACKEND CONSOLE
+    console.log('SUCCESSFULLY SEEDED SERVICE COMMENTS');
 
 
     process.exit();
