@@ -44,19 +44,36 @@ export const QUERY_ALL_SERVICEUSERS = gql`
 `;
 
 // GET ALL SERVICE USERS BY SERVICE CATEGORY
-export const QUERY_SERVICEUSERS_CATEGORY = gql`
-  query serviceUsersCategory($serviceCategory: ID) {
-    serviceUsersCategory(serviceCategory: $serviceCategory) {
-      firstName
-      lastName
-      photo
-      bio
-      location
-      serviceCategory {
-        categoryName
-      }
+export const QUERY_ALL_SERVICEUSERS_BY_SERVICECATEGORY = gql`
+  query serviceUsersCategory($serviceCategory: ID,) {
+    serviceUsersCategory(serviceCategory: $serviceCategory, categoryName: $categoryName) {
+    _id
+    firstName
+    lastName
+    photo
+    bio
+    location
+    serviceCategory {
+      _id
+      categoryName
     }
+  }
 }
 `;
+
+// export const QUERY_SERVICEUSERS_CATEGORY = gql`
+//   query serviceUsersCategory($serviceCategory: ID) {
+//     serviceUsersCategory(serviceCategory: $serviceCategory) {
+//       firstName
+//       lastName
+//       photo
+//       bio
+//       location
+//       serviceCategory {
+//         categoryName
+//       }
+//     }
+// }
+// `;
 
 
