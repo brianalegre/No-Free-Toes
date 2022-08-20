@@ -48,9 +48,8 @@ const resolvers = {
             }
 
             if (categoryName) {
-                params.categoryName = {
-                    $regex: categoryName
-                };
+                params.categoryName = categoryName
+
             }
             return await ServiceUser.find(params).populate('serviceCategory');
         }

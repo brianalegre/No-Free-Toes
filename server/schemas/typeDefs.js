@@ -78,8 +78,6 @@ const typeDefs = gql`
         # products(category: ID, name: String): [Product]  // SAMPLE QUERY
         serviceUsersCategory(serviceCategory: ID, categoryName: String): [ServiceUser]
         
-
-
         # APPOINTMENT
         appointment(_id: ID!): Appointment
         appointments: [Appointment]

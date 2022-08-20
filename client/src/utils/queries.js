@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-
+// GET ALL SERVICE CATEGORIES
 export const QUERY_ALL_SERVICECATEGORIES = gql`
     query serviceCategories {
       serviceCategories { 
@@ -11,6 +11,7 @@ export const QUERY_ALL_SERVICECATEGORIES = gql`
   }
 `;
 
+// GET ALL NORMAL USERS
 export const QUERY_ALL_NORMALUSERS = gql`
   query normalUsers {
   normalUsers {
@@ -23,6 +24,7 @@ export const QUERY_ALL_NORMALUSERS = gql`
 }
 `;
 
+// GET ALL SERVICE USERS
 export const QUERY_ALL_SERVICEUSERS = gql`
   query serviceUsers {
     serviceUsers {
@@ -41,32 +43,20 @@ export const QUERY_ALL_SERVICEUSERS = gql`
 }
 `;
 
-export const QUERY_SERVICEUSERS_CAT = gql`
-  query serviceUsersCategory($category: ID) {
-    serviceUsers(category: $category) {
-      _id
+// GET ALL SERVICE USERS BY SERVICE CATEGORY
+export const QUERY_SERVICEUSERS_CATEGORY = gql`
+  query serviceUsersCategory($serviceCategory: ID) {
+    serviceUsersCategory(serviceCategory: $serviceCategory) {
       firstName
       lastName
-      category {
-        _id
+      photo
+      bio
+      location
+      serviceCategory {
+        categoryName
       }
     }
-  }
+}
 `;
 
-// export const QUERY_ALL_SERVICEUSERS = gql`
-//     {
-//       serviceUsers {
-//       _id
-//       firstName
-//       lastName
-//       email
-//       serviceCategory {
-//         _id
-//         categoryName
-//         categoryIcon
-//       }
-//     }
-//     }
-// `
 
