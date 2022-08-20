@@ -36,3 +36,49 @@ export const QUERY_ALL_SERVICECATEGORIES = gql`
     }
   }
 `
+// QUERY FOR NORMAL_USER
+
+export const QUERY_NORMAL_USER = gql`
+{
+  normalUsers {
+    firstName
+    lastName
+    email
+    password
+    location
+    appointments {
+      appointmentDate
+      serviceType {
+        serviceName
+        servicePrice
+        serviceDuration
+        serviceDescription
+        serviceCategory {
+          categoryName
+          categoryIcon
+        }
+      }
+    }
+  }
+}
+`
+
+// QUERY FOR SERVICE USER
+export const QUERY_SERVICE_USER = gql`
+{
+  serviceUsers {
+    firstName
+    email
+    lastName
+    password
+    photo
+    bio
+    location
+    serviceCategory {
+      _id
+      categoryName
+      categoryIcon
+    }
+  }
+}
+`
