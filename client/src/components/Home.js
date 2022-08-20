@@ -25,7 +25,7 @@ const Home = () => {
   const categoryItems = savedCategories.map((category) => (
     <div key={category._id} className="align-items-center">
       <button>
-        <Link to={"/" + category.categoryName}>
+        <Link to={"/category/" + category.categoryName}>
           <img
             src={category.categoryIcon}
             alt={category.categoryName + " icon"}
