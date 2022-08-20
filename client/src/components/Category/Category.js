@@ -36,7 +36,7 @@ function CategoryPage() {
 
   // MAP THE DATA
   const serviceUsers = getServiceUsers.map((serviceUser) => (
-        <div id="serviceUser-card" className='py-5 flex justify-center'>
+        <div key={serviceUser._id}id="serviceUser-card" className='py-5 flex justify-center'>
           <div href="##" className="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-3xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
             <div className="">
               <img className="object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg p-2" src={defaultImg} alt="default" />
