@@ -1,5 +1,6 @@
 import { gql } from '@apollo/client';
 
+// Normal User Sign Up Mutation
 export const ADD_NORMAL_USER = gql`
 mutation addNormalUser(
     $firstName: String!
@@ -18,11 +19,13 @@ mutation addNormalUser(
           token
           user {
       _id
-      }
-      }
-      }
-      `;
+    }
+  }
+}
+`;
 
+
+// Service User Sign Up Mutation
 export const ADD_SERVICE_USER = gql`
 mutation AddServiceUser(
     $firstName: String!
