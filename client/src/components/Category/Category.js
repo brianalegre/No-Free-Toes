@@ -2,22 +2,28 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { QUERY_ALL_SERVICEUSERS_BY_SERVICECATEGORY } from "../../../src/utils/queries";
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 
 
 // IMPORT IMAGES
 const defaultImg = ".././assets/images/man.png";
 
 
+
+
 function CategoryPage() {
+
+  const { categoryId } = useParams();
 
   // CREATE STATE TO HOLD SERVICE USERS
   const [getServiceUsers, setGetServiceUsers] = useState([]);
 
+  
+
   // QUERY FOR ALL SERVICE USERS BY CATEGORY
   const { loading, error, data } = useQuery(QUERY_ALL_SERVICEUSERS_BY_SERVICECATEGORY, {
     // CURRENT VALUE OF IN MY DB - MAY DIFF, USING SET VALUE FOR TESTING
-    variables: { serviceCategory: "63006de2bdedb1779e3e865e" },
+    variables: { serviceCategory: categoryId },
     fetchPolicy: "no-cache"
   });
 
@@ -31,6 +37,8 @@ function CategoryPage() {
   // LOG THE DATA TO DEV TOOLS
   console.log('DATA ----', data);
   console.log('GET SERVICE USERS ----', getServiceUsers);
+
+
 
   // MAP THE DATA
   const serviceUsers = getServiceUsers.map((serviceUser) => (
@@ -61,7 +69,7 @@ function CategoryPage() {
 
       {/* LOAD SERVICE USERS FOR CATEGORY  */}
       <div className='text-center my-4 text-2xl text-bold lg:text-5xl pt-10'>
-        <h1 className='text-black'>Category: Haircut</h1>
+        <h1 className='text-black'>Category:</h1>
       </div>
 
       {/* OPTION 1 */}
