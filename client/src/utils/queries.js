@@ -50,6 +50,7 @@ export const QUERY_ALL_SERVICEUSERS_BY_SERVICECATEGORY = gql`
     _id
     firstName
     lastName
+    email
     photo
     bio
     location
