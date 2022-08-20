@@ -40,19 +40,20 @@ const resolvers = {
             return await ServiceCategory.findById(args._id);
         },
         // GET ALL SERVICEUSERS BY CATEGORY
-        // serviceUsersCategory: async (parent, { category, name }) => {
-        //     const params = {};
+        serviceUsersCategory: async (parent, { serviceCategory, categoryName }) => {
+            const params = {};
 
-        //     if (category) {
-        //         params.category = category;
-        //     }
+            if (serviceCategory) {
+                params.serviceCategory = serviceCategory;
+            }
 
-        //     if (name) {
-        //         params.name = {
-        //             $regex: name
-        //         };
-        //     }
-        // }
+            if (categoryName) {
+                params.categoryName = {
+                    $regex: categoryName
+                };
+            }
+            return await ServiceUser.find(params).populate('serviceCategory');
+        }
     },
 
 }

@@ -41,19 +41,18 @@ export const QUERY_ALL_SERVICEUSERS = gql`
 }
 `;
 
-
-// export const serviceUsersCategory = gql`
-//   query getServiceUsersCategory($category: ID) {
-//     serviceUsers(category: $category) {
-//       _id
-//       firstName
-//       lastName
-//       category {
-//         _id
-//       }
-//     }
-//   }
-// `;
+export const QUERY_SERVICEUSERS_CAT = gql`
+  query serviceUsersCategory($category: ID) {
+    serviceUsers(category: $category) {
+      _id
+      firstName
+      lastName
+      category {
+        _id
+      }
+    }
+  }
+`;
 
 // export const QUERY_ALL_SERVICEUSERS = gql`
 //     {

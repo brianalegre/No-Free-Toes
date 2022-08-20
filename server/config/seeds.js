@@ -67,7 +67,7 @@ db.once('open', async () => {
             lastName: 'Lazaro',
             email: 'kevin@gmail.com',
             password: 'test1234',
-            serviceCategory: serviceCategorySeed[1]._id,
+            serviceCategory: serviceCategorySeed[0]._id,
             photo: 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
             bio: 'Second testing bio',
             location: 'Hacienda Heights, CA',
