@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import heroImg from "../images/hero_image.svg";
 import { QUERY_ALL_SERVICECATEGORIES } from "../../src/utils/queries";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 const Home = () => {
@@ -22,17 +22,17 @@ const Home = () => {
     }
   }, [data]);
 
-  const categoryItems = savedCategories.map((services, i) => (
-    <div key={"services" + i} className="align-items-center">
+  const categoryItems = savedCategories.map((category) => (
+    <div key={category._id} className="align-items-center">
       <button>
-        <Link to={"/" + services.categoryName}>
+        <Link to={"/" + category.categoryName}>
           <img
-            src={services.categoryIcon}
-            alt={services.categoryName + " icon"}
+            src={category.categoryIcon}
+            alt={category.categoryName + " icon"}
             className="w-20 h-20 mb-5 min-w-20 min-h-20"
           />
           <div className="flex justify-center">
-            <span className="">{services.categoryName}</span>
+            <span className="">{category.categoryName}</span>
           </div>
         </Link>
       </button>
@@ -97,23 +97,6 @@ const Home = () => {
 
         <main className="px-16 py-12 place-items-center lg:h-3/4 lg:px-32 lg:py-12 grid grid-cols-2 md:grid-cols-5 gap-x-12 gap-y-24">
           {categoryItems}
-          {/* {savedCategories.map((categoryItem, i) => (
-            <div key={"services" + i} className="align-items-center">
-              <button>
-                <Link to={categoryItem.categoryName}>
-                  <img
-                    src={categoryItem.categoryIcon}
-                    alt={"icon"}
-                    className="w-20 h-20 mb-5 min-w-20 min-h-20"
-                  />  <div className="flex justify-center">
-                    <span className="">{categoryItem.name}</span>
-                  </div>
-                </Link>
-              </button>
-            </div>
-          ))
-
-          } */}
         </main>
       </div>
     </>

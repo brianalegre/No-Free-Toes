@@ -1,11 +1,6 @@
-// NEW SEED FILE USED FOR TESTING
 const db = require('./connection');
-
 const { NormalUser, ServiceUser, ServiceCategory, ServiceComment, ServiceType } = require('../models');
-// const { NormalUser, ServiceCategory, ServiceUser, ServiceType } = require('../models');
 const moment = require('moment');
-const haircutIcon = '.././assets/images/haircut_icon.svg';
-const eyelashesIcon = '.././assets/images/eyelashes_icon.svg';
 const currentDate = moment(Date.now()).format('ll')
 
 db.once('open', async () => {
@@ -28,7 +23,6 @@ db.once('open', async () => {
 
     // LOG TO BACKEND CONSOLE
     console.log('SUCCESSFULLY SEEDED SERVICE CATEGORIES');
-
 
 
     // DELETE NORMALUSER DATA
