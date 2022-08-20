@@ -23,11 +23,11 @@ const resolvers = {
         serviceUsers: async () => {
             return await ServiceUser.find();
         },
-        //  GET ALL SERVICE USERS + CATEGORIES
+        //  GET ALL SERVICE USERS + SERVICE CATEGORY
         serviceUsers: async () => {
             return await ServiceUser.find({}).populate('serviceCategory');
         },
-        //  GET ALL SERVICECATEGORIES
+        //  GET ALL SERVICE CATEGORIES
         serviceCategories: async () => {
             return await ServiceCategory.find({});
         },
@@ -35,11 +35,11 @@ const resolvers = {
         serviceComments: async () => {
             return await ServiceComment.find({});
         },
-        // GET SINGLE CATEGORY
+        // GET SINGLE SERVICE CATEGORY
         serviceCategory: async (parent, args) => {
             return await ServiceCategory.findById(args._id);
         },
-        // GET ALL SERVICEUSERS BY CATEGORY
+        // GET ALL SERVICE USERS BY SERVICE CATEGORY
         serviceUsersCategory: async (parent, { serviceCategory, categoryName }) => {
             const params = {};
 
