@@ -9,6 +9,8 @@ import Auth from "../../../utils/auth";
 const ProviderSignup = () => {
   const [formState, setFormState] = useState({
     username: "",
+    firstname: "",
+    lastname: "",
     email: "",
     password: "",
     // confirmpassword: "",
@@ -66,6 +68,40 @@ const ProviderSignup = () => {
               name="username"
               type="text"
               value={formState.name}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="mb-6">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="firstname"
+            >
+              First Name
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              placeholder="Your first name"
+              name="firstname"
+              type="text"
+              value={formState.firstname}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="mb-6">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="lastname"
+            >
+              Last Name
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              placeholder="Your last name"
+              name="lastname"
+              type="text"
+              value={formState.lastname}
               onChange={handleChange}
             />
           </div>
