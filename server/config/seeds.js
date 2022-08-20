@@ -1,11 +1,6 @@
-// NEW SEED FILE USED FOR TESTING
 const db = require('./connection');
-
 const { NormalUser, ServiceUser, ServiceCategory, ServiceComment, ServiceType } = require('../models');
-// const { NormalUser, ServiceCategory, ServiceUser, ServiceType } = require('../models');
 const moment = require('moment');
-const haircutIcon = '.././assets/images/haircut_icon.svg';
-const eyelashesIcon = '.././assets/images/eyelashes_icon.svg';
 const currentDate = moment(Date.now()).format('ll')
 
 db.once('open', async () => {
@@ -14,21 +9,20 @@ db.once('open', async () => {
 
     // INSERTMANY SERVICECATEGORY DATA
     const serviceCategorySeed = await ServiceCategory.insertMany([
-        { categoryName: 'Haircut', categoryIcon: haircutIcon },
-        { categoryName: 'Massage', categoryIcon: eyelashesIcon },
-        { categoryName: 'Eyelashes', categoryIcon: haircutIcon },
-        { categoryName: 'Nailcare', categoryIcon: eyelashesIcon },
-        { categoryName: 'Dance', categoryIcon: haircutIcon },
-        { categoryName: 'Personal Training', categoryIcon: eyelashesIcon },
-        { categoryName: 'Pet Care', categoryIcon: haircutIcon },
-        { categoryName: 'Tutoring', categoryIcon: eyelashesIcon },
-        { categoryName: 'Media', categoryIcon: haircutIcon },
-        { categoryName: 'Singing', categoryIcon: eyelashesIcon },
+        { categoryName: 'Haircut', categoryIcon: '.././assets/icons/haircut_icon.svg' },
+        { categoryName: 'Massage', categoryIcon: '.././assets/icons/massage_icon.svg' },
+        { categoryName: 'Eyelashes', categoryIcon: '.././assets/icons/eyelashes_icon.svg' },
+        { categoryName: 'Nailcare', categoryIcon: '.././assets/icons/nailcare_icon.svg' },
+        { categoryName: 'Dance', categoryIcon: '.././assets/icons/dance_icon.svg' },
+        { categoryName: 'Fitness', categoryIcon: '.././assets/icons/personaltraining_icon.svg' },
+        { categoryName: 'Pet Care', categoryIcon: '.././assets/icons/petcare_icon.svg' },
+        { categoryName: 'Tutoring', categoryIcon: '.././assets/icons/tutoring_icon.svg' },
+        { categoryName: 'Media', categoryIcon: '.././assets/icons/media_icon.svg' },
+        { categoryName: 'Singing', categoryIcon: '.././assets/icons/singing_icon.svg' },
     ]);
 
     // LOG TO BACKEND CONSOLE
     console.log('SUCCESSFULLY SEEDED SERVICE CATEGORIES');
-
 
 
     // DELETE NORMALUSER DATA

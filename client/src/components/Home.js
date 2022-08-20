@@ -1,88 +1,44 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
+import { useQuery } from '@apollo/client';
 import heroImg from "../images/hero_image.svg";
-import danceIcon from "../images/icons/dance_icon.svg";
-import eyelashesIcon from "../images/icons/eyelashes_icon.svg";
-import haircutIcon from "../images/icons/haircut_icon.svg";
-import massageIcon from "../images/icons/massage_icon.svg";
-import nailCareIcon from "../images/icons/nailcare_icon.svg";
-import personalTrainingIcon from "../images/icons/personaltraining_icon.svg";
-import petCareIcon from "../images/icons/petcare_icon.svg";
-import mediaIcon from "../images/icons/media_icon.svg";
-import tutoringIcon from "../images/icons/tutoring_icon.svg";
-import singingIcon from "../images/icons/singing_icon.svg";
+import { QUERY_ALL_SERVICECATEGORIES } from "../../src/utils/queries";
 import { Link } from "react-router-dom";
 
-const servicesArray = [
-  {
-    name: "Haircut",
-    image: haircutIcon,
-    link: "/category/haircut",
-  },
-  {
-    name: "Massage",
-    image: massageIcon,
-    link: "/category/massage",
-  },
-  {
-    name: "Eyelashes",
-    image: eyelashesIcon,
-    link: "/category/eyelashes",
-  },
-  {
-    name: "Nailcare",
-    image: nailCareIcon,
-    link: "/category/nailcare",
-  },
-  {
-    name: "Dance",
-    image: danceIcon,
-    link: "/category/dance",
-  },
-  {
-    name: "Fitness",
-    image: personalTrainingIcon,
-    link: "/category/fitness",
-  },
-  {
-    name: "Pet Care",
-    image: petCareIcon,
-    link: "/category/petcare",
-  },
-  {
-    name: "Tutoring",
-    image: tutoringIcon,
-    link: "/category/tutoring",
-  },
-  {
-    name: "Media",
-    image: mediaIcon,
-    link: "/category/media",
-  },
-  {
-    name: "Singing",
-    image: singingIcon,
-    link: "/category/singing",
-  },
-];
 
-const categoryItems = servicesArray.map((services, i) => (
-  <div key={"services" + i} className="align-items-center">
-    <button>
-      <Link to={services.link}>
-        <img
-          src={services.image}
-          alt={services.name + " icon"}
-          className="w-20 h-20 mb-5 min-w-20 min-h-20"
-        />
-        <div className="flex justify-center">
-          <span className="">{services.name}</span>
-        </div>
-      </Link>
-    </button>
-  </div>
-));
+const Home = () => {
 
-export default function Home() {
+  // CREATE STATE TO HOLD CATEGORIES
+  const [savedCategories, setSavedCategories] = useState([]);
+
+  // QUERY FOR ALL CATEGORIES
+  const { loading, error, data } = useQuery(QUERY_ALL_SERVICECATEGORIES, {
+    fetchPolicy: "no-cache"
+  });
+
+  // IF QUERY IS SUCCESSFUL, SET STATE TO CATEGORIES
+  useEffect(() => {
+    if (data) {
+      setSavedCategories(data.serviceCategories);
+    }
+  }, [data]);
+
+  const categoryItems = savedCategories.map((category) => (
+    <div key={category._id} className="align-items-center">
+      <button>
+        <Link to={"/" + category.categoryName}>
+          <img
+            src={category.categoryIcon}
+            alt={category.categoryName + " icon"}
+            className="w-20 h-20 mb-5 min-w-20 min-h-20"
+          />
+          <div className="flex justify-center">
+            <span className="">{category.categoryName}</span>
+          </div>
+        </Link>
+      </button>
+    </div>
+  ));
+
   return (
     <>
       {/* HERO SECTION */}
@@ -100,8 +56,8 @@ export default function Home() {
             difficulties of creating, setting up, attending or even providing
             appointments. Click the button below to get started.
           </p>
-          <button className="py-2.5 px-5 mr-2 mb-2 text-lg font-semibold focus:outline-none rounded-full text-center bg-green-300 hover:bg-green-700 text-black hover:text-gray-100 rounded transition duration-300">
-          <a href="/signup"> Sign Up Today!</a>
+          <button className="py-2 px-3 text-lg bg-green-300 hover:bg-green-700 text-black hover:text-gray-100 rounded transition duration-300">
+            <a href="/signup"> Sign Up Today!</a>
           </button>
         </div>
       </div>
@@ -146,3 +102,5 @@ export default function Home() {
     </>
   );
 }
+
+export default Home;
