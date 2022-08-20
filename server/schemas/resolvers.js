@@ -31,11 +31,30 @@ const resolvers = {
         serviceCategories: async () => {
             return await ServiceCategory.find({});
         },
-        //  GET ALL SERVICE COMMENTS
+        // GET ALL SERVICE COMMENTS
         serviceComments: async () => {
             return await ServiceComment.find({});
-        }
-    }
+        },
+        // GET SINGLE CATEGORY
+        serviceCategory: async (parent, args) => {
+            return await ServiceCategory.findById(args._id);
+        },
+        // GET ALL SERVICEUSERS BY CATEGORY
+        // serviceUsersCategory: async (parent, { category, name }) => {
+        //     const params = {};
+
+        //     if (category) {
+        //         params.category = category;
+        //     }
+
+        //     if (name) {
+        //         params.name = {
+        //             $regex: name
+        //         };
+        //     }
+        // }
+    },
+
 }
 
 
