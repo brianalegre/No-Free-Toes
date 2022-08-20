@@ -46,7 +46,7 @@ export const QUERY_ALL_SERVICEUSERS = gql`
 // GET ALL SERVICE USERS BY SERVICE CATEGORY
 export const QUERY_ALL_SERVICEUSERS_BY_SERVICECATEGORY = gql`
   query serviceUsersCategory($serviceCategory: ID,) {
-    serviceUsersCategory(serviceCategory: $serviceCategory, categoryName: $categoryName) {
+    serviceUsersCategory(serviceCategory: $serviceCategory) {
     _id
     firstName
     lastName

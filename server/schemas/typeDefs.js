@@ -76,7 +76,7 @@ const typeDefs = gql`
         serviceUser(_id: ID!): ServiceUser
         serviceUsers: [ServiceUser]
         # products(category: ID, name: String): [Product]  // SAMPLE QUERY
-        serviceUsersCategory(serviceCategory: ID, categoryName: String): [ServiceUser]
+        serviceUsersCategory(serviceCategory: ID): [ServiceUser]
         
         # APPOINTMENT
         appointment(_id: ID!): Appointment

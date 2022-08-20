@@ -19,7 +19,7 @@ function CategoryPage() {
   // QUERY FOR ALL SERVICE USERS BY CATEGORY
   const { loading, error, data } = useQuery(QUERY_ALL_SERVICEUSERS_BY_SERVICECATEGORY, {
     // CURRENT VALUE OF IN MY DB - MAY DIFF, USING SET VALUE FOR TESTING
-    variables: { "serviceCategory": "63006de2bdedb1779e3e865e" },
+    variables: { serviceCategory: "63006de2bdedb1779e3e865e" },
     fetchPolicy: "no-cache"
   });
 
