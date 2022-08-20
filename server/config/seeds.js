@@ -12,13 +12,13 @@ db.once('open', async () => {
         { categoryName: 'Haircut', categoryIcon: '.././assets/icons/haircut_icon.svg' },
         { categoryName: 'Massage', categoryIcon: '.././assets/icons/massage_icon.svg' },
         { categoryName: 'Eyelashes', categoryIcon: '.././assets/icons/eyelashes_icon.svg' },
-        { categoryName: 'Nailcare', categoryIcon: '.././assets/icons/nailcare_icon.svg'  },
-        { categoryName: 'Dance', categoryIcon: '.././assets/icons/dance_icon.svg'  },
-        { categoryName: 'Personal Training', categoryIcon: '.././assets/icons/personaltraining_icon.svg'  },
-        { categoryName: 'Pet Care', categoryIcon: '.././assets/icons/petcare_icon.svg'  },
-        { categoryName: 'Tutoring', categoryIcon: '.././assets/icons/tutoring_icon.svg'  },
+        { categoryName: 'Nailcare', categoryIcon: '.././assets/icons/nailcare_icon.svg' },
+        { categoryName: 'Dance', categoryIcon: '.././assets/icons/dance_icon.svg' },
+        { categoryName: 'Fitness', categoryIcon: '.././assets/icons/personaltraining_icon.svg' },
+        { categoryName: 'Pet Care', categoryIcon: '.././assets/icons/petcare_icon.svg' },
+        { categoryName: 'Tutoring', categoryIcon: '.././assets/icons/tutoring_icon.svg' },
         { categoryName: 'Media', categoryIcon: '.././assets/icons/media_icon.svg' },
-        { categoryName: 'Singing', categoryIcon: '.././assets/icons/singing_icon.svg'  },
+        { categoryName: 'Singing', categoryIcon: '.././assets/icons/singing_icon.svg' },
     ]);
 
     // LOG TO BACKEND CONSOLE
