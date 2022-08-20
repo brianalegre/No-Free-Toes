@@ -38,29 +38,53 @@ const resolvers = {
     },
 
     Mutation:{
-        addUser: async (parent, args) => {
-            const user = await User.create(args);
-            const token = signToken(user);
+        addNormalUser: async (parent, args) => {
+            const normalUser = await NormalUser.create(args);
+            const token = signToken(normalUser);
       
-            return { token, user };
+            return { token, normalUser };
         },
-        login: async (parent, { email, password }) => {
-            const user = await User.findOne({ email });
+        normalLogin: async (parent, { email, password }) => {
+            const normalUser = await NormalUser.findOne({ email });
       
-            if (!user) {
+            if (!normalUser) {
               throw new AuthenticationError('Incorrect credentials');
             }
       
-            const correctPw = await user.isCorrectPassword(password);
+            const correctPw = await normalUser.isCorrectPassword(password);
       
             if (!correctPw) {
               throw new AuthenticationError('Incorrect credentials');
             }
       
-            const token = signToken(user);
+            const token = signToken(normalUser);
       
-            return { token, user };
-          }
+            return { token, normalUser };
+        },
+
+        addServiceUser: async (parent, args) => {
+            const serviceUser = await ServiceUser.create(args);
+            const token = signToken(serviceUser);
+      
+            return { token, serviceUser };
+        },
+        serviceLogin: async (parent, { email, password }) => {
+            const serviceUser = await ServiceUser.findOne({ email });
+      
+            if (!serviceUser) {
+              throw new AuthenticationError('Incorrect credentials');
+            }
+      
+            const correctPw = await serviceUser.isCorrectPassword(password);
+      
+            if (!correctPw) {
+              throw new AuthenticationError('Incorrect credentials');
+            }
+      
+            const token = signToken(serviceUser);
+      
+            return { token, serviceUser };
+        }
     }
 }
 

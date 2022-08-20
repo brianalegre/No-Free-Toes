@@ -74,6 +74,16 @@ const typeDefs = gql`
         serviceComments: [ServiceComment]
     }
 
+    type NormalAuth {
+        token: ID
+        user: NormalUser
+    }
+
+    type ServiceAuth {
+        token: ID
+        user: ServiceUser
+    }
+
     type Mutation {
         # Service Category
         addServiceCategory(categoryName: String!): ServiceCategory
@@ -99,6 +109,14 @@ const typeDefs = gql`
         # Service Comments
         addServiceComment(commentText: String!, serviceUser: ID!, normalUser: ID!): ServiceComment
         removeServiceComment(_id: ID!): ServiceComment
+
+        # Normal User Login
+        normalLogin(email: String!, password: String!): NormalAuth
+
+        # Service User Login
+        serviceLogin(email: String!, password: String!): ServiceAuth
+
+
     }
 `;
 

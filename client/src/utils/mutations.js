@@ -18,6 +18,29 @@ mutation addNormalUser(
       ) {
           token
           user {
+              _id
+    }
+  }
+}
+`;
+
+// Normal User Login Mutation
+export const NORMAL_LOGIN = gql`
+mutation NormalLogin($email: String!, $password: String!) {
+  normalLogin(email: $email, password: $password) {
+    token
+    user {
+      _id
+    }
+  }
+}
+`;
+
+export const SERVICE_LOGIN = gql`
+mutation ServiceLogin($email: String!, $password: String!) {
+  serviceLogin(email: $email, password: $password) {
+    token
+    user {
       _id
     }
   }
@@ -27,7 +50,7 @@ mutation addNormalUser(
 
 // Service User Sign Up Mutation
 export const ADD_SERVICE_USER = gql`
-mutation AddServiceUser(
+mutation addServiceUser(
     $firstName: String!
     $lastName: String!
     $email: String!
@@ -48,8 +71,8 @@ mutation AddServiceUser(
             serviceType: $serviceType
             ) {
                 token
-          user {
-      _id
+                user {
+                    _id
       }
   }
 }

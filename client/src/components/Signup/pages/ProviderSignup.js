@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-// import { useMutation } from "@apollo/client";
-// import { ADD_USER } from "../utils/mutations";
+import { useMutation } from "@apollo/client";
+import { ADD_SERVICE_USER } from "../../../utils/mutations";
 
-// import Auth from "../utils/auth";
+import Auth from "../../../utils/auth";
 
 const ProviderSignup = () => {
   const [formState, setFormState] = useState({
     username: "",
     email: "",
     password: "",
-    confirmpassword: "",
+    // confirmpassword: "",
     location: "",
     
   });
-//   const [addUser, { error, data }] = useMutation(ADD_USER);
+  const [addServiceUser, { error, data }] = useMutation(ADD_SERVICE_USER);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -29,24 +29,24 @@ const ProviderSignup = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    // try {
-    //   const { data } = await addUser({
-    //     variables: { ...formState },
-    //   });
+    try {
+      const { data } = await addServiceUser({
+        variables: { ...formState },
+      });
 
-//       Auth.login(data.addUser.token);
-//     } catch (e) {
-//       console.error(e);
-//     }
+      Auth.login(data.addServiceUser.token);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (
     <div className="max-w-xxl justify-center">
-      {/* {data ? (
+      {data ? (
         <p>
           Success! You may now head <Link to="/">back to the homepage.</Link>
         </p>
-      ) : ( */}
+      ) : (
         <form
           className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
           onSubmit={handleFormSubmit}
@@ -103,7 +103,7 @@ const ProviderSignup = () => {
               onChange={handleChange}
             />
           </div>
-          <div className="mb-6">
+          {/* <div className="mb-6">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
               htmlFor="confirmpassword"
@@ -118,7 +118,7 @@ const ProviderSignup = () => {
               value={formState.confirmpassword}
               onChange={handleChange}
             />
-          </div>
+          </div> */}
           <div className="mb-6">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
@@ -144,11 +144,11 @@ const ProviderSignup = () => {
             Submit
           </button>
         </form>
-      {/* )} */}
+      )}
 
-      {/* {error && (
+      {error && (
         <div className="my-3 p-3 bg-danger text-white">{error.message}</div>
-      )} */}
+      )}
     </div>
   );
 };
