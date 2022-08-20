@@ -1,20 +1,44 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import heroImg from "../images/hero_image.svg";
 import { QUERY_ALL_SERVICECATEGORIES } from "../../src/utils/queries";
+import { Link, useNavigate } from "react-router-dom";
+
 
 const Home = () => {
-  // const { loading, error, data } = useQuery(QUERY_ALL_SERVICECATEGORIES,
-  // )
 
+  // CREATE STATE TO HOLD CATEGORIES
+  const [savedCategories, setSavedCategories] = useState([]);
+
+  // QUERY FOR ALL CATEGORIES
   const { loading, error, data } = useQuery(QUERY_ALL_SERVICECATEGORIES, {
     fetchPolicy: "no-cache"
   });
 
-  const serviceCategories = data?.serviceCategories || [];
-  console.log('data', data);
-  console.log('loading', loading);
-  console.log('error', error);
+  // IF QUERY IS SUCCESSFUL, SET STATE TO CATEGORIES
+  useEffect(() => {
+    if (data) {
+      setSavedCategories(data.serviceCategories);
+    }
+  }, [data]);
+
+  const categoryItems = savedCategories.map((services, i) => (
+    <div key={"services" + i} className="align-items-center">
+      <button>
+        <Link to={"/" + services.categoryName}>
+          <img
+            src={services.categoryIcon}
+            alt={services.categoryName + " icon"}
+            className="w-20 h-20 mb-5 min-w-20 min-h-20"
+          />
+          <div className="flex justify-center">
+            <span className="">{services.categoryName}</span>
+          </div>
+        </Link>
+      </button>
+    </div>
+  ));
+
   return (
     <>
       {/* HERO SECTION */}
@@ -72,12 +96,24 @@ const Home = () => {
         </div>
 
         <main className="px-16 py-12 place-items-center lg:h-3/4 lg:px-32 lg:py-12 grid grid-cols-2 md:grid-cols-5 gap-x-12 gap-y-24">
-          {/* {categoryItems} */}
-          {serviceCategories.map((category) => (
-            <div>
-              <p>{category.categoryName}</p>
+          {categoryItems}
+          {/* {savedCategories.map((categoryItem, i) => (
+            <div key={"services" + i} className="align-items-center">
+              <button>
+                <Link to={categoryItem.categoryName}>
+                  <img
+                    src={categoryItem.categoryIcon}
+                    alt={"icon"}
+                    className="w-20 h-20 mb-5 min-w-20 min-h-20"
+                  />  <div className="flex justify-center">
+                    <span className="">{categoryItem.name}</span>
+                  </div>
+                </Link>
+              </button>
             </div>
-          ))}
+          ))
+
+          } */}
         </main>
       </div>
     </>

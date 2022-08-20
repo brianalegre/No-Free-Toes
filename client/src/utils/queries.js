@@ -11,16 +11,23 @@ export const QUERY_ALL_SERVICECATEGORIES = gql`
   }
 `;
 
-// export const QUERY_ALL_NORMALUSERS = gql`
-//     {
-//       normalUsers {
-//       _id
-//       firstName
-//       lastName
-//       email
-//     }
-//   }
-// `;
+export const QUERY_ALL_NORMALUSERS = gql`
+  query normalUsers {
+  normalUsers {
+    firstName
+    lastName
+  }
+}
+`;
+
+export const QUERY_ALL_SERVICEUSERS = gql`
+  query serviceUsers {
+    serviceUsers {
+    firstName
+    lastName
+  }
+}
+`;
 
 
 // export const serviceUsersCategory = gql`
