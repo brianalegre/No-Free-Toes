@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 // import { QUERY_SERVICEUSERS_CATEGORY } from "../../src/utils/queries";
-import { QUERY_ALL_SERVICEUSERS_BY_SERVICECATEGORY } from "../../src/utils/queries";
+import { QUERY_ALL_SERVICEUSERS_BY_SERVICECATEGORY } from "../../../src/utils/queries";
 import { Link } from "react-router-dom"
 
 

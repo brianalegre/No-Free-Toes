@@ -24,24 +24,24 @@ export const QUERY_ALL_NORMALUSERS = gql`
 }
 `;
 
-// GET ALL SERVICE USERS
-export const QUERY_ALL_SERVICEUSERS = gql`
-  query serviceUsers {
-    serviceUsers {
-    _id
-    firstName
-    lastName
-    email
-    photo
-    bio
-    location
-    serviceCategory {
-      _id
-      categoryName
-    }
-  }
-}
-`;
+// // GET ALL SERVICE USERS
+// export const QUERY_ALL_SERVICEUSERS = gql`
+//   query serviceUsers {
+//     serviceUsers {
+//     _id
+//     firstName
+//     lastName
+//     email
+//     photo
+//     bio
+//     location
+//     serviceCategory {
+//       _id
+//       categoryName
+//     }
+//   }
+// }
+// `;
 
 // GET ALL SERVICE USERS BY SERVICE CATEGORY
 export const QUERY_ALL_SERVICEUSERS_BY_SERVICECATEGORY = gql`
