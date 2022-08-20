@@ -100,7 +100,7 @@ export default function Home() {
             difficulties of creating, setting up, attending or even providing
             appointments. Click the button below to get started.
           </p>
-          <button className="py-2 px-3 text-lg bg-green-300 hover:bg-green-700 text-black hover:text-gray-100 rounded transition duration-300">
+          <button className="py-2.5 px-5 mr-2 mb-2 text-lg font-semibold focus:outline-none rounded-full text-center bg-green-300 hover:bg-green-700 text-black hover:text-gray-100 rounded transition duration-300">
           <a href="/signup"> Sign Up Today!</a>
           </button>
         </div>

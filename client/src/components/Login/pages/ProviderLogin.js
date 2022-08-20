@@ -30,9 +30,9 @@ function Login(props) {
 //   };
 
   return (
-    <div className=" p-4 w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
-
-      <h2>Login</h2>
+    <div class="p-20 min-w-center">
+    <div className="p-4 w-center text-center bg-gray-900 rounded-lg font-black border shadow-md sm:p-8 border-gray-700">
+      <h2 className="text-xl font-medium text-gray-900 dark:text-white">Login</h2>
      <form class="space-y-6" action="#">
         <div className="flex-row space-between my-2">
           <label htmlFor="email">Email address:</label>
@@ -59,10 +59,11 @@ function Login(props) {
             <p className="error-text">The provided credentials are incorrect</p>
           </div>
         ) : null} */}
-        <div className="flex-row flex-end">
+        <div className="py-2.5 px-5 mr-2 mb-2 text-lg font-semibold focus:outline-none rounded-full text-center bg-green-300 hover:bg-green-700 text-black hover:text-gray-100 rounded transition duration-300">
           <button type="submit">Submit</button>
         </div>
       </form>
+    </div>
     </div>
   );
 }

@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 const ClientLogin = () => {
 
 return (
-
-<div class="p-4 w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
+<div class="p-20 min-w-center">
+<div class="p-4 w-center text-center bg-gray-900 rounded-lg font-black border shadow-md sm:p-8 border-gray-700">
     <form class="space-y-6" action="#">
         <h5 class="text-xl font-medium text-gray-900 dark:text-white">Sign in to our platform</h5>
         <div>
@@ -29,6 +29,7 @@ return (
             Not registered? <Link to="/signup" class="text-blue-700 hover:underline dark:text-blue-500">Create account</Link>
         </div>
     </form>
+</div>
 </div>
 );
 };

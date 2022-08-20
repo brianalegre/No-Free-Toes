@@ -113,9 +113,9 @@ const ClientSignup = () => {
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               placeholder="********"
-              name="password"
+              name="confirmpassword"
               type="password"
-              value={formState.password}
+              value={formState.confirmpassword}
               onChange={handleChange}
             />
           </div>
