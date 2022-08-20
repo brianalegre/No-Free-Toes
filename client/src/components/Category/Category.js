@@ -9,8 +9,6 @@ import { Link, useParams } from "react-router-dom"
 const defaultImg = ".././assets/images/man.png";
 
 
-
-
 function CategoryPage() {
 
   const { categoryId } = useParams();
@@ -18,7 +16,8 @@ function CategoryPage() {
   // CREATE STATE TO HOLD SERVICE USERS
   const [getServiceUsers, setGetServiceUsers] = useState([]);
 
-  
+  // SET CATEGORY NAME FOR TITLE
+  const [categoryName, setCategoryName] = useState([]);
 
   // QUERY FOR ALL SERVICE USERS BY CATEGORY
   const { loading, error, data } = useQuery(QUERY_ALL_SERVICEUSERS_BY_SERVICECATEGORY, {
@@ -30,14 +29,15 @@ function CategoryPage() {
   // IF QUERY IS SUCCESSFUL, SET STATE TO SERVICE USERS
   useEffect(() => {
     if (data) {
-      setGetServiceUsers(data.serviceUsersCategory);
+      setGetServiceUsers(data.serviceUsersCategory)
+      setCategoryName(data.serviceUsersCategory[0].serviceCategory.categoryName);
+      
     }
   }, [data]);
 
   // LOG THE DATA TO DEV TOOLS
   console.log('DATA ----', data);
   console.log('GET SERVICE USERS ----', getServiceUsers);
-
 
 
   // MAP THE DATA
@@ -69,7 +69,7 @@ function CategoryPage() {
 
       {/* LOAD SERVICE USERS FOR CATEGORY  */}
       <div className='text-center my-4 text-2xl text-bold lg:text-5xl pt-10'>
-        <h1 className='text-black'>Category:</h1>
+        <h1 className='text-black'>Category: {categoryName}</h1>
       </div>
 
       {/* OPTION 1 */}
