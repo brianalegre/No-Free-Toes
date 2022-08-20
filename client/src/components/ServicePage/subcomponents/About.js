@@ -1,8 +1,8 @@
 import React from "react";
 
-export default function About() {
+export default function About({ setCurrentTab }) {
   return (
-    <>
+    <section style={{ display: "none" }}>
       <div className="min-w-full leading-normal bg-white">
         <div className="pl-6 py-6 text-black font-bold">
           <p>About Us</p>
@@ -45,6 +45,6 @@ export default function About() {
       <div className="bg-white px-8 py-6 border border-top-black text-black">
         <p>Email: brian@gmail.com</p>
       </div>
-    </>
+    </section>
   );
 }

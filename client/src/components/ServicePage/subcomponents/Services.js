@@ -59,7 +59,7 @@ const serviceRow = serviceData.map((service) => (
   </td>
 ));
 
-export default function Services() {
+export default function Services({setCurrentTab}) {
   return (
     <>
       <table className="min-w-full leading-normal">
