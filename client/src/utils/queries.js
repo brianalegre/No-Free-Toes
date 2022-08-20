@@ -14,8 +14,11 @@ export const QUERY_ALL_SERVICECATEGORIES = gql`
 export const QUERY_ALL_NORMALUSERS = gql`
   query normalUsers {
   normalUsers {
+    _id
     firstName
     lastName
+    email
+    locotion
   }
 }
 `;
@@ -23,8 +26,17 @@ export const QUERY_ALL_NORMALUSERS = gql`
 export const QUERY_ALL_SERVICEUSERS = gql`
   query serviceUsers {
     serviceUsers {
+    _id
     firstName
     lastName
+    email
+    photo
+    bio
+    location
+    serviceCategory {
+      _id
+      categoryName
+    }
   }
 }
 `;
