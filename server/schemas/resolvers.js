@@ -80,8 +80,27 @@ const resolvers = {
             const token = signToken(user);
 
             return { token, user };
-        }
+        },
+        //  ADD SERVICE USER
 
+        // LOGIN SERVICE USER
+        loginServiceUser: async (parent, { email, password }) => {
+            const user = await ServiceUser.findOne({ email });
+
+            if (!user) {
+                throw new AuthenticationError('Invalid credentials');
+            }
+
+            const correctPw = await user.isCorrectPassword(password);
+
+            if (!correctPw) {
+                throw new AuthenticationError('Incorrect credentials');
+            }
+
+            const token = signToken(user);
+
+            return { token, user };
+        }
     },
 };
 

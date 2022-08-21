@@ -63,6 +63,11 @@ const typeDefs = gql`
     token: ID!
     normalUser: NormalUser
     }
+
+    type ServiceAuth {
+    token: ID!
+    normalUser: ServiceUser
+    }
     
     type Query {
         # SERVICE TYPE
@@ -110,6 +115,7 @@ const typeDefs = gql`
         addServiceUser(firstName: String!, lastName: String!, email: String!, password: String!, photo: String, bio:String!, location: String!, serviceCategory: ID!, serviceType: [ID]!): ServiceUser
         editServiceUser(firstName: String, lastName: String, email: String, password: String, photo: String, bio:String, location: String, serviceCategory: ID, serviceType: [ID]): ServiceUser
         removeServiceUser(_id: ID!): ServiceUser
+        loginServiceUser(email: String!, password: String!): ServiceAuth
         
         # APPOINTMENT
         addAppointment(appointmentDate: String!, serviceType: ID!, normalUser: ID!, serviceUser: ID!): Appointment

@@ -7,7 +7,10 @@ export const ADD_NORMALUSER = gql`
       token
       normalUser {
         _id
+        firstName
+        lastName
         email
+        location
       }
     }
   }
@@ -23,10 +26,12 @@ export const LOGIN_NORMALUSER = gql`
         firstName
         lastName
         email
+        location
       }
     }
   }
 `;
+
 
 // export const ADD_NORMALUSER2 = gql`
 // mutation Mutation($firstName: String!, $lastName: String!, $email: String!, $password: String!, $location: String!) {
