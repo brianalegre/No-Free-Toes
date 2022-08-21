@@ -8,6 +8,7 @@ const ClientLogin = () => {
 
     // CREATE STATE FOR FORM
     const [formState, setFormState] = useState({ email: '', password: '' });
+  // MUTATION FOR LOGIN NORMAL USER
     const [loginNormalUser, { error, data }] = useMutation(LOGIN_NORMALUSER);
 
     // UPDATE STATE

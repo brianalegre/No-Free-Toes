@@ -6,11 +6,8 @@ export const ADD_NORMALUSER = gql`
     addNormalUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password, location: $location) {
       token
       normalUser {
-        firstName
-        lastName
+        _id
         email
-        password
-        location
       }
     }
   }
