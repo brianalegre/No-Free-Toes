@@ -27,12 +27,6 @@ const serviceTypeSchema = new Schema({
         ref: 'ServiceCategory',
         required: true
     },
-    serviceUser: {
-        type: Schema.Types.ObjectId,
-        ref: 'ServiceUser',
-        required: true
-    }
-
 });
 
 const ServiceType = mongoose.model('ServiceType', serviceTypeSchema);

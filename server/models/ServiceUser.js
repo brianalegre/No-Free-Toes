@@ -43,8 +43,18 @@ const serviceUserSchema = new Schema({
         ref: 'ServiceCategory',
         required: true
     },
-    serviceType: [ServiceType.schema],
-    appointments: [Appointment.schema],
+    serviceType: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'ServiceType',
+        }
+    ],
+    appointments: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Appointment',
+        }
+    ],
 });
 
 // set up pre-save middleware to create password

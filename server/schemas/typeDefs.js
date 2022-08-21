@@ -14,7 +14,6 @@ const typeDefs = gql`
         serviceDuration: Float
         serviceDescription: String
         serviceCategory: ServiceCategory
-        serviceUser: ServiceUser 
     }
 
     type Appointment {
