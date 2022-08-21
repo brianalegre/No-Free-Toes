@@ -61,7 +61,7 @@ const resolvers = {
             const newNormalUser = await NormalUser.create({ firstName, lastName, email, password, location });
             const token = signToken(newNormalUser);
 
-            return { newNormalUser };
+            return { token, newNormalUser };
         },
     },
 };
