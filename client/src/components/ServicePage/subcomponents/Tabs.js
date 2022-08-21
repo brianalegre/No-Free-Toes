@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Services from "./Services";
 import About from "./About";
-import { motion } from "framer-motion";
 
 export default function Tabs() {
   const [tabs] = useState([
