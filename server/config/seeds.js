@@ -117,6 +117,217 @@ db.once('open', async () => {
         },
     );
 
+    // CREATE SERVICEUSER DATA
+    const serviceUserSeedSix = await ServiceUser.create(
+        {
+            firstName: 'Nick',
+            lastName: 'Graffis',
+            email: 'nick@gmail.com',
+            password: 'test1234',
+            serviceCategory: serviceCategorySeed[5]._id,
+            photo: 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
+            bio: 'Sixth testing bio',
+            location: 'San francisco, CA',
+        },
+    );
+
+    // CREATE SERVICEUSER DATA
+    const serviceUserSeedSeven = await ServiceUser.create(
+        {
+            firstName: 'Erik',
+            lastName: 'Hirsch',
+            email: 'erik@gmail.com',
+            password: 'test1234',
+            serviceCategory: serviceCategorySeed[6]._id,
+            photo: 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
+            bio: 'Seventh testing bio',
+            location: 'Orange, CA',
+        },
+    );
+
+    // CREATE SERVICEUSER DATA
+    const serviceUserSeedEight = await ServiceUser.create(
+        {
+            firstName: 'Tony',
+            lastName: 'Vallescas',
+            email: 'tony@gmail.com',
+            password: 'test1234',
+            serviceCategory: serviceCategorySeed[7]._id,
+            photo: 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
+            bio: 'Tony testing bio',
+            location: 'Los Angeles, CA',
+        },
+    );
+
+    // CREATE SERVICEUSER DATA
+    const serviceUserSeedNine = await ServiceUser.create(
+        {
+            firstName: 'Vy',
+            lastName: 'Nguyen',
+            email: 'vy@gmail.com',
+            password: 'test1234',
+            serviceCategory: serviceCategorySeed[8]._id,
+            photo: 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
+            bio: 'Vy testing bio',
+            location: 'Fountain Valley, CA',
+        },
+    );
+
+    // CREATE SERVICEUSER DATA
+    const serviceUserSeedTen = await ServiceUser.create(
+        {
+            firstName: 'Marina',
+            lastName: 'Huisken',
+            email: 'marina@gmail.com',
+            password: 'test1234',
+            serviceCategory: serviceCategorySeed[9]._id,
+            photo: 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
+            bio: 'Marina testing bio',
+            location: 'Fountain Valley, CA',
+
+        },
+    );
+
+    // CREATE SERVICEUSER DATA
+    const serviceUserSeedEleven = await ServiceUser.create(
+        {
+            firstName: 'Ghazaleh',
+            lastName: 'Javadi',
+            email: 'ghazaleh@gmail.com',
+            password: 'test1234',
+            serviceCategory: serviceCategorySeed[0]._id,
+            photo: 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
+            bio: 'Ghazaleh testing bio',
+            location: 'Orange, CA',
+        },
+    );
+
+    // CREATE SERVICEUSER DATA
+    const serviceUserSeedTwelve = await ServiceUser.create(
+        {
+            firstName: 'John',
+            lastName: 'Hull',
+            email: 'john@gmail.com',
+            password: 'test1234',
+            serviceCategory: serviceCategorySeed[1]._id,
+            photo: 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
+            bio: 'John testing bio',
+            location: 'Orange County, CA',
+        },
+    );
+
+    // CREATE SERVICEUSER DATA
+    const serviceUserSeedThirteen = await ServiceUser.create(
+        {
+            firstName: 'Darryl ',
+            lastName: 'Le',
+            email: 'darryl@gmail.com',
+            password: 'test1234',
+            serviceCategory: serviceCategorySeed[2]._id,
+            photo: 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
+            bio: 'fifth testing bio',
+            location: 'Irvine, CA',
+        },
+    );
+
+    // CREATE SERVICEUSER DATA
+    const serviceUserSeedFourteen = await ServiceUser.create(
+        {
+            firstName: 'Connor',
+            lastName: 'Mictcher',
+            email: 'conner@gmail.com',
+            password: 'test1234',
+            serviceCategory: serviceCategorySeed[3]._id,
+            photo: 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
+            bio: 'Connor testing bio',
+            location: 'Orange County, CA',
+        },
+    );
+
+    // CREATE SERVICEUSER DATA
+    const serviceUserSeedFifteen = await ServiceUser.create(
+        {
+            firstName: 'Matt',
+            lastName: 'Dunston',
+            email: 'matt@gmail.com',
+            password: 'test1234',
+            serviceCategory: serviceCategorySeed[4]._id,
+            photo: 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
+            bio: 'Matt testing bio',
+            location: 'Los Angeles, CA',
+        },
+    );
+
+    // CREATE SERVICEUSER DATA
+    const serviceUserSeedSixteen = await ServiceUser.create(
+        {
+            firstName: 'Ian',
+            lastName: 'Irwin',
+            email: 'ian@gmail.com',
+            password: 'test1234',
+            serviceCategory: serviceCategorySeed[5]._id,
+            photo: 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
+            bio: 'Ian testing bio',
+            location: 'Orange, CA',
+        },
+    );
+
+    // CREATE SERVICEUSER DATA
+    const serviceUserSeedSeventeen = await ServiceUser.create(
+        {
+            firstName: 'Wilson',
+            lastName: 'Soetomo',
+            email: 'wilson@gmail.com',
+            password: 'test1234',
+            serviceCategory: serviceCategorySeed[6]._id,
+            photo: 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
+            bio: 'Wilson testing bio',
+            location: 'Irvine, CA',
+        },
+    );
+
+    // CREATE SERVICEUSER DATA
+    const serviceUserSeedEighteen = await ServiceUser.create(
+        {
+            firstName: 'Liberato',
+            lastName: 'Garced',
+            email: 'liberto@gmail.com',
+            password: 'test1234',
+            serviceCategory: serviceCategorySeed[7]._id,
+            photo: 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
+            bio: 'Liberato testing bio',
+            location: 'Irvine, CA',
+        },
+    );
+
+    // CREATE SERVICEUSER DATA
+    const serviceUserSeedNineteen = await ServiceUser.create(
+        {
+            firstName: 'Luna',
+            lastName: 'Kiira',
+            email: 'luna@gmail.com',
+            password: 'test1234',
+            serviceCategory: serviceCategorySeed[8]._id,
+            photo: 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
+            bio: 'Luna testing bio',
+            location: 'Monterey Park, CA',
+        },
+    );
+
+    // CREATE SERVICEUSER DATA
+    const serviceUserSeedTwenty = await ServiceUser.create(
+        {
+            firstName: 'Jasmine',
+            lastName: 'Tsao',
+            email: 'jasmine@gmail.com',
+            password: 'test1234',
+            serviceCategory: serviceCategorySeed[9]._id,
+            photo: 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
+            bio: 'Jasmine testing bio',
+            location: 'Los Angeles, CA',
+        },
+    );
+
     // LOG TO BACKEND CONSOLE
     console.log('SUCCESSFULLY SEEDED SERVICE USERS');
 

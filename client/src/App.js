@@ -25,7 +25,7 @@ const App = () => (
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/category/:servicetype" element={<CategoryPage />} />
+        <Route path="/category/:categoryId" element={<CategoryPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/login/client" element={<LoginClient />} />
         <Route path="/login/provider" element={<LoginProvider />} />
