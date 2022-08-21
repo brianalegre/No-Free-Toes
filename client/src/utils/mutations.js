@@ -31,7 +31,24 @@ export const LOGIN_NORMALUSER = gql`
     }
   }
 `;
-
+// ADD SERVICE USER
+export const ADD_SERVICEUSER = gql`
+  mutation addServiceUser($firstName: String!, $lastName: String!, $email: String!, $password: String!, $photo: String, $bio: String!, $location: String!, $serviceCategory: String!) {
+    addServiceUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password, photo: $photo, bio: $bio, location: $location, serviceCategory: $serviceCategory) {
+      token
+      serviceUser {
+        _id
+        firstName
+        lastName
+        email
+        photo
+        bio
+        location
+        serviceCategory
+      }
+    }
+  }
+`;
 
 // LOGIN SERVICE USER
 export const LOGIN_SERVICEUSER = gql`
