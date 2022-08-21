@@ -63,6 +63,25 @@ const resolvers = {
 
             return { token, newNormalUser };
         },
+        // LOGIN NORMAL USER
+        loginNormalUser: async (parent, { email, password }) => {
+            const user = await NormalUser.findOne({ email });
+
+            if (!user) {
+                throw new AuthenticationError('Invalid credentials');
+            }
+
+            const isValid = await user.isValidPassword(password);
+
+            if (!isValid) {
+                throw new AuthenticationError('Invalid credentials');
+            }
+
+            const token = signToken(user);
+
+            return { token, user };
+        }
+
     },
 };
 
