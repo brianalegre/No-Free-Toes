@@ -26,6 +26,11 @@ const serviceTypeSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'ServiceCategory',
         required: true
+    },
+    serviceUser: {
+        type: Schema.Types.ObjectId,
+        ref: 'ServiceUser',
+        required: true
     }
 
 });
