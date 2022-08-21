@@ -96,7 +96,7 @@ const typeDefs = gql`
         addServiceCategory(categoryName: String!): ServiceCategory
         
         # NORMAL USER
-        addNormalUser(firstName: String!, lastName: String!, email: String!, password: String!, photo: String, location: String!): NormalUser
+        addNormalUser(firstName: String!, lastName: String!, email: String!, password: String!, location: String!): NormalUser
         editNormalUser(firstName: String, lastName: String, email: String, password: String, photo: String, location: String): NormalUser
         removeNormalUser(_id: ID!): NormalUser
         
