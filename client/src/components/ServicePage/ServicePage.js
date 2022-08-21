@@ -1,6 +1,6 @@
 import React from "react";
 import ServiceUserProfile from "./subcomponents/ServiceUserProfile";
-import Tabs from "./subcomponents/Tabs";
+import TabList from "./subcomponents/Tabs";
 import Services from "./subcomponents/Services";
 import About from "./subcomponents/About";
 
@@ -17,7 +17,7 @@ export default function ServicePage() {
             <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 bg-gray-100">
               <div className="inline-block min-w-full"></div>
             </div>
-            <Tabs />
+            <TabList />
           </div>
         </div>
       </div>

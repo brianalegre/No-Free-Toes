@@ -62,9 +62,9 @@ const serviceRow = serviceData.map((service, i) => (
   </td>
 ));
 
-export default function Services({ currentTab }) {
+export default function Services() {
   return (
-    <section className={currentTab ? null : "hidden"}>
+    <section>
       <table className="min-w-full leading-normal">
         <thead>
           <tr>

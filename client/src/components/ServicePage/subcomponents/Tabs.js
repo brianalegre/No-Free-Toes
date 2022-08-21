@@ -22,10 +22,10 @@ export default function Tabs() {
       <div className="bg-white">
         <ul className="py-5 flex flex-wrap justify-around text-md font-medium text-center text-gray-500 dark:text-gray-400 border-b border-slate-50 shadow rounded-lg rounded-bl-none rounded-br-none">
           {tabs.map((tabs) => (
-            <li className="mr-2">
+            <li className="mr-2" key={tabs.name}>
               <button
                 className="inline-block py-3 px-4 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white"
-                onClick={() => setCurrentTab(tabs)} 
+                onClick={() => setCurrentTab(tabs)}
               >
                 {tabs.name}
               </button>
@@ -35,8 +35,12 @@ export default function Tabs() {
         <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 bg-gray-100">
           <div className="inline-block min-w-full"></div>
         </div>
-        <About tabs={tabs} setCurrentTab={setCurrentTab}/>
-        <Services tabs={tabs} setCurrentTab={setCurrentTab}/>
+        <div className={currentTab.name === "About Provider" ? null : "hidden"}>
+          <About />
+        </div>
+        <div className={currentTab.name === "Services" ? null : "hidden"}>
+          <Services />
+        </div>
       </div>
     </>
   );

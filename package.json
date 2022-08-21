@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@apollo/react-hooks": "^4.0.0",
-    "react-router-dom": "^6.3.0"
+    "react-router-dom": "^6.3.0",
+    "react-tabs": "^5.1.0"
   }
 }
