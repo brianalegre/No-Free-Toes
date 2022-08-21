@@ -43,12 +43,10 @@ export const LOGIN_SERVICEUSER = gql`
         lastName
         email
         location
-        serviceCategory {
-          _id
-          categoryName
-
       }
-    };
+    }
+  }
+`;
 
 
 

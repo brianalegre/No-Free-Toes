@@ -66,7 +66,7 @@ const typeDefs = gql`
 
     type ServiceAuth {
     token: ID!
-    normalUser: ServiceUser
+    serviceUser: ServiceUser
     }
     
     type Query {
