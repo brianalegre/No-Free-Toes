@@ -17,8 +17,9 @@ mutation addNormalUser(
       location: $location
       ) {
           token
-          user {
-              _id
+          normalUser {
+              email
+              password
     }
   }
 }
@@ -29,8 +30,9 @@ export const NORMAL_LOGIN = gql`
 mutation NormalLogin($email: String!, $password: String!) {
   normalLogin(email: $email, password: $password) {
     token
-    user {
-      _id
+    normalUser {
+      email
+      password
     }
   }
 }
@@ -40,8 +42,9 @@ export const SERVICE_LOGIN = gql`
 mutation ServiceLogin($email: String!, $password: String!) {
   serviceLogin(email: $email, password: $password) {
     token
-    user {
-      _id
+    serviceUser {
+      email
+      password
     }
   }
 }
@@ -71,8 +74,9 @@ mutation addServiceUser(
             serviceType: $serviceType
             ) {
                 token
-                user {
-                    _id
+                serviceUser {
+                    email
+                    password
       }
   }
 }

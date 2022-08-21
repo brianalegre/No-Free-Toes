@@ -76,12 +76,12 @@ const typeDefs = gql`
 
     type NormalAuth {
         token: ID
-        user: NormalUser
+        normalUser: NormalUser
     }
 
     type ServiceAuth {
         token: ID
-        user: ServiceUser
+        serviceUser: ServiceUser
     }
 
     type Mutation {

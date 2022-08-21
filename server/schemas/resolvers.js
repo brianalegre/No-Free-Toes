@@ -38,12 +38,18 @@ const resolvers = {
     },
 
     Mutation:{
+
+        // New Normal User mutation
+
         addNormalUser: async (parent, args) => {
             const normalUser = await NormalUser.create(args);
             const token = signToken(normalUser);
       
             return { token, normalUser };
         },
+
+        // Normal User login mutation
+
         normalLogin: async (parent, { email, password }) => {
             const normalUser = await NormalUser.findOne({ email });
       
@@ -62,12 +68,17 @@ const resolvers = {
             return { token, normalUser };
         },
 
+        // New Service User mutation
+        
         addServiceUser: async (parent, args) => {
             const serviceUser = await ServiceUser.create(args);
             const token = signToken(serviceUser);
       
             return { token, serviceUser };
         },
+
+        // Service User Login mutation
+
         serviceLogin: async (parent, { email, password }) => {
             const serviceUser = await ServiceUser.findOne({ email });
       
