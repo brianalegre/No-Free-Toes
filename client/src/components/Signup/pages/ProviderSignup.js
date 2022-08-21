@@ -205,14 +205,6 @@ const ProviderSignup = () => {
                 />
                 <input
                   className="form-input"
-                  placeholder="Upload a photo..."
-                  name="photo"
-                  type="text"
-                  value={formState.photo}
-                  onChange={handleChange}
-                />
-                <input
-                  className="form-input"
                   placeholder="Tell us about yourself..."
                   name="bio"
                   type="text"
@@ -231,7 +223,8 @@ const ProviderSignup = () => {
                 <input
                   className="form-input"
                   placeholder="Service Category"
-                  // TESTING VALUE: 63027e2df989d6cf0984ea3b
+                  // TESTING VALUE: 6302a35585df27977f64cab2
+                  // VALUE MAY DIFFER FROM YOUR DB
                   name="serviceCategory"
                   type="text"
                   value={formState.serviceCategory}
