@@ -12,12 +12,11 @@ const ClientSignup = () => {
     email: "",
     password: "",
     location: "",
-
   });
 
   // MUTATION TO ADD NORMAL USER
+  // const [addNormalUser, { error, data }] = useMutation(ADD_NORMALUSER);
   const [addNormalUser, { error, data }] = useMutation(ADD_NORMALUSER);
-
 
   // UPDATE FORM STATE
   const handleChange = (event) => {
@@ -32,13 +31,14 @@ const ClientSignup = () => {
   // SUBMIT FORM
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    console.log(formState);
 
     try {
       const { data } = await addNormalUser({
         variables: { ...formState },
       });
 
-      Auth.login(data.addNormalUser.token);
+      // Auth.login(data.addNormalUser.token);
     } catch (e) {
       console.error(e);
 
