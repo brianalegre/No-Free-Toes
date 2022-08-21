@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 
-export default function About({ setCurrentTab }) {
+export default function About({ tabs, currentTab }) {
   return (
-    <section style={{ display: "none" }}>
+    <section>
+      {/* className={currentTab ? null : "hidden"} */}
       <div className="min-w-full leading-normal bg-white">
         <div className="pl-6 py-6 text-black font-bold">
           <p>About Us</p>
