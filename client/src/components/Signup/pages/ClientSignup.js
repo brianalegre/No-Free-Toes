@@ -1,22 +1,25 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-
-// import { useMutation } from "@apollo/client";
-// import { ADD_USER } from "../utils/mutations";
-
-// import Auth from "../utils/auth";
+// import { Link } from "react-router-dom";
+import { useMutation } from "@apollo/client";
+import { ADD_NORMALUSER } from "../../../utils/mutations";
+import Auth from "../../../utils/auth";
 
 // CLIENT SIGNUP
 const ClientSignup = () => {
   const [formState, setFormState] = useState({
     firstName: "",
     lastName: "",
+    email: "",
     password: "",
     location: "",
 
   });
-  //   const [addUser, { error, data }] = useMutation(ADD_USER);
 
+  // MUTATION TO ADD NORMAL USER
+  const [addNormalUser, { error, data }] = useMutation(ADD_NORMALUSER);
+
+
+  // UPDATE FORM STATE
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -26,19 +29,21 @@ const ClientSignup = () => {
     });
   };
 
+  // SUBMIT FORM
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    // try {
-    //   const { data } = await addUser({
-    //     variables: { ...formState },
-    //   });
+    try {
+      const { data } = await addNormalUser({
+        variables: { ...formState },
+      });
 
-    //       Auth.login(data.addUser.token);
-    //     } catch (e) {
-    //       console.error(e);
-    //     }
-  };
+      Auth.login(data.addNormalUser.token);
+    } catch (e) {
+      console.error(e);
+
+    };
+  }
 
   return (
     <div className="max-w-xxl justify-center">
