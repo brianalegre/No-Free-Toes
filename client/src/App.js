@@ -26,14 +26,13 @@ const App = () => (
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/service/:serviceUserId" element={<ServicePage />} />
-        <Route path="/category/:servicetype" element={<CategoryPage />} />
+        <Route path="/category/:categoryId" element={<CategoryPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/login/client" element={<LoginClient />} />
         <Route path="/login/provider" element={<LoginProvider />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/signup/client" element={<SignupClient />} />
         <Route path="/signup/provider" element={<SignupProvider />} />
-        <Route path="/service/:service" element={<ServicePage />} />
       </Routes>
       <Footer />
     </Router>
