@@ -71,7 +71,7 @@ const typeDefs = gql`
         normalUsers: [NormalUser]
 
         # SERVICE USER
-        serviceUser(serviceUserID: ID!): ServiceUser
+        serviceUser(serviceUserId: ID!): ServiceUser
         serviceUsers: [ServiceUser]
         # products(category: ID, name: String): [Product]  // SAMPLE QUERY
         serviceUsersCategory(serviceCategory: ID): [ServiceUser]

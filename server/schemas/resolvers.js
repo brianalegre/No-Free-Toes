@@ -19,12 +19,12 @@ const resolvers = {
         normalUser: async () => {
             return await NormalUser.findOne();
         },
-        serviceUser: async (parent, {serviceUserID}) => {
-            return ServiceUser.findOne({ _id: serviceUserID }).populate('serviceType');
+        serviceUser: async (parent, {serviceUserId}) => {
+            return ServiceUser.findOne({ _id: serviceUserId }).populate('serviceType');
         },
         // GET ALL SERVICE USERS + SERVICE TYPES
         serviceUsers: async () => {
-            return await ServiceUser.find().populate('serviceType');
+            return await ServiceUser.find().populate('serviceType').populate('serviceCategory');
         },
         //  GET ALL SERVICE USERS + SERVICE CATEGORY
         serviceUsers: async () => {
