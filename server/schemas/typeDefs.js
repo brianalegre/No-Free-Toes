@@ -58,6 +58,11 @@ const typeDefs = gql`
         normalUser: NormalUser
         serviceUser: ServiceUser
     }
+
+    type NormalAuth {
+    token: ID!
+    normalUser: NormalUser
+    }
     
     type Query {
         # SERVICE TYPE
@@ -99,7 +104,7 @@ const typeDefs = gql`
         addNormalUser(firstName: String!, lastName: String!, email: String!, password: String!, location: String!): NormalUser
         editNormalUser(firstName: String, lastName: String, email: String, password: String, photo: String, location: String): NormalUser
         removeNormalUser(_id: ID!): NormalUser
-        loginNormalUser(email: String!, password: String!): Auth
+        loginNormalUser(email: String!, password: String!): NormalAuth
         
         # SERVICE USER
         addServiceUser(firstName: String!, lastName: String!, email: String!, password: String!, photo: String, bio:String!, location: String!, serviceCategory: ID!, serviceType: [ID]!): ServiceUser

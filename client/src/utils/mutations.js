@@ -4,8 +4,8 @@ import { gql } from '@apollo/client';
 export const ADD_NORMALUSER = gql`
   mutation addNormalUser($firstName: String!, $lastName: String!, $email: String!, $password: String!, $location: String!) {
     addNormalUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password, location: $location) {
-      # token
-      # normalUser {
+      token
+      normalUser {
         firstName
         lastName
         email
@@ -13,8 +13,24 @@ export const ADD_NORMALUSER = gql`
         location
       }
     }
-  # }
+  }
 `;
+
+// LOGIN NORMAL USER
+export const LOGIN_NORMALUSER = gql`
+  mutation loginNormalUser($email: String!, $password: String!) {
+    loginNormalUser(email: $email, password: $password) {
+      token
+      normalUser {
+        _id
+        firstName
+        lastName
+        email
+      }
+    }
+  }
+`;
+
 // export const ADD_NORMALUSER2 = gql`
 // mutation Mutation($firstName: String!, $lastName: String!, $email: String!, $password: String!, $location: String!) {
 //   addNormalUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password, location: $location) {

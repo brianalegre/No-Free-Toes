@@ -38,7 +38,7 @@ const ClientSignup = () => {
         variables: { ...formState },
       });
 
-      Auth.login(data.addNormalUser.token);
+      Auth.loginNormalUser(data.addNormalUser.token);
     } catch (e) {
       console.error(e);
 
