@@ -71,10 +71,10 @@ const resolvers = {
                 throw new AuthenticationError('Invalid credentials');
             }
 
-            const isValid = await user.isValidPassword(password);
+            const correctPw = await user.isCorrectPassword(password);
 
-            if (!isValid) {
-                throw new AuthenticationError('Invalid credentials');
+            if (!correctPw) {
+                throw new AuthenticationError('Incorrect credentials');
             }
 
             const token = signToken(user);
