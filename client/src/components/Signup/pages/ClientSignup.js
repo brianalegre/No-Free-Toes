@@ -43,11 +43,7 @@ const ClientSignup = () => {
       console.error(e);
 
     }
-    // CLEAR FORM VARIABLES
-    setFormState({
-      email: '',
-      password: '',
-    });
+
   };
 
   return (
