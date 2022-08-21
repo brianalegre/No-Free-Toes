@@ -19,9 +19,12 @@ const resolvers = {
         normalUser: async () => {
             return await NormalUser.findOne();
         },
-        // GET ALL SERVICE USERS
+        serviceUser: async (parent, {serviceUserID}) => {
+            return ServiceUser.findOne({ _id: serviceUserID }).populate('serviceType');
+        },
+        // GET ALL SERVICE USERS + SERVICE TYPES
         serviceUsers: async () => {
-            return await ServiceUser.find();
+            return await ServiceUser.find().populate('serviceType');
         },
         //  GET ALL SERVICE USERS + SERVICE CATEGORY
         serviceUsers: async () => {
@@ -31,9 +34,10 @@ const resolvers = {
         serviceCategories: async () => {
             return await ServiceCategory.find({});
         },
-        // GET ALL SERVICE TYPES
+        // GET ALL SERVICE TYPES + SERVICE USERS
         serviceTypes: async () => {
-            return await ServiceType.find({});
+            return await ServiceType.find({}).populate('serviceUser');
+
         },
         // GET ALL SERVICE COMMENTS
         serviceComments: async () => {
@@ -56,7 +60,7 @@ const resolvers = {
 
             // }
             return await ServiceUser.find(params).populate('serviceCategory');
-        }
+        },
     },
 
 }
