@@ -112,7 +112,7 @@ const typeDefs = gql`
         loginNormalUser(email: String!, password: String!): NormalAuth
         
         # SERVICE USER
-        addServiceUser(firstName: String!, lastName: String!, email: String!, password: String!, photo: String, bio:String!, location: String!, serviceCategory: ID!, serviceType: [ID]!): ServiceUser
+        addServiceUser(firstName: String!, lastName: String!, email: String!, password: String!, photo: String, bio:String!, location: String!, serviceCategory: ID!): ServiceAuth
         editServiceUser(firstName: String, lastName: String, email: String, password: String, photo: String, bio:String, location: String, serviceCategory: ID, serviceType: [ID]): ServiceUser
         removeServiceUser(_id: ID!): ServiceUser
         loginServiceUser(email: String!, password: String!): ServiceAuth

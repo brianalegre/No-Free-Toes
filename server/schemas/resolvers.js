@@ -82,6 +82,12 @@ const resolvers = {
             return { token, user };
         },
         //  ADD SERVICE USER
+        addServiceUser: async (parent, { firstName, lastName, email, password, photo, bio, location, serviceCategory }) => {
+            const user = await ServiceUser.create({ firstName, lastName, email, password, photo, bio, location, serviceCategory });
+            const token = signToken(user);
+
+            return { token, user };
+        },
 
         // LOGIN SERVICE USER
         loginServiceUser: async (parent, { email, password }) => {

@@ -32,6 +32,7 @@ export const LOGIN_NORMALUSER = gql`
   }
 `;
 
+
 // LOGIN SERVICE USER
 export const LOGIN_SERVICEUSER = gql`
   mutation loginServiceUser($email: String!, $password: String!) {
