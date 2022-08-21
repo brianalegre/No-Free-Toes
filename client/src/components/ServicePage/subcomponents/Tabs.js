@@ -27,7 +27,7 @@ export default function Tabs() {
                 className="inline-block py-3 px-4 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white"
                 onClick={() => setCurrentTab(tabs)}
               >
-                {tabs.name}
+                <span className={currentTab.name === tabs.name ? "text-red-600" : null}>{tabs.name}</span>
               </button>
             </li>
           ))}
