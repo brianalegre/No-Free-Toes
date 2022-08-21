@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 const serviceData = [
   {
@@ -33,8 +33,11 @@ const serviceData = [
   },
 ];
 
-const serviceRow = serviceData.map((service) => (
-  <td className="px-5 py-8 border-b border-gray-200 bg-white text-sm">
+const serviceRow = serviceData.map((service, i) => (
+  <td
+    key={service.serviceName}
+    className="px-5 py-8 border-b border-gray-200 bg-white text-sm"
+  >
     <div className="flex items-center">
       <div className="ml-3">
         <p className="text-gray-900 whitespace-no-wrap">
@@ -59,9 +62,9 @@ const serviceRow = serviceData.map((service) => (
   </td>
 ));
 
-export default function Services() {
+export default function Services({ currentTab }) {
   return (
-    <>
+    <section className={currentTab ? null : "hidden"}>
       <table className="min-w-full leading-normal">
         <thead>
           <tr>
@@ -342,6 +345,6 @@ export default function Services() {
           </tr>
         </tbody>
       </table>
-    </>
+    </section>
   );
 }

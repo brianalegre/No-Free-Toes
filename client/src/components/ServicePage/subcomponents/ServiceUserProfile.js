@@ -4,7 +4,7 @@ import avatar from "../../../images/man.png";
 export default function ServiceUserProfile() {
   return (
     <>
-      <div className="py-6 px-6 max-w-md mx-auto bg-white rounded-xl rounded-bl-none rounded-br-none shadow-md space-y-2">
+      <div className="py-6 px-6 max-w-md mx-auto bg-white rounded-xl shadow-md space-y-2">
         <img
           className="block mx-auto max-h-72 rounded-md rounded-bl-none rounded-br-none"
           src={avatar}

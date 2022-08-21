@@ -14,17 +14,10 @@ export default function ServicePage() {
           <div className="py-8">
             <ServiceUserProfile />
 
-            <div className="bg-white">
-              <Tabs />
-
-              {/* TABLE COMPONENT */}
-              <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 bg-gray-100">
-                <div className="inline-block min-w-full">
-                </div>
-              </div>
+            <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 bg-gray-100">
+              <div className="inline-block min-w-full"></div>
             </div>
-            {/* <Services /> */}
-            <About />
+            <Tabs />
           </div>
         </div>
       </div>
