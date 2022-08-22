@@ -846,14 +846,14 @@ db.once("open", async () => {
             commentText: "Nice haircut, lookin fabulous! Thanks Brian!",
             commentCreated: currentDate,
             serviceRating: 5,
-            normalUser: normalUserSeed._id,
+            normalUser: normalUserSeedOne._id,
             serviceUser: serviceUserSeedOne._id,
         },
         {
             commentText: "Nails did, lookin fabulous! Thanks Kevin!",
             commentCreated: currentDate,
             serviceRating: 4,
-            normalUser: normalUserSeed._id,
+            normalUser: normalUserSeedTwo._id,
             serviceUser: serviceUserSeedTwo._id,
         },
     ]);
