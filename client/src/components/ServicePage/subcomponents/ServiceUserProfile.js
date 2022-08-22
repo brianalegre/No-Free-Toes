@@ -1,26 +1,7 @@
-import React, {useState,useEffect} from "react";
-import { useQuery } from '@apollo/client'
-import { useParams } from "react-router-dom"
-import { QUERY_SERVICEUSER } from "../../../../src/utils/queries";
+import React from "react";
 
-function ServiceUserProfile() {
-
-  const { serviceUserId }  = useParams();
-  console.log('SERVICE USER ID  -----', serviceUserId)
+function ServiceUserProfile({serviceUser}) {
   
-  const [serviceUser, setServiceUser] = useState("");
-
-  const { loading, error, data } = useQuery(QUERY_SERVICEUSER, {
-    variables: { serviceUserId: serviceUserId },
-    fetchPolicy: "no-cache"
-  });
-
-  useEffect(() => {
-    if (data) {
-      setServiceUser(data.serviceUser)
-    }
-  } , [data]);
-
   const {firstName, lastName, photo} = serviceUser;
 
   return (
