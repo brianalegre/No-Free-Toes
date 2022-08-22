@@ -632,7 +632,7 @@ db.once("open", async () => {
         lastName: "Tao",
         email: "chad@gmail.com",
         password: "test1234",
-        serviceCategory: serviceCategorySeed[6]._id,
+        serviceCategory: serviceCategorySeed[4]._id,
         photo:
             "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
         bio: "fifth testing bio",
@@ -765,7 +765,7 @@ db.once("open", async () => {
         lastName: "Dunston",
         email: "matt@gmail.com",
         password: "test1234",
-        serviceCategory: serviceCategorySeed[6]._id,
+        serviceCategory: serviceCategorySeed[4]._id,
         photo:
             "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
         bio: "Matt testing bio",

@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import logo from "../images/icons/navlogo.svg";
+import Auth from "../utils/auth"
 
 const visitorNavLinks = [
   {
@@ -36,7 +37,7 @@ const memberNavLinks = [
   },
   {
     name: "Logout",
-    link: "#",
+    link: "/",
   },
 ];
 
@@ -74,7 +75,8 @@ const memberLgNav = memberNavLinks.map((navlinks, i) => (
       {navlinks.name}
     </a>
   </>
-));
+  
+  ));
 
 const memberMobileNav = memberNavLinks.map((navlinks, i) => (
   <>
@@ -90,7 +92,7 @@ const memberMobileNav = memberNavLinks.map((navlinks, i) => (
 
 export default function Navbar() {
   const [isActive, setActive] = useState("false");
-  //   const [isLoggedIn, setIsLoggedIn] = useState("false");
+  const [isLoggedIn, setIsLoggedIn] = useState("false");
 
   const mobileBtnHandler = () => {
     setActive(!isActive);
