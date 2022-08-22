@@ -6,8 +6,8 @@ export default function Services({ serviceUser }) {
   console.log(serviceType);
 
   const services = serviceType?.map((service) => (
-    <tr>
-      <td key={service.name} className="px-5 py-8 border-b border-gray-200 bg-white text-sm">
+    <tr key={service.name}>
+      <td className="px-5 py-8 border-b border-gray-200 bg-white text-sm">
         <div className="flex items-center">
           <div className="pl-3">
             <p className="text-gray-900 whitespace-no-wrap">
