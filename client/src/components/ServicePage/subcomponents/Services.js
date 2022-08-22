@@ -7,7 +7,7 @@ export default function Services({ serviceUser }) {
 
   const services = serviceType?.map((service) => (
     <tr>
-      <td className="px-5 py-8 border-b border-gray-200 bg-white text-sm">
+      <td key={service.name} className="px-5 py-8 border-b border-gray-200 bg-white text-sm">
         <div className="flex items-center">
           <div className="pl-3">
             <p className="text-gray-900 whitespace-no-wrap">
