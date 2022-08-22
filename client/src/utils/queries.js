@@ -81,57 +81,6 @@ export const QUERY_SERVICEUSER = gql`
       }
     }
   }
-<<<<<<< HEAD
-  }
-`;
-
-// QUERY FOR NORMAL_USER
-
-export const QUERY_NORMAL_USER = gql`
-{
-  normalUsers {
-    firstName
-    lastName
-    email
-    password
-    location
-    appointments {
-      appointmentDate
-      serviceType {
-        serviceName
-        servicePrice
-        serviceDuration
-        serviceDescription
-        serviceCategory {
-          categoryName
-          categoryIcon
-        }
-      }
-    }
-  }
-}
-`;
-
-// QUERY FOR SERVICE USER
-export const QUERY_SERVICE_USER = gql`
-{
-  serviceUsers {
-    firstName
-    email
-    lastName
-    password
-    photo
-    bio
-    location
-    serviceCategory {
-      _id
-      categoryName
-      categoryIcon
-    }
-  }
-}
-=======
->>>>>>> ac6c1dbbaa5e71d118242a3836daf471ef8f3983
 `;
 
 // export const QUERY_SERVICEUSERS_CATEGORY = gql`

@@ -20,11 +20,7 @@
     "build": "cd client && npm run build"
   },
   "dependencies": {
-<<<<<<< HEAD
     "jwt-decode": "^3.1.2",
-=======
-    "@apollo/client": "^3.6.9",
->>>>>>> ac6c1dbbaa5e71d118242a3836daf471ef8f3983
     "@apollo/react-hooks": "^4.0.0",
     "react-router-dom": "^6.3.0",
     "react-tabs": "^5.1.0"
