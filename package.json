@@ -20,6 +20,7 @@
     "build": "cd client && npm run build"
   },
   "dependencies": {
+    "@apollo/client": "^3.6.9",
     "@apollo/react-hooks": "^4.0.0",
     "react-router-dom": "^6.3.0",
     "react-tabs": "^5.1.0"

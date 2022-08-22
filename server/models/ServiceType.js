@@ -26,8 +26,7 @@ const serviceTypeSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'ServiceCategory',
         required: true
-    }
-
+    },
 });
 
 const ServiceType = mongoose.model('ServiceType', serviceTypeSchema);

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Services from "./Services";
 import About from "./About";
+import Reviews from "./Reviews"
 
-export default function Tabs() {
+export default function Tabs({ serviceUser }) {
   const [tabs] = useState([
     {
       name: "About Provider",
@@ -26,7 +27,13 @@ export default function Tabs() {
                 className="inline-block py-3 px-4 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white"
                 onClick={() => setCurrentTab(tabs)}
               >
-                <span className={currentTab.name === tabs.name ? "text-red-600" : null}>{tabs.name}</span>
+                <span
+                  className={
+                    currentTab.name === tabs.name ? "text-red-600" : null
+                  }
+                >
+                  {tabs.name}
+                </span>
               </button>
             </li>
           ))}
@@ -35,10 +42,13 @@ export default function Tabs() {
           <div className="inline-block min-w-full"></div>
         </div>
         <div className={currentTab.name === "About Provider" ? null : "hidden"}>
-          <About />
+          <About serviceUser={serviceUser} />
         </div>
         <div className={currentTab.name === "Services" ? null : "hidden"}>
-          <Services />
+          <Services serviceUser={serviceUser} />
+        </div>
+        <div className={currentTab.name === "Reviews" ? null : "hidden"}>
+          <Reviews serviceUser={serviceUser} />
         </div>
       </div>
     </>
