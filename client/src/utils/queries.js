@@ -1,9 +1,9 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 // GET ALL SERVICE CATEGORIES
 export const QUERY_ALL_SERVICECATEGORIES = gql`
-    query serviceCategories {
-      serviceCategories { 
+  query serviceCategories {
+    serviceCategories {
       _id
       categoryName
       categoryIcon
@@ -14,14 +14,14 @@ export const QUERY_ALL_SERVICECATEGORIES = gql`
 // GET ALL NORMAL USERS
 export const QUERY_ALL_NORMALUSERS = gql`
   query normalUsers {
-  normalUsers {
-    _id
-    firstName
-    lastName
-    email
-    locotion
+    normalUsers {
+      _id
+      firstName
+      lastName
+      email
+      locotion
+    }
   }
-}
 `;
 
 // // GET ALL SERVICE USERS
@@ -45,21 +45,42 @@ export const QUERY_ALL_NORMALUSERS = gql`
 
 // GET ALL SERVICE USERS BY SERVICE CATEGORY
 export const QUERY_ALL_SERVICEUSERS_BY_SERVICECATEGORY = gql`
-  query serviceUsersCategory($serviceCategory: ID,) {
+  query serviceUsersCategory($serviceCategory: ID) {
     serviceUsersCategory(serviceCategory: $serviceCategory) {
-    _id
-    firstName
-    lastName
-    email
-    photo
-    bio
-    location
-    serviceCategory {
       _id
-      categoryName
+      firstName
+      lastName
+      email
+      photo
+      bio
+      location
+      serviceCategory {
+        _id
+        categoryName
+      }
     }
   }
-}
+`;
+
+export const QUERY_SERVICEUSER = gql`
+  query ServiceUser($serviceUserId: ID!) {
+    serviceUser(serviceUserId: $serviceUserId) {
+      firstName
+      lastName
+      firstName
+      lastName
+      photo
+      email
+      bio
+      location
+      serviceType {
+        serviceName
+        servicePrice
+        serviceDuration
+        serviceDescription
+      }
+    }
+  }
 `;
 
 // export const QUERY_SERVICEUSERS_CATEGORY = gql`
@@ -76,5 +97,3 @@ export const QUERY_ALL_SERVICEUSERS_BY_SERVICECATEGORY = gql`
 //     }
 // }
 // `;
-
-

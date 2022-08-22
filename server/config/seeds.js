@@ -57,6 +57,7 @@ db.once("open", async () => {
     // DELETE EXISTING SERVICETYPE DATA
     await ServiceType.deleteMany();
 
+
     // CREATE SERVETYPE DATA
     const serviceTypeSeed = await ServiceType.insertMany([
         // Haircuts [0-6]
@@ -169,7 +170,7 @@ db.once("open", async () => {
             serviceDescription: "Uses high quality synthetic eyelash, ABG approved",
             serviceCategory: serviceCategorySeed[2]._id,
         },
-        
+
         // Nailcare [15-21]
         {
             serviceName: "Acrylic Full Set",
@@ -544,10 +545,21 @@ db.once("open", async () => {
     await NormalUser.deleteMany();
 
     // CREATE NORMALUSER DATA
-    const normalUserSeed = await NormalUser.create({
+    const normalUserSeedOne = await NormalUser.create({
+        firstName: "test",
+        lastName: "testLast",
+        email: "test@gmail.com",
+        password: "test1234",
+        photo:
+            "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
+        location: "Test Location, CA",
+    });
+
+    // CREATE NORMALUSER DATA
+    const normalUserSeedTwo = await NormalUser.create({
         firstName: "normalUserFirst",
         lastName: "normalUserLast",
-        email: "normalUserEmail",
+        email: "normalUserEmail@gmail.com",
         password: "normalUserPassword",
         photo:
             "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
@@ -640,6 +652,7 @@ db.once("open", async () => {
         location: "San francisco, CA",
     });
 
+
     // CREATE SERVICEUSER DATA
     const serviceUserSeedSeven = await ServiceUser.create({
         firstName: "Erik",
@@ -666,6 +679,7 @@ db.once("open", async () => {
         location: "Los Angeles, CA",
     });
 
+
     // CREATE SERVICEUSER DATA
     const serviceUserSeedNine = await ServiceUser.create({
         firstName: "Vy",
@@ -691,6 +705,7 @@ db.once("open", async () => {
         bio: "Marina testing bio",
         location: "Fountain Valley, CA",
     });
+
 
     // CREATE SERVICEUSER DATA
     const serviceUserSeedEleven = await ServiceUser.create({
@@ -845,6 +860,7 @@ db.once("open", async () => {
 
     // LOG TO BACKEND CONSOLE
     console.log("SUCCESSFULLY SEEDED SERVICE COMMENTS");
+
 
     process.exit();
 });
