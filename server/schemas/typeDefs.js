@@ -14,7 +14,6 @@ const typeDefs = gql`
         serviceDuration: Float
         serviceDescription: String
         serviceCategory: ServiceCategory
-        
     }
 
     type Appointment {
@@ -33,7 +32,6 @@ const typeDefs = gql`
         password: String
         location: String
         appointments: [Appointment]
-
     }
 
     type ServiceUser {
@@ -83,7 +81,7 @@ const typeDefs = gql`
         normalUsers: [NormalUser]
 
         # SERVICE USER
-        serviceUser(_id: ID!): ServiceUser
+        serviceUser(serviceUserId: ID!): ServiceUser
         serviceUsers: [ServiceUser]
         # products(category: ID, name: String): [Product]  // SAMPLE QUERY
         serviceUsersCategory(serviceCategory: ID): [ServiceUser]
@@ -91,6 +89,7 @@ const typeDefs = gql`
         # APPOINTMENT
         appointment(_id: ID!): Appointment
         appointments: [Appointment]
+
 
         # SERVICE COMMENT
         serviceComment(_id: ID!): ServiceComment
