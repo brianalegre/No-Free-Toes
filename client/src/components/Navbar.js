@@ -37,7 +37,7 @@ const memberNavLinks = [
   },
   {
     name: "Logout",
-    link: "/",
+    link: "#"
   },
 ];
 
@@ -92,7 +92,11 @@ const memberMobileNav = memberNavLinks.map((navlinks, i) => (
 
 export default function Navbar() {
   const [isActive, setActive] = useState("false");
-  const [isLoggedIn, setIsLoggedIn] = useState("false");
+
+  const logout = (event) => {
+    event.preventDefault();
+    Auth.logout();
+  };
 
   const mobileBtnHandler = () => {
     setActive(!isActive);
@@ -119,7 +123,7 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-x-16">
             {/* FOR USE WHEN WE IMPLEMENT LOGGED IN FUNCTIONALITY */}
             {/* {isLoggedIn ? visitorLgNav : memberLgNav} */}
-            {visitorLgNav}
+            {Auth.loggedIn() ? ( memberLgNav ) : ( visitorLgNav )}
           </div>
 
           {/* hamburger menu button */}
@@ -146,8 +150,7 @@ export default function Navbar() {
 
       {/* mobile nav */}
       <div className={isActive ? "hidden lg:hidden" : "lg:hidden"}>
-        {/* FOR USE WHEN WE IMPLEMENT LOGGED IN FUNCTIONALITY */}
-        {/* {isLoggedIn ? visitorMobileNav : memberMobileNav} */}
+      {Auth.loggedIn() ? ( memberMobileNav ) : (visitorMobileNav)}
         {visitorMobileNav}
       </div>
     </nav>
