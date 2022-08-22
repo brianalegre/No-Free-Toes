@@ -22,11 +22,11 @@ const serviceTypeSchema = new Schema({
         type: String,
         trim: true
     },
-    serviceCategory: {
+    serviceCategory: [{
         type: Schema.Types.ObjectId,
         ref: 'ServiceCategory',
         required: true
-    },
+    }],
 });
 
 const ServiceType = mongoose.model('ServiceType', serviceTypeSchema);
