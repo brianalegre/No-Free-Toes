@@ -63,7 +63,61 @@ const resolvers = {
         },
     },
 
-}
+    Mutation: {
+        // ADD NORMAL USER
+        addNormalUser: async (parent, { firstName, lastName, email, password, location }) => {
+            const user = await NormalUser.create({ firstName, lastName, email, password, location });
+            const token = signToken(user);
+
+            return { token, user };
+        },
+        // LOGIN NORMAL USER
+        loginNormalUser: async (parent, { email, password }) => {
+            const user = await NormalUser.findOne({ email });
+
+            if (!user) {
+                throw new AuthenticationError('Invalid credentials');
+            }
+
+            const correctPw = await user.isCorrectPassword(password);
+
+            if (!correctPw) {
+                throw new AuthenticationError('Incorrect credentials');
+            }
+
+            const token = signToken(user);
+
+            return { token, user };
+        },
+        //  ADD SERVICE USER
+        addServiceUser: async (parent, { firstName, lastName, email, password, bio, location, serviceCategory }) => {
+            const user = await ServiceUser.create({ firstName, lastName, email, password, bio, location, serviceCategory });
+            const token = signToken(user);
+
+            return { token, user };
+        },
+
+        // LOGIN SERVICE USER
+        loginServiceUser: async (parent, { email, password }) => {
+            const user = await ServiceUser.findOne({ email });
+
+            if (!user) {
+                throw new AuthenticationError('Invalid credentials');
+            }
+
+            const correctPw = await user.isCorrectPassword(password);
+
+            if (!correctPw) {
+                throw new AuthenticationError('Incorrect credentials');
+            }
+
+            const token = signToken(user);
+
+            return { token, user };
+        }
+    },
+};
+
 
 
 module.exports = resolvers;

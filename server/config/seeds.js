@@ -89,17 +89,26 @@ db.once("open", async () => {
       }
   ])
 
-  // LOG TO BACKEND CONSOLE
-  console.log("SUCCESSFULLY SEEDED SERVICE TYPES");
-
   // DELETE NORMALUSER DATA
   await NormalUser.deleteMany();
 
+  // LOG TO BACKEND CONSOLE
+  console.log("SUCCESSFULLY SEEDED SERVICE TYPES");
+    // CREATE NORMALUSER DATA
+    const normalUserSeedOne = await NormalUser.create({
+        firstName: 'test',
+        lastName: 'testLast',
+        email: 'test@gmail.com',
+        password: 'test1234',
+        photo: 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
+        location: 'Test Location, CA'
+    })
+
   // CREATE NORMALUSER DATA
-  const normalUserSeed = await NormalUser.create({
+  const normalUserSeedTwo = await NormalUser.create({
     firstName: "normalUserFirst",
     lastName: "normalUserLast",
-    email: "normalUserEmail",
+    email: "normalUserEmail@gmail.com",
     password: "normalUserPassword",
     photo:
       "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
@@ -383,14 +392,14 @@ db.once("open", async () => {
       commentText: "Nice haircut, lookin fabulous! Thanks Brian!",
       commentCreated: currentDate,
       serviceRating: 5,
-      normalUser: normalUserSeed._id,
+      normalUser: normalUserSeedOne._id,
       serviceUser: serviceUserSeedOne._id,
     },
     {
       commentText: "Nails did, lookin fabulous! Thanks Kevin!",
       commentCreated: currentDate,
       serviceRating: 4,
-      normalUser: normalUserSeed._id,
+      normalUser: normalUserSeedTwo._id,
       serviceUser: serviceUserSeedTwo._id,
     },
   ]);
