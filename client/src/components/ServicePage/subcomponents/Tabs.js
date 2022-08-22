@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Services from "./Services";
 import About from "./About";
-import Reviews from "./Reviews"
+import Reviews from "./ServiceComments"
 
 export default function Tabs({ serviceUser }) {
   const [tabs] = useState([
@@ -48,7 +48,7 @@ export default function Tabs({ serviceUser }) {
           <Services serviceUser={serviceUser} />
         </div>
         <div className={currentTab.name === "Reviews" ? null : "hidden"}>
-          <Reviews serviceUser={serviceUser} />
+          <Reviews />
         </div>
       </div>
     </>

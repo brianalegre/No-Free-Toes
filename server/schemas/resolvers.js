@@ -44,15 +44,15 @@ const resolvers = {
       return await ServiceType.find({}).populate("serviceUser");
     },
     // GET ALL SERVICE COMMENTS
-    serviceComments: async (parent, { serviceUser, normalUser }) => {
-      if (serviceUser) {
-        return await ServiceComment.find({ serviceUser: { _id: serviceUser } })
+    serviceComments: async (parent, { serviceUserId, normalUserId }) => {
+      if (serviceUserId) {
+        return await ServiceComment.find({ serviceUser: { _id: serviceUserId } })
           .populate("serviceUser")
           .populate("normalUser");
       }
 
-      if (normalUser) {
-        return await ServiceComment.find({ normalUser: { _id: normalUser } })
+      if (normalUserId) {
+        return await ServiceComment.find({ normalUser: { _id: normalUserId } })
           .populate("serviceUser")
           .populate("normalUser");
       }

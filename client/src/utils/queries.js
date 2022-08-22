@@ -63,7 +63,7 @@ export const QUERY_ALL_SERVICEUSERS_BY_SERVICECATEGORY = gql`
 `;
 
 export const QUERY_SERVICEUSER = gql`
-  query ServiceUser($serviceUserId: ID!) {
+  query serviceUser($serviceUserId: ID!) {
     serviceUser(serviceUserId: $serviceUserId) {
       firstName
       lastName
@@ -78,6 +78,27 @@ export const QUERY_SERVICEUSER = gql`
         servicePrice
         serviceDuration
         serviceDescription
+      }
+    }
+  }
+`;
+
+export const QUERY_SERVICECOMMENTS_BY_SERVICEUSERID = gql`
+  query serviceComments($serviceUserId: ID) {
+    serviceComments(serviceUserId: $serviceUserId) {
+      _id
+      commentText
+      commentCreated
+      serviceRating
+      serviceUser {
+        _id
+        firstName
+        lastName
+      }
+      normalUser {
+        _id
+        firstName
+        lastName
       }
     }
   }

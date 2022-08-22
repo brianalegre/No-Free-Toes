@@ -1,6 +1,36 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useQuery } from "@apollo/client";
+import { useParams } from "react-router-dom";
+import { QUERY_SERVICECOMMENTS_BY_SERVICEUSERID } from "../../../utils/queries";
 
-export default function Reviews({ serviceUser }) {
+export default function Reviews() {
+  const { serviceUserId } = useParams();
+  const [serviceComments, setServiceComments] = useState([]);
+
+  const { loading, error, data } = useQuery(
+    QUERY_SERVICECOMMENTS_BY_SERVICEUSERID,
+    {
+      variables: { serviceUserId: serviceUserId },
+      fetchPolicy: "no-cache",
+    }
+  );
+
+  useEffect(() => {
+    if (data) {
+      setServiceComments(data.serviceComments);
+    }
+  }, [data]);
+
+  const serviceReviews = serviceComments?.map((reviews) => {
+    let {
+      commentText,
+      commentCreated,
+      serviceRating,
+      serviceUser: { firstName: serviceUserFn, lastName: serviceUserLn },
+      normalUser: { firstName: normalUserFn, lastName: normalUserLn },
+    } = reviews;
+  });
+
   return (
     <section>
       <div className="min-w-full h-auto bg-white">
@@ -158,7 +188,6 @@ export default function Reviews({ serviceUser }) {
       <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 bg-gray-100">
         <div className="inline-block min-w-full"></div>
       </div>
-
     </section>
   );
 }
