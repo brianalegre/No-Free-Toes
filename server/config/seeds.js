@@ -30,12 +30,12 @@ db.once('open', async () => {
 
     // CREATE NORMALUSER DATA
     const normalUserSeed = await NormalUser.create({
-        firstName: 'normalUserFirst',
-        lastName: 'normalUserLast',
-        email: 'normalUserEmail',
-        password: 'normalUserPassword',
+        firstName: 'test',
+        lastName: 'testLast',
+        email: 'test@gmail.com',
+        password: 'test1234',
         photo: 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
-        location: 'normalUserLocation'
+        location: 'Test Location, CA'
 
     });
     // LOG TO BACKEND CONSOLE
