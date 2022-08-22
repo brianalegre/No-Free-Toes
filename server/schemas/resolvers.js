@@ -8,6 +8,7 @@ const {
 
 const { signToken } = require("../utils/auth");
 const { AuthenticationError } = require("apollo-server-express");
+const { isObjectIdOrHexString } = require("mongoose");
 
 const resolvers = {
   Query: {
@@ -43,8 +44,22 @@ const resolvers = {
       return await ServiceType.find({}).populate("serviceUser");
     },
     // GET ALL SERVICE COMMENTS
-    serviceComments: async () => {
-      return await ServiceComment.find({});
+    serviceComments: async (parent, { serviceUser, normalUser }) => {
+      if (serviceUser) {
+        return await ServiceComment.find({ serviceUser: { _id: serviceUser } })
+          .populate("serviceUser")
+          .populate("normalUser");
+      }
+
+      if (normalUser) {
+        return await ServiceComment.find({ normalUser: { _id: normalUser } })
+          .populate("serviceUser")
+          .populate("normalUser");
+      }
+
+      return await ServiceComment.find({})
+        .populate("serviceUser")
+        .populate("normalUser");
     },
     // GET SINGLE SERVICE CATEGORY
     serviceCategory: async (parent, args) => {

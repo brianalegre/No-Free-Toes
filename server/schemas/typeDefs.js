@@ -93,7 +93,7 @@ const typeDefs = gql`
 
         # SERVICE COMMENT
         serviceComment(_id: ID!): ServiceComment
-        serviceComments: [ServiceComment]
+        serviceComments(serviceUser: ID, normalUser: ID): [ServiceComment]
     }
 
     type Mutation {
