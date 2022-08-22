@@ -60,49 +60,50 @@ db.once("open", async () => {
   // CREATE SERVETYPE DATA
   const serviceTypeSeed = await ServiceType.insertMany([
     {
-        serviceName: "Haircut",
-        servicePrice: 20,
-        serviceDuration: 30,
-        serviceDescription: "Student barber, been cutting hair for two weeks",
-        serviceCategory: serviceCategorySeed[0]._id,
-      },
-      {
-        serviceName: "Haircut and Beard Trim",
-        servicePrice: 25,
-        serviceDuration: 60,
-        serviceDescription: "Specializing in fades, lineup beard",
-        serviceCategory: serviceCategorySeed[0]._id,
-      },
-      {
-        serviceName: "Eyelash Extensions",
-        servicePrice: 50,
-        serviceDuration: 40,
-        serviceDescription: "Uses high quality synthetic eyelash, ABG approved",
-        serviceCategory: serviceCategorySeed[2]._id,
-      },
-      {
-        serviceName: "Pedicure",
-        servicePrice: 30,
-        serviceDuration: 40,
-        serviceDescription: "Nails did acrylic finish",
-        serviceCategory: serviceCategorySeed[3]._id,
-      }
-  ])
+      serviceName: "Haircut",
+      servicePrice: 20,
+      serviceDuration: 30,
+      serviceDescription: "Student barber, been cutting hair for two weeks",
+      serviceCategory: serviceCategorySeed[0]._id,
+    },
+    {
+      serviceName: "Haircut and Beard Trim",
+      servicePrice: 25,
+      serviceDuration: 60,
+      serviceDescription: "Specializing in fades, lineup beard",
+      serviceCategory: serviceCategorySeed[0]._id,
+    },
+    {
+      serviceName: "Eyelash Extensions",
+      servicePrice: 50,
+      serviceDuration: 40,
+      serviceDescription: "Uses high quality synthetic eyelash, ABG approved",
+      serviceCategory: serviceCategorySeed[2]._id,
+    },
+    {
+      serviceName: "Pedicure",
+      servicePrice: 30,
+      serviceDuration: 40,
+      serviceDescription: "Nails did acrylic finish",
+      serviceCategory: serviceCategorySeed[3]._id,
+    },
+  ]);
 
   // DELETE NORMALUSER DATA
   await NormalUser.deleteMany();
 
   // LOG TO BACKEND CONSOLE
   console.log("SUCCESSFULLY SEEDED SERVICE TYPES");
-    // CREATE NORMALUSER DATA
-    const normalUserSeedOne = await NormalUser.create({
-        firstName: 'test',
-        lastName: 'testLast',
-        email: 'test@gmail.com',
-        password: 'test1234',
-        photo: 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
-        location: 'Test Location, CA'
-    })
+  // CREATE NORMALUSER DATA
+  const normalUserSeedOne = await NormalUser.create({
+    firstName: "test",
+    lastName: "testLast",
+    email: "test@gmail.com",
+    password: "test1234",
+    photo:
+      "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
+    location: "Test Location, CA",
+  });
 
   // CREATE NORMALUSER DATA
   const normalUserSeedTwo = await NormalUser.create({
@@ -131,7 +132,7 @@ db.once("open", async () => {
       "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
     bio: "First testing bio",
     location: "Garden Grove, CA",
-    serviceType: [serviceTypeSeed[0]._id, serviceTypeSeed[1]._id]
+    serviceType: [serviceTypeSeed[0]._id, serviceTypeSeed[1]._id],
   });
 
   // CREATE SERVICEUSER DATA
@@ -158,7 +159,7 @@ db.once("open", async () => {
       "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
     bio: "Third testing bio",
     location: "Anaheim, CA",
-    serviceType: [serviceTypeSeed[3]._id]
+    serviceType: [serviceTypeSeed[3]._id],
   });
 
   // CREATE SERVICEUSER DATA
@@ -172,7 +173,7 @@ db.once("open", async () => {
       "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
     bio: "fourth testing bio",
     location: "Irvine, CA",
-    serviceType: [serviceTypeSeed[0]._id]
+    serviceType: [serviceTypeSeed[0]._id],
   });
 
   // CREATE SERVICEUSER DATA

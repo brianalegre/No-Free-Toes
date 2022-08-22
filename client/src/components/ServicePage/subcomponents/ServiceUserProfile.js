@@ -1,8 +1,7 @@
 import React from "react";
 
-function ServiceUserProfile({serviceUser}) {
-  
-  const {firstName, lastName, photo} = serviceUser;
+function ServiceUserProfile({ serviceUser }) {
+  const { firstName, lastName, photo } = serviceUser;
 
   return (
     <>
@@ -13,7 +12,9 @@ function ServiceUserProfile({serviceUser}) {
           alt="default avatar"
         />
         <div className="text-center space-y-3 flex flex-col">
-          <p className="text-lg text-black font-semibold">{firstName} {" "} {lastName}</p>
+          <p className="text-lg text-black font-semibold">
+            {firstName} {lastName}
+          </p>
         </div>
       </div>
     </>

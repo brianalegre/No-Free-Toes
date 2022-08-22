@@ -1,10 +1,9 @@
 import React from "react";
 
-export default function Services({serviceUser}) {
+export default function Services({ serviceUser }) {
+  const { serviceType } = serviceUser;
 
-  const {serviceType} = serviceUser
-
-  console.log(serviceType)
+  console.log(serviceType);
 
   const services = serviceType?.map((service) => (
     <tr>
@@ -19,11 +18,14 @@ export default function Services({serviceUser}) {
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
         <p className="text-gray-900 whitespace-no-wrap">
-          { `$` }{service.servicePrice}
+          {`$`}
+          {service.servicePrice}
         </p>
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900 whitespace-no-wrap">{service.serviceDuration} minutes</p>
+        <p className="text-gray-900 whitespace-no-wrap">
+          {service.serviceDuration} minutes
+        </p>
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
         <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
@@ -56,8 +58,7 @@ export default function Services({serviceUser}) {
         </button>
       </td>
     </tr>
-  ))
-
+  ));
 
   return (
     <section>

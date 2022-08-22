@@ -63,24 +63,24 @@ export const QUERY_ALL_SERVICEUSERS_BY_SERVICECATEGORY = gql`
 `;
 
 export const QUERY_SERVICEUSER = gql`
-query ServiceUser($serviceUserId: ID!) {
-  serviceUser(serviceUserId: $serviceUserId) {
-    firstName
-    lastName
-    firstName
-    lastName
-    photo
-    email
-    bio
-    location
-    serviceType {
-      serviceName
-      servicePrice
-      serviceDuration
-      serviceDescription
+  query ServiceUser($serviceUserId: ID!) {
+    serviceUser(serviceUserId: $serviceUserId) {
+      firstName
+      lastName
+      firstName
+      lastName
+      photo
+      email
+      bio
+      location
+      serviceType {
+        serviceName
+        servicePrice
+        serviceDuration
+        serviceDescription
+      }
     }
   }
-}
 `;
 
 // export const QUERY_SERVICEUSERS_CATEGORY = gql`
