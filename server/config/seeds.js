@@ -591,8 +591,8 @@ db.once("open", async () => {
 
   // CREATE NORMALUSER DATA
   const normalUserSeedOne = await NormalUser.create({
-    firstName: "test",
-    lastName: "testLast",
+    firstName: "Michael",
+    lastName: "Myers",
     email: "test@gmail.com",
     password: "test1234",
     photo:
@@ -602,8 +602,8 @@ db.once("open", async () => {
 
   // CREATE NORMALUSER DATA
   const normalUserSeedTwo = await NormalUser.create({
-    firstName: "normalUserFirst",
-    lastName: "normalUserLast",
+    firstName: "Freddy",
+    lastName: "Krueger",
     email: "normalUserEmail@gmail.com",
     password: "normalUserPassword",
     photo:
