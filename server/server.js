@@ -21,8 +21,8 @@ app.use(express.json());
 app.use('/images', express.static(path.join(__dirname, '../client/images')));
 
 if (process.env.NODE_ENV === 'production') {
-  // app.use(express.static(path.join(__dirname, '../client/build')));
-  app.use(express.static('client/build'))
+  app.use(express.static(path.join(__dirname, '../client/build')));
+  // app.use(express.static('client/build'))
 }
 
 app.get('/', (req, res) => {
