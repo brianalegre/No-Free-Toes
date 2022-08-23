@@ -903,21 +903,21 @@ db.once("open", async () => {
     {
       commentText: "TEST 2",
       commentCreated: currentDate,
-      serviceRating: 5,
+      serviceRating: 3,
       normalUser: normalUserSeedOne._id,
       serviceUser: serviceUserSeedOne._id,
     },
     {
       commentText: "TEST 3",
       commentCreated: currentDate,
-      serviceRating: 5,
+      serviceRating: 0,
       normalUser: normalUserSeedOne._id,
       serviceUser: serviceUserSeedOne._id,
     },
     {
       commentText: "TEST 4",
       commentCreated: currentDate,
-      serviceRating: 5,
+      serviceRating: 1,
       normalUser: normalUserSeedTwo._id,
       serviceUser: serviceUserSeedFifteen._id,
     },
@@ -927,6 +927,20 @@ db.once("open", async () => {
       serviceRating: 4,
       normalUser: normalUserSeedTwo._id,
       serviceUser: serviceUserSeedTwo._id,
+    },
+    {
+      commentText: "TESTING 5",
+      commentCreated: currentDate,
+      serviceRating: 2,
+      normalUser: normalUserSeedOne._id,
+      serviceUser: serviceUserSeedTen._id,
+    },
+    {
+      commentText: "You are the best your service literally changed my life. God bless!",
+      commentCreated: currentDate,
+      serviceRating: 3,
+      normalUser: normalUserSeedTwo._id,
+      serviceUser: serviceUserSeedTwenty._id,
     },
   ]);
 

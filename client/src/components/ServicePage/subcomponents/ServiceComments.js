@@ -31,7 +31,7 @@ export default function Reviews() {
   }, [data]);
 
   const serviceReviews = serviceComments?.map((reviews) => {
-    let {
+    const {
       commentText,
       commentCreated,
       serviceRating,
@@ -39,6 +39,27 @@ export default function Reviews() {
       normalUser: { firstName: normalUserFn, lastName: normalUserLn },
     } = reviews;
     const parsedDate = moment({ commentCreated }).format("ll");
+
+    let showRating;
+
+    if (serviceRating === 5) {
+      showRating = <FiveStar />;
+    }
+    if (serviceRating === 4) {
+      showRating = <FourStar />;
+    }
+    if (serviceRating === 3) {
+      showRating = <ThreeStar />;
+    }
+    if (serviceRating === 2) {
+      showRating = <TwoStar />;
+    }
+    if (serviceRating === 1) {
+      showRating = <OneStar />;
+    }
+    if (serviceRating === 0) {
+      showRating = <ZeroStar />;
+    }
 
     return (
       <>
@@ -53,11 +74,7 @@ export default function Reviews() {
               <p className="text-md">
                 {normalUserFn} {normalUserLn}
               </p>
-              <div className="flex flex-row">
-
-                 
-
-              </div>
+              <div className="flex flex-row">{showRating}</div>
               <span className="text-xs">{parsedDate}</span>
             </div>
           </div>
