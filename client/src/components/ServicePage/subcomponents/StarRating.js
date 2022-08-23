@@ -27,7 +27,7 @@ const grayStar = (
 const dynamicStar = (
   <svg
     aria-hidden="true"
-    className="w-4 text-gray-400 transition ease-in-out hover:text-yellow-400"
+    className="w-4"
     fill="currentColor"
     viewBox="0 0 20 20"
     xmlns="http://www.w3.org/2000/svg"
@@ -111,11 +111,21 @@ const ZeroStar = () => {
 const DynamicStar = () => {
   return (
     <div className="flex">
-      {dynamicStar}
-      {dynamicStar}
-      {dynamicStar}
-      {dynamicStar}
-      {dynamicStar}
+      <div className="flex text-gray-400 transition ease-in-out hover:text-yellow-400">
+        {dynamicStar}
+        <div className="flex text-gray-400 transition ease-in-out hover:text-yellow-400">
+          {dynamicStar}
+          <div className="flex text-gray-400 transition ease-in-out hover:text-yellow-400">
+            {dynamicStar}
+            <div className="flex text-gray-400 transition ease-in-out hover:text-yellow-400">
+              {dynamicStar}
+              <div className="flex text-gray-400 transition ease-in-out hover:text-yellow-400">
+                {dynamicStar}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
