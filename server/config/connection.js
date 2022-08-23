@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 // LEAVE COMMENTED TO CONNECT LOCALLY
 // NPM RUN SEED
 // COMMAND IS USED TO SEED LOCALLY OR MONGODB, DEPENDS ON
-// WHAT IS COMMENTED OUT
+// WHAT IS COMMENTED OUT.
 require('dotenv').config()
 
 // console.log(process.env.MONGODB_URI)
