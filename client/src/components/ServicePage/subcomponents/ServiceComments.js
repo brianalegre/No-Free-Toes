@@ -7,6 +7,7 @@ import {
   OneStar,
   ZeroStar,
 } from "./StarRating";
+import ReviewForm from "./ReviewForm"
 import { useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import { QUERY_SERVICECOMMENTS_BY_SERVICEUSERID } from "../../../utils/queries";
@@ -15,6 +16,7 @@ import * as moment from "moment";
 export default function Reviews() {
   const { serviceUserId } = useParams();
   const [serviceComments, setServiceComments] = useState([]);
+  const [renderReviewForm, setRenderReviewForm] = useState(false)
 
   const { loading, error, data } = useQuery(
     QUERY_SERVICECOMMENTS_BY_SERVICEUSERID,
@@ -63,7 +65,10 @@ export default function Reviews() {
 
     return (
       <>
-        <div key={normalUserFn + normalUserLn + "review " + i}  className="min-w-full h-auto bg-white">
+        <div
+          key={normalUserFn + normalUserLn + "review " + i}
+          className="min-w-full h-auto bg-white"
+        >
           <div className="flex pl-3 sm:pl-4 py-4 text-black font-bold">
             <img
               className="w-16"
@@ -90,5 +95,28 @@ export default function Reviews() {
     );
   });
 
-  return <section>{serviceReviews}</section>;
+  return (
+    <section>
+      {serviceReviews}
+      {renderReviewForm === false ? (
+              <div className="-mx-6 sm:-mx-8 px-4 sm:px-6 bg-gray-100">
+              <div className="flex justify-end">
+                <button
+                  type="button"
+                  className="text-white bg-green-400 hover:bg-green-800 font-medium rounded-lg text-sm px-2 py-1 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700"
+                  onClick={()=>setRenderReviewForm(true)}
+                >
+                  Leave Review
+                </button>
+              </div>
+            </div>
+      ) : <ReviewForm renderReviewForm={renderReviewForm} />}
+      <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 bg-gray-100">
+        <div className="inline-block min-w-full"></div>
+      </div>
+      {/* testing area ---- will be a new sub component */}
+  
+
+    </section>
+  );
 }
