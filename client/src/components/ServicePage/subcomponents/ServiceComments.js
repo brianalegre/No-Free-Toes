@@ -30,7 +30,7 @@ export default function Reviews() {
     }
   }, [data]);
 
-  const serviceReviews = serviceComments?.map((reviews) => {
+  const serviceReviews = serviceComments?.map((reviews, i) => {
     const {
       commentText,
       commentCreated,
@@ -63,7 +63,7 @@ export default function Reviews() {
 
     return (
       <>
-        <div className="min-w-full h-auto bg-white">
+        <div key={normalUserFn + normalUserLn + "review " + i}  className="min-w-full h-auto bg-white">
           <div className="flex pl-3 sm:pl-4 py-4 text-black font-bold">
             <img
               className="w-16"
