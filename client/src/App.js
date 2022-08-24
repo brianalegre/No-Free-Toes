@@ -15,7 +15,7 @@ import SignupClient from "./components/Signup/pages/ClientSignup";
 import SignupProvider from "./components/Signup/pages/ProviderSignup";
 
 const client = new ApolloClient({
-  uri: "http://localhost:3001/graphql",
+  uri: "/graphql",
   cache: new InMemoryCache(),
 });
 
