@@ -35,11 +35,8 @@ const memberNavLinks = [
     name: "Account",
     link: "#",
   },
-  {
-    name: "Logout",
-    link: "#"
-  },
 ];
+
 
 const visitorLgNav = visitorNavLinks.map((navlinks, i) => (
   <>
@@ -123,7 +120,20 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-x-16">
             {/* FOR USE WHEN WE IMPLEMENT LOGGED IN FUNCTIONALITY */}
             {/* {isLoggedIn ? visitorLgNav : memberLgNav} */}
-            {Auth.loggedIn() ? ( memberLgNav ) : ( visitorLgNav )}
+            
+            {Auth.loggedIn() ? ( 
+              <>
+            {memberLgNav} 
+    <button
+      onClick = { () => Auth.logout()}
+      className="py-5 px-3"
+    >
+      Logout
+    </button>
+    </>
+    ) : ( visitorLgNav )
+            }
+
           </div>
 
           {/* hamburger menu button */}
