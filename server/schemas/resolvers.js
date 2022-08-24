@@ -169,12 +169,12 @@ const resolvers = {
         normalUser,
         serviceUser,
       });
-      const updatedNormalUser = NormalUser.findOneAndUpdate(
+      NormalUser.findOneAndUpdate(
         { _id: normalUser },
         { $push: { serviceComments: newComment } },
         { new: true }
       );
-      return updatedNormalUser
+      return newComment;
     },
 
     // REMOVE SERVICE COMMENT
@@ -182,12 +182,12 @@ const resolvers = {
       const deletedComment = await ServiceComment.findOneAndDelete({
         _id: serviceCommentId,
       });
-      const updatedNormalUser = await NormalUser.findOneAndUpdate(
+      await NormalUser.findOneAndUpdate(
         { _id: normalUser },
         { $pull: { serviceComments: deletedComment._id } },
         { new: true }
       );
-      return updatedNormalUser
+      return deletedComment;
     },
   },
 };

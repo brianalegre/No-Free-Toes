@@ -1,9 +1,30 @@
 // import React from "react";
-import React, {useRef} from "react";
+import React, { useState, useRef } from "react";
+import { useQuery } from "@apollo/client";
+import { useParams } from "react-router-dom";
+import { ADD_SERVICECOMMENT } from "../../../utils/mutations";
+import Auth from "../../../utils/auth";
 import DynamicStar from "./DynamicStar";
 
 export default function ReviewForm() {
+  const {
+    data: { _id: loggedUserId },
+  } = Auth.getProfile();
+  const { serviceUserId } = useParams();
+  console.log(`normalUserId ---- `, loggedUserId);
+  console.log(`serviceProviderId ---- `, serviceUserId);
   const starRef = useRef();
+  const userInput = useRef();
+
+  // useQuery(ADD_SERVICECOMMENT, {
+  //   variables: {
+  //     commentText: commentText.value,
+  //     serviceRating: starRef.current,
+  //     serviceUserId: serviceUserId,
+  //     normalUserId: loggedUserId
+  //   },
+  //   fetchPolicy: "no-cache",
+  // });
 
   return (
     <>
@@ -16,7 +37,7 @@ export default function ReviewForm() {
           <span className="text-sm sm:text-base">
             Service Provider Rating:{" "}
           </span>
-          <DynamicStar starRef={starRef}/>
+          <DynamicStar starRef={starRef} />
           {/* <DynamicStar /> */}
         </div>
       </div>
@@ -26,7 +47,7 @@ export default function ReviewForm() {
       </div>
 
       <textarea
-        id="message"
+        id="commentText"
         rows="4"
         className="block p-2.5 w-full text-sm sm:text-base text-gray-900 bg-gray-50 rounded-lg border border-gray-300"
         placeholder="Leave a review..."
@@ -37,12 +58,13 @@ export default function ReviewForm() {
 
         <div className="flex justify-end">
           <button
-            onClick={()=> console.log("YOUR REF VALUE", starRef.current)}
+            onClick={() => console.log("YOUR REF VALUE", starRef.current)}
             type="button"
             className="text-white bg-green-600 hover:bg-green-800 font-medium rounded-lg text-sm px-2 py-1 mr-2 mb-2"
           >
             Submit Review
           </button>
+          {}
         </div>
       </div>
     </>
