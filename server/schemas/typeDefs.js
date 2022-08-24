@@ -93,7 +93,7 @@ const typeDefs = gql`
 
 
         # SERVICE COMMENT
-        serviceComment(_id: ID!): ServiceComment
+        serviceComment(serviceCommentId: ID!): ServiceComment
         serviceComments(serviceUserId: ID, normalUserId: ID): [ServiceComment]
     }
 
@@ -133,7 +133,7 @@ const typeDefs = gql`
         
         # SERVICE COMMENT
         addServiceComment(commentText: String!, serviceRating: Int, serviceUser: ID!, normalUser: ID!): ServiceComment
-        removeServiceComment(_id: ID!): ServiceComment
+        removeServiceComment(serviceCommentId: ID!, normalUser: ID!): ServiceComment
 
         # Normal User Login
         normalLogin(email: String!, password: String!): NormalAuth
