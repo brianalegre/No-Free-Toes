@@ -33,7 +33,7 @@ const memberNavLinks = [
   },
   {
     name: "Account",
-    link: "#",
+    link: "/login",
   },
 ];
 
@@ -88,12 +88,15 @@ const memberMobileNav = memberNavLinks.map((navlinks, i) => (
 ));
 
 export default function Navbar() {
-  const [isActive, setActive] = useState("false");
-
+  
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
-  };
+  }; 
+
+  const [isActive, setActive] = useState("false");
+
+ 
 
   const mobileBtnHandler = () => {
     setActive(!isActive);
@@ -124,14 +127,12 @@ export default function Navbar() {
             {Auth.loggedIn() ? ( 
               <>
             {memberLgNav} 
-    <button
-      onClick = { () => Auth.logout()}
-      className="py-5 px-3"
-    >
-      Logout
-    </button>
-    </>
-    ) : ( visitorLgNav )
+            <button
+            onClick = { logout }
+            className="py-5 px-3"> Logout
+            </button>
+            </>
+            ) : ( visitorLgNav )
             }
 
           </div>
@@ -160,8 +161,16 @@ export default function Navbar() {
 
       {/* mobile nav */}
       <div className={isActive ? "hidden lg:hidden" : "lg:hidden"}>
-      {Auth.loggedIn() ? ( memberMobileNav ) : (visitorMobileNav)}
-        {visitorMobileNav}
+      {Auth.loggedIn() ? ( 
+              <>
+            {memberMobileNav} 
+            <button
+            onClick = { logout }
+            className="block py-2 px-4 text-sm text-black hover:text-pink-500"> Logout
+            </button>
+            </>
+            ) : ( visitorMobileNav )
+            }
       </div>
     </nav>
   );
