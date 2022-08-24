@@ -186,6 +186,7 @@ const ClientSignup = () => {
               </p>
             ) : (
               <form onSubmit={handleFormSubmit}>
+              <div class="grid gap-6 mb-6 md:grid-cols-2">
                 <input
                   className="form-input"
                   placeholder="Your first name"
@@ -227,12 +228,13 @@ const ClientSignup = () => {
                   onChange={handleChange}
                 />
                 <button
-                  className="btn btn-block btn-primary"
+                  className="py-2.5 px-5 mr-4 mb-4 text-lg font-semibold focus:outline-none rounded-full text-center bg-green-300 hover:bg-green-700 text-black hover:text-gray-100 rounded transition duration-300"
                   style={{ cursor: 'pointer' }}
                   type="submit"
                 >
                   Submit
                 </button>
+                </div>
               </form>
             )}
 
