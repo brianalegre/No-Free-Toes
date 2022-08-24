@@ -1,10 +1,10 @@
-import React from "react";
-// import React, {useRef} from "react";
+// import React from "react";
+import React, {useRef, useState} from "react";
 import DynamicStar from "./DynamicStar";
 
 export default function ReviewForm() {
-  // const [userRating, setUserRating] = useRef(null);
-  // const ratingHandler = (value) => setUserRating(value);
+  const starRef = useRef();
+
   return (
     <>
       <div className="-mx-6 sm:-mx-8 px-4 sm:px-6 bg-gray-100">
@@ -16,8 +16,8 @@ export default function ReviewForm() {
           <span className="text-sm sm:text-base">
             Service Provider Rating:{" "}
           </span>
-          {/* <DynamicStar ratingHandler={ratingHandler}/> */}
-          <DynamicStar />
+          <DynamicStar starRef={starRef}/>
+          {/* <DynamicStar /> */}
         </div>
       </div>
 
@@ -37,10 +37,7 @@ export default function ReviewForm() {
 
         <div className="flex justify-end">
           <button
-            onClick={() => {
-              window.alert("You left a review");
-              window.location.reload();
-            }}
+            onClick={()=> console.log("YOUR REF VALUE", starRef.current)}
             type="button"
             className="text-white bg-green-600 hover:bg-green-800 font-medium rounded-lg text-sm px-2 py-1 mr-2 mb-2"
           >
