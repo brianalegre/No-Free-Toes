@@ -17,8 +17,8 @@ const resolvers = {
       return await NormalUser.find();
     },
     // GET SINGLE NORMAL USER
-    normalUser: async () => {
-      return await NormalUser.findOne();
+    normalUser: async (parent, {normalUserId}) => {
+      return await NormalUser.findOne({_id: normalUserId}).populate("serviceComments");
     },
     serviceUser: async (parent, { serviceUserId }) => {
       return ServiceUser.findOne({ _id: serviceUserId }).populate(
@@ -160,17 +160,17 @@ const resolvers = {
       parent,
       { commentText, serviceRating, normalUser, serviceUser }
     ) => {
-      const newComment = ServiceComment.create({
+      const newComment = await ServiceComment.create({
         commentText,
         serviceRating,
         normalUser,
         serviceUser,
       });
-      NormalUser.findByIdAndUpdate(
-        { _id: serviceUser },
+      const updatedNormalUser = await NormalUser.findByIdAndUpdate(
+        { _id: normalUser },
         { $push: { serviceComments: newComment } }
       );
-      return newComment;
+      return newComment, updatedNormalUser
     },
   },
 };

@@ -17,11 +17,29 @@ export default function DynamicStar({ starRef }) {
   // export default function DynamicStar() {
   return (
     <div className="flex">
-      <div className="flex text-gray-400 transition ease-in-out hover:text-yellow-400">
+      <div
+        onClick={(e) => {
+          e.stopPropagation();
+          starRef.current = 1;
+        }}
+        className="flex text-gray-400 transition ease-in-out hover:text-yellow-400"
+      >
         {dynamicStar}
-        <div className="flex text-gray-400 transition ease-in-out hover:text-yellow-400">
+        <div
+          onClick={(e) => {
+            e.stopPropagation();
+            starRef.current = 2;
+          }}
+          className="flex text-gray-400 transition ease-in-out hover:text-yellow-400"
+        >
           {dynamicStar}
-          <div className="flex text-gray-400 transition ease-in-out hover:text-yellow-400">
+          <div
+            onClick={(e) => {
+              e.stopPropagation();
+              starRef.current = 3;
+            }}
+            className="flex text-gray-400 transition ease-in-out hover:text-yellow-400"
+          >
             {dynamicStar}
             <div
               onClick={(e) => {
