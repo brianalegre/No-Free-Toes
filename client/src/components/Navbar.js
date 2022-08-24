@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import logo from "../images/icons/navlogo.svg";
 import Auth from "../utils/auth"
+import { Link } from "react-router-dom";
 
 const visitorNavLinks = [
   {
@@ -40,50 +41,57 @@ const memberNavLinks = [
 
 const visitorLgNav = visitorNavLinks.map((navlinks, i) => (
   <>
-    <a
-      key={"visitor_large_nav_link " + i}
-      href={navlinks.link}
-      className={navlinks.class}
-    >
-      {navlinks.name}
-    </a>
+    <Link to={navlinks.link} >
+      <div
+        key={"visitor_large_nav_link " + i}
+        className={navlinks.class}
+      >
+        {navlinks.name}
+      </div>
+    </Link>
   </>
 ));
 
 const visitorMobileNav = visitorNavLinks.map((navlinks, i) => (
   <>
-    <a
-      key={"visitor_mobile_nav_link " + i}
-      href={navlinks.link}
-      className="block py-2 px-4 text-sm text-black hover:text-pink-500"
-    >
-      {navlinks.name}
-    </a>
+    <Link to={navlinks.link} >
+      <div
+        key={"visitor_mobile_nav_link " + i}
+        href={navlinks.link}
+        className="block py-2 px-4 text-sm text-black hover:text-pink-500"
+      >
+        {navlinks.name}
+      </div>
+    </Link>
   </>
 ));
 
 const memberLgNav = memberNavLinks.map((navlinks, i) => (
   <>
-    <a
-      key={"member_large_nav_link " + i}
-      href={navlinks.link}
-      className="py-5 px-3"
-    >
-      {navlinks.name}
-    </a>
+    <Link to={navlinks.link} >
+      <div
+        key={"member_large_nav_link " + i}
+        href={navlinks.link}
+        className="py-5 px-3"
+      >
+        {navlinks.name}
+      </div>
+    </Link>
   </>
   
   ));
 
 const memberMobileNav = memberNavLinks.map((navlinks, i) => (
   <>
-    <a
-      key={"member_mobile_nav_link " + i}
-      href={navlinks.link}
-      className="block py-2 px-4 text-sm text-black hover:text-pink-500"
-    >
-      {navlinks.name}
-    </a>
+    <Link to={navlinks.link} >
+      <div
+        key={"member_mobile_nav_link " + i}
+        href={navlinks.link}
+        className="block py-2 px-4 text-sm text-black hover:text-pink-500"
+      >
+        {navlinks.name}
+      </div>
+    </Link>
   </>
 ));
 

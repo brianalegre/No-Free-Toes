@@ -57,7 +57,11 @@ const Home = () => {
             appointments. Click the button below to get started.
           </p>
           <button className="py-2 px-3 text-lg bg-green-300 hover:bg-green-700 text-black hover:text-gray-100 rounded transition duration-300">
-            <a href="/signup"> Sign Up Today!</a>
+            <Link to="/signup">
+              <div>
+                <p>Sign Up Today!</p>
+              </div>
+            </Link>
           </button>
         </div>
       </div>
