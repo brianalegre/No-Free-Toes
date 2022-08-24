@@ -9,7 +9,7 @@ const serviceCommentSchema = new Schema({
   },
   commentCreated: {
     type: Date,
-    required: true,
+    default: Date.now()
   },
   serviceRating: {
     type: Number,

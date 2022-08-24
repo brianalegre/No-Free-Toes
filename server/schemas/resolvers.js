@@ -46,7 +46,9 @@ const resolvers = {
     // GET ALL SERVICE COMMENTS
     serviceComments: async (parent, { serviceUserId, normalUserId }) => {
       if (serviceUserId) {
-        return await ServiceComment.find({ serviceUser: { _id: serviceUserId } })
+        return await ServiceComment.find({
+          serviceUser: { _id: serviceUserId },
+        })
           .populate("serviceUser")
           .populate("normalUser");
       }
@@ -152,6 +154,23 @@ const resolvers = {
       const token = signToken(user);
 
       return { token, user };
+    },
+
+    addServiceComment: async (
+      parent,
+      { commentText, serviceRating, normalUser, serviceUser }
+    ) => {
+      const newComment = ServiceComment.create({
+        commentText,
+        serviceRating,
+        normalUser,
+        serviceUser,
+      });
+      NormalUser.findByIdAndUpdate(
+        { _id: serviceUser },
+        { $push: { serviceComments: newComment } }
+      );
+      return newComment;
     },
   },
 };

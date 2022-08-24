@@ -12,7 +12,7 @@ const dynamicStar = (
   </svg>
 );
 
-export default function DynamicStar({ starRef}) {
+export default function DynamicStar({ starRef }) {
   console.log("RIGHT COMPONENT");
   // export default function DynamicStar() {
   return (
@@ -24,7 +24,8 @@ export default function DynamicStar({ starRef}) {
           <div className="flex text-gray-400 transition ease-in-out hover:text-yellow-400">
             {dynamicStar}
             <div
-              onClick={() => {
+              onClick={(e) => {
+                e.stopPropagation();
                 starRef.current = 4;
               }}
               className="flex text-gray-400 transition ease-in-out hover:text-yellow-400"

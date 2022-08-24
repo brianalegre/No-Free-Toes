@@ -1,5 +1,5 @@
 // import React from "react";
-import React, {useRef, useState} from "react";
+import React, {useRef} from "react";
 import DynamicStar from "./DynamicStar";
 
 export default function ReviewForm() {
