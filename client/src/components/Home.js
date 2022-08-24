@@ -22,7 +22,7 @@ const Home = () => {
     }
   }, [data]);
 
-  const categoryItems = savedCategories.map((category) => (
+  const categoryItems = savedCategories?.map((category) => (
     <div key={category._id} className="align-items-center">
       <button>
         <Link to={"/category/" + category._id}>

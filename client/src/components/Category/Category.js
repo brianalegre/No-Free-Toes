@@ -36,8 +36,8 @@ function CategoryPage() {
   }, [data]);
 
   // LOG THE DATA TO DEV TOOLS
-  console.log('DATA ----', data);
-  console.log('GET SERVICE USERS ----', getServiceUsers);
+  // console.log('DATA ----', data);
+  // console.log('GET SERVICE USERS ----', getServiceUsers);
 
 
   // MAP THE DATA

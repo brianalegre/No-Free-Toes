@@ -93,7 +93,7 @@ const typeDefs = gql`
 
         # SERVICE COMMENT
         serviceComment(_id: ID!): ServiceComment
-        serviceComments: [ServiceComment]
+        serviceComments(serviceUserId: ID, normalUserId: ID): [ServiceComment]
     }
 
     type NormalAuth {
