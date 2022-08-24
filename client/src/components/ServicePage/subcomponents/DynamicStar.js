@@ -13,7 +13,6 @@ const dynamicStar = (
 );
 
 export default function DynamicStar({ starRef }) {
-  console.log("RIGHT COMPONENT");
   // export default function DynamicStar() {
   return (
     <div className="flex">
