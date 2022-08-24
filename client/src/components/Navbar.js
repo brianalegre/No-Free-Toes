@@ -34,7 +34,7 @@ const memberNavLinks = [
   },
   {
     name: "Account",
-    link: "/login",
+    link: "",
   },
 ];
 

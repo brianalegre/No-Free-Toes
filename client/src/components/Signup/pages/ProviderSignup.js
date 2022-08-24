@@ -171,6 +171,7 @@ const ProviderSignup = () => {
               </p>
             ) : (
               <form onSubmit={handleFormSubmit}>
+              <div class="grid gap-6 mb-6 md:grid-cols-2">
                 <input
                   className="form-input"
                   placeholder="Your first name"
@@ -237,6 +238,7 @@ const ProviderSignup = () => {
                 >
                   Submit
                 </button>
+                </div>
               </form>
             )}
 
