@@ -1,5 +1,8 @@
 import React from "react";
-import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import { ApolloClient, 
+  InMemoryCache,
+  ApolloProvider } from "@apollo/client";
+// import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./index.css";
 import Home from "./components/Home";
@@ -14,8 +17,9 @@ import Signup from "./components/Signup/SignUp";
 import SignupClient from "./components/Signup/pages/ClientSignup";
 import SignupProvider from "./components/Signup/pages/ProviderSignup";
 
+  
 const client = new ApolloClient({
-  uri: "http://localhost:3001/graphql",
+  uri: "/graphql",
   cache: new InMemoryCache(),
 });
 

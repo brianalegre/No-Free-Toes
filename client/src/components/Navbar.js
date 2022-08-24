@@ -1,6 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import logo from "../images/icons/navlogo.svg";
+import Auth from "../utils/auth"
+import { Link } from "react-router-dom";
 
 const visitorNavLinks = [
   {
@@ -32,65 +34,77 @@ const memberNavLinks = [
   },
   {
     name: "Account",
-    link: "#",
-  },
-  {
-    name: "Logout",
-    link: "#",
+    link: "",
   },
 ];
 
+
 const visitorLgNav = visitorNavLinks.map((navlinks, i) => (
   <>
-    <a
-      key={"visitor_large_nav_link " + i}
-      href={navlinks.link}
-      className={navlinks.class}
-    >
-      {navlinks.name}
-    </a>
+    <Link to={navlinks.link} >
+      <div
+        key={"visitor_large_nav_link " + i}
+        className={navlinks.class}
+      >
+        {navlinks.name}
+      </div>
+    </Link>
   </>
 ));
 
 const visitorMobileNav = visitorNavLinks.map((navlinks, i) => (
   <>
-    <a
-      key={"visitor_mobile_nav_link " + i}
-      href={navlinks.link}
-      className="block py-2 px-4 text-sm text-black hover:text-pink-500"
-    >
-      {navlinks.name}
-    </a>
+    <Link to={navlinks.link} >
+      <div
+        key={"visitor_mobile_nav_link " + i}
+        href={navlinks.link}
+        className="block py-2 px-4 text-sm text-black hover:text-pink-500"
+      >
+        {navlinks.name}
+      </div>
+    </Link>
   </>
 ));
 
 const memberLgNav = memberNavLinks.map((navlinks, i) => (
   <>
-    <a
-      key={"member_large_nav_link " + i}
-      href={navlinks.link}
-      className="py-5 px-3"
-    >
-      {navlinks.name}
-    </a>
+    <Link to={navlinks.link} >
+      <div
+        key={"member_large_nav_link " + i}
+        href={navlinks.link}
+        className="py-5 px-3"
+      >
+        {navlinks.name}
+      </div>
+    </Link>
   </>
-));
+  
+  ));
 
 const memberMobileNav = memberNavLinks.map((navlinks, i) => (
   <>
-    <a
-      key={"member_mobile_nav_link " + i}
-      href={navlinks.link}
-      className="block py-2 px-4 text-sm text-black hover:text-pink-500"
-    >
-      {navlinks.name}
-    </a>
+    <Link to={navlinks.link} >
+      <div
+        key={"member_mobile_nav_link " + i}
+        href={navlinks.link}
+        className="block py-2 px-4 text-sm text-black hover:text-pink-500"
+      >
+        {navlinks.name}
+      </div>
+    </Link>
   </>
 ));
 
 export default function Navbar() {
+  
+  const logout = (event) => {
+    event.preventDefault();
+    Auth.logout();
+  }; 
+
   const [isActive, setActive] = useState("false");
-  //   const [isLoggedIn, setIsLoggedIn] = useState("false");
+
+ 
 
   const mobileBtnHandler = () => {
     setActive(!isActive);
@@ -117,7 +131,18 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-x-16">
             {/* FOR USE WHEN WE IMPLEMENT LOGGED IN FUNCTIONALITY */}
             {/* {isLoggedIn ? visitorLgNav : memberLgNav} */}
-            {visitorLgNav}
+            
+            {Auth.loggedIn() ? ( 
+              <>
+            {memberLgNav} 
+            <button
+            onClick = { logout }
+            className="py-5 px-3"> Logout
+            </button>
+            </>
+            ) : ( visitorLgNav )
+            }
+
           </div>
 
           {/* hamburger menu button */}
@@ -144,9 +169,16 @@ export default function Navbar() {
 
       {/* mobile nav */}
       <div className={isActive ? "hidden lg:hidden" : "lg:hidden"}>
-        {/* FOR USE WHEN WE IMPLEMENT LOGGED IN FUNCTIONALITY */}
-        {/* {isLoggedIn ? visitorMobileNav : memberMobileNav} */}
-        {visitorMobileNav}
+      {Auth.loggedIn() ? ( 
+              <>
+            {memberMobileNav} 
+            <button
+            onClick = { logout }
+            className="block py-2 px-4 text-sm text-black hover:text-pink-500"> Logout
+            </button>
+            </>
+            ) : ( visitorMobileNav )
+            }
       </div>
     </nav>
   );
