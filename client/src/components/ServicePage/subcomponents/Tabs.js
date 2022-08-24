@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Services from "./Services";
 import About from "./About";
-import Reviews from "./ServiceComments"
+import Reviews from "./ServiceComments";
 
 export default function Tabs({ serviceUser }) {
   const [tabs] = useState([

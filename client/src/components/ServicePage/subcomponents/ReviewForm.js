@@ -1,7 +1,10 @@
 import React from "react";
-import { DynamicStar } from "./StarRating";
+// import React, {useRef} from "react";
+import DynamicStar from "./DynamicStar";
 
 export default function ReviewForm() {
+  // const [userRating, setUserRating] = useRef(null);
+  // const ratingHandler = (value) => setUserRating(value);
   return (
     <>
       <div className="-mx-6 sm:-mx-8 px-4 sm:px-6 bg-gray-100">
@@ -13,6 +16,7 @@ export default function ReviewForm() {
           <span className="text-sm sm:text-base">
             Service Provider Rating:{" "}
           </span>
+          {/* <DynamicStar ratingHandler={ratingHandler}/> */}
           <DynamicStar />
         </div>
       </div>

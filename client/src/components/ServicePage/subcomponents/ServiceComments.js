@@ -6,7 +6,8 @@ import {
   TwoStar,
   OneStar,
   ZeroStar,
-} from "./StarRating";
+} from "./StaticStars";
+import Auth from "../../../utils/auth";
 import ReviewForm from "./ReviewForm";
 import { useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
@@ -37,7 +38,7 @@ export default function Reviews() {
       commentText,
       commentCreated,
       serviceRating,
-      serviceUser: { firstName: serviceUserFn, lastName: serviceUserLn },
+      // serviceUser: { firstName: serviceUserFn, lastName: serviceUserLn },
       normalUser: { firstName: normalUserFn, lastName: normalUserLn },
     } = reviews;
     const parsedDate = moment({ commentCreated }).format("ll");
@@ -104,7 +105,11 @@ export default function Reviews() {
             <button
               type="button"
               className="text-white bg-green-400 hover:bg-green-800 font-medium rounded-lg text-sm px-2 py-1 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700"
-              onClick={() => setRenderReviewForm(true)}
+              onClick={() =>
+                Auth.loggedIn() === true
+                  ? setRenderReviewForm(true)
+                  : window.location.assign("/login")
+              }
             >
               Leave Review
             </button>
