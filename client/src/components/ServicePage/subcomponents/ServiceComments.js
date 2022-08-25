@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import toast from "react-hot-toast";
 import {
   FiveStar,
   FourStar,
@@ -54,7 +55,6 @@ export default function Reviews() {
   // useEffect's [data] parameter not triggering yet so we end up getting an run time error that crashes the app...
   // with optional chaining, it sets serviceReviews as 'undefined' and allows the code to run so our useEffect can work after.
   const serviceReviews = serviceComments?.map((reviews, i) => {
-
     // destructuring the data we receive from the back end
     const {
       _id: serviceCommentId,
@@ -138,7 +138,17 @@ export default function Reviews() {
                       },
                     });
 
-                    refetch();
+                    // error handling
+                    if (!deleteReview)
+                      return toast.error(
+                        "Something went wrong. Unable to delete review."
+                      );
+
+                    // provide user a visual confirmation
+                    else {
+                      refetch();
+                      return toast.success("Review successfully deleted!");
+                    }
                   }}
                 >
                   <svg

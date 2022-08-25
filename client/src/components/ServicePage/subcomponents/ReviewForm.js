@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { ADD_SERVICECOMMENT } from "../../../utils/mutations";
 import Auth from "../../../utils/auth";
 import DynamicStar from "./DynamicStar";
+import toast from "react-hot-toast";
 
 export default function ReviewForm({ refetch }) {
   // retrieving logged user's ID by decoding token
@@ -57,7 +58,7 @@ export default function ReviewForm({ refetch }) {
         rows="4"
         value={commentText}
         required="true"
-        className="block p-2.5 w-full text-sm sm:text-base text-gray-900 bg-gray-50 rounded-lg border border-gray-500 dark:bg-gray-100"
+        className="block p-2.5 w-full text-sm sm:text-base text-gray-900 bg-gray-50 rounded-lg border border-gray-500"
         placeholder="Leave a review..."
       />
 
@@ -68,28 +69,33 @@ export default function ReviewForm({ refetch }) {
           <button
             onClick={() => {
               // error handling
-              if (commentText == "") {
-                return window.alert("Please fill in all necessary fields.");
-              }
+              if (commentText == "") 
+                return toast.error(
+                  "Please make sure to fill in all required fields."
+                );
+              
 
               // we invoke an anonymous function on click that calls addReview as a call back function.
               // we pass in the variables required in our mutation, and send the data over to add to our backend
-              addReview({
-                variables: {
-                  commentText,
-                  serviceRating: starRef.current,
-                  serviceUser: serviceUserId,
-                  normalUser: loggedInUserId,
-                },
-              });
+              else {
+                addReview({
+                  variables: {
+                    commentText,
+                    serviceRating: starRef.current,
+                    serviceUser: serviceUserId,
+                    normalUser: loggedInUserId,
+                  },
+                });
 
-              // refetch comes in as a prop from ServiceComments parent component...
-              // refetch is a function included in useQuery; it runs the QUERY again if data in the back end changes
-              // without this function, you would have to refresh the page in order to see the comment that was just created.
-              refetch();
+                // refetch comes in as a prop from ServiceComments parent component...
+                // refetch is a function included in useQuery; it runs the QUERY again if data in the back end changes
+                // without this function, you would have to refresh the page in order to see the comment that was just created.
+                refetch();
 
-              //clear text box
-              setCommentText("");
+                //clear text box and provide user a visual confirmation that their request was successful
+                setCommentText("");
+                toast.success("Review successfully posted!");
+              }
             }}
             type="button"
             className="text-white bg-green-600 hover:bg-green-800 font-medium rounded-lg text-sm px-2 py-1 mr-2 mb-2"
