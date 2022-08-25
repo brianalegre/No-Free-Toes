@@ -110,6 +110,18 @@ export const ADD_SERVICECOMMENT = gql`
   }
 `;
 
+// DELETE SERVICE COMMENT
+export const DELETE_SERVICECOMMENT = gql`
+  mutation RemoveServiceComment($serviceCommentId: ID!, $normalUser: ID!) {
+    removeServiceComment(
+      serviceCommentId: $serviceCommentId
+      normalUser: $normalUser
+    ) {
+      _id
+    }
+  }
+`;
+
 // export const ADD_NORMALUSER2 = gql`
 // mutation Mutation($firstName: String!, $lastName: String!, $email: String!, $password: String!, $location: String!) {
 //   addNormalUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password, location: $location) {

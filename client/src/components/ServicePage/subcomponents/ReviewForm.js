@@ -86,6 +86,7 @@ export default function ReviewForm({ refetch }) {
 
               // refetch comes in as a prop from ServiceComments parent component...
               // refetch is a function included in useQuery; it runs the QUERY again if data in the back end changes
+              // without this function, you would have to refresh the page in order to see the comment that was just created.
               refetch();
 
               //clear text box
