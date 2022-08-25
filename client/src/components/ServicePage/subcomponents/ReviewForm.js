@@ -5,9 +5,9 @@ import { useParams } from "react-router-dom";
 import { ADD_SERVICECOMMENT } from "../../../utils/mutations";
 import Auth from "../../../utils/auth";
 import DynamicStar from "./DynamicStar";
-import ServiceComments from "./ServiceComments"
+import ServiceComments from "./ServiceComments";
 
-export default function ReviewForm({refetch}) {
+export default function ReviewForm({ refetch }) {
   // retrieving logged user's ID by decoding token
   const {
     data: { _id: loggedInUserId },
@@ -56,6 +56,8 @@ export default function ReviewForm({refetch}) {
         onChange={handleUserInput}
         id="commentText"
         rows="4"
+        value={commentText}
+        required="true"
         className="block p-2.5 w-full text-sm sm:text-base text-gray-900 bg-gray-50 rounded-lg border border-gray-300"
         placeholder="Leave a review..."
       />
@@ -65,9 +67,14 @@ export default function ReviewForm({refetch}) {
 
         <div className="flex justify-end">
           <button
-            // we invoke an anonymous function on click that calls addReview as a call back function.
-            // we pass in the variables required in our mutation, and send the data over to add to our backend
             onClick={() => {
+              // error handling
+              if (commentText == "") {
+                return window.alert("Please fill in all necessary fields.");
+              }
+
+              // we invoke an anonymous function on click that calls addReview as a call back function.
+              // we pass in the variables required in our mutation, and send the data over to add to our backend
               addReview({
                 variables: {
                   commentText,
@@ -76,11 +83,13 @@ export default function ReviewForm({refetch}) {
                   normalUser: loggedInUserId,
                 },
               });
+
               // refetch comes in as a prop from ServiceComments parent component...
               // refetch is a function included in useQuery; it runs the QUERY again if data in the back end changes
-              refetch()
+              refetch();
 
-              
+              //clear text box
+              setCommentText("");
             }}
             type="button"
             className="text-white bg-green-600 hover:bg-green-800 font-medium rounded-lg text-sm px-2 py-1 mr-2 mb-2"
