@@ -96,10 +96,10 @@ export default function Reviews() {
     return (
       <>
         <div
-          key={normalUserFn + normalUserLn + "review " + i}
+          key={normalUserFn + normalUserLn + "review card " + i}
           className="min-w-full h-auto bg-white"
         >
-          <div className="flex pl-3 sm:pl-4 py-4 text-black font-bold">
+          <div key={normalUserFn + normalUserLn + "review banner " + i} className="flex pl-3 sm:pl-4 py-4 text-black font-bold">
             <img
               className="w-16"
               src="https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png"
@@ -120,19 +120,34 @@ export default function Reviews() {
           {/* we compare the decoded usertoken with the review currently posted on the page */}
           {/* we apply this code if the two values match, if not, we return null. */}
           {loggedInUserId === reviewCreatorUserId ? (
-            <div className="flex justify-end pr-2 pb-2">
+            <div key={normalUserFn + normalUserLn + "posted review " + i} className="relative flex justify-end pr-2 pb-2">
+              <div className="absolute bottom-28 -right-0.5">
               <button
+                className="inline-flex items-center justify-center w-5 h-5 mr-2 text-pink-100 transition delay-50 ease-in-out bg-red-500 rounded-lg focus:shadow-outline hover:bg-red-700"
                 onClick={() => {
                   deleteReview({
                     variables: { serviceCommentId, normalUser: loggedInUserId },
                   });
-                  
+
                   refetch();
                 }}
-                className="bg-red-700 text-gray-100 text-sm rounded-lg py-1 px-1 "
               >
-                Delete
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-4 w-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                  />
+                </svg>
               </button>
+              </div>
             </div>
           ) : null}
         </div>
