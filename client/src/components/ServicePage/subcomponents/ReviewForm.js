@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 import { ADD_SERVICECOMMENT } from "../../../utils/mutations";
 import Auth from "../../../utils/auth";
 import DynamicStar from "./DynamicStar";
-import ServiceComments from "./ServiceComments";
 
 export default function ReviewForm({ refetch }) {
   // retrieving logged user's ID by decoding token
