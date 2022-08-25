@@ -1,9 +1,10 @@
 import React from "react";
+// import React, { useRef }   from "react";
 
 const goldStar = (
   <svg
     aria-hidden="true"
-    className="w-4 sm:w-4 text-yellow-400"
+    className="w-4 text-yellow-400"
     fill="currentColor"
     viewBox="0 0 20 20"
     xmlns="http://www.w3.org/2000/svg"
@@ -15,7 +16,7 @@ const goldStar = (
 const grayStar = (
   <svg
     aria-hidden="true"
-    className="w-4 sm:w-4 text-gray-300 dark:text-gray-500"
+    className="w-4 text-gray-300"
     fill="currentColor"
     viewBox="0 0 20 20"
     xmlns="http://www.w3.org/2000/svg"
@@ -96,4 +97,11 @@ const ZeroStar = () => {
   );
 };
 
-export { FiveStar, FourStar, ThreeStar, TwoStar, OneStar, ZeroStar };
+export {
+  FiveStar,
+  FourStar,
+  ThreeStar,
+  TwoStar,
+  OneStar,
+  ZeroStar
+}

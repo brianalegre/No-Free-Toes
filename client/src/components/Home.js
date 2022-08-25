@@ -80,7 +80,7 @@ const Home = () => {
                 type="search"
                 name="search-service"
                 autoComplete="on"
-                className="pl-6 lg:pl-8 py-2"
+                className="pr-2 lg:pl-8 py-2 "
                 id="userInput"
                 placeholder="Search for a service.."
                 size="30"
