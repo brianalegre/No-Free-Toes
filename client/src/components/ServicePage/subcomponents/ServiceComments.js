@@ -53,8 +53,8 @@ export default function Reviews() {
   // optional chaining (?.) is needed here because initially, when this page opens, serviceReviews isn't available due to
   // useEffect's [data] parameter not triggering yet so we end up getting an run time error that crashes the app...
   // with optional chaining, it sets serviceReviews as 'undefined' and allows the code to run so our useEffect can work after.
-
   const serviceReviews = serviceComments?.map((reviews, i) => {
+
     // destructuring the data we receive from the back end
     const {
       _id: serviceCommentId,
@@ -97,56 +97,65 @@ export default function Reviews() {
       <>
         <div
           key={normalUserFn + normalUserLn + "review card " + i}
-          className="min-w-full h-auto bg-white"
+          className="min-w-full h-auto bg-white dark:border-gray-700 dark:bg-gray-800"
         >
-          <div key={normalUserFn + normalUserLn + "review banner " + i} className="flex pl-3 sm:pl-4 py-4 text-black font-bold">
+          <div
+            key={normalUserFn + normalUserLn + "review banner " + i}
+            className="flex pl-3 sm:pl-4 py-4 text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
+          >
             <img
               className="w-16"
               src="https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png"
               alt="default avatar"
             />
             <div className="pl-2 sm:pl-3 flex flex-col align-middle">
-              <p className="text-md">
+              <p className="text-md font-bold">
                 {normalUserFn} {normalUserLn}
               </p>
               <div className="flex flex-row">{showRating}</div>
               <span className="text-xs">{parsedDate}</span>
             </div>
           </div>
-          <div className="px-5 pb-6">
+          <div className="px-5 pb-6 text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
             <p>{commentText}</p>
           </div>
 
           {/* we compare the decoded usertoken with the review currently posted on the page */}
           {/* we apply this code if the two values match, if not, we return null. */}
           {loggedInUserId === reviewCreatorUserId ? (
-            <div key={normalUserFn + normalUserLn + "posted review " + i} className="relative flex justify-end pr-2 pb-2">
+            <div
+              key={normalUserFn + normalUserLn + "posted review " + i}
+              className="relative flex justify-end pr-2 pb-2"
+            >
               <div className="absolute bottom-28 -right-0.5">
-              <button
-                className="inline-flex items-center justify-center w-5 h-5 mr-2 text-pink-100 transition delay-50 ease-in-out bg-red-500 rounded-lg focus:shadow-outline hover:bg-red-700"
-                onClick={() => {
-                  deleteReview({
-                    variables: { serviceCommentId, normalUser: loggedInUserId },
-                  });
+                <button
+                  className="inline-flex items-center justify-center w-5 h-5 mr-2 text-pink-100 transition delay-50 ease-in-out bg-red-500 rounded-lg focus:shadow-outline hover:bg-red-700"
+                  onClick={() => {
+                    deleteReview({
+                      variables: {
+                        serviceCommentId,
+                        normalUser: loggedInUserId,
+                      },
+                    });
 
-                  refetch();
-                }}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+                    refetch();
+                  }}
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                  />
-                </svg>
-              </button>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                    />
+                  </svg>
+                </button>
               </div>
             </div>
           ) : null}

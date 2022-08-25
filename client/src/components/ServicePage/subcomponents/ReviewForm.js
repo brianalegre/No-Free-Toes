@@ -57,7 +57,7 @@ export default function ReviewForm({ refetch }) {
         rows="4"
         value={commentText}
         required="true"
-        className="block p-2.5 w-full text-sm sm:text-base text-gray-900 bg-gray-50 rounded-lg border border-gray-300"
+        className="block p-2.5 w-full text-sm sm:text-base text-gray-900 bg-gray-50 rounded-lg border border-gray-500 dark:bg-gray-100"
         placeholder="Leave a review..."
       />
 
