@@ -5,11 +5,12 @@ import { useParams } from "react-router-dom";
 import { ADD_SERVICECOMMENT } from "../../../utils/mutations";
 import Auth from "../../../utils/auth";
 import DynamicStar from "./DynamicStar";
+import ServiceComments from "./ServiceComments"
 
-export default function ReviewForm() {
+export default function ReviewForm({refetch}) {
   // retrieving logged user's ID by decoding token
   const {
-    data: { _id: loggedUserId },
+    data: { _id: loggedInUserId },
   } = Auth.getProfile();
 
   // retrieving service user ID via params
@@ -19,24 +20,16 @@ export default function ReviewForm() {
   const starRef = useRef();
 
   // utilizing useState hook to set user's input in text box
-  const [userInput, setUserInput] = useState("");
+  const [commentText, setCommentText] = useState("");
 
   // handler to retrieve value that user types in text box and setting it as our state
   // we call this function in the text box (onChange)
   const handleUserInput = (e) => {
-    e.preventDefault()
-    setUserInput(e.target.value);
-  }
+    setCommentText(e.target.value);
+  };
 
-  // useMutation(ADD_SERVICECOMMENT, {
-  //   variables: {
-  //     commentText: userInput,
-  //     serviceRating: starRef.current,
-  //     serviceUserId: serviceUserId,
-  //     normalUserId: loggedUserId,
-  //   },
-  //   fetchPolicy: "no-cache",
-  // });
+  // we create a function called addReview and assign it to useMutation; we call this function on our 'submit' button as an onClick
+  const [addReview] = useMutation(ADD_SERVICECOMMENT);
 
   return (
     <>
@@ -49,6 +42,7 @@ export default function ReviewForm() {
           <span className="text-sm sm:text-base">
             Service Provider Rating:{" "}
           </span>
+          {/* we pass in starRef as a prop so we can use it in our DynamicStar component */}
           <DynamicStar starRef={starRef} />
         </div>
       </div>
@@ -58,6 +52,7 @@ export default function ReviewForm() {
       </div>
 
       <textarea
+        // we call our handleUserInput function to set whatever they type in as our userInput state
         onChange={handleUserInput}
         id="commentText"
         rows="4"
@@ -70,17 +65,23 @@ export default function ReviewForm() {
 
         <div className="flex justify-end">
           <button
-            onClick={() =>
-              console.log(
-                `Service Rating: `,
-                starRef.current,
-                `normalUserId: `,
-                loggedUserId,
-                `serviceUserId: `,
-                serviceUserId,
-                userInput
-              )
-            }
+            // we invoke an anonymous function on click that calls addReview as a call back function.
+            // we pass in the variables required in our mutation, and send the data over to add to our backend
+            onClick={() => {
+              addReview({
+                variables: {
+                  commentText,
+                  serviceRating: starRef.current,
+                  serviceUser: serviceUserId,
+                  normalUser: loggedInUserId,
+                },
+              });
+              // refetch comes in as a prop from ServiceComments parent component...
+              // refetch is a function included in useQuery; it runs the QUERY again if data in the back end changes
+              refetch()
+
+              
+            }}
             type="button"
             className="text-white bg-green-600 hover:bg-green-800 font-medium rounded-lg text-sm px-2 py-1 mr-2 mb-2"
           >

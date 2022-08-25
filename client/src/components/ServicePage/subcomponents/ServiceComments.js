@@ -19,7 +19,7 @@ export default function Reviews() {
   const [serviceComments, setServiceComments] = useState([]);
   const [renderReviewForm, setRenderReviewForm] = useState(false);
 
-  const { loading, error, data } = useQuery(
+  const { loading, error, data, refetch } = useQuery(
     QUERY_SERVICECOMMENTS_BY_SERVICEUSERID,
     {
       variables: { serviceUserId: serviceUserId },
@@ -116,7 +116,7 @@ export default function Reviews() {
           </div>
         </div>
       ) : (
-        <ReviewForm renderReviewForm={renderReviewForm} />
+        <ReviewForm renderReviewForm={renderReviewForm} refetch={refetch} />
       )}
       <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 bg-gray-100">
         <div className="inline-block min-w-full"></div>
