@@ -7,39 +7,35 @@ export default function Services({ serviceUser }) {
 
   const services = serviceType?.map((service) => (
     <tr key={service.serviceName}>
-      <td className="px-5 py-8 border-b border-gray-200 bg-white text-sm">
+      <td className="px-5 py-8 border-b border-gray-200 bg-white text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
         <div className="flex items-center">
           <div className="pl-3">
-            <p className="text-gray-900 whitespace-no-wrap">
-              {service.serviceName}
-            </p>
+            <p className="whitespace-no-wrap">{service.serviceName}</p>
           </div>
         </div>
       </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900 whitespace-no-wrap">
+      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
+        <p className="whitespace-no-wrap">
           {`$`}
           {service.servicePrice}
         </p>
       </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900 whitespace-no-wrap">
-          {service.serviceDuration} minutes
-        </p>
+      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
+        <p className="whitespace-no-wrap">{service.serviceDuration} minutes</p>
       </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm dark:border-gray-700 dark:bg-gray-800">
+        <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight dark:text-green-100">
           <span
             aria-hidden="true"
-            className="absolute inset-0 bg-green-200 opacity-50 rounded-full"
+            className="absolute inset-0 bg-green-200 opacity-50 rounded-full dark:bg-green-700"
           ></span>
           <span className="relative">available</span>
         </span>
       </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
         <button
           type="button"
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-1 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          className="font-medium rounded-lg text-sm px-2 py-1 text-center inline-flex items-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
           Book Now
           <svg
@@ -65,39 +61,39 @@ export default function Services({ serviceUser }) {
       <table className="min-w-full leading-normal">
         <thead>
           <tr>
-            <td className="px-5 py-8 border-b border-gray-200 bg-white text-sm">
+            <td className="px-5 py-8 border-b border-gray-200 bg-white text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
               <div className="flex items-center">
                 <div className="pl-1">
-                  <p className="text-gray-900 whitespace-no-wrap">
+                  <p className="whitespace-no-wrap font-semibold">
                     Service Type
                   </p>
                 </div>
               </div>
             </td>
-            <td className="px-5 py-8 border-b border-gray-200 bg-white text-sm">
+            <td className="px-5 py-8 border-b border-gray-200 bg-white text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
               <div className="flex items-center">
                 <div className="pl-1">
-                  <p className="text-gray-900 whitespace-no-wrap">Price</p>
+                  <p className="whitespace-no-wrap font-semibold">Price</p>
                 </div>
               </div>
             </td>
-            <td className="px-5 py-8 border-b border-gray-200 bg-white text-sm">
+            <td className="px-5 py-8 border-b border-gray-200 bg-white text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
               <div className="flex items-center">
                 <div className="pl-1">
-                  <p className="text-gray-900 whitespace-no-wrap">Duration</p>
+                  <p className="whitespace-no-wrap font-semibold">Duration</p>
                 </div>
               </div>
             </td>
-            <td className="px-5 py-8 border-b border-gray-200 bg-white text-sm">
+            <td className="px-5 py-8 border-b border-gray-200 bg-white text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
               <div className="flex items-center">
                 <div className="pl-1">
-                  <p className="text-gray-900 whitespace-no-wrap">
+                  <p className=" whitespace-no-wrap font-semibold">
                     Availability
                   </p>
                 </div>
               </div>
             </td>
-            <td className="px-5 py-8 border-b border-gray-200 bg-white text-sm">
+            <td className="px-5 py-8 border-b border-gray-200 bg-white text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white ">
               <div className="pl-1"></div>
             </td>
           </tr>

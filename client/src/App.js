@@ -1,9 +1,8 @@
 import React from "react";
-import { ApolloClient, 
-  InMemoryCache,
-  ApolloProvider } from "@apollo/client";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 // import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 import "./index.css";
 import Home from "./components/Home";
 import Navbar from "./components/Navbar";
@@ -17,7 +16,6 @@ import Signup from "./components/Signup/SignUp";
 import SignupClient from "./components/Signup/pages/ClientSignup";
 import SignupProvider from "./components/Signup/pages/ProviderSignup";
 
-  
 const client = new ApolloClient({
   uri: "/graphql",
   cache: new InMemoryCache(),
@@ -25,6 +23,7 @@ const client = new ApolloClient({
 
 const App = () => (
   <ApolloProvider client={client}>
+    <Toaster position="bottom-center" reverseOrder={false} />
     <Router>
       <Navbar />
       <Routes>
