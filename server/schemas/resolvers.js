@@ -14,18 +14,20 @@ const resolvers = {
   Query: {
     // GET ALL NORMAL USERS
     normalUsers: async () => {
-      return await NormalUser.find();
+      return await NormalUser.find().populate("serviceComments");
     },
     // GET SINGLE NORMAL USER
-    normalUser: async () => {
-      return await NormalUser.findOne();
+    normalUser: async (parent, { normalUserId }) => {
+      return await NormalUser.findOne({ _id: normalUserId }).populate(
+        "serviceComments"
+      );
     },
     serviceUser: async (parent, { serviceUserId }) => {
       return ServiceUser.findOne({ _id: serviceUserId }).populate(
         "serviceType"
       );
     },
-    // GET ALL SERVICE USERS + SERVICE TYPES
+    // GET ALL SERVICE USERS
     serviceUsers: async () => {
       return await ServiceUser.find()
         .populate("serviceType")
@@ -46,7 +48,9 @@ const resolvers = {
     // GET ALL SERVICE COMMENTS
     serviceComments: async (parent, { serviceUserId, normalUserId }) => {
       if (serviceUserId) {
-        return await ServiceComment.find({ serviceUser: { _id: serviceUserId } })
+        return await ServiceComment.find({
+          serviceUser: { _id: serviceUserId },
+        })
           .populate("serviceUser")
           .populate("normalUser");
       }
@@ -152,6 +156,38 @@ const resolvers = {
       const token = signToken(user);
 
       return { token, user };
+    },
+
+    // ADD SERVICE COMMENT
+    addServiceComment: async (
+      parent,
+      { commentText, serviceRating, normalUser, serviceUser }
+    ) => {
+      const newComment = await ServiceComment.create({
+        commentText,
+        serviceRating,
+        normalUser,
+        serviceUser,
+      });
+      const updatedUser = await NormalUser.findOneAndUpdate(
+        { _id: normalUser },
+        { $push: { serviceComments: newComment } },
+        { new: true }
+      );
+      return newComment, updatedUser 
+    },
+
+    // REMOVE SERVICE COMMENT
+    removeServiceComment: async (parent, { serviceCommentId, normalUser }) => {
+      const deletedComment = await ServiceComment.findOneAndDelete({
+        _id: serviceCommentId,
+      });
+      const updatedUser = await NormalUser.findOneAndUpdate(
+        { _id: normalUser },
+        { $pull: { serviceComments: deletedComment._id } },
+        { new: true }
+      );
+      return deletedComment, updatedUser
     },
   },
 };

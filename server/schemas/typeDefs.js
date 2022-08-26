@@ -32,6 +32,7 @@ const typeDefs = gql`
         password: String
         location: String
         appointments: [Appointment]
+        serviceComments: [ServiceComment]
     }
 
     type ServiceUser {
@@ -77,7 +78,7 @@ const typeDefs = gql`
         serviceCategories: [ServiceCategory]
 
         # NORMAL USER
-        normalUser(_id: ID!): NormalUser
+        normalUser(normalUserId: ID!): NormalUser
         normalUsers: [NormalUser]
 
         # SERVICE USER
@@ -92,7 +93,7 @@ const typeDefs = gql`
 
 
         # SERVICE COMMENT
-        serviceComment(_id: ID!): ServiceComment
+        serviceComment(serviceCommentId: ID!): ServiceComment
         serviceComments(serviceUserId: ID, normalUserId: ID): [ServiceComment]
     }
 
@@ -131,8 +132,8 @@ const typeDefs = gql`
         removeAppointment(_id: ID!): Appointment
         
         # SERVICE COMMENT
-        addServiceComment(commentText: String!, serviceUser: ID!, normalUser: ID!): ServiceComment
-        removeServiceComment(_id: ID!): ServiceComment
+        addServiceComment(commentText: String!, serviceRating: Int, serviceUser: ID!, normalUser: ID!): ServiceComment
+        removeServiceComment(serviceCommentId: ID!, normalUser: ID!): ServiceComment
 
         # Normal User Login
         normalLogin(email: String!, password: String!): NormalAuth

@@ -173,15 +173,16 @@ const ProviderSignup = () => {
               <form onSubmit={handleFormSubmit}>
               <div class="grid gap-6 mb-6 md:grid-cols-2">
                 <input
-                  className="form-input"
+                  className="form-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
                   placeholder="Your first name"
                   name="firstName"
                   type="text"
+                  required= "true"
                   value={formState.firstName}
                   onChange={handleChange}
                 />
                 <input
-                  className="form-input"
+                  className="form-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
                   placeholder="Your last name"
                   name="lastName"
                   type="text"
@@ -189,7 +190,7 @@ const ProviderSignup = () => {
                   onChange={handleChange}
                 />
                 <input
-                  className="form-input"
+                  className="form-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
                   placeholder="Your email"
                   name="email"
                   type="email"
@@ -197,7 +198,7 @@ const ProviderSignup = () => {
                   onChange={handleChange}
                 />
                 <input
-                  className="form-input"
+                  className="form-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
                   placeholder="******"
                   name="password"
                   type="password"
@@ -205,7 +206,7 @@ const ProviderSignup = () => {
                   onChange={handleChange}
                 />
                 <input
-                  className="form-input"
+                  className="form-input form-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
                   placeholder="Tell us about yourself..."
                   name="bio"
                   type="text"
@@ -214,7 +215,7 @@ const ProviderSignup = () => {
                 />
 
                 <input
-                  className="form-input"
+                  className="form-input form-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
                   placeholder="Your location"
                   name="location"
                   type="text"

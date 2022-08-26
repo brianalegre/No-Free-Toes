@@ -1,9 +1,21 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 // ADD NORMAL USER
 export const ADD_NORMALUSER = gql`
-  mutation addNormalUser($firstName: String!, $lastName: String!, $email: String!, $password: String!, $location: String!) {
-    addNormalUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password, location: $location) {
+  mutation addNormalUser(
+    $firstName: String!
+    $lastName: String!
+    $email: String!
+    $password: String!
+    $location: String!
+  ) {
+    addNormalUser(
+      firstName: $firstName
+      lastName: $lastName
+      email: $email
+      password: $password
+      location: $location
+    ) {
       token
       normalUser {
         _id
@@ -33,8 +45,24 @@ export const LOGIN_NORMALUSER = gql`
 `;
 // ADD SERVICE USER
 export const ADD_SERVICEUSER = gql`
-  mutation addServiceUser($firstName: String!, $lastName: String!, $email: String!, $password: String!, $bio: String!, $location: String!, $serviceCategory: ID!) {
-    addServiceUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password, bio: $bio, location: $location, serviceCategory: $serviceCategory) {
+  mutation addServiceUser(
+    $firstName: String!
+    $lastName: String!
+    $email: String!
+    $password: String!
+    $bio: String!
+    $location: String!
+    $serviceCategory: ID!
+  ) {
+    addServiceUser(
+      firstName: $firstName
+      lastName: $lastName
+      email: $email
+      password: $password
+      bio: $bio
+      location: $location
+      serviceCategory: $serviceCategory
+    ) {
       token
       serviceUser {
         _id
@@ -63,7 +91,36 @@ export const LOGIN_SERVICEUSER = gql`
   }
 `;
 
+// ADD SERVICE COMMENT
+export const ADD_SERVICECOMMENT = gql`
+  mutation AddServiceComment(
+    $commentText: String!
+    $serviceRating: Int
+    $serviceUser: ID!
+    $normalUser: ID!
+  ) {
+    addServiceComment(
+      commentText: $commentText
+      serviceRating: $serviceRating
+      serviceUser: $serviceUser
+      normalUser: $normalUser
+    ) {
+      _id
+    }
+  }
+`;
 
+// DELETE SERVICE COMMENT
+export const DELETE_SERVICECOMMENT = gql`
+  mutation RemoveServiceComment($serviceCommentId: ID!, $normalUser: ID!) {
+    removeServiceComment(
+      serviceCommentId: $serviceCommentId
+      normalUser: $normalUser
+    ) {
+      _id
+    }
+  }
+`;
 
 // export const ADD_NORMALUSER2 = gql`
 // mutation Mutation($firstName: String!, $lastName: String!, $email: String!, $password: String!, $location: String!) {

@@ -1,34 +1,34 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const { Schema } = mongoose;
-const moment = require('moment');
+const moment = require("moment");
 
 const serviceCommentSchema = new Schema({
-    commentText: {
-        type: String,
-        required: true
-    },
-    commentCreated: {
-        type: Date,
-        required: true,
-    },
-    serviceRating: {
-        type: Number,
-        min: 0,
-        max: 5,
-        default: 0
-    },
-    normalUser: {
-        type: Schema.Types.ObjectId,
-        ref: 'NormalUser',
-        required: true
-    },
-    serviceUser: {
-        type: Schema.Types.ObjectId,
-        ref: 'ServiceUser',
-        required: true
-    }
-})
+  commentText: {
+    type: String,
+    required: true,
+  },
+  commentCreated: {
+    type: Date,
+    default: Date.now()
+  },
+  serviceRating: {
+    type: Number,
+    min: 0,
+    max: 5,
+    default: 0,
+  },
+  normalUser: {
+    type: Schema.Types.ObjectId,
+    ref: "NormalUser",
+    required: true,
+  },
+  serviceUser: {
+    type: Schema.Types.ObjectId,
+    ref: "ServiceUser",
+    required: true,
+  },
+});
 
-const ServiceComment = mongoose.model('ServiceComment', serviceCommentSchema);
+const ServiceComment = mongoose.model("ServiceComment", serviceCommentSchema);
 
-module.exports = ServiceComment
+module.exports = ServiceComment;
