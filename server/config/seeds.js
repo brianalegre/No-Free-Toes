@@ -17,37 +17,37 @@ db.once("open", async () => {
   const serviceCategorySeed = await ServiceCategory.insertMany([
     {
       categoryName: "Haircut",
-      categoryIcon: ".././assets/icons/haircut_icon.svg",
+      categoryIcon: "haircut_icon",
     },
     {
       categoryName: "Massage",
-      categoryIcon: ".././assets/icons/massage_icon.svg",
+      categoryIcon: "massage_icon",
     },
     {
       categoryName: "Eyelashes",
-      categoryIcon: ".././assets/icons/eyelashes_icon.svg",
+      categoryIcon: "eyelashes_icon",
     },
     {
       categoryName: "Nailcare",
-      categoryIcon: ".././assets/icons/nailcare_icon.svg",
+      categoryIcon: "nailcare_icon",
     },
-    { categoryName: "Dance", categoryIcon: ".././assets/icons/dance_icon.svg" },
+    { categoryName: "Dance", categoryIcon: "dance_icon" },
     {
       categoryName: "Fitness",
-      categoryIcon: ".././assets/icons/personaltraining_icon.svg",
+      categoryIcon: "personaltraining_icon",
     },
     {
       categoryName: "Pet Care",
-      categoryIcon: ".././assets/icons/petcare_icon.svg",
+      categoryIcon: "petcare_icon",
     },
     {
       categoryName: "Tutoring",
-      categoryIcon: ".././assets/icons/tutoring_icon.svg",
+      categoryIcon: "tutoring_icon",
     },
-    { categoryName: "Media", categoryIcon: ".././assets/icons/media_icon.svg" },
+    { categoryName: "Media", categoryIcon: "media_icon" },
     {
       categoryName: "Singing",
-      categoryIcon: ".././assets/icons/singing_icon.svg",
+      categoryIcon: "singing_icon",
     },
   ]);
 
