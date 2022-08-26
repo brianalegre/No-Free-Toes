@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const dynamicStar = (
   <svg
@@ -12,7 +12,7 @@ const dynamicStar = (
   </svg>
 );
 
-export default function DynamicStar({ starRef }) {
+export default function DynamicStar({ starRef, data }) {
   // set the initial state of 5 items to 'null' value
   // 5 nulls are just place holders to specify that we have 5 items in this hook
   const [clickedStars, setClickedStars] = useState([
@@ -23,17 +23,29 @@ export default function DynamicStar({ starRef }) {
     null,
   ]);
 
+  // utilize the useEffect to invoke handleStarClick whenever data changes
+  // data changes whenever we post a comment, and this allows the state of the stars
+  // to re-render so that the user selected star defaults back to zero on submit
+  useEffect(() => {
+    handleStarClick()
+  }, [data]);
+
   // create a function that sets the stars state to 'clickedStars' on click
   // for loop to set the state of the clicked star and all indexes below it to true
   // and everything else above the clicked index to false
   const handleStarClick = (e, index) => {
-    e.preventDefault();
     let clickStates = [...clickedStars];
+    if (starRef.current !== 0)
     for (let i = 0; i < 5; i++) {
       i <= index ? (clickStates[i] = true) : (clickStates[i] = false);
     }
+    
+    else {
+      clickStates.length = false 
+    } 
     setClickedStars(clickStates);
   };
+  
 
   return (
     <div className="flex">

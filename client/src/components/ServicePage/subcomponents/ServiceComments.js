@@ -197,7 +197,7 @@ export default function Reviews() {
           </div>
         </div>
       ) : (
-        <ReviewForm renderReviewForm={renderReviewForm} refetch={refetch} />
+        <ReviewForm renderReviewForm={renderReviewForm} refetch={refetch} data={data} />
       )}
       <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 bg-gray-100">
         <div className="inline-block min-w-full"></div>

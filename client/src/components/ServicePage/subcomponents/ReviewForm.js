@@ -7,7 +7,7 @@ import Auth from "../../../utils/auth";
 import DynamicStar from "./DynamicStar";
 import toast from "react-hot-toast";
 
-export default function ReviewForm({ refetch }) {
+export default function ReviewForm({ refetch, data }) {
   // retrieving logged user's ID by decoding token
   const {
     data: { _id: loggedInUserId },
@@ -43,7 +43,7 @@ export default function ReviewForm({ refetch }) {
             Service Provider Rating:{" "}
           </span>
           {/* we pass in starRef as a prop so we can use it in our DynamicStar component */}
-          <DynamicStar starRef={starRef} />
+          <DynamicStar starRef={starRef} data={data}/>
         </div>
       </div>
 
@@ -92,8 +92,10 @@ export default function ReviewForm({ refetch }) {
                 // without this function, you would have to refresh the page in order to see the comment that was just created.
                 refetch();
 
-                //clear text box and provide user a visual confirmation that their request was successful
+                //clear text box, reset starRef value to 0
+                // provide user a visual confirmation that their request was successful
                 setCommentText("");
+                starRef.current = 0
                 toast.success("Review successfully posted!");
               }
             }}
