@@ -29,10 +29,13 @@ export default function Reviews() {
   // pulling out the deleteReview function from useMutation hook and attaching the mutation we wrote
   const [deleteReview] = useMutation(DELETE_SERVICECOMMENT);
 
-  // retrieving logged user's user id
-  const {
-    data: { _id: loggedInUserId },
-  } = Auth.getProfile();
+  // CHECK IF LOGGED
+  const isLoggedIn = Auth.loggedIn() ? true : false;
+
+  // if isLoggedin true then get the user id from the token
+  // else set the user id to null
+  const loggedInUserId = isLoggedIn ? Auth.getProfile().data._id : null;
+
 
   // using the useQuery hook to retrieve data from the back end
   const { loading, error, data, refetch } = useQuery(
