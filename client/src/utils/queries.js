@@ -24,6 +24,17 @@ export const QUERY_ALL_NORMALUSERS = gql`
   }
 `;
 
+// GET SINGLE NORMAL USER
+export const QUERY_SINGLE_NORMALUSER = gql `
+query NormalUser($normalUserId: ID!) {
+  normalUser(normalUserId: $normalUserId) {
+    _id
+    firstName
+    lastName
+    email
+  }
+}
+
 // // GET ALL SERVICE USERS
 // export const QUERY_ALL_SERVICEUSERS = gql`
 //   query serviceUsers {

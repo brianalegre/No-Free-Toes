@@ -617,6 +617,7 @@ db.once("open", async () => {
   await ServiceUser.deleteMany();
 
   // CREATE SERVICEUSER DATA
+  // HARICUT CATEGORY
   const serviceUserSeedOne = await ServiceUser.create({
     firstName: "Brian",
     lastName: "Alegre",
@@ -627,10 +628,11 @@ db.once("open", async () => {
       "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
     bio: "First testing bio",
     location: "Garden Grove, CA",
-    serviceType: [serviceTypeSeed[0]._id, serviceTypeSeed[1]._id],
+    serviceType: [serviceTypeSeed[0]._id, serviceTypeSeed[2]._id, serviceTypeSeed[4]._id]
   });
 
   // CREATE SERVICEUSER DATA
+  // MASSAGE CATEGORY
   const serviceUserSeedTwo = await ServiceUser.create({
     firstName: "Kevin",
     lastName: "Lazaro",
@@ -641,9 +643,11 @@ db.once("open", async () => {
       "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
     bio: "Second testing bio",
     location: "Hacienda Heights, CA",
+    serviceType: [serviceTypeSeed[6]._id, serviceTypeSeed[8]._id, serviceTypeSeed[9]._id]
   });
 
   // CREATE SERVICEUSER DATA
+  // EYELASH CATEGORY
   const serviceUserSeedThree = await ServiceUser.create({
     firstName: "Allec",
     lastName: "Arzadon",
@@ -654,10 +658,11 @@ db.once("open", async () => {
       "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
     bio: "Third testing bio",
     location: "Anaheim, CA",
-    serviceType: [serviceTypeSeed[3]._id],
+    serviceType: [serviceTypeSeed[10]._id, serviceTypeSeed[12]._id, serviceTypeSeed[14]._id]
   });
 
   // CREATE SERVICEUSER DATA
+  // NAIL CARE CATEGORY
   const serviceUserSeedFour = await ServiceUser.create({
     firstName: "Philip",
     lastName: "Hwang",
@@ -668,10 +673,11 @@ db.once("open", async () => {
       "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
     bio: "fourth testing bio",
     location: "Irvine, CA",
-    serviceType: [serviceTypeSeed[0]._id],
+    serviceType: [serviceTypeSeed[15]._id, serviceTypeSeed[17]._id, serviceTypeSeed[19]._id, serviceTypeSeed[21]._id]
   });
 
   // CREATE SERVICEUSER DATA
+  // DANCE CATEGORY
   const serviceUserSeedFive = await ServiceUser.create({
     firstName: "Chad",
     lastName: "Tao",
@@ -682,9 +688,11 @@ db.once("open", async () => {
       "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
     bio: "fifth testing bio",
     location: "Los Angeles, CA",
+    serviceType: [serviceTypeSeed[22]._id, serviceTypeSeed[24]._id, serviceTypeSeed[26]._id, serviceTypeSeed[28]._id]
   });
 
   // CREATE SERVICEUSER DATA
+  // FITNESS CATEGORY
   const serviceUserSeedSix = await ServiceUser.create({
     firstName: "Nick",
     lastName: "Graffis",
@@ -695,9 +703,12 @@ db.once("open", async () => {
       "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
     bio: "Sixth testing bio",
     location: "San francisco, CA",
+    serviceType: [serviceTypeSeed[30]._id, serviceTypeSeed[32]._id, serviceTypeSeed[34]._id, serviceTypeSeed[36]._id, serviceTypeSeed[38]._id]
   });
 
+
   // CREATE SERVICEUSER DATA
+  // PET CARE CATEGORY
   const serviceUserSeedSeven = await ServiceUser.create({
     firstName: "Erik",
     lastName: "Hirsch",
@@ -708,9 +719,11 @@ db.once("open", async () => {
       "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
     bio: "Seventh testing bio",
     location: "Orange, CA",
+    serviceType: [serviceTypeSeed[39]._id, serviceTypeSeed[41]._id, serviceTypeSeed[43]._id, serviceTypeSeed[45]._id]
   });
 
   // CREATE SERVICEUSER DATA
+  // TUTORING CATEGORY
   const serviceUserSeedEight = await ServiceUser.create({
     firstName: "Tony",
     lastName: "Vallescas",
@@ -721,9 +734,12 @@ db.once("open", async () => {
       "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
     bio: "Tony testing bio",
     location: "Los Angeles, CA",
+    serviceType: [serviceTypeSeed[46]._id, serviceTypeSeed[48]._id, serviceTypeSeed[50]._id]
   });
 
+
   // CREATE SERVICEUSER DATA
+  // MEDIA CATEGORY
   const serviceUserSeedNine = await ServiceUser.create({
     firstName: "Vy",
     lastName: "Nguyen",
@@ -734,9 +750,11 @@ db.once("open", async () => {
       "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
     bio: "Vy testing bio",
     location: "Fountain Valley, CA",
+    serviceType: [serviceTypeSeed[52]._id, serviceTypeSeed[54]._id, serviceTypeSeed[56]._id]
   });
 
   // CREATE SERVICEUSER DATA
+  // SINGING CATEGORY
   const serviceUserSeedTen = await ServiceUser.create({
     firstName: "Marina",
     lastName: "Huisken",
@@ -747,9 +765,12 @@ db.once("open", async () => {
       "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
     bio: "Marina testing bio",
     location: "Fountain Valley, CA",
+    serviceType: [serviceTypeSeed[58]._id, serviceTypeSeed[60]._id, serviceTypeSeed[62]._id, serviceTypeSeed[64]._id]
   });
 
+
   // CREATE SERVICEUSER DATA
+  // HAIRCUT CATEGORY
   const serviceUserSeedEleven = await ServiceUser.create({
     firstName: "Ghazaleh",
     lastName: "Javadi",
@@ -760,9 +781,11 @@ db.once("open", async () => {
       "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
     bio: "Ghazaleh testing bio",
     location: "Orange, CA",
+    serviceType: [serviceTypeSeed[1]._id, serviceTypeSeed[3]._id]
   });
 
   // CREATE SERVICEUSER DATA
+  // MASSAGE CATEGORY
   const serviceUserSeedTwelve = await ServiceUser.create({
     firstName: "John",
     lastName: "Hull",
@@ -773,9 +796,11 @@ db.once("open", async () => {
       "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
     bio: "John testing bio",
     location: "Orange County, CA",
+    serviceType: [serviceTypeSeed[5]._id, serviceTypeSeed[7]._id]
   });
 
   // CREATE SERVICEUSER DATA
+  // EYELASHES CATEGORY
   const serviceUserSeedThirteen = await ServiceUser.create({
     firstName: "Darryl ",
     lastName: "Le",
@@ -786,9 +811,11 @@ db.once("open", async () => {
       "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
     bio: "fifth testing bio",
     location: "Irvine, CA",
+    serviceType: [serviceTypeSeed[11]._id, serviceTypeSeed[13]._id]
   });
 
   // CREATE SERVICEUSER DATA
+  // NAILCARE CATEGORY
   const serviceUserSeedFourteen = await ServiceUser.create({
     firstName: "Connor",
     lastName: "Mictcher",
@@ -799,9 +826,11 @@ db.once("open", async () => {
       "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
     bio: "Connor testing bio",
     location: "Orange County, CA",
+    serviceType: [serviceTypeSeed[16]._id, serviceTypeSeed[18]._id, serviceTypeSeed[20]._id]
   });
 
   // CREATE SERVICEUSER DATA
+  // DANCE CATEGORY
   const serviceUserSeedFifteen = await ServiceUser.create({
     firstName: "Matt",
     lastName: "Dunston",
@@ -812,9 +841,11 @@ db.once("open", async () => {
       "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
     bio: "Matt testing bio",
     location: "Los Angeles, CA",
+    serviceType: [serviceTypeSeed[23]._id, serviceTypeSeed[25]._id, serviceTypeSeed[27]._id, serviceTypeSeed[29]._id]
   });
 
   // CREATE SERVICEUSER DATA
+  // FITNESS CATEGORY
   const serviceUserSeedSixteen = await ServiceUser.create({
     firstName: "Ian",
     lastName: "Irwin",
@@ -825,9 +856,11 @@ db.once("open", async () => {
       "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
     bio: "Ian testing bio",
     location: "Orange, CA",
+    serviceType: [serviceTypeSeed[30]._id, serviceTypeSeed[32]._id, serviceTypeSeed[34]._id, serviceTypeSeed[36]._id, serviceTypeSeed[38]._id]
   });
 
   // CREATE SERVICEUSER DATA
+  // PET CARE CATEGORY
   const serviceUserSeedSeventeen = await ServiceUser.create({
     firstName: "Wilson",
     lastName: "Soetomo",
@@ -838,9 +871,11 @@ db.once("open", async () => {
       "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
     bio: "Wilson testing bio",
     location: "Irvine, CA",
+    serviceType: [serviceTypeSeed[40]._id, serviceTypeSeed[42]._id, serviceTypeSeed[44]._id]
   });
 
   // CREATE SERVICEUSER DATA
+  // TUTORING CATEGORY
   const serviceUserSeedEighteen = await ServiceUser.create({
     firstName: "Liberato",
     lastName: "Garced",
@@ -851,9 +886,11 @@ db.once("open", async () => {
       "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
     bio: "Liberato testing bio",
     location: "Irvine, CA",
+    serviceType: [serviceTypeSeed[47]._id, serviceTypeSeed[49]._id, serviceTypeSeed[51]._id]
   });
 
   // CREATE SERVICEUSER DATA
+  // MEDIA CATEGORY
   const serviceUserSeedNineteen = await ServiceUser.create({
     firstName: "Luna",
     lastName: "Kiira",
@@ -864,9 +901,11 @@ db.once("open", async () => {
       "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
     bio: "Luna testing bio",
     location: "Monterey Park, CA",
+    serviceType: [serviceTypeSeed[53]._id, serviceTypeSeed[55]._id, serviceTypeSeed[57]._id]
   });
 
   // CREATE SERVICEUSER DATA
+  // SINGING CATEGORY
   const serviceUserSeedTwenty = await ServiceUser.create({
     firstName: "Jasmine",
     lastName: "Tsao",
@@ -877,6 +916,7 @@ db.once("open", async () => {
       "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
     bio: "Jasmine testing bio",
     location: "Los Angeles, CA",
+    serviceType: [serviceTypeSeed[58]._id, serviceTypeSeed[61]._id, serviceTypeSeed[63]._id,]
   });
 
   // LOG TO BACKEND CONSOLE

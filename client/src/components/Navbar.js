@@ -4,6 +4,12 @@ import logo from "../images/icons/navlogo.svg";
 import Auth from "../utils/auth";
 import { Link } from "react-router-dom";
 
+// CHECK IF LOGGED
+const isLoggedIn = Auth.loggedIn() ? true : false;
+// if isLoggedin true then get the user id from the token
+// else set the user id to null
+const loggedInUserId = isLoggedIn ? Auth.getProfile().data._id : null;
+
 const visitorNavLinks = [
   {
     name: "Home",
@@ -34,7 +40,7 @@ const memberNavLinks = [
   },
   {
     name: "Account",
-    link: "",
+    link: "/profile/" + loggedInUserId,
   },
 ];
 
