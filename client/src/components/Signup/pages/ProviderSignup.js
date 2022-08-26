@@ -11,16 +11,7 @@ import Select from "react-select";
 const ProviderSignup = () => {
   const {
     data: categories,
-    error: catError,
-    loading,
-  } = useQuery(QUERY_ALL_SERVICECATEGORIES);
-  // const serviceCategoryOptions = [
-  //   {
-  //     value: "{serviceCategorySeed[0]._id}" ,
-  //     text: "Haircut"
-  //   }
-
-  // ];
+    error: catError, loading,} = useQuery(QUERY_ALL_SERVICECATEGORIES);
 
   const [selectedOption, setSelectedOption] = useState(null);
 
@@ -72,7 +63,7 @@ const ProviderSignup = () => {
   };
   const cats4Dropdown =
     categories?.serviceCategories?.map((cat) => ({
-      _id: cat._id,
+      value: cat._id,
       label: cat.categoryName,
     })) || [];
 
@@ -201,7 +192,7 @@ const ProviderSignup = () => {
               </p>
             ) : (
               <form onSubmit={handleFormSubmit}>
-                <div class="grid gap-6 mb-6 md:grid-cols-2">
+                <div className="grid gap-6 mb-6 md:grid-cols-2">
                   <input
                     className="form-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
                     placeholder="Your first name"
@@ -257,11 +248,6 @@ const ProviderSignup = () => {
                     value={selectedOption}
                     options={cats4Dropdown}
                     onChange={handleSelectedOption}
-                    // getOptionLabel={(event) => (
-                    //   <div>
-                    //     <span style={{ marginLeft: 5 }}>{event.text}</span>
-                    //   </div>
-                    // )}
                   />
                   {/* <input
                     className="form-input"
@@ -278,7 +264,7 @@ const ProviderSignup = () => {
                     className="py-2.5 px-5 mr-4 mb-4 text-lg font-semibold focus:outline-none rounded-full text-center bg-green-300 hover:bg-green-700 text-black hover:text-gray-100 rounded transition duration-300 btn btn-block"
                     style={{ cursor: "pointer" }}
                     type="submit"
-                    onClick = {() => handleFormSubmit()} 
+                    onClick = { () => handleFormSubmit()} 
                   >
                     Submit
                   </button>
