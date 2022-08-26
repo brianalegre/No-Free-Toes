@@ -1,7 +1,7 @@
 import React from "react";
 
-export default function ProfileSettings({ serviceUser }) {
-    const { firstName, lastName, email } = serviceUser;
+export default function ProfileSettings({firstName, lastName, email}) {
+    // const { firstName, lastName, email } = serviceUser;
     
     return (
         // Section div needs wrap each profile component

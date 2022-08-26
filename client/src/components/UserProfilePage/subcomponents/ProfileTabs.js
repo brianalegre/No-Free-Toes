@@ -3,8 +3,7 @@ import ProfileSettings from "./ProfileSettings";
 const avatarImg = ".././assets/images/man.png";
 
 
-
-export default function ProfileTabs({ serviceUser }) {
+export default function ProfileTabs({firstName, lastName, email}) {
     const [profileTabs] = useState([
         {
             name: "Profile",
@@ -20,7 +19,7 @@ export default function ProfileTabs({ serviceUser }) {
         },
     ])
 
-    const { firstName, lastName, photo } = serviceUser;
+    // const { firstName, lastName, photo } = serviceUser;
 
     const [currentTab, setCurrentTab] = useState(profileTabs[0]);
     return (
@@ -28,7 +27,7 @@ export default function ProfileTabs({ serviceUser }) {
             <aside className="md:border-r">
                 {/* Avatar image, User/Service user info */}
                 <div class="flex items-center space-x-4 p-2 border-b">
-                    <img className="w-10 h-10 rounded-full" src={photo} alt="avatar" />
+                    {/* <img className="w-10 h-10 rounded-full" src=" " alt="avatar" /> */}
                     <div className="font-medium dark:text-white">
                         <div>{firstName} {lastName}</div>
                         <div className="text-base text-gray-500 dark:text-gray-400">Barber</div>
@@ -52,7 +51,7 @@ export default function ProfileTabs({ serviceUser }) {
 
             <div className={currentTab.name === "Profile" ? null : "hidden"}>
                 {/* Form Card template, TODO update to fit needs */}
-                <ProfileSettings serviceUser={serviceUser} />
+                <ProfileSettings firstName={firstName} lastName={lastName} email={email}/>
             </div>
         </>
 

@@ -30,6 +30,7 @@ const typeDefs = gql`
         lastName: String
         email: String
         password: String
+        photo: String
         location: String
         appointments: [Appointment]
         serviceComments: [ServiceComment]
