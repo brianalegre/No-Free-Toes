@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ProfileTabs from "./subcomponents/ProfileTabs";
 import ProfileSettings from "./subcomponents/ProfileSettings";
 import { useQuery } from "@apollo/client";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import { QUERY_SINGLE_NORMALUSER } from "../../../src/utils/queries";
 import Auth from "../../utils/auth";
 
@@ -10,17 +10,6 @@ const avatarImg = ".././assets/images/man.png";
 
 export default function UserProfilePage() {
   const { loggedInUserId } = useParams();
-  // const [loggedInUser, setLoggedInUser] = useState({});
-  // console.log("USERID", loggedInUserId);
-
-  // // CHECK IF LOGGED
-  // const isLoggedIn = Auth.loggedIn() ? true : false;
-  // // if isLoggedin true then get the user id from the token
-  // // else set the user id to null
-  // const profile = isLoggedIn ? Auth.getProfile().data._id : null;
-
-  // const loggedUserData = Auth.getProfile()
-  // // console.log("LOGGED IN DATA ---------", profile)
 
   const { loading, error, data, refetch } = useQuery(QUERY_SINGLE_NORMALUSER, {
     variables: { normalUserId: loggedInUserId },
@@ -29,6 +18,16 @@ export default function UserProfilePage() {
 
   const { email, firstName, lastName, photo, location } = data?.normalUser || {};
 
+  // USER NEEDS TO BE LOGGED IN TO DISPLAY PAGE
+  if (!Auth.loggedIn()) {
+    return (
+      <h4>
+        You need to be logged in to see this. Use the navigation links above to
+        sign up or log in!
+      </h4>
+    );
+  }
+  
   return (
     <>
       <main className="bg-white mx-20 mt-10 min-h-screen text-lg">
