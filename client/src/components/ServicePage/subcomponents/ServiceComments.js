@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { useQuery, useMutation } from "@apollo/client";
+import { useParams, useNavigate } from "react-router-dom";
+import { QUERY_SERVICECOMMENTS_BY_SERVICEUSERID } from "../../../utils/queries";
+import { DELETE_SERVICECOMMENT } from "../../../utils/mutations";
 import toast from "react-hot-toast";
 import {
   FiveStar,
@@ -10,10 +14,6 @@ import {
 } from "./StaticStars";
 import Auth from "../../../utils/auth";
 import ReviewForm from "./ReviewForm";
-import { useQuery, useMutation } from "@apollo/client";
-import { useParams } from "react-router-dom";
-import { QUERY_SERVICECOMMENTS_BY_SERVICEUSERID } from "../../../utils/queries";
-import { DELETE_SERVICECOMMENT } from "../../../utils/mutations";
 import * as moment from "moment";
 
 export default function Reviews() {
@@ -31,6 +31,9 @@ export default function Reviews() {
 
   // CHECK IF LOGGED
   const isLoggedIn = Auth.loggedIn() ? true : false;
+
+  //create navigate function to assign to useNavigate to redirect user to login page if not logged in
+  const navigate = useNavigate()
 
   // if isLoggedin true then get the user id from the token
   // else set the user id to null
@@ -192,7 +195,7 @@ export default function Reviews() {
               onClick={() =>
                 Auth.loggedIn() === true
                   ? setRenderReviewForm(true)
-                  : window.location.assign("/login")
+                  : navigate("/login")
               }
             >
               Leave Review
