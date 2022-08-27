@@ -35,6 +35,7 @@ query NormalUser($normalUserId: ID!) {
     lastName
     email
     photo
+    location
   }
 }
 `

@@ -122,6 +122,35 @@ export const DELETE_SERVICECOMMENT = gql`
   }
 `;
 
+// EDIT NORMAL USER
+export const EDIT_NORMALUSER = gql`
+  mutation EditNormalUser(
+    $normalUserId: ID!, 
+    $firstName: String, 
+    $lastName: String, 
+    $email: String, 
+    $password: String, 
+    $location: String
+    ) {
+  editNormalUser(
+    normalUserId: $normalUserId, 
+    firstName: $firstName, 
+    lastName: $lastName, 
+    email: $email, 
+    password: $password, 
+    location: $location
+    ) {
+    _id
+    firstName
+    lastName
+    email
+    password
+    location
+  }
+}
+
+`
+
 // export const ADD_NORMALUSER2 = gql`
 // mutation Mutation($firstName: String!, $lastName: String!, $email: String!, $password: String!, $location: String!) {
 //   addNormalUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password, location: $location) {

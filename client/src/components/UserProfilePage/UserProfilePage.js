@@ -10,8 +10,9 @@ const avatarImg = ".././assets/images/man.png";
 
 export default function UserProfilePage() {
   const { loggedInUserId } = useParams();
-  const [loggedInUser, setLoggedInUser] = useState({});
-  console.log("USERID", loggedInUserId);
+  // const [loggedInUser, setLoggedInUser] = useState({});
+  // console.log("USERID", loggedInUserId);
+
   // // CHECK IF LOGGED
   // const isLoggedIn = Auth.loggedIn() ? true : false;
   // // if isLoggedin true then get the user id from the token
@@ -21,12 +22,12 @@ export default function UserProfilePage() {
   // const loggedUserData = Auth.getProfile()
   // // console.log("LOGGED IN DATA ---------", profile)
 
-  const { loading, error, data } = useQuery(QUERY_SINGLE_NORMALUSER, {
+  const { loading, error, data, refetch } = useQuery(QUERY_SINGLE_NORMALUSER, {
     variables: { normalUserId: loggedInUserId },
     fetchPolicy: "no-cache",
   });
 
-  const { email, firstName, lastName, photo } = data?.normalUser || {};
+  const { email, firstName, lastName, photo, location } = data?.normalUser || {};
 
   return (
     <>
@@ -37,10 +38,13 @@ export default function UserProfilePage() {
           <div className="grid grid-cols-1 md:grid-cols-[25%_75%]">
             {/* Tabs */}
             <ProfileTabs
+              loggedInUserId={loggedInUserId}
+              email={email}
               firstName={firstName}
               lastName={lastName}
-              email={email}
-              photo= {photo}
+              photo={photo}
+              location={location}
+              refetch={refetch}
             />
           </div>
         </div>
@@ -50,8 +54,8 @@ export default function UserProfilePage() {
 }
 
 
-  /* <section className="mt-5 md:ml-5 md:mt-0">
-    Form Card template, TODO update to fit needs
-    <ProfileSettings />
+/* <section className="mt-5 md:ml-5 md:mt-0">
+  Form Card template, TODO update to fit needs
+  <ProfileSettings />
 </section> */
 

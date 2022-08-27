@@ -3,7 +3,7 @@ import ProfileSettings from "./ProfileSettings";
 const avatarImg = ".././assets/images/man.png";
 
 
-export default function ProfileTabs({firstName, lastName, email, photo}) {
+export default function ProfileTabs({loggedInUserId, email, firstName, lastName, photo, location, refetch }) {
     const [profileTabs] = useState([
         {
             name: "Profile",
@@ -51,7 +51,13 @@ export default function ProfileTabs({firstName, lastName, email, photo}) {
 
             <div className={currentTab.name === "Profile" ? null : "hidden"}>
                 {/* Form Card template, TODO update to fit needs */}
-                <ProfileSettings firstName={firstName} lastName={lastName} email={email}/>
+                <ProfileSettings email={email}
+                    loggedInUserId={loggedInUserId}
+                    firstName={firstName}
+                    lastName={lastName}
+                    photo={photo}
+                    location={location}
+                    refetch={refetch} />
             </div>
         </>
 
