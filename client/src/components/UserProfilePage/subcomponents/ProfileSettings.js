@@ -25,26 +25,28 @@ export default function ProfileSettings({ loggedInUserId, email, firstName, last
             ...userInfo,
             [name]: value,
         });
-        
+
     };
 
     // MUTATION TO EDIT NORMAL USER
     const [updateProfile, { error, data }] = useMutation(EDIT_NORMALUSER)
-    
+
     // SUBMIT FORM
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        console.log("USER INFO STATE--------", userInfo)
 
         try {
             await updateProfile({
-                variables: {...userInfo},
+                variables: { ...userInfo },
             });
-        } catch(error) {
+            refetch()
+        } catch (error) {
             console.error(error);
         }
     };
-    
+
+
+
     // console.log(updateProfile)
 
 

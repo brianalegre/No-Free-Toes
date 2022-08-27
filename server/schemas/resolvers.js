@@ -104,7 +104,7 @@ const resolvers = {
     },
     // EDIT NORMAL USER
     editNormalUser: async (parent, { normalUserId, firstName, lastName, email, password, location }) => {
-      const user = await NormalUser.findByIdAndUpdate({ normalUserId },
+      const user = await NormalUser.findByIdAndUpdate( normalUserId ,
         { $set: { firstName, lastName, email, password, location } },
         { new: true }
       )
