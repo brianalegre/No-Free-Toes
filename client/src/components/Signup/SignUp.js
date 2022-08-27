@@ -7,7 +7,7 @@ const Signup = () => {
     
     <div className=" p-20 min-w-center">
         <div className="p-4 w-center text-center bg-gray-900 rounded-lg font-black border shadow-md sm:p-8 border-gray-700">
-            <h5 className="mb-2 text-3xl font-bold text-gray-900 dark:text-white">Please select which applies to:</h5>
+            <h5 className="mb-2 text-3xl font-bold text-white">Please select which applies to:</h5>
             <p className="mb-5 text-base text-gray-500 sm:text-lg dark:text-gray-400">Sign Up for No Free Toes Scheduler as:</p>
             <div className="justify-center items-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
             <Link to="/signup/client" >
