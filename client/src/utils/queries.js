@@ -11,6 +11,8 @@ export const QUERY_ALL_SERVICECATEGORIES = gql`
   }
 `;
 
+
+
 // GET ALL NORMAL USERS
 export const QUERY_ALL_NORMALUSERS = gql`
   query normalUsers {
@@ -23,6 +25,21 @@ export const QUERY_ALL_NORMALUSERS = gql`
     }
   }
 `;
+
+// GET SINGLE NORMAL USER
+export const QUERY_SINGLE_NORMALUSER = gql`
+query NormalUser($normalUserId: ID!) {
+  normalUser(normalUserId: $normalUserId) {
+    _id
+    firstName
+    lastName
+    email
+    photo
+    location
+  }
+}
+`
+
 
 // // GET ALL SERVICE USERS
 // export const QUERY_ALL_SERVICEUSERS = gql`
@@ -103,6 +120,8 @@ export const QUERY_SERVICECOMMENTS_BY_SERVICEUSERID = gql`
     }
   }
 `;
+
+
 
 // export const QUERY_SERVICEUSERS_CATEGORY = gql`
 //   query serviceUsersCategory($serviceCategory: ID) {

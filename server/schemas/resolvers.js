@@ -102,6 +102,14 @@ const resolvers = {
 
       return { token, user };
     },
+    // EDIT NORMAL USER
+    editNormalUser: async (parent, { normalUserId, firstName, lastName, email, password, location }) => {
+      const user = await NormalUser.findByIdAndUpdate( normalUserId ,
+        { $set: { firstName, lastName, email, password, location } },
+        { new: true }
+      )
+      return user
+    },
     // LOGIN NORMAL USER
     loginNormalUser: async (parent, { email, password }) => {
       const user = await NormalUser.findOne({ email });
@@ -174,7 +182,7 @@ const resolvers = {
         { $push: { serviceComments: newComment } },
         { new: true }
       );
-      return newComment, updatedUser 
+      return newComment, updatedUser
     },
 
     // REMOVE SERVICE COMMENT
