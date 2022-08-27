@@ -14,13 +14,10 @@ const ProviderSignup = () => {
     error: catError,
     loading,
   } = useQuery(QUERY_ALL_SERVICECATEGORIES);
-  const serviceCategoryOptions = [
-    {
-      value: "{serviceCategorySeed[0]._id}",
-      text: "Haircut"
-    }
 
-  ];
+  const [errorMessage, setErrorMessage] = useState('');
+
+  setErrorMessage('Please fill out all necessary info!');
 
   const [selectedOption, setSelectedOption] = useState(null);
   // const [destructure, setDestructure] = useState(null);
@@ -226,7 +223,7 @@ const ProviderSignup = () => {
                     placeholder="Your first name"
                     name="firstName"
                     type="text"
-                    required="true"
+                    required
                     value={formState.firstName}
                     onChange={handleChange}
                   />
@@ -303,7 +300,7 @@ const ProviderSignup = () => {
 
             {error && (
               <div className="my-3 p-3 bg-danger text-black">
-                {error.message}
+                {errorMessage}
               </div>
             )}
           </div>
