@@ -11,9 +11,20 @@ import Select from "react-select";
 const ProviderSignup = () => {
   const {
     data: categories,
-    error: catError, loading,} = useQuery(QUERY_ALL_SERVICECATEGORIES);
+    error: catError,
+    loading,
+  } = useQuery(QUERY_ALL_SERVICECATEGORIES);
+  const serviceCategoryOptions = [
+    {
+      value: "{serviceCategorySeed[0]._id}",
+      text: "Haircut"
+    }
+
+  ];
 
   const [selectedOption, setSelectedOption] = useState(null);
+  // const [destructure, setDestructure] = useState(null);
+
 
   // MUTATION TO ADD SERVICE USER
   const [addServiceUser, { error, data }] = useMutation(ADD_SERVICEUSER);
@@ -42,14 +53,29 @@ const ProviderSignup = () => {
 
   const handleSelectedOption = val => {
     setSelectedOption(val)
+    // console.log("SELECTED OPTION", val)
+    // DESTRUCTURE VALUE
+    const { serviceCategory } = val;
+    // setDestructure(serviceCategory);
+    // console.log('THIS IS SERVICECATETORY IN HANDLE', serviceCategory)
+    setFormState({
+      ...formState,
+      serviceCategory: serviceCategory,
+    });
+    // SET STATE OF SELECTED OPTION
+    // console.log("SELECTED OPTION", val)
+    // console.log('SELECTED OPTION STATE', selectedOption)
   }
+  // console.log('SELECTED OPTION STATE2', selectedOption)
+  // console.log('DESTRUCTURE', destructure)
+
+  // ADD DESTRUCTURE TO FORMSTATE
+
 
   // SUBMIT FORM
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    setFormState();
-    console.log(...formState);
-    addServiceUser(formState);
+    console.log('FORMSTATE -----', formState);
 
     try {
       const { data } = await addServiceUser({
@@ -59,11 +85,13 @@ const ProviderSignup = () => {
       Auth.loginServiceUser(data.addServiceUser.token);
     } catch (e) {
       console.error(e);
+
     }
+
   };
   const cats4Dropdown =
     categories?.serviceCategories?.map((cat) => ({
-      value: cat._id,
+      serviceCategory: cat._id,
       label: cat.categoryName,
     })) || [];
 
@@ -248,6 +276,7 @@ const ProviderSignup = () => {
                     value={selectedOption}
                     options={cats4Dropdown}
                     onChange={handleSelectedOption}
+                    name="serviceCategory"
                   />
                   {/* <input
                     className="form-input"
