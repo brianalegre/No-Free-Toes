@@ -15,10 +15,6 @@ const ProviderSignup = () => {
     loading,
   } = useQuery(QUERY_ALL_SERVICECATEGORIES);
 
-  const [errorMessage, setErrorMessage] = useState('');
-
-  setErrorMessage('Please fill out all necessary info!');
-
   const [selectedOption, setSelectedOption] = useState(null);
   // const [destructure, setDestructure] = useState(null);
 
@@ -82,10 +78,11 @@ const ProviderSignup = () => {
       Auth.loginServiceUser(data.addServiceUser.token);
     } catch (e) {
       console.error(e);
-
     }
 
   };
+
+  // SERVICE DROPDOWN 
   const cats4Dropdown =
     categories?.serviceCategories?.map((cat) => ({
       serviceCategory: cat._id,
@@ -300,7 +297,7 @@ const ProviderSignup = () => {
 
             {error && (
               <div className="my-3 p-3 bg-danger text-black">
-                {errorMessage}
+                {error.message}
               </div>
             )}
           </div>
