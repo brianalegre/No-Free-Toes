@@ -30,6 +30,7 @@ const typeDefs = gql`
         lastName: String
         email: String
         password: String
+        photo: String
         location: String
         appointments: [Appointment]
         serviceComments: [ServiceComment]
@@ -117,7 +118,7 @@ const typeDefs = gql`
         
         # NORMAL USER
         addNormalUser(firstName: String!, lastName: String!, email: String!, password: String!, location: String!): NormalAuth
-        editNormalUser(firstName: String, lastName: String, email: String, password: String, photo: String, location: String): NormalUser
+        editNormalUser(normalUserId: ID!, firstName: String, lastName: String, email: String, password: String, photo: String, location: String): NormalUser
         removeNormalUser(_id: ID!): NormalUser
         loginNormalUser(email: String!, password: String!): NormalAuth
         

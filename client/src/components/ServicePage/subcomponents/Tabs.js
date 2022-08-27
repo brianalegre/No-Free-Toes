@@ -20,16 +20,16 @@ export default function Tabs({ serviceUser }) {
   return (
     <>
       <div className="bg-white">
-        <ul className="py-5 flex flex-wrap justify-around text-md font-medium text-center text-gray-500 dark:text-gray-400 border-b border-slate-50 shadow rounded-lg rounded-bl-none rounded-br-none">
+        <ul className="py-5 flex flex-wrap justify-around text-md font-medium text-center text-gray-500 border-b border-slate-50 shadow rounded-lg rounded-bl-none rounded-br-none dark:border-gray-700 dark:bg-gray-800 dark:text-white">
           {tabs.map((tabs) => (
             <li className="mr-2" key={tabs.name}>
               <button
-                className="inline-block py-3 px-4 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white"
+                className="inline-block py-3 px-4 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-gray-300"
                 onClick={() => setCurrentTab(tabs)}
               >
                 <span
                   className={
-                    currentTab.name === tabs.name ? "text-red-600" : null
+                    currentTab.name === tabs.name ? "text-red-600 dark:text-red-400" : null
                   }
                 >
                   {tabs.name}
