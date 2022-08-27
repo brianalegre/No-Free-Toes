@@ -39,7 +39,7 @@ export default function UserProfilePage() {
             <ProfileTabs
               firstName={firstName}
               lastName={lastName}
-              email={firstName}
+              email={email}
               photo= {photo}
             />
           </div>
