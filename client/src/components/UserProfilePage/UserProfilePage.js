@@ -40,6 +40,7 @@ export default function UserProfilePage() {
               firstName={firstName}
               lastName={lastName}
               email={firstName}
+              photo= {photo}
             />
           </div>
         </div>

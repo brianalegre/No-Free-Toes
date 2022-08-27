@@ -120,6 +120,8 @@ export const QUERY_SERVICECOMMENTS_BY_SERVICEUSERID = gql`
   }
 `;
 
+
+
 // export const QUERY_SERVICEUSERS_CATEGORY = gql`
 //   query serviceUsersCategory($serviceCategory: ID) {
 //     serviceUsersCategory(serviceCategory: $serviceCategory) {

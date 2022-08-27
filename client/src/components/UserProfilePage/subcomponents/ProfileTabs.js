@@ -3,7 +3,7 @@ import ProfileSettings from "./ProfileSettings";
 const avatarImg = ".././assets/images/man.png";
 
 
-export default function ProfileTabs({firstName, lastName, email}) {
+export default function ProfileTabs({firstName, lastName, email, photo}) {
     const [profileTabs] = useState([
         {
             name: "Profile",
@@ -27,10 +27,10 @@ export default function ProfileTabs({firstName, lastName, email}) {
             <aside className="md:border-r">
                 {/* Avatar image, User/Service user info */}
                 <div class="flex items-center space-x-4 p-2 border-b">
-                    {/* <img className="w-10 h-10 rounded-full" src=" " alt="avatar" /> */}
+                    <img className="w-10 h-10 rounded-full" src={photo} alt="avatar" />
                     <div className="font-medium dark:text-white">
                         <div>{firstName} {lastName}</div>
-                        <div className="text-base text-gray-500 dark:text-gray-400">Barber</div>
+                        <div className="text-base text-gray-500 dark:text-gray-400">Client</div>
                     </div>
                 </div>
                 {/* Tabs */}
