@@ -15,6 +15,10 @@ const ProviderSignup = () => {
     loading,
   } = useQuery(QUERY_ALL_SERVICECATEGORIES);
 
+  // const [errorMessage, setErrorMessage] = useState('');
+
+  // setErrorMessage('Please fill out all necessary info!');
+
   const [selectedOption, setSelectedOption] = useState(null);
   // const [destructure, setDestructure] = useState(null);
 
@@ -287,19 +291,19 @@ const ProviderSignup = () => {
                     className="py-2.5 px-5 mr-4 mb-4 text-lg font-semibold focus:outline-none rounded-full text-center bg-green-300 hover:bg-green-700 text-black hover:text-gray-100 rounded transition duration-300 btn btn-block"
                     style={{ cursor: "pointer" }}
                     type="submit"
-                    onClick = { () => handleFormSubmit()} 
+                    onClick={() => handleFormSubmit()}
                   >
                     Submit
                   </button>
                 </div>
               </form>
             )}
-
+            {/* 
             {error && (
               <div className="my-3 p-3 bg-danger text-black">
                 {error.message}
               </div>
-            )}
+            )} */}
           </div>
         </div>
       </div>
