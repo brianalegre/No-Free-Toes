@@ -302,7 +302,7 @@ const ProviderSignup = () => {
             )}
 
             {error && (
-              <div className="my-3 p-3 bg-danger text-white">
+              <div className="my-3 p-3 bg-danger text-black">
                 {error.message}
               </div>
             )}
