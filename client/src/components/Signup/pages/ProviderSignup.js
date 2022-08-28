@@ -94,13 +94,12 @@ const ProviderSignup = () => {
     })) || [];
 
   return (
-
-    <main className="flex-row justify-center mb-4">
+<div className="p-5">
+    <main className="p-5 min-w-center m-auto w-full text-center max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 md:p-8 bg-gray-800 border-gray-700">
       <div className="col-12 col-lg-10">
         <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">
-            Provider Sign Up
-          </h4>
+        <h4 className="mb-4 text-3xl font-bold text-white">Provider Sign Up</h4>
+          <h5 className="mb-4 text-sm font-bold text-white">Please fill out the form below:</h5>
           <div className="card-body">
             {data ? (
               <p>
@@ -127,6 +126,8 @@ const ProviderSignup = () => {
                     value={formState.lastName}
                     onChange={handleChange}
                   />
+                  </div>
+                  <div className="grid gap-6 mb-6">
                   <input
                     className="form-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
                     placeholder="Your email"
@@ -137,14 +138,14 @@ const ProviderSignup = () => {
                   />
                   <input
                     className="form-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
-                    placeholder="******"
+                    placeholder="********"
                     name="password"
                     type="password"
                     value={formState.password}
                     onChange={handleChange}
                   />
                   <input
-                    className="form-input form-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                    className="form-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
                     placeholder="Tell us about yourself..."
                     name="bio"
                     type="text"
@@ -153,7 +154,7 @@ const ProviderSignup = () => {
                   />
 
                   <input
-                    className="form-input form-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                    className="form-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
                     placeholder="Your location"
                     name="location"
                     type="text"
@@ -161,20 +162,24 @@ const ProviderSignup = () => {
                     onChange={handleChange}
                   />
                   <Select
-                    plptiaceholder="Select On"
+                    placeholder="Select service provided"
                     value={selectedOption}
                     options={cats4Dropdown}
                     onChange={handleSelectedOption}
                     name="serviceCategory"
                   />
                   <button
-                    className="py-2.5 px-5 mr-4 mb-4 text-lg font-semibold focus:outline-none rounded-full text-center bg-green-300 hover:bg-green-700 text-black hover:text-gray-100 rounded transition duration-300 btn btn-block"
+                    className="py-3 px-5 mr-5 w-full text-lg font-semibold focus:outline-none rounded-full text-center bg-green-300 hover:bg-green-700 text-black hover:text-gray-100 rounded transition duration-300 btn btn-block"
                     style={{ cursor: "pointer" }}
                     type="submit"
                     onClick={() => handleFormSubmit()}
                   >
                     Submit
                   </button>
+                  <div className="text-sm font-medium text-gray-300">
+                            Already registered? 
+                            <Link to="/login" className="text-green-500 hover:underline"> Login</Link>
+                            </div>
                 </div>
               </form>
             )}
@@ -188,6 +193,7 @@ const ProviderSignup = () => {
         </div>
       </div>
     </main>
+    </div>
   );
 };
 
