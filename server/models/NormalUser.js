@@ -35,13 +35,6 @@ const normalUserSchema = new Schema({
     type: String,
     trim: true,
   },
-  timeSlot: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "TimeSlot",
-      unique: true,
-    },
-  ],
   appointments: [
     {
       type: Schema.Types.ObjectId,

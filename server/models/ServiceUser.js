@@ -49,6 +49,13 @@ const serviceUserSchema = new Schema({
             ref: 'ServiceType',
         }
     ],
+    timeSlot: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "TimeSlot",
+            unique: true,
+        },
+    ],
     appointments: [
         {
             type: Schema.Types.ObjectId,
