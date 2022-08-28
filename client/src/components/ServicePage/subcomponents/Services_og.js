@@ -1,42 +1,9 @@
-import React, { useState } from "react";
-import Modal from 'react-modal';
+import React from "react";
 
 export default function Services({ serviceUser }) {
   const { serviceType } = serviceUser;
 
   // console.log(serviceType);
-
-  // MODAL FOR BOOKING
-  const customStyles = {
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-      width: '50%',
-    },
-  };
-
-  // let subtitle;
-  const [modalIsOpen, setmodalIsOpen] = useState(false);
-
-  function openModal() {
-    setmodalIsOpen(true);
-  }
-
-  // function afterOpenModal() {
-  //   // references are now sync'd and can be accessed.
-  //   subtitle.style.color = '#f00';
-  // }
-
-  function closeModal() {
-    setmodalIsOpen(false);
-
-  }
-
-
 
   const services = serviceType?.map((service) => (
     <tr key={service.serviceName}>
@@ -66,7 +33,7 @@ export default function Services({ serviceUser }) {
         </span>
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
-        {/* <button
+        <button
           type="button"
           className="font-medium rounded-lg text-sm px-2 py-1 text-center inline-flex items-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
@@ -84,58 +51,7 @@ export default function Services({ serviceUser }) {
               clip-rule="evenodd"
             ></path>
           </svg>
-        </button> */}
-        <button onClick={openModal}>Book Now</button>
-        <Modal
-          isOpen={modalIsOpen}
-          // onAfterOpen={afterOpenModal}
-          onRequestClose={closeModal}
-          style={customStyles}
-          contentLabel="Example Modal"
-        >
-          {/* <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2> */}
-          <div className="m-5 p-5">
-            <div className="flex">
-              <h2 className="text-center w-full font-semibold" >Pick an available time slot</h2>
-              <button onClick={closeModal} className="text-red-500 font-extrabold text-right">X</button>
-            </div>
-            <div className="w-full">
-              <table className="m-auto p-5">
-                <tr>
-                  <th>Monday</th>
-                  <th>Tuesday</th>
-                  <th>Wednesday</th>
-                  <th>Thursday</th>
-                  <th>Friday</th>
-
-                </tr>
-                <tr>
-                  <td><button>Time Slot 1</button></td>
-                  <td><button>Time Slot 1</button></td>
-                  <td><button>Time Slot 1</button></td>
-                  <td><button>Time Slot 1</button></td>
-                  <td><button>Time Slot 1</button></td>
-
-                </tr>
-                <tr>
-                  <td><button>Time Slot 2</button></td>
-                  <td><button>Time Slot 2</button></td>
-                  <td><button>Time Slot 2</button></td>
-                  <td><button>Time Slot 2</button></td>
-                  <td><button>Time Slot 2</button></td>
-
-                </tr>
-                <tr>
-                  <td><button>Time Slot 3</button></td>
-                  <td><button>Time Slot 3</button></td>
-                  <td><button>Time Slot 3</button></td>
-                  <td><button>Time Slot 3</button></td>
-                  <td><button>Time Slot 3</button></td>
-                </tr>
-              </table>
-            </div>
-          </div>
-        </Modal>
+        </button>
       </td>
     </tr>
   ));
