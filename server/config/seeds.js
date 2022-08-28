@@ -5,6 +5,7 @@ const {
   ServiceCategory,
   ServiceComment,
   ServiceType,
+  TimeSlot,
 } = require("../models");
 const moment = require("moment");
 const currentDate = moment(Date.now()).format("ll");
@@ -986,6 +987,25 @@ db.once("open", async () => {
 
   // LOG TO BACKEND CONSOLE
   console.log("SUCCESSFULLY SEEDED SERVICE COMMENTS");
+
+
+  // CLEAR EXISTING TIMESLOTS SEEDS
+  await ServiceComment.deleteMany()
+
+  // CREATE TIMESLOTS DATA
+  await TimeSlot.insertMany([
+    {
+      timeSlot: 1650456000,
+      serviceUser: serviceUserSeedOne._id,
+    },
+    {
+      timeSlot: 1618920000,
+      serviceUser: serviceUserSeedOne._id,
+    },
+  ])
+
+  // LOG TO BACKEND CONSOLE
+  console.log("SUCCESSFULLY SEEDED TIMESLOTS");
 
   process.exit();
 });

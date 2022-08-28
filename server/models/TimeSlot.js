@@ -21,4 +21,3 @@ const timeSlotSchema = new Schema({
 const TimeSlot = mongoose.model("TimeSlot", timeSlotSchema);
 
 module.exports = TimeSlot;
-
