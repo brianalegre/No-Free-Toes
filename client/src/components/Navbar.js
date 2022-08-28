@@ -12,9 +12,10 @@ const loggedInUserId = isLoggedIn ? Auth.getProfile().data._id : null;
 
 const userType = isLoggedIn ? Auth.getProfile().data.userType : null;
 
-console.log(userType);
-
-
+const userLink =
+  userType === "normalUser"
+    ? "/account/" + loggedInUserId
+    : "/profile/" + loggedInUserId;
 
 const visitorNavLinks = [
   {
@@ -46,12 +47,12 @@ const memberNavLinks = [
   },
   {
     name: "Account",
-    link: "/account/" + loggedInUserId,
+    link: userLink
   },
-  // {
-  //   name: "Service Account",
-  //   link: "/profile/" + loggedInUserId,
-  // },
+  {
+    name: "Service Account",
+    link: userLink
+  },
 ];
 
 const visitorLgNav = visitorNavLinks.map((navlinks, i) => (
@@ -139,7 +140,10 @@ export default function Navbar() {
             {Auth.loggedIn() ? (
               <>
                 {memberLgNav}
-                <button onClick={logout} className="py-2 px-3 bg-green-300 hover:bg-green-700 text-black hover:text-gray-100 rounded transition duration-300">
+                <button
+                  onClick={logout}
+                  className="py-2 px-3 bg-green-300 hover:bg-green-700 text-black hover:text-gray-100 rounded transition duration-300"
+                >
                   {" "}
                   Logout
                 </button>
