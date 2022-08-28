@@ -103,7 +103,7 @@ const typeDefs = gql`
         serviceComments(serviceUserId: ID, normalUserId: ID): [ServiceComment]
     
         # TIME SLOT
-        # timeSlot(_id: ID!): TimeSlot
+        timeSlot(timeSlotId: ID!): TimeSlot
         timeSlots: [TimeSlot]
 
     }

@@ -21,6 +21,11 @@ const resolvers = {
     timeSlots: async () => {
       return await TimeSlot.find().populate("serviceUser");
     },
+    // GET SINGLE TIME SLOT
+    timeSlot: async (parent, { timeSlotId }) => {
+      return await TimeSlot.findOne({ _id: timeSlotId }).populate(
+        "serviceUser").populate("serviceUser.serviceType");
+    },
     // GET SINGLE NORMAL USER
     normalUser: async (parent, { normalUserId }) => {
       return await NormalUser.findOne({ _id: normalUserId }).populate(
@@ -49,7 +54,7 @@ const resolvers = {
     },
     // GET ALL SERVICE TYPES + SERVICE USERS
     serviceTypes: async () => {
-      return await ServiceType.find({}).populate("serviceUser");
+      return await ServiceType.find({});
     },
     // GET ALL SERVICE COMMENTS
     serviceComments: async (parent, { serviceUserId, normalUserId }) => {
