@@ -47,6 +47,7 @@ const typeDefs = gql`
         location: String
         serviceCategory: ServiceCategory
         serviceType: [ServiceType]
+        timeSlots: [TimeSlot]
         appointments: [Appointment]
     }
 
@@ -155,7 +156,7 @@ const typeDefs = gql`
 
         # TIME SLOT
         # addTimeSlot(timeSlot: String!, serviceUser: ID!): TimeSlot
-        removeTimeSlot(_id: ID!): TimeSlot
+        removeTimeSlot(timeSlotId: ID!): TimeSlot
 
 
     }

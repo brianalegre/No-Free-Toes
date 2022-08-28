@@ -9,7 +9,7 @@ const {
 
 const { signToken } = require("../utils/auth");
 const { AuthenticationError } = require("apollo-server-express");
-const { isObjectIdOrHexString } = require("mongoose");
+const { isObjectIdOrHexString, trusted } = require("mongoose");
 
 const resolvers = {
   Query: {
@@ -19,12 +19,15 @@ const resolvers = {
     },
     // GET ALL TIME SLOTS
     timeSlots: async () => {
-      return await TimeSlot.find().populate("serviceUser").populate("serviceType");
+      return await TimeSlot.find()
+        .populate("serviceUser")
+        .populate("serviceType");
     },
     // GET SINGLE TIME SLOT
     timeSlot: async (parent, { timeSlotId }) => {
-      return await TimeSlot.findOne({ _id: timeSlotId }).populate(
-        "serviceUser").populate("serviceType");
+      return await TimeSlot.findOne({ _id: timeSlotId })
+        .populate("serviceUser")
+        .populate("serviceType");
     },
     // GET SINGLE NORMAL USER
     normalUser: async (parent, { normalUserId }) => {
@@ -42,7 +45,7 @@ const resolvers = {
       return await ServiceUser.find()
         .populate("serviceType")
         .populate("serviceCategory")
-        .populate("timeSlots")
+        .populate("timeSlot");
     },
     //  GET ALL SERVICE USERS + SERVICE CATEGORY
     serviceUsers: async () => {
@@ -94,7 +97,6 @@ const resolvers = {
       // }
       return await ServiceUser.find(params).populate("serviceCategory");
     },
-
   },
 
   Mutation: {
@@ -115,12 +117,16 @@ const resolvers = {
       return { token, user };
     },
     // EDIT NORMAL USER
-    editNormalUser: async (parent, { normalUserId, firstName, lastName, email, password, location }) => {
-      const user = await NormalUser.findByIdAndUpdate(normalUserId,
+    editNormalUser: async (
+      parent,
+      { normalUserId, firstName, lastName, email, password, location }
+    ) => {
+      const user = await NormalUser.findByIdAndUpdate(
+        normalUserId,
         { $set: { firstName, lastName, email, password, location } },
         { new: true }
-      )
-      return user
+      );
+      return user;
     },
     // LOGIN NORMAL USER
     loginNormalUser: async (parent, { email, password }) => {
@@ -194,7 +200,7 @@ const resolvers = {
         { $push: { serviceComments: newComment } },
         { new: true }
       );
-      return newComment, updatedUser
+      return newComment, updatedUser;
     },
 
     // REMOVE SERVICE COMMENT
@@ -207,16 +213,24 @@ const resolvers = {
         { $pull: { serviceComments: deletedComment._id } },
         { new: true }
       );
-      return deletedComment, updatedUser
+      return deletedComment, updatedUser;
     },
-
-    // // REMOVE TIME SLOT
-    // removeTimeSlot: async (parent, { timeSlotId }) => {
-    //   const deletedTimeSlot = await TimeSlot.findOneAndDelete({
-    //     _id: timeSlotId,
-    //   });
-    //   return deletedTimeSlot
-    // }
+    
+    // REMOVE TIME SLOT
+    removeTimeSlot: async (parent, { timeSlotId, serviceUserId }) => {
+      const deletedTimeSlot = await TimeSlot.findOneAndDelete({
+        _id: timeSlotId,
+      });
+      // const updatedUser = await ServiceUser.findOneAndUpdate(
+      //   {
+      //     _id: serviceUserId,
+      //   },
+      //   { $pull: { timeSlot: deletedTimeSlot } },
+      //   { new: true }
+      // );
+      // return updatedUser, deletedTimeSlot;
+      return deletedTimeSlot;
+    },
   },
 };
 
