@@ -4,6 +4,7 @@ const {
   ServiceCategory,
   ServiceComment,
   ServiceType,
+  TimeSlot,
 } = require("../models");
 
 const { signToken } = require("../utils/auth");
@@ -15,6 +16,10 @@ const resolvers = {
     // GET ALL NORMAL USERS
     normalUsers: async () => {
       return await NormalUser.find().populate("serviceComments");
+    },
+    // GET ALL TIME SLOTS
+    timeSlots: async () => {
+      return await TimeSlot.find().populate("serviceUser");
     },
     // GET SINGLE NORMAL USER
     normalUser: async (parent, { normalUserId }) => {
@@ -84,6 +89,7 @@ const resolvers = {
       // }
       return await ServiceUser.find(params).populate("serviceCategory");
     },
+
   },
 
   Mutation: {
@@ -105,7 +111,7 @@ const resolvers = {
     },
     // EDIT NORMAL USER
     editNormalUser: async (parent, { normalUserId, firstName, lastName, email, password, location }) => {
-      const user = await NormalUser.findByIdAndUpdate( normalUserId ,
+      const user = await NormalUser.findByIdAndUpdate(normalUserId,
         { $set: { firstName, lastName, email, password, location } },
         { new: true }
       )

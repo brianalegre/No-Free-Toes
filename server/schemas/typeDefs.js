@@ -68,7 +68,13 @@ const typeDefs = gql`
     token: ID!
     serviceUser: ServiceUser
     }
-    
+
+    type TimeSlot {
+    _id: ID
+    timeSlot: String
+    serviceUser: ServiceUser
+    }
+
     type Query {
         # SERVICE TYPE
         serviceType(_id: ID!): ServiceType
@@ -92,10 +98,14 @@ const typeDefs = gql`
         appointment(_id: ID!): Appointment
         appointments: [Appointment]
 
-
         # SERVICE COMMENT
         serviceComment(serviceCommentId: ID!): ServiceComment
         serviceComments(serviceUserId: ID, normalUserId: ID): [ServiceComment]
+    
+        # TIME SLOT
+        # timeSlot(_id: ID!): TimeSlot
+        timeSlots: [TimeSlot]
+
     }
 
     type NormalAuth {
