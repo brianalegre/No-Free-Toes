@@ -48,7 +48,7 @@ const ClientSignup = () => {
 
   return (
 
-<div className="p-5">
+<div className="p-20 min-h-screen">
     <main className="p-5 min-w-center m-auto w-full text-center max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 md:p-8 bg-gray-800 border-gray-700">
       <div className="col-12 col-lg-10">
         <div className="card">
@@ -121,7 +121,7 @@ const ClientSignup = () => {
             )}
 
             {error && (
-              <div className="my-3 p-3 bg-danger text-black">
+              <div className="my-3 p-3 bg-danger text-red-500">
                 {error.message}
               </div>
             )}

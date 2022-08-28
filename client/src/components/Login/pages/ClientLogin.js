@@ -44,7 +44,7 @@ const ClientLogin = () => {
 
     return (
 
-        <div className=" p-10">
+        <div className=" p-20 min-h-screen">
         <main className=" p-10 min-w-center m-auto w-full text-center max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 md:p-8 bg-gray-800 border-gray-700">
             <div className="col-12 col-lg-10">
                 <div className="card">
@@ -68,19 +68,19 @@ const ClientLogin = () => {
                                 />
                                 <label htmlFor="password" className="block m-4 text-sm font-medium text-gray-300">Please enter your password</label>
                                 <input
-                                    className="form-input mb-4 bg-gray-100 border border-green-300 text-gray-900 text-sm rounded-lg focus:ring-green-700 focus:border-green-700 block w-full p-2.5 "
+                                    className="form-input mb-8 bg-gray-100 border border-green-300 text-gray-900 text-sm rounded-lg focus:ring-green-700 focus:border-green-700 block w-full p-2.5 "
                                     placeholder="********"
                                     name="password"
                                     type="password"
                                     value={formState.password}
                                     onChange={handleChange}
                                 />
-                                <div className="flex items-start">
+                                {/* <div className="flex items-start">
                                 <div className="flex items-center h-5">
                                 <input id="remember" type="checkbox" value="" className="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800" />
                                 </div>
                                 <label htmlFor="remember" className="ml-2 mb-4 text-sm font-medium text-gray-300">Remember me</label>
-                                </div>
+                                </div> */}
                                 <button
                                     className="py-3 px-5 mr-5 w-full mb-5 text-lg font-semibold focus:outline-none rounded-full text-center bg-green-300 hover:bg-green-700 text-black hover:text-gray-100 rounded transition duration-300 btn btn-block"
                                     style={{ cursor: 'pointer' }}
@@ -95,7 +95,7 @@ const ClientLogin = () => {
                         )}
 
                         {error && (
-                            <div className="my-3 p-3 bg-danger text-black">
+                            <div className="my-3 p-3 bg-danger text-red-500">
                                 {error.message}
                             </div>
                         )}
