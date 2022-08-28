@@ -35,17 +35,18 @@ const resolvers = {
         "serviceComments"
       );
     },
+    // GET SINGLE SERVICE USER
     serviceUser: async (parent, { serviceUserId }) => {
-      return ServiceUser.findOne({ _id: serviceUserId }).populate(
-        "serviceType"
-      );
+      return ServiceUser.findOne({ _id: serviceUserId })
+        .populate("serviceType")
+        .populate("timeSlots");
     },
     // GET ALL SERVICE USERS
     serviceUsers: async () => {
       return await ServiceUser.find()
         .populate("serviceType")
         .populate("serviceCategory")
-        .populate("timeSlot");
+        .populate("timeSlots");
     },
     //  GET ALL SERVICE USERS + SERVICE CATEGORY
     serviceUsers: async () => {
@@ -215,7 +216,24 @@ const resolvers = {
       );
       return deletedComment, updatedUser;
     },
-    
+
+    // ADD TIME SLOT
+    addTimeSlot: async (parent, { timeSlot, serviceUser, serviceType }) => {
+      const newTimeSlot = await TimeSlot.create({
+        timeSlot,
+        serviceUser,
+        serviceType,
+      });
+      const updatedServiceUser = await ServiceUser.findOneAndUpdate(
+        {
+          _id: serviceUser,
+        },
+        { $push: { timeSlots: newTimeSlot._id } },
+        { new: true }
+      );
+      return updatedServiceUser, newTimeSlot;
+    },
+
     // REMOVE TIME SLOT
     removeTimeSlot: async (parent, { timeSlotId, serviceUserId }) => {
       const deletedTimeSlot = await TimeSlot.findOneAndDelete({

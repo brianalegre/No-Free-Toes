@@ -122,7 +122,7 @@ const typeDefs = gql`
 
     type Mutation {
         # SERVICE TYPE
-        addServiceType(serviceName: String!, servicePrice: Float!, serviceDuration: Float!, serviceDescription: String,  serviceCategory: ID!): ServiceType
+        addServiceType(serviceName: String!, servicePrice: Float!, serviceDuration: Float, serviceDescription: String,  serviceCategory: ID!): ServiceType
         editServiceType(serviceName: String, servicePrice: Float, serviceDuration: Float, serviceDescription: String): ServiceType
 
         # SERVICE CATEGORY
@@ -136,7 +136,7 @@ const typeDefs = gql`
         
         # SERVICE USER
         addServiceUser(firstName: String!, lastName: String!, email: String!, password: String!, bio: String!, location: String!, serviceCategory: ID!): ServiceAuth
-        editServiceUser(firstName: String, lastName: String, email: String, password: String, photo: String, bio:String, location: String, serviceCategory: ID, serviceType: [ID]): ServiceUser
+        editServiceUser(firstName: String, lastName: String, email: String, password: String, photo: String, bio:String, location: String, serviceCategory: ID, serviceType: [ID], timeSlots: [ID]): ServiceUser
         removeServiceUser(_id: ID!): ServiceUser
         loginServiceUser(email: String!, password: String!): ServiceAuth
         
@@ -155,7 +155,9 @@ const typeDefs = gql`
         serviceLogin(email: String!, password: String!): ServiceAuth
 
         # TIME SLOT
-        # addTimeSlot(timeSlot: String!, serviceUser: ID!): TimeSlot
+        addTimeSlot(timeSlot: String!, serviceUser: ID!, serviceType: [ID]): TimeSlot
+        # editTimeSlot(timeSlot: String!, serviceUser: ID!, serviceType: [ID]): TimeSlot
+        # removeTimeSlot(timeSlotId: ID!, serviceUserId: ID!): TimeSlot
         removeTimeSlot(timeSlotId: ID!): TimeSlot
 
 
