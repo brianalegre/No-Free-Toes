@@ -3,14 +3,6 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const appointmentSchema = new Schema({
-  appointmentDate: {
-    type: Date,
-    required: true,
-  },
-  appointmentTime: {
-    type: Date,
-    required: true,
-  },
   normalUser: {
     type: Schema.Types.ObjectId,
     ref: "NormalUser",
@@ -21,6 +13,16 @@ const appointmentSchema = new Schema({
     ref: "ServiceUser",
     required: true,
   },
+  timeSlot: {
+    type: Schema.Types.ObjectId,
+    ref: "TimeSlot",
+    required: true,
+  },
+  serviceType: {
+    type: Schema.Types.ObjectId,
+    ref: "ServiceType",
+    required: true,
+  }
 });
 
 const Appointment = mongoose.model("Appointment", appointmentSchema);

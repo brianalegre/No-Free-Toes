@@ -29,6 +29,12 @@ const serviceTypeSchema = new Schema({
       required: true,
     },
   ],
+  timeSlot: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "TimeSlot",
+    },
+  ],
 });
 
 const ServiceType = mongoose.model("ServiceType", serviceTypeSchema);
