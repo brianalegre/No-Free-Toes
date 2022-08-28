@@ -31,7 +31,8 @@ const resolvers = {
     serviceUsers: async () => {
       return await ServiceUser.find()
         .populate("serviceType")
-        .populate("serviceCategory");
+        .populate("serviceCategory")
+        .populate("timeSlots")
     },
     //  GET ALL SERVICE USERS + SERVICE CATEGORY
     serviceUsers: async () => {

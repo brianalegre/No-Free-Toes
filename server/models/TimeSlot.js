@@ -10,13 +10,6 @@ const timeSlotSchema = new Schema({
     required: true,
     unique: true,
   },
-  serviceType: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "ServiceType",
-      required: true,
-    },
-  ],
   serviceUser: 
     {
       type: Schema.Types.ObjectId,
@@ -28,3 +21,4 @@ const timeSlotSchema = new Schema({
 const TimeSlot = mongoose.model("TimeSlot", timeSlotSchema);
 
 module.exports = TimeSlot;
+
