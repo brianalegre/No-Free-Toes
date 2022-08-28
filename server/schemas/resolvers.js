@@ -236,14 +236,14 @@ const resolvers = {
 
     // REMOVE TIME SLOT
     removeTimeSlot: async (parent, { timeSlotId, serviceUserId }) => {
-      const deletedTimeSlot = await TimeSlot.findOneAndDelete({
+      const deletedTimeSlot = await TimeSlot.findByIdAndDelete({
         _id: timeSlotId,
       });
-      const updatedUser = await ServiceUser.findOneAndUpdate(
+      const updatedUser = await ServiceUser.findByIdAndUpdate(
         {
           _id: serviceUserId,
         },
-        { $pull: { timeSlots: deletedTimeSlot } },
+        { $pull: { timeSlots: deletedTimeSlot._id } },
         { new: true }
       );
       return updatedUser, deletedTimeSlot;
