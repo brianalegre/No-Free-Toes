@@ -14,8 +14,8 @@ const userType = isLoggedIn ? Auth.getProfile().data.userType : null;
 
 const userLink =
   userType === "normalUser"
-    ? "/account/" + loggedInUserId
-    : "/profile/" + loggedInUserId;
+    ? "/nuser/" + loggedInUserId
+    : "/suser/" + loggedInUserId;
 
 const visitorNavLinks = [
   {

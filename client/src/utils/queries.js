@@ -122,7 +122,7 @@ export const QUERY_SERVICECOMMENTS_BY_SERVICEUSERID = gql`
 `;
 
 // SINGLE SERVICE USER
-export const QUERY_SINGLE_SERVICEUSER = gql `
+export const QUERY_SINGLE_SERVICEUSER = gql`
   query ServiceUser($serviceUserId: ID!) {
   serviceUser(serviceUserId: $serviceUserId) {
     _id
@@ -130,9 +130,11 @@ export const QUERY_SINGLE_SERVICEUSER = gql `
     lastName
     email
     password
+    photo
     bio
     location
     serviceCategory {
+      _id
       categoryName
     }
     serviceType {

@@ -39,8 +39,8 @@ const App = () => (
         <Route path="/signup/client" element={<SignupClient />} />
         <Route path="/signup/provider" element={<SignupProvider />} />
 
-        <Route path="/profile/:loggedInServiceUserId" element={<ServiceAccount />} />
-        <Route path="/account/:loggedInUserId" element={<UserAccount />} />
+        <Route path="/nuser/:loggedInUserId" element={<UserAccount />} />
+        <Route path="/suser/:loggedInUserId" element={<ServiceAccount />} />
       </Routes>
       <Footer />
     </Router>
