@@ -73,6 +73,7 @@ const typeDefs = gql`
     _id: ID
     timeSlot: String
     serviceUser: ServiceUser
+    serviceType: [ServiceType]
     }
 
     type Query {
@@ -151,6 +152,10 @@ const typeDefs = gql`
 
         # Service User Login
         serviceLogin(email: String!, password: String!): ServiceAuth
+
+        # TIME SLOT
+        # addTimeSlot(timeSlot: String!, serviceUser: ID!): TimeSlot
+        removeTimeSlot(_id: ID!): TimeSlot
 
 
     }

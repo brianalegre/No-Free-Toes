@@ -19,12 +19,12 @@ const resolvers = {
     },
     // GET ALL TIME SLOTS
     timeSlots: async () => {
-      return await TimeSlot.find().populate("serviceUser");
+      return await TimeSlot.find().populate("serviceUser").populate("serviceType");
     },
     // GET SINGLE TIME SLOT
     timeSlot: async (parent, { timeSlotId }) => {
       return await TimeSlot.findOne({ _id: timeSlotId }).populate(
-        "serviceUser").populate("serviceUser.serviceType");
+        "serviceUser").populate("serviceType");
     },
     // GET SINGLE NORMAL USER
     normalUser: async (parent, { normalUserId }) => {
@@ -209,6 +209,14 @@ const resolvers = {
       );
       return deletedComment, updatedUser
     },
+
+    // // REMOVE TIME SLOT
+    // removeTimeSlot: async (parent, { timeSlotId }) => {
+    //   const deletedTimeSlot = await TimeSlot.findOneAndDelete({
+    //     _id: timeSlotId,
+    //   });
+    //   return deletedTimeSlot
+    // }
   },
 };
 

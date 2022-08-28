@@ -990,17 +990,19 @@ db.once("open", async () => {
 
 
   // CLEAR EXISTING TIMESLOTS SEEDS
-  await ServiceComment.deleteMany()
+  await TimeSlot.deleteMany()
 
   // CREATE TIMESLOTS DATA
   await TimeSlot.insertMany([
     {
       timeSlot: 1650456000,
       serviceUser: serviceUserSeedOne._id,
+      serviceType: [serviceTypeSeed[0]._id, serviceTypeSeed[4]._id],
     },
     {
       timeSlot: 1618920000,
       serviceUser: serviceUserSeedOne._id,
+      serviceType: [serviceTypeSeed[2]._id, serviceTypeSeed[0]._id],
     },
   ])
 
