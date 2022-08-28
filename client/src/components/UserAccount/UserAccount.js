@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import ProfileTabs from "./subcomponents/ProfileTabs";
-import ProfileSettings from "./subcomponents/ProfileSettings";
 import { useQuery } from "@apollo/client";
-import { Navigate, useParams } from "react-router-dom";
-import { QUERY_SINGLE_NORMALUSER } from "../../../src/utils/queries";
+import { useParams } from "react-router-dom";
+import { QUERY_SINGLE_NORMALUSER } from "../../utils/queries";
 import Auth from "../../utils/auth";
 
 const avatarImg = ".././assets/images/man.png";
 
-export default function UserProfilePage() {
+export default function UserProfile() {
   const { loggedInUserId } = useParams();
 
   const { loading, error, data, refetch } = useQuery(QUERY_SINGLE_NORMALUSER, {
@@ -18,7 +17,7 @@ export default function UserProfilePage() {
 
   const { email, firstName, lastName, photo, location } = data?.normalUser || {};
 
-  // USER NEEDS TO BE LOGGED IN TO DISPLAY PAGE
+  // USER NEEDS TO BE LOGGED IN TO DISPLAY
   if (!Auth.loggedIn()) {
     return (
       <h4>

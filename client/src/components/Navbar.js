@@ -39,7 +39,11 @@ const memberNavLinks = [
     link: "#",
   },
   {
-    name: "Account",
+    name: "Normal Account",
+    link: "/account/" + loggedInUserId,
+  },
+  {
+    name: "Service Account",
     link: "/profile/" + loggedInUserId,
   },
 ];

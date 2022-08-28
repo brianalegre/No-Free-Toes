@@ -23,9 +23,9 @@ const resolvers = {
       );
     },
     serviceUser: async (parent, { serviceUserId }) => {
-      return ServiceUser.findOne({ _id: serviceUserId }).populate(
-        "serviceType"
-      );
+      return ServiceUser.findOne({ _id: serviceUserId })
+      .populate("serviceType")
+      .populate("serviceCategory");
     },
     // GET ALL SERVICE USERS
     serviceUsers: async () => {
