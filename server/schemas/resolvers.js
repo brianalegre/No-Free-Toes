@@ -239,15 +239,14 @@ const resolvers = {
       const deletedTimeSlot = await TimeSlot.findOneAndDelete({
         _id: timeSlotId,
       });
-      // const updatedUser = await ServiceUser.findOneAndUpdate(
-      //   {
-      //     _id: serviceUserId,
-      //   },
-      //   { $pull: { timeSlot: deletedTimeSlot } },
-      //   { new: true }
-      // );
-      // return updatedUser, deletedTimeSlot;
-      return deletedTimeSlot;
+      const updatedUser = await ServiceUser.findOneAndUpdate(
+        {
+          _id: serviceUserId,
+        },
+        { $pull: { timeSlots: deletedTimeSlot } },
+        { new: true }
+      );
+      return updatedUser, deletedTimeSlot;
     },
   },
 };
