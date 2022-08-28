@@ -20,7 +20,6 @@ const ProviderSignup = () => {
   // setErrorMessage('Please fill out all necessary info!');
 
   const [selectedOption, setSelectedOption] = useState(null);
-  // const [destructure, setDestructure] = useState(null);
 
 
   // MUTATION TO ADD SERVICE USER
@@ -37,6 +36,7 @@ const ProviderSignup = () => {
   });
 
   // UPDATE  STATE
+
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -44,29 +44,16 @@ const ProviderSignup = () => {
       ...formState,
       [name]: value,
     });
-
-    // setSelectedOption(event);
   };
 
   const handleSelectedOption = val => {
     setSelectedOption(val)
-    // console.log("SELECTED OPTION", val)
-    // DESTRUCTURE VALUE
     const { serviceCategory } = val;
-    // setDestructure(serviceCategory);
-    // console.log('THIS IS SERVICECATETORY IN HANDLE', serviceCategory)
     setFormState({
       ...formState,
       serviceCategory: serviceCategory,
     });
-    // SET STATE OF SELECTED OPTION
-    // console.log("SELECTED OPTION", val)
-    // console.log('SELECTED OPTION STATE', selectedOption)
   }
-  // console.log('SELECTED OPTION STATE2', selectedOption)
-  // console.log('DESTRUCTURE', destructure)
-
-  // ADD DESTRUCTURE TO FORMSTATE
 
 
   // SUBMIT FORM
