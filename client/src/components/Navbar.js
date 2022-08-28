@@ -10,6 +10,12 @@ const isLoggedIn = Auth.loggedIn() ? true : false;
 // else set the user id to null
 const loggedInUserId = isLoggedIn ? Auth.getProfile().data._id : null;
 
+const userType = isLoggedIn ? Auth.getProfile().data.userType : null;
+
+console.log(userType);
+
+
+
 const visitorNavLinks = [
   {
     name: "Home",
@@ -39,13 +45,13 @@ const memberNavLinks = [
     link: "#",
   },
   {
-    name: "Normal Account",
+    name: "Account",
     link: "/account/" + loggedInUserId,
   },
-  {
-    name: "Service Account",
-    link: "/profile/" + loggedInUserId,
-  },
+  // {
+  //   name: "Service Account",
+  //   link: "/profile/" + loggedInUserId,
+  // },
 ];
 
 const visitorLgNav = visitorNavLinks.map((navlinks, i) => (
