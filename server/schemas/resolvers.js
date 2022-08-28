@@ -251,4 +251,7 @@ const resolvers = {
   },
 };
 
+  // ADD SERVICE TYPE TO TIME SLOT
+
+  //REMOVE SERVICE TYPE FROM TIME SLOT
 module.exports = resolvers;

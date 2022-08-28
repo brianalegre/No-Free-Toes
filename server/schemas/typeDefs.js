@@ -24,6 +24,13 @@ const typeDefs = gql`
         serviceUser: ServiceUser
     }
 
+    type TimeSlot {
+    _id: ID
+    timeSlot: String
+    serviceUser: ServiceUser
+    serviceType: [ServiceType]
+    }
+
     type NormalUser {
         _id: ID
         firstName: String
@@ -50,6 +57,7 @@ const typeDefs = gql`
         timeSlots: [TimeSlot]
         appointments: [Appointment]
     }
+    
 
     type ServiceComment {
         _id: ID
@@ -70,12 +78,6 @@ const typeDefs = gql`
     serviceUser: ServiceUser
     }
 
-    type TimeSlot {
-    _id: ID
-    timeSlot: String
-    serviceUser: ServiceUser
-    serviceType: [ServiceType]
-    }
 
     type Query {
         # SERVICE TYPE
@@ -156,8 +158,8 @@ const typeDefs = gql`
 
         # TIME SLOT
         addTimeSlot(timeSlot: String!, serviceUser: ID!, serviceType:[ID]): TimeSlot
-        editTimeSlot(timeSlot: String!, serviceUser: ID!, serviceType: [ID]): TimeSlot
         removeTimeSlot(timeSlotId: ID!, serviceUserId: ID!): TimeSlot
+        # editTimeSlot(timeSlot: String!, serviceUser: ID!, serviceType: [ID]): TimeSlot
 
 
     }
