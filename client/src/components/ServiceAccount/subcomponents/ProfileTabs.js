@@ -3,7 +3,7 @@ import ProfileSettings from "./ProfileSettings";
 const avatarImg = ".././assets/images/man.png";
 
 
-export default function ProfileTabs({ loggedInUserId, email, firstName, lastName, photo, location, serviceCategory, refetch }) {
+export default function ProfileTabs({ loggedInUserId, email, firstName, lastName, photo, location, categoryName, refetch }) {
     const [profileTabs] = useState([
         {
             name: "Profile",
@@ -30,7 +30,7 @@ export default function ProfileTabs({ loggedInUserId, email, firstName, lastName
                     <img className="w-10 h-10 rounded-full" src={photo} alt="avatar" />
                     <div className="font-medium dark:text-white">
                         <div>{firstName} {lastName}</div>
-                        <div className="text-base text-gray-500 dark:text-gray-400">{serviceCategory.categoryName}</div>
+                        <div className="text-base text-gray-500 dark:text-gray-400">{categoryName}</div>
                     </div>
                 </div>
                 {/* Tabs */}

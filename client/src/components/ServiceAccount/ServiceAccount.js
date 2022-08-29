@@ -13,9 +13,9 @@ export default function ServiceAccount() {
         fetchPolicy: "no-cache",
     });
 
-    const { email, firstName, lastName, photo, location, serviceCategory } = data?.serviceUser || {};
-
-    console.log(serviceCategory)
+    const { email, firstName, lastName, photo, location } = data?.serviceUser || {};
+    const { categoryName } = data?.serviceUser.serviceCategory || {};
+    console.log(categoryName)
     // USER NEEDS TO BE LOGGED IN TO DISPLAY
     if (!Auth.loggedIn()) {
         return (
@@ -41,7 +41,7 @@ export default function ServiceAccount() {
                             lastName={lastName}
                             photo={photo}
                             location={location}
-                            serviceCategory={serviceCategory}
+                            categoryName={categoryName}
                             refetch={refetch}
                         />
                     </div>
