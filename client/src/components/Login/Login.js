@@ -10,7 +10,7 @@ const Login = () => {
         {/* HERO SECTION */}
         <div className="container mx-auto flex flex-col md:flex-row items-center my-12">
           <div className="pl-24 w-full lg:w-1/2 lg:py-6">
-            <img src={heroImg} alt="hero" className="w-4/6" />
+            <img src={heroImg} alt="hero" className="w-1/4" />
           </div>
           <div className="flex flex-col w-full lg:w-2/3 justify-center items-start py-12 px-6">
             <h1 className="my-4 text-2xl text-bold lg:text-5xl">

@@ -148,13 +148,16 @@ const ProviderSignup = () => {
                     value={formState.password}
                     onChange={handleChange}
                   />
-                  <input
-                    className="form-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
-                    placeholder="Tell us about yourself..."
-                    name="bio"
-                    type="text"
-                    value={formState.bio}
-                    onChange={handleChange}
+                  
+                  <textarea 
+                  id="message" 
+                  rows="4" 
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                  name="bio"
+                  type="text"
+                  placeholder="Tell us about yourself..."
+                  value={formState.bio}
+                  onChange={handleChange}
                   />
 
                   <input
@@ -171,6 +174,7 @@ const ProviderSignup = () => {
                     options={cats4Dropdown}
                     onChange={handleSelectedOption}
                     name="serviceCategory"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
                   />
                   <button
                     className="py-3 px-5 mr-5 w-full text-lg font-semibold focus:outline-none rounded-full text-center bg-green-300 hover:bg-green-700 text-black hover:text-gray-100 rounded transition duration-300 btn btn-block"
