@@ -15,7 +15,6 @@ export default function Services({ serviceUser }) {
   const availableTimes = timeSlots?.map((times, i) => {
     // destructuring the times object
     const {
-      _id,
       timeSlot,
     } = times;
 

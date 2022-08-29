@@ -126,27 +126,6 @@ export const QUERY_SERVICECOMMENTS_BY_SERVICEUSERID = gql`
   }
 `;
 
-export const QUERY_TIMESLOTS_BY_SERVICEUSERID = gql`
-   query serviceUser($serviceUserId: ID!) {
-    serviceUser(serviceUserId: $serviceUserId) {
-      firstName
-      lastName
-      firstName
-      lastName
-      photo
-      email
-      bio
-      location
-      timeSlots {
-        _id
-        timeSlot
-      }
-    }
-  }
-`;
-
-
-
 
 // export const QUERY_SERVICEUSERS_CATEGORY = gql`
 //   query serviceUsersCategory($serviceCategory: ID) {
