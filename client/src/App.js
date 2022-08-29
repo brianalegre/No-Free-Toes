@@ -39,7 +39,7 @@ const App = () => (
         <Route path="/signup/client" element={<SignupClient />} />
         <Route path="/signup/provider" element={<SignupProvider />} />
         {/* TEST PATH FOR TIME SLOT */}
-        <Route path="/timeslot" element={<TimeSlot />} />
+        <Route path="/timeslot/:serviceUserId" element={<TimeSlot />} />
 
         <Route path="/profile" element={<UserProfilePage />} />
         <Route path="/profile/:loggedInUserId" element={<UserProfilePage />} />
