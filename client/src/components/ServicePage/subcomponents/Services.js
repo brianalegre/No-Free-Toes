@@ -3,7 +3,7 @@ import React from "react";
 export default function Services({ serviceUser }) {
   const { serviceType } = serviceUser;
 
-  // console.log(serviceType);
+  console.log(serviceType);
 
   const services = serviceType?.map((service) => (
     <tr key={service.serviceName}>

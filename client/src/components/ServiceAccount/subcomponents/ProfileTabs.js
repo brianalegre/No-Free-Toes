@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ProfileSettings from "./ProfileSettings";
+import ServiceSettings from "./ServiceSettings";
 const avatarImg = ".././assets/images/man.png";
 
 
@@ -58,6 +59,9 @@ export default function ProfileTabs({ loggedInUserId, email, firstName, lastName
                     photo={photo}
                     location={location}
                     refetch={refetch} />
+            </div>
+            <div className={currentTab.name === "Services" ? null : "hidden"}>
+                    <ServiceSettings/>
             </div>
         </>
 

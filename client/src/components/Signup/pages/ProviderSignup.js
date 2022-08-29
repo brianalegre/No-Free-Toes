@@ -14,6 +14,7 @@ const ProviderSignup = () => {
     error: catError,
     loading,
   } = useQuery(QUERY_ALL_SERVICECATEGORIES);
+  console.log(categories)
 
   // const [errorMessage, setErrorMessage] = useState('');
 
@@ -91,6 +92,7 @@ const ProviderSignup = () => {
       serviceCategory: cat._id,
       label: cat.categoryName,
     })) || [];
+    
 
   return (
     // <div className="max-w-xxl justify-center">

@@ -140,6 +140,8 @@ export const QUERY_SINGLE_SERVICEUSER = gql`
     serviceType {
       _id
       serviceName
+      servicePrice
+      serviceDescription
     }
   }
 }

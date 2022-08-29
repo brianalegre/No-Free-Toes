@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState,  } from "react";
 import ProfileTabs from "./subcomponents/ProfileTabs";
 import { useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
@@ -7,20 +7,35 @@ import Auth from "../../utils/auth";
 
 export default function ServiceAccount() {
     const { loggedInUserId } = useParams();
-
+    
     const { loading, error, data, refetch } = useQuery(QUERY_SINGLE_SERVICEUSER, {
         variables: { serviceUserId: loggedInUserId },
         fetchPolicy: "no-cache",
     });
 
+
     // DESTRUCTURE TO GET SERVICE USER DATA
     const { email, firstName, lastName, photo, location } = data?.serviceUser || {};
     
     // DESTRUCTURE TO GET CATEGORY NAME
-    const { categoryName } = data?.serviceUser.serviceCategory || {};
-    // console.log(data)
-    const services = data?.serviceUser.serviceType || {};
-    console.log(services)
+    const { categoryName } = data?.serviceUser.serviceCategory || [];
+    // console.log(categoryName)
+    // const { ...serviceType } = data?.serviceUser.serviceType || [];
+    // console.log(serviceType)
+
+    // const serviceTypeMap = serviceType.map((serv)=> ({
+    //     serviceType: serv._id,
+    //     serviceName: serv.serviceName
+    // })) 
+    // console.log(serviceName)
+    // const serviceTypeMap = serviceType?.serviceName?.map((serv) => ({
+    //     serviceType: serv._id,
+    //     name: serv.serviceName
+    // })) || []
+
+    // console.log(serviceTypeMap)
+
+
     
     // USER NEEDS TO BE LOGGED IN TO DISPLAY
     const isLoggedIn = Auth.loggedIn() ? true : false;
@@ -57,6 +72,7 @@ export default function ServiceAccount() {
                                 photo={photo}
                                 location={location}
                                 categoryName={categoryName}
+                                // serviceUser={serviceUser}
                                 refetch={refetch}
                             />
                         </div>
