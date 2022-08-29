@@ -16,6 +16,7 @@ import Signup from "./components/Signup/SignUp";
 import SignupClient from "./components/Signup/pages/ClientSignup";
 import SignupProvider from "./components/Signup/pages/ProviderSignup";
 import UserProfilePage from "./components/UserProfilePage/UserProfilePage";
+import TimeSlot from "./components/TimeSlot/TimeSlot";
 
 const client = new ApolloClient({
   uri: "/graphql",
@@ -37,6 +38,8 @@ const App = () => (
         <Route path="/signup" element={<Signup />} />
         <Route path="/signup/client" element={<SignupClient />} />
         <Route path="/signup/provider" element={<SignupProvider />} />
+        {/* TEST PATH FOR TIME SLOT */}
+        <Route path="/timeslot" element={<TimeSlot />} />
 
         <Route path="/profile" element={<UserProfilePage />} />
         <Route path="/profile/:loggedInUserId" element={<UserProfilePage />} />

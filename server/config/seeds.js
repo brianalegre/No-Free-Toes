@@ -735,8 +735,8 @@ db.once("open", async () => {
     bio: "First testing bio",
     location: "Garden Grove, CA",
     serviceType: [serviceTypeSeed[0]._id, serviceTypeSeed[2]._id, serviceTypeSeed[4]._id],
-    timeSlots: [timeSlot95[0]._id, timeSlot95[1]._id, timeSlot95[2]._id, timeSlot95[3]._id, timeSlot95[4]._id, timeSlot95[5]._id, timeSlot95[6]._id,timeSlot95[7]._id,timeSlot95[8]._id,
-    timeSlot96[0]._id, timeSlot96[1]._id, timeSlot96[2]._id, timeSlot96[3]._id, timeSlot96[4]._id, timeSlot96[5]._id, timeSlot96[6]._id,timeSlot96[7]._id,timeSlot96[8]._id,],
+    timeSlots: [timeSlot95[0]._id, timeSlot95[1]._id, timeSlot95[2]._id, timeSlot95[3]._id, timeSlot95[4]._id, timeSlot95[5]._id, timeSlot95[6]._id, timeSlot95[7]._id, timeSlot95[8]._id,
+    timeSlot96[0]._id, timeSlot96[1]._id, timeSlot96[2]._id, timeSlot96[3]._id, timeSlot96[4]._id, timeSlot96[5]._id, timeSlot96[6]._id, timeSlot96[7]._id, timeSlot96[8]._id,],
   });
 
   // CREATE SERVICEUSER DATA
