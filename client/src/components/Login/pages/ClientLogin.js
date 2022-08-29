@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_NORMALUSER } from "../../../utils/mutations";
 import Auth from "../../../utils/auth";
+import heroImg from "../../../images/hero_image.svg";
 
 const ClientLogin = () => {
 
@@ -44,37 +45,29 @@ const ClientLogin = () => {
 
     return (
 
-        // <div class="p-4 w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
-        //     <form class="space-y-6" action="#">
-        //         <h5 class="text-xl font-medium text-gray-900 dark:text-white">Sign in to our platform</h5>
-        //         <div>
-        //             <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your email</label>
-        //             <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required />
-        //         </div>
-        //         <div>
-        //             <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your password</label>
-        //             <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
-        //         </div>
-        //         <div class="flex items-start">
-        //             <div class="flex items-start">
-        //                 <div class="flex items-center h-5">
-        //                     <input id="remember" type="checkbox" value="" class="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800" required />
-        //                 </div>
-        //                 <label for="remember" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember me</label>
-        //             </div>
-        //         </div>
-        //         <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login to your account</button>
-        //         <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
-        //             Not registered? <Link to="/signup" class="text-blue-700 hover:underline dark:text-blue-500">Create account</Link>
-        //         </div>
-        //     </form>
-        // </div>
-
-        <main className="flex-row justify-center mb-4">
+        <div className="p-6 sm:p-20 min-h-screen grid gap-6 mb-6 md:grid-cols-2">
+        {/* HERO SECTION */}
+        <div className="container mx-auto flex flex-col md:flex-row items-center my-12">
+          <div className="pl-24 w-full lg:w-1/2 lg:py-6">
+            <img src={heroImg} alt="hero" className="w-4/6" />
+          </div>
+          <div className="flex flex-col w-full lg:w-2/3 justify-center items-start py-12 px-6">
+            <h1 className="my-4 text-2xl text-bold lg:text-5xl">
+              No Free Toes Scheduler
+            </h1>
+            <p className="leading-normal mb-4">
+              No Free Toes Scheduler is a solution to all of your scheduling
+              needs, for whatever service you may need. We aim to ease the
+              difficulties of creating, setting up, attending or even providing
+              appointments. Login to get started.
+            </p>
+          </div>
+        </div>
+        <main className=" p-10 min-w-center m-auto w-full text-center max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 md:p-8 bg-gray-800 border-gray-700">
             <div className="col-12 col-lg-10">
                 <div className="card">
-                    <h4 className="card-header bg-dark text-light p-2">Login</h4>
-                    <div className="card-body">
+                    <h4 className="mb-2 text-3xl font-bold text-white">Client Login</h4>
+                    <div className="card-body text-green-500">
                         {data ? (
                             <p>
                                 Success! You may now head{' '}
@@ -82,34 +75,45 @@ const ClientLogin = () => {
                             </p>
                         ) : (
                             <form onSubmit={handleFormSubmit}>
+                            <label htmlFor="email" className="block m-4 text-sm font-medium text-gray-300">Please enter your email</label>
                                 <input
-                                    className="form-input"
+                                    className="form-input bg-gray-100 border border-green-300 text-gray-900 text-sm rounded-lg focus:ring-green-700 focus:border-green-700 block w-full p-2.5 "
                                     placeholder="Your email"
                                     name="email"
                                     type="email"
                                     value={formState.email}
                                     onChange={handleChange}
                                 />
+                                <label htmlFor="password" className="block m-4 text-sm font-medium text-gray-300">Please enter your password</label>
                                 <input
-                                    className="form-input"
-                                    placeholder="******"
+                                    className="form-input mb-8 bg-gray-100 border border-green-300 text-gray-900 text-sm rounded-lg focus:ring-green-700 focus:border-green-700 block w-full p-2.5 "
+                                    placeholder="********"
                                     name="password"
                                     type="password"
                                     value={formState.password}
                                     onChange={handleChange}
                                 />
+                                {/* <div className="flex items-start">
+                                <div className="flex items-center h-5">
+                                <input id="remember" type="checkbox" value="" className="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800" />
+                                </div>
+                                <label htmlFor="remember" className="ml-2 mb-4 text-sm font-medium text-gray-300">Remember me</label>
+                                </div> */}
                                 <button
-                                    className="btn btn-block btn-primary"
+                                    className="py-3 px-5 mr-5 w-full mb-5 text-lg font-semibold focus:outline-none rounded-full text-center bg-green-300 hover:bg-green-700 text-black hover:text-gray-100 rounded transition duration-300 btn btn-block"
                                     style={{ cursor: 'pointer' }}
                                     type="submit"
                                 >
                                     Submit
                                 </button>
+                                <div className="text-sm font-medium text-gray-300">
+                                Not registered? <Link to="/signup" className="text-green-500 hover:underline">Sign Up</Link>
+                                </div>
                             </form>
                         )}
 
                         {error && (
-                            <div className="my-3 p-3 bg-danger text-black">
+                            <div className="my-3 p-3 bg-danger text-red-500">
                                 {error.message}
                             </div>
                         )}
@@ -117,6 +121,7 @@ const ClientLogin = () => {
                 </div>
             </div>
         </main>
+        </div>
 
     );
 };
