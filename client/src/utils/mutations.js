@@ -148,8 +148,10 @@ export const EDIT_NORMALUSER = gql`
     location
   }
 }
-
 `
+
+
+
 
 // export const ADD_NORMALUSER2 = gql`
 // mutation Mutation($firstName: String!, $lastName: String!, $email: String!, $password: String!, $location: String!) {

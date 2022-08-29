@@ -197,7 +197,10 @@ const resolvers = {
       );
       return deletedComment, updatedUser
     },
+
+    // DELETE SERVICE TYPE
   },
 };
+
 
 module.exports = resolvers;

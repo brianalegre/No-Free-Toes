@@ -20,7 +20,7 @@ export default function ServiceAccount() {
     const { categoryName } = data?.serviceUser.serviceCategory || {};
     // console.log(data)
     const services = data?.serviceUser.serviceType || {};
-    // console.log(services)
+    console.log(services)
     
     // USER NEEDS TO BE LOGGED IN TO DISPLAY
     const isLoggedIn = Auth.loggedIn() ? true : false;
@@ -40,7 +40,7 @@ export default function ServiceAccount() {
     }
     
     // IF LOGGED IN USER IS SERVICE USER, PAGE DISPLAYS
-    if (userType === "servicUser") {
+    if (userType === "serviceUser") {
         return (
             <>
                 <main className="bg-white mx-20 mt-10 min-h-screen text-lg">
@@ -65,7 +65,7 @@ export default function ServiceAccount() {
             </>
         );
     }
-    // IF NOT A SERVICE USER, DISPLAYS THIS
+    // IF NOT A SERVICE USER, MESSAGE DISPLAYS BELOW
     else {
         return (
             <h1>
