@@ -11,13 +11,14 @@ export default function Services({ serviceUser }) {
 
   console.log(serviceType);
 
-  // CONVERT TIME SLOTS WITH MOMENTJS
+  // MAP TIME SLOTS TO DISPLAY
   const availableTimes = timeSlots?.map((times, i) => {
-    // destructuring the times object
+    // DESTRUCTURING THE TIMESLOTS OBJECT
     const {
       timeSlot,
     } = times;
-
+    
+    // CONVERT TIME SLOTS WITH MOMENTJS
     const parsedDate = moment.unix(timeSlot).format("lll")
     console.log('I AM PARSED DATE', parsedDate);
 
@@ -60,6 +61,37 @@ export default function Services({ serviceUser }) {
     setmodalIsOpen(false);
 
   }
+
+  // GET HEADER FUNCTION
+  // DISPLAY TODAYS DATE, TOMORROWS DATE, OR NEXT DAYS DATE
+  // ONTO THE HEADER OF THE TABLE
+  const getHeader = () => {
+    const today = moment().format("ll");
+    const tomorrow = moment().add(1, 'days').format("ll");
+    const nextDay = moment().add(2, 'days').format("ll");
+    const nextNextDay = moment().add(3, 'days').format("ll");
+    const nextNextNextDay = moment().add(4, 'days').format("ll");
+    const nextNextNextNextDay = moment().add(5, 'days').format("ll");
+    const nextNextNextNextNextDay = moment().add(6, 'days').format("ll");
+
+    if (today === timeSlots[0].date) {
+      return <th>Today</th>
+    } else if (tomorrow === timeSlots[0].date) {
+      return <th>Tomorrow</th>
+    } else if (nextDay === timeSlots[0].date) {
+      return <th>{nextDay}</th>
+    } else if (nextNextDay === timeSlots[0].date) {
+      return <th>{nextNextDay}</th>
+    } else if (nextNextNextDay === timeSlots[0].date) {
+      return <th>{nextNextNextDay}</th>
+    } else if (nextNextNextNextDay === timeSlots[0].date) {
+      return <th>{nextNextNextNextDay}</th>
+    } else if (nextNextNextNextNextDay === timeSlots[0].date) {
+      return <th>{nextNextNextNextNextDay}</th>
+    }
+  }
+  
+  
 
 
   const services = serviceType?.map((service) => (
