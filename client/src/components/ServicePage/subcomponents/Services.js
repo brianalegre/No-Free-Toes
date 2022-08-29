@@ -17,11 +17,12 @@ export default function Services({ serviceUser }) {
     const {
       timeSlot,
     } = times;
-    
+
     // CONVERT TIME SLOTS WITH MOMENTJS
     const parsedDate = moment.unix(timeSlot).format("lll")
     console.log('I AM PARSED DATE', parsedDate);
 
+    // return parsedDate
     return (
       <>
         <div>
@@ -66,32 +67,28 @@ export default function Services({ serviceUser }) {
   // DISPLAY TODAYS DATE, TOMORROWS DATE, OR NEXT DAYS DATE
   // ONTO THE HEADER OF THE TABLE
   const getHeader = () => {
-    const today = moment().format("ll");
-    const tomorrow = moment().add(1, 'days').format("ll");
-    const nextDay = moment().add(2, 'days').format("ll");
-    const nextNextDay = moment().add(3, 'days').format("ll");
-    const nextNextNextDay = moment().add(4, 'days').format("ll");
-    const nextNextNextNextDay = moment().add(5, 'days').format("ll");
-    const nextNextNextNextNextDay = moment().add(6, 'days').format("ll");
 
-    if (today === timeSlots[0].date) {
-      return <th>Today</th>
-    } else if (tomorrow === timeSlots[0].date) {
-      return <th>Tomorrow</th>
-    } else if (nextDay === timeSlots[0].date) {
-      return <th>{nextDay}</th>
-    } else if (nextNextDay === timeSlots[0].date) {
-      return <th>{nextNextDay}</th>
-    } else if (nextNextNextDay === timeSlots[0].date) {
-      return <th>{nextNextNextDay}</th>
-    } else if (nextNextNextNextDay === timeSlots[0].date) {
-      return <th>{nextNextNextNextDay}</th>
-    } else if (nextNextNextNextNextDay === timeSlots[0].date) {
-      return <th>{nextNextNextNextNextDay}</th>
-    }
+    const today = moment().format("dddd MM/DD");
+    const todayPlusOne = moment().add(1, 'days').format("dddd MM/DD");
+    const todayPlusTwo = moment().add(2, 'days').format("dddd MM/DD");
+    const todayPlusThree = moment().add(3, 'days').format("dddd MM/DD");
+    const todayPlusFour = moment().add(4, 'days').format("dddd MM/DD");
+    const todayPlusFive = moment().add(5, 'days').format("dddd MM/DD");
+    const todayPlusSix = moment().add(6, 'days').format("dddd MM/DD");
+
+    return (
+      <>
+        <th>{today}</th>
+        <th>{todayPlusOne}</th>
+        <th>{todayPlusTwo}</th>
+        <th>{todayPlusThree}</th>
+        <th>{todayPlusFour}</th>
+        <th>{todayPlusFive}</th>
+        <th>{todayPlusSix}</th>
+      </>
+    )
+
   }
-  
-  
 
 
   const services = serviceType?.map((service) => (
@@ -157,14 +154,9 @@ export default function Services({ serviceUser }) {
             </div>
             <div className="w-full">
               <table className="m-auto p-5">
-                {availableTimes}
-                {/* <tr>
-                  <th>Monday</th>
-                  <th>Tuesday</th>
-                  <th>Wednesday</th>
-                  <th>Thursday</th>
-                  <th>Friday</th>
-
+                {/* {availableTimes} */}
+                <tr>
+                  {getHeader()}
                 </tr>
                 <tr>
                   <td><button>Time Slot 1</button></td>
@@ -172,6 +164,8 @@ export default function Services({ serviceUser }) {
                   <td><button>Time Slot 1</button></td>
                   <td><button>Time Slot 1</button></td>
                   <td><button>Time Slot 1</button></td>
+                  <td><button>Time Slot 1</button></td>
+                  <td><button>Time Slot 1</button></td>
 
                 </tr>
                 <tr>
@@ -180,7 +174,8 @@ export default function Services({ serviceUser }) {
                   <td><button>Time Slot 2</button></td>
                   <td><button>Time Slot 2</button></td>
                   <td><button>Time Slot 2</button></td>
-
+                  <td><button>Time Slot 2</button></td>
+                  <td><button>Time Slot 2</button></td>
                 </tr>
                 <tr>
                   <td><button>Time Slot 3</button></td>
@@ -188,7 +183,9 @@ export default function Services({ serviceUser }) {
                   <td><button>Time Slot 3</button></td>
                   <td><button>Time Slot 3</button></td>
                   <td><button>Time Slot 3</button></td>
-                </tr> */}
+                  <td><button>Time Slot 3</button></td>
+                  <td><button>Time Slot 3</button></td>
+                </tr>
               </table>
             </div>
           </div>
