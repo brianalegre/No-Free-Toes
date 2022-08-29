@@ -13,10 +13,23 @@ export default function ServiceAccount() {
         fetchPolicy: "no-cache",
     });
 
+    // DESTRUCTURE TO GET SERVICE USER DATA
     const { email, firstName, lastName, photo, location } = data?.serviceUser || {};
+    
+    // DESTRUCTURE TO GET CATEGORY NAME
     const { categoryName } = data?.serviceUser.serviceCategory || {};
-    console.log(categoryName)
+    // console.log(data)
+    const services = data?.serviceUser.serviceType || {};
+    // console.log(services)
+    
     // USER NEEDS TO BE LOGGED IN TO DISPLAY
+    const isLoggedIn = Auth.loggedIn() ? true : false;
+
+    const loggedInServiceUserId = isLoggedIn ? Auth.getProfile().data._id : null;
+
+    const userType = loggedInServiceUserId ? Auth.getProfile().data.userType : null;
+
+    // CONIDITIONAL TO CHECK IF USER IS LOGGED IN, IF NOT DISPLAYS BELOW
     if (!Auth.loggedIn()) {
         return (
             <h4>
@@ -25,28 +38,40 @@ export default function ServiceAccount() {
             </h4>
         );
     }
-
-    return (
-        <>
-            <main className="bg-white mx-20 mt-10 min-h-screen text-lg">
-                {/* Wrapper for main section */}
-                <div id="wrapper" className="max-w-screen-xl mx-auto">
-                    {/* Grid cols for tabs/form */}
-                    <div className="grid grid-cols-1 md:grid-cols-[25%_75%]">
-                        {/* Tabs */}
-                        <ProfileTabs
-                            loggedInUserId={loggedInUserId}
-                            email={email}
-                            firstName={firstName}
-                            lastName={lastName}
-                            photo={photo}
-                            location={location}
-                            categoryName={categoryName}
-                            refetch={refetch}
-                        />
+    
+    // IF LOGGED IN USER IS SERVICE USER, PAGE DISPLAYS
+    if (userType === "servicUser") {
+        return (
+            <>
+                <main className="bg-white mx-20 mt-10 min-h-screen text-lg">
+                    {/* Wrapper for main section */}
+                    <div id="wrapper" className="max-w-screen-xl mx-auto">
+                        {/* Grid cols for tabs/form */}
+                        <div className="grid grid-cols-1 md:grid-cols-[25%_75%]">
+                            {/* Tabs */}
+                            <ProfileTabs
+                                loggedInUserId={loggedInUserId}
+                                email={email}
+                                firstName={firstName}
+                                lastName={lastName}
+                                photo={photo}
+                                location={location}
+                                categoryName={categoryName}
+                                refetch={refetch}
+                            />
+                        </div>
                     </div>
-                </div>
-            </main>
-        </>
-    );
+                </main>
+            </>
+        );
+    }
+    // IF NOT A SERVICE USER, DISPLAYS THIS
+    else {
+        return (
+            <h1>
+                You need to be Service Provider to Access page
+            </h1>
+        )
+    }
 }
+

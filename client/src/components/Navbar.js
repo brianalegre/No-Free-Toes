@@ -49,10 +49,10 @@ const memberNavLinks = [
     name: "Account",
     link: userLink
   },
-  {
-    name: "Service Account",
-    link: userLink
-  },
+  // {
+  //   name: "Service Account",
+  //   link: userLink
+  // },
 ];
 
 const visitorLgNav = visitorNavLinks.map((navlinks, i) => (
