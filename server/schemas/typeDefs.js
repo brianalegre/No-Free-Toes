@@ -24,6 +24,13 @@ const typeDefs = gql`
         serviceUser: ServiceUser
     }
 
+    type TimeSlot {
+    _id: ID
+    timeSlot: String
+    serviceUser: ServiceUser
+    serviceType: [ServiceType]
+    }
+
     type NormalUser {
         _id: ID
         firstName: String
@@ -47,8 +54,10 @@ const typeDefs = gql`
         location: String
         serviceCategory: ServiceCategory
         serviceType: [ServiceType]
+        timeSlots: [TimeSlot]
         appointments: [Appointment]
     }
+    
 
     type ServiceComment {
         _id: ID
@@ -68,7 +77,8 @@ const typeDefs = gql`
     token: ID!
     serviceUser: ServiceUser
     }
-    
+
+
     type Query {
         # SERVICE TYPE
         serviceType(_id: ID!): ServiceType
@@ -92,10 +102,14 @@ const typeDefs = gql`
         appointment(_id: ID!): Appointment
         appointments: [Appointment]
 
-
         # SERVICE COMMENT
         serviceComment(serviceCommentId: ID!): ServiceComment
         serviceComments(serviceUserId: ID, normalUserId: ID): [ServiceComment]
+    
+        # TIME SLOT
+        timeSlot(timeSlotId: ID!): TimeSlot
+        timeSlots: [TimeSlot]
+
     }
 
     type NormalAuth {
@@ -110,7 +124,7 @@ const typeDefs = gql`
 
     type Mutation {
         # SERVICE TYPE
-        addServiceType(serviceName: String!, servicePrice: Float!, serviceDuration: Float!, serviceDescription: String,  serviceCategory: ID!): ServiceType
+        addServiceType(serviceName: String!, servicePrice: Float!, serviceDuration: Float, serviceDescription: String,  serviceCategory: ID!): ServiceType
         editServiceType(serviceName: String, servicePrice: Float, serviceDuration: Float, serviceDescription: String): ServiceType
 
         # SERVICE CATEGORY
@@ -124,7 +138,7 @@ const typeDefs = gql`
         
         # SERVICE USER
         addServiceUser(firstName: String!, lastName: String!, email: String!, password: String!, bio: String!, location: String!, serviceCategory: ID!): ServiceAuth
-        editServiceUser(firstName: String, lastName: String, email: String, password: String, photo: String, bio:String, location: String, serviceCategory: ID, serviceType: [ID]): ServiceUser
+        editServiceUser(firstName: String, lastName: String, email: String, password: String, photo: String, bio:String, location: String, serviceCategory: ID, serviceType: [ID], timeSlots: [ID]): ServiceUser
         removeServiceUser(_id: ID!): ServiceUser
         loginServiceUser(email: String!, password: String!): ServiceAuth
         
@@ -141,6 +155,11 @@ const typeDefs = gql`
 
         # Service User Login
         serviceLogin(email: String!, password: String!): ServiceAuth
+
+        # TIME SLOT
+        addTimeSlot(timeSlot: String!, serviceUser: ID!, serviceType:[ID]): TimeSlot
+        removeTimeSlot(timeSlotId: ID!, serviceUserId: ID!): TimeSlot
+        # editTimeSlot(timeSlot: String!, serviceUser: ID!, serviceType: [ID]): TimeSlot
 
 
     }

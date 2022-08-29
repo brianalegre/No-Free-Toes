@@ -49,7 +49,14 @@ const serviceUserSchema = new Schema({
             ref: 'ServiceType',
         }
     ],
-    appointments: [
+    timeSlots: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "TimeSlot",
+            unique: true,
+        },
+    ],
+    appointment: [
         {
             type: Schema.Types.ObjectId,
             ref: 'Appointment',

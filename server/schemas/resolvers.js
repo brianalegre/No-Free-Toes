@@ -4,11 +4,12 @@ const {
   ServiceCategory,
   ServiceComment,
   ServiceType,
+  TimeSlot,
 } = require("../models");
 
 const { signToken } = require("../utils/auth");
 const { AuthenticationError } = require("apollo-server-express");
-const { isObjectIdOrHexString } = require("mongoose");
+const { isObjectIdOrHexString, trusted } = require("mongoose");
 
 const resolvers = {
   Query: {
@@ -16,22 +17,36 @@ const resolvers = {
     normalUsers: async () => {
       return await NormalUser.find().populate("serviceComments");
     },
+    // GET ALL TIME SLOTS
+    timeSlots: async () => {
+      return await TimeSlot.find()
+        .populate("serviceUser")
+        .populate("serviceType");
+    },
+    // GET SINGLE TIME SLOT
+    timeSlot: async (parent, { timeSlotId }) => {
+      return await TimeSlot.findOne({ _id: timeSlotId })
+        .populate("serviceUser")
+        .populate("serviceType");
+    },
     // GET SINGLE NORMAL USER
     normalUser: async (parent, { normalUserId }) => {
       return await NormalUser.findOne({ _id: normalUserId }).populate(
         "serviceComments"
       );
     },
+    // GET SINGLE SERVICE USER
     serviceUser: async (parent, { serviceUserId }) => {
-      return ServiceUser.findOne({ _id: serviceUserId }).populate(
-        "serviceType"
-      );
+      return ServiceUser.findOne({ _id: serviceUserId })
+        .populate("serviceType")
+        .populate("timeSlots");
     },
     // GET ALL SERVICE USERS
     serviceUsers: async () => {
       return await ServiceUser.find()
         .populate("serviceType")
-        .populate("serviceCategory");
+        .populate("serviceCategory")
+        .populate("timeSlots");
     },
     //  GET ALL SERVICE USERS + SERVICE CATEGORY
     serviceUsers: async () => {
@@ -43,7 +58,7 @@ const resolvers = {
     },
     // GET ALL SERVICE TYPES + SERVICE USERS
     serviceTypes: async () => {
-      return await ServiceType.find({}).populate("serviceUser");
+      return await ServiceType.find({});
     },
     // GET ALL SERVICE COMMENTS
     serviceComments: async (parent, { serviceUserId, normalUserId }) => {
@@ -103,12 +118,16 @@ const resolvers = {
       return { token, user };
     },
     // EDIT NORMAL USER
-    editNormalUser: async (parent, { normalUserId, firstName, lastName, email, password, location }) => {
-      const user = await NormalUser.findByIdAndUpdate( normalUserId ,
+    editNormalUser: async (
+      parent,
+      { normalUserId, firstName, lastName, email, password, location }
+    ) => {
+      const user = await NormalUser.findByIdAndUpdate(
+        normalUserId,
         { $set: { firstName, lastName, email, password, location } },
         { new: true }
-      )
-      return user
+      );
+      return user;
     },
     // LOGIN NORMAL USER
     loginNormalUser: async (parent, { email, password }) => {
@@ -182,7 +201,7 @@ const resolvers = {
         { $push: { serviceComments: newComment } },
         { new: true }
       );
-      return newComment, updatedUser
+      return newComment, updatedUser;
     },
 
     // REMOVE SERVICE COMMENT
@@ -195,9 +214,44 @@ const resolvers = {
         { $pull: { serviceComments: deletedComment._id } },
         { new: true }
       );
-      return deletedComment, updatedUser
+      return deletedComment, updatedUser;
+    },
+
+    // ADD TIME SLOT
+    addTimeSlot: async (parent, { timeSlot, serviceUser, serviceType }) => {
+      const newTimeSlot = await TimeSlot.create({
+        timeSlot,
+        serviceUser,
+        serviceType,
+      });
+      const updatedServiceUser = await ServiceUser.findOneAndUpdate(
+        {
+          _id: serviceUser,
+        },
+        { $push: { timeSlots: newTimeSlot._id } },
+        { new: true }
+      );
+      return updatedServiceUser, newTimeSlot;
+    },
+
+    // REMOVE TIME SLOT
+    removeTimeSlot: async (parent, { timeSlotId, serviceUserId }) => {
+      const deletedTimeSlot = await TimeSlot.findByIdAndDelete({
+        _id: timeSlotId,
+      });
+      const updatedUser = await ServiceUser.findByIdAndUpdate(
+        {
+          _id: serviceUserId,
+        },
+        { $pull: { timeSlots: deletedTimeSlot._id } },
+        { new: true }
+      );
+      return updatedUser, deletedTimeSlot;
     },
   },
 };
 
+  // ADD SERVICE TYPE TO TIME SLOT
+
+  //REMOVE SERVICE TYPE FROM TIME SLOT
 module.exports = resolvers;
