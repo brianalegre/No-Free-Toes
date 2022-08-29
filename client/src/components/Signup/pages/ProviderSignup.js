@@ -104,7 +104,7 @@ const ProviderSignup = () => {
         <div className="card">
         <h4 className="mb-4 text-3xl font-bold text-white">Provider Sign Up</h4>
           <h5 className="mb-4 text-sm font-bold text-white">Please fill out the form below:</h5>
-          <div className="card-body">
+          <div className="card-body text-green-500">
             {data ? (
               <p>
                 Success! You may now head{" "}

@@ -67,7 +67,7 @@ const ClientLogin = () => {
             <div className="col-12 col-lg-10">
                 <div className="card">
                     <h4 className="mb-2 text-3xl font-bold text-white">Client Login</h4>
-                    <div className="card-body">
+                    <div className="card-body text-green-500">
                         {data ? (
                             <p>
                                 Success! You may now head{' '}
