@@ -1,10 +1,36 @@
 import React, { useState } from "react";
 import Modal from 'react-modal';
+import * as moment from "moment";
 
 export default function Services({ serviceUser }) {
   const { serviceType } = serviceUser;
+  const { timeSlots } = serviceUser;
 
-  // console.log(serviceType);
+  console.log('TIMESLOTS Services Tab ----', timeSlots);
+
+
+  console.log(serviceType);
+
+  // CONVERT TIME SLOTS WITH MOMENTJS
+  const availableTimes = timeSlots?.map((times, i) => {
+    // destructuring the times object
+    const {
+      _id,
+      timeSlot,
+    } = times;
+
+    const parsedDate = moment.unix(timeSlot).format("lll")
+    console.log('I AM PARSED DATE', parsedDate);
+
+    return (
+      <>
+        <div>
+          <p>{parsedDate}</p>
+        </div>
+      </>
+    )
+  }
+  )
 
   // MODAL FOR BOOKING
   const customStyles = {
@@ -35,7 +61,6 @@ export default function Services({ serviceUser }) {
     setmodalIsOpen(false);
 
   }
-
 
 
   const services = serviceType?.map((service) => (
@@ -101,7 +126,8 @@ export default function Services({ serviceUser }) {
             </div>
             <div className="w-full">
               <table className="m-auto p-5">
-                <tr>
+                {availableTimes}
+                {/* <tr>
                   <th>Monday</th>
                   <th>Tuesday</th>
                   <th>Wednesday</th>
@@ -131,7 +157,7 @@ export default function Services({ serviceUser }) {
                   <td><button>Time Slot 3</button></td>
                   <td><button>Time Slot 3</button></td>
                   <td><button>Time Slot 3</button></td>
-                </tr>
+                </tr> */}
               </table>
             </div>
           </div>

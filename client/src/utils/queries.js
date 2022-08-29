@@ -97,6 +97,10 @@ export const QUERY_SERVICEUSER = gql`
         serviceDuration
         serviceDescription
       }
+      timeSlots {
+        _id
+        timeSlot
+      }
     }
   }
 `;

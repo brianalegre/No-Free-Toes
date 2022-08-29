@@ -20,6 +20,8 @@ export default function ServicePage() {
     }
   }, [data]);
 
+  console.log(serviceUser)
+
   return (
     <>
       <div className="flex flex-col min-h-screen w-full justify-center items-center bg-gray-100">
