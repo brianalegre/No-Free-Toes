@@ -24,18 +24,14 @@ const resolvers = {
     },
     serviceUser: async (parent, { serviceUserId }) => {
       return ServiceUser.findOne({ _id: serviceUserId })
-      .populate("serviceType")
-      .populate("serviceCategory");
+        .populate("serviceType")
+        .populate("serviceCategory");
     },
     // GET ALL SERVICE USERS
     serviceUsers: async () => {
       return await ServiceUser.find()
         .populate("serviceType")
-        .populate("serviceCategory");
-    },
-    //  GET ALL SERVICE USERS + SERVICE CATEGORY
-    serviceUsers: async () => {
-      return await ServiceUser.find({}).populate("serviceCategory");
+        .populate("serviceCategory")
     },
     //  GET ALL SERVICE CATEGORIES
     serviceCategories: async () => {
@@ -103,12 +99,16 @@ const resolvers = {
       return { token, user };
     },
     // EDIT NORMAL USER
-    editNormalUser: async (parent, { normalUserId, firstName, lastName, email, password, location }) => {
-      const user = await NormalUser.findByIdAndUpdate( normalUserId ,
+    editNormalUser: async (
+      parent,
+      { normalUserId, firstName, lastName, email, password, location }
+    ) => {
+      const user = await NormalUser.findByIdAndUpdate(
+        normalUserId,
         { $set: { firstName, lastName, email, password, location } },
         { new: true }
-      )
-      return user
+      );
+      return user;
     },
     // LOGIN NORMAL USER
     loginNormalUser: async (parent, { email, password }) => {
@@ -166,6 +166,36 @@ const resolvers = {
       return { token, user };
     },
 
+    // ADD SERVICE TYPE
+    addServiceType: async (
+      parent,
+      {
+        serviceName,
+        servicePrice,
+        serviceDuration,
+        serviceDescription,
+        serviceUserId,
+        serviceCategory,
+      }
+    ) => {
+      const newService = await ServiceType.create({
+        serviceName,
+        servicePrice,
+        serviceDuration,
+        serviceDescription,
+        serviceUserId,
+        serviceCategory,
+      });
+      const updatedServiceUser = await ServiceUser.findByIdAndUpdate(
+        {
+          _id: serviceUserId,
+        },
+        { $push: { serviceType: newService._id } },
+        { new: true }
+      );
+      return newService, updatedServiceUser
+    },
+
     // ADD SERVICE COMMENT
     addServiceComment: async (
       parent,
@@ -182,7 +212,7 @@ const resolvers = {
         { $push: { serviceComments: newComment } },
         { new: true }
       );
-      return newComment, updatedUser
+      return newComment, updatedUser;
     },
 
     // REMOVE SERVICE COMMENT
@@ -195,12 +225,11 @@ const resolvers = {
         { $pull: { serviceComments: deletedComment._id } },
         { new: true }
       );
-      return deletedComment, updatedUser
+      return deletedComment, updatedUser;
     },
 
     // DELETE SERVICE TYPE
   },
 };
-
 
 module.exports = resolvers;

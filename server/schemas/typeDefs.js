@@ -110,7 +110,7 @@ const typeDefs = gql`
 
     type Mutation {
         # SERVICE TYPE
-        addServiceType(serviceName: String!, servicePrice: Float!, serviceDuration: Float!, serviceDescription: String,  serviceCategory: ID!): ServiceType
+        addServiceType(serviceName: String!, servicePrice: Float!, serviceDuration: Float, serviceDescription: String, serviceUserId: ID!, serviceCategory: ID!): ServiceType
         editServiceType(serviceName: String, servicePrice: Float, serviceDuration: Float, serviceDescription: String): ServiceType
 
         # SERVICE CATEGORY
