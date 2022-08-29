@@ -32,6 +32,47 @@ db.once("open", async () => {
   // ])
 
   // CREATE TIMESLOT DATA
+  const timeSlot831 = await TimeSlot.insertMany([
+    // 8/31/22
+    {
+      // 8/31 @ 0900
+      timeSlot: 1661961600,
+    },
+    {
+      // 8/31 @ 1000
+      timeSlot: 1661965200,
+    },
+    {
+      // 8/31 @ 1100
+      timeSlot: 1661968800,
+    },
+    {
+      // 8/31 @ 1200
+      timeSlot: 1661972400,
+    },
+    {
+      // 8/31 @ 1300
+      timeSlot: 1661976000,
+    },
+    {
+      // 8/31 @ 1400
+      timeSlot: 1661979600,
+    },
+    {
+      // 8/31 @ 1500
+      timeSlot: 1661983200,
+    },
+    {
+      // 8/31 @ 1600
+      timeSlot: 1661986800,
+    },
+    {
+      // 8/31 @ 1700
+      timeSlot: 1661990400,
+    },
+  ]);
+
+  // CREATE TIMESLOT DATA
   const timeSlot95 = await TimeSlot.insertMany([
     // 9/5/22
     {
@@ -736,7 +777,9 @@ db.once("open", async () => {
     location: "Garden Grove, CA",
     serviceType: [serviceTypeSeed[0]._id, serviceTypeSeed[2]._id, serviceTypeSeed[4]._id],
     timeSlots: [timeSlot95[0]._id, timeSlot95[1]._id, timeSlot95[2]._id, timeSlot95[3]._id, timeSlot95[4]._id, timeSlot95[5]._id, timeSlot95[6]._id, timeSlot95[7]._id, timeSlot95[8]._id,
-    timeSlot96[0]._id, timeSlot96[1]._id, timeSlot96[2]._id, timeSlot96[3]._id, timeSlot96[4]._id, timeSlot96[5]._id, timeSlot96[6]._id, timeSlot96[7]._id, timeSlot96[8]._id,],
+    timeSlot96[0]._id, timeSlot96[1]._id, timeSlot96[2]._id, timeSlot96[3]._id, timeSlot96[4]._id, timeSlot96[5]._id, timeSlot96[6]._id, timeSlot96[7]._id, timeSlot96[8]._id,
+    timeSlot831[0]._id, timeSlot831[1]._id, timeSlot831[2]._id, timeSlot831[3]._id, timeSlot831[4]._id, timeSlot831[5]._id, timeSlot831[6]._id, timeSlot831[7]._id, timeSlot831[8]._id,
+    ],
   });
 
   // CREATE SERVICEUSER DATA
