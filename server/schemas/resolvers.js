@@ -20,14 +20,14 @@ const resolvers = {
     // GET ALL TIME SLOTS
     timeSlots: async () => {
       return await TimeSlot.find()
-        // .populate("serviceUser")
-        // .populate("serviceType");
+      // .populate("serviceUser")
+      // .populate("serviceType");
     },
     // GET SINGLE TIME SLOT
     timeSlot: async (parent, { timeSlotId }) => {
       return await TimeSlot.findOne({ _id: timeSlotId })
-        // .populate("serviceUser")
-        // .populate("serviceType");
+      // .populate("serviceUser")
+      // .populate("serviceType");
     },
     // GET SINGLE NORMAL USER
     normalUser: async (parent, { normalUserId }) => {
@@ -43,7 +43,7 @@ const resolvers = {
     },
     // GET ALL SERVICE USERS
     serviceUsers: async () => {
-      return await ServiceUser.find()
+      return await ServiceUser.find({})
         .populate("serviceType")
         .populate("serviceCategory")
         .populate("timeSlots");
@@ -248,10 +248,19 @@ const resolvers = {
     //   );
     //   return updatedUser, deletedTimeSlot;
     // },
+    // ADD TIME SLOT
+    addTimeSlot: async (parent, { timeSlot }) => {
+      const newTimeSlot = await TimeSlot.create({
+        timeSlot,
+      });
+
+      return newTimeSlot;
+    },
   },
+
 };
 
-  // ADD SERVICE TYPE TO TIME SLOT
+// ADD SERVICE TYPE TO TIME SLOT
 
-  //REMOVE SERVICE TYPE FROM TIME SLOT
+//REMOVE SERVICE TYPE FROM TIME SLOT
 module.exports = resolvers;

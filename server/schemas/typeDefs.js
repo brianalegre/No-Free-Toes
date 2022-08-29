@@ -157,9 +157,11 @@ const typeDefs = gql`
         serviceLogin(email: String!, password: String!): ServiceAuth
 
         # TIME SLOT
-        addTimeSlot(timeSlot: String!, serviceUser: ID!, serviceType:[ID]): TimeSlot
-        removeTimeSlot(timeSlotId: ID!, serviceUserId: ID!): TimeSlot
+        # addTimeSlot(timeSlot: String!, serviceUser: ID!, serviceType:[ID]): TimeSlot
+        # removeTimeSlot(timeSlotId: ID!, serviceUserId: ID!): TimeSlot
         # editTimeSlot(timeSlot: String!, serviceUser: ID!, serviceType: [ID]): TimeSlot
+        addTimeSlot(timeSlot: String!) : TimeSlot
+        removeTimeSlot(timeSlotId: ID!) : TimeSlot
 
 
     }
