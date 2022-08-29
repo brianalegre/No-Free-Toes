@@ -124,8 +124,14 @@ const typeDefs = gql`
 
     type Mutation {
         # SERVICE TYPE
+<<<<<<< HEAD
         addServiceType(serviceName: String!, servicePrice: Float!, serviceDuration: Float, serviceDescription: String,  serviceCategory: ID!): ServiceType
         editServiceType(serviceName: String, servicePrice: Float, serviceDuration: Float, serviceDescription: String): ServiceType
+=======
+        addServiceType(serviceName: String!, servicePrice: Float!, serviceDuration: Float, serviceDescription: String, serviceUserId: ID!, serviceCategory: ID!): ServiceType
+        editServiceType(serviceTypeId: ID!, serviceName: String, servicePrice: Float, serviceDuration: Float, serviceDescription: String): ServiceType
+        removeServiceType(serviceTypeId: ID!, serviceUserId: ID!): ServiceType
+>>>>>>> 0e70b0ed48e532eef0e661188fd5e69905c82308
 
         # SERVICE CATEGORY
         addServiceCategory(categoryName: String!): ServiceCategory

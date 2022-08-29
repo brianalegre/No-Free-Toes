@@ -15,6 +15,7 @@ const ProviderSignup = () => {
     error: catError,
     loading,
   } = useQuery(QUERY_ALL_SERVICECATEGORIES);
+  console.log(categories)
 
   // const [errorMessage, setErrorMessage] = useState('');
 
@@ -80,6 +81,7 @@ const ProviderSignup = () => {
       serviceCategory: cat._id,
       label: cat.categoryName,
     })) || [];
+    
 
   return (
     <div className="p-10 min-h-screen grid gap-6 mb-6 md:grid-cols-2">

@@ -4,7 +4,7 @@ import Modal from 'react-modal';
 export default function Services({ serviceUser }) {
   const { serviceType } = serviceUser;
 
-  // console.log(serviceType);
+  console.log(serviceType);
 
   // MODAL FOR BOOKING
   const customStyles = {

@@ -17,6 +17,26 @@ const resolvers = {
     normalUsers: async () => {
       return await NormalUser.find().populate("serviceComments");
     },
+    // GET SINGLE NORMAL USER
+    normalUser: async (parent, { normalUserId }) => {
+      return await NormalUser.findOne({ _id: normalUserId }).populate(
+        "serviceComments"
+      );
+    },
+    // GET SINGLE SERVICE USER
+    serviceUser: async (parent, { serviceUserId }) => {
+      return ServiceUser.findOne({ _id: serviceUserId })
+        .populate("serviceType")
+        .populate("timeSlots")
+        .populate("serviceCategory");
+    },
+    // GET ALL SERVICE USERS
+    serviceUsers: async () => {
+      return await ServiceUser.find()
+        .populate("serviceType")
+        .populate("serviceCategory")
+        .populate("timeSlots");
+    },
     // GET ALL TIME SLOTS
     timeSlots: async () => {
       return await TimeSlot.find()
@@ -28,29 +48,6 @@ const resolvers = {
       return await TimeSlot.findOne({ _id: timeSlotId })
         .populate("serviceUser")
         .populate("serviceType");
-    },
-    // GET SINGLE NORMAL USER
-    normalUser: async (parent, { normalUserId }) => {
-      return await NormalUser.findOne({ _id: normalUserId }).populate(
-        "serviceComments"
-      );
-    },
-    // GET SINGLE SERVICE USER
-    serviceUser: async (parent, { serviceUserId }) => {
-      return ServiceUser.findOne({ _id: serviceUserId })
-        .populate("serviceType")
-        .populate("timeSlots");
-    },
-    // GET ALL SERVICE USERS
-    serviceUsers: async () => {
-      return await ServiceUser.find()
-        .populate("serviceType")
-        .populate("serviceCategory")
-        .populate("timeSlots");
-    },
-    //  GET ALL SERVICE USERS + SERVICE CATEGORY
-    serviceUsers: async () => {
-      return await ServiceUser.find({}).populate("serviceCategory");
     },
     //  GET ALL SERVICE CATEGORIES
     serviceCategories: async () => {
@@ -185,6 +182,79 @@ const resolvers = {
       return { token, user };
     },
 
+    // ADD SERVICE TYPE
+    addServiceType: async (
+      parent,
+      {
+        serviceName,
+        servicePrice,
+        serviceDuration,
+        serviceDescription,
+        serviceUserId,
+        serviceCategory,
+      }
+    ) => {
+      const newService = await ServiceType.create({
+        serviceName,
+        servicePrice,
+        serviceDuration,
+        serviceDescription,
+        serviceUserId,
+        serviceCategory,
+      });
+      const updatedServiceUser = await ServiceUser.findByIdAndUpdate(
+        {
+          _id: serviceUserId,
+        },
+        { $push: { serviceType: newService._id } },
+        { new: true }
+      );
+      return newService, updatedServiceUser;
+    },
+
+    // REMOVE SERVICE TYPE
+    removeServiceType: async (parent, { serviceTypeId, serviceUserId }) => {
+      const deletedService = await ServiceType.findByIdAndDelete({
+        _id: serviceTypeId,
+      });
+      const updatedServiceUser = await ServiceUser.findByIdAndUpdate(
+        {
+          _id: serviceUserId,
+        },
+        { $pull: { serviceType: deletedService._id } },
+        { new: true }
+      );
+      return updatedServiceUser;
+    },
+
+    // EDIT SERVICE TYPE
+    editServiceType: async (
+      parent,
+      {
+        serviceTypeId,
+        serviceName,
+        servicePrice,
+        serviceDuration,
+        serviceDescription,
+      }
+    ) => {
+      const updatedService = await ServiceType.findByIdAndUpdate(
+        {
+          _id: serviceTypeId,
+        },
+        {
+          $set: {
+            serviceName,
+            servicePrice,
+            serviceDuration,
+            serviceDescription,
+          },
+        },
+        { new: true }
+      );
+      return updatedService
+    },
+
     // ADD SERVICE COMMENT
     addServiceComment: async (
       parent,
@@ -251,7 +321,4 @@ const resolvers = {
   },
 };
 
-  // ADD SERVICE TYPE TO TIME SLOT
-
-  //REMOVE SERVICE TYPE FROM TIME SLOT
 module.exports = resolvers;
