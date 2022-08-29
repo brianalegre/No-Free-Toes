@@ -31,7 +31,7 @@ const resolvers = {
     serviceUsers: async () => {
       return await ServiceUser.find()
         .populate("serviceType")
-        .populate("serviceCategory")
+        .populate("serviceCategory");
     },
     //  GET ALL SERVICE CATEGORIES
     serviceCategories: async () => {
@@ -193,7 +193,21 @@ const resolvers = {
         { $push: { serviceType: newService._id } },
         { new: true }
       );
-      return newService, updatedServiceUser
+      return newService, updatedServiceUser;
+    },
+
+    removeServiceType: async (parent, { serviceTypeId, serviceUserId }) => {
+      const deletedService = await ServiceType.findByIdAndDelete({
+        _id: serviceTypeId,
+      });
+      const updatedServiceUser = await ServiceUser.findByIdAndUpdate(
+        {
+          _id: serviceUserId,
+        },
+        { $pull: { serviceType: deletedService._id } },
+        { new: true }
+      );
+      return updatedServiceUser
     },
 
     // ADD SERVICE COMMENT
