@@ -122,25 +122,26 @@ export const QUERY_SERVICECOMMENTS_BY_SERVICEUSERID = gql`
   }
 `;
 
-// GET ALL TIME SLOTS
-export const QUERY_ALL_TIMESLOTS = gql`
-  query timeSlots {
-    timeSlots {
-      _id
-      timeSlot
+export const QUERY_TIMESLOTS_BY_SERVICEUSERID = gql`
+   query serviceUser($serviceUserId: ID!) {
+    serviceUser(serviceUserId: $serviceUserId) {
+      firstName
+      lastName
+      firstName
+      lastName
+      photo
+      email
+      bio
+      location
+      timeSlots {
+        _id
+        timeSlot
+      }
     }
   }
 `;
 
-// GET SINGLE TIME SLOT
-export const QUERY_SINGLE_TIMESLOT = gql`
-  query timeSlot($timeSlotId: ID!) {
-    timeSlot(timeSlotId: $timeSlotId) {
-      _id
-      timeSlot
-    }
-  }
-`;
+
 
 
 // export const QUERY_SERVICEUSERS_CATEGORY = gql`
