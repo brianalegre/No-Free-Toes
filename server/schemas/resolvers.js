@@ -196,6 +196,7 @@ const resolvers = {
       return newService, updatedServiceUser;
     },
 
+    // REMOVE SERVICE TYPE
     removeServiceType: async (parent, { serviceTypeId, serviceUserId }) => {
       const deletedService = await ServiceType.findByIdAndDelete({
         _id: serviceTypeId,
@@ -207,7 +208,35 @@ const resolvers = {
         { $pull: { serviceType: deletedService._id } },
         { new: true }
       );
-      return updatedServiceUser
+      return updatedServiceUser;
+    },
+
+    // EDIT SERVICE TYPE
+    editServiceType: async (
+      parent,
+      {
+        serviceTypeId,
+        serviceName,
+        servicePrice,
+        serviceDuration,
+        serviceDescription,
+      }
+    ) => {
+      const updatedService = await ServiceType.findByIdAndUpdate(
+        {
+          _id: serviceTypeId,
+        },
+        {
+          $set: {
+            serviceName,
+            servicePrice,
+            serviceDuration,
+            serviceDescription,
+          },
+        },
+        { new: true }
+      );
+      return updatedService
     },
 
     // ADD SERVICE COMMENT
@@ -241,8 +270,6 @@ const resolvers = {
       );
       return deletedComment, updatedUser;
     },
-
-    // DELETE SERVICE TYPE
   },
 };
 
