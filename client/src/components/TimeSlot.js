@@ -1,27 +1,35 @@
 import React, { useState } from "react";
 import DateMomentUtils from "@date-io/moment";
 import {
-  DatePicker,
-  TimePicker,
-  DateTimePicker,
+  KeyboardDatePicker,
+  KeyboardTimePicker,
   MuiPickersUtilsProvider,
 } from "@material-ui/pickers";
-import moment from 'moment'
+import moment from "moment";
 
 export default function TimeSlot() {
-  const [currentDate, setCurrentData] = useState(new Date());
+  const [timeSlotInput, setTimeSlotInput] = useState(new Date());
+  // const [endingTimeSlot, setEndingTimeSlot] = useState(new Date());
   return (
     <div>
-      
       <div className="h-96 py-36 px-36">
-        <MuiPickersUtilsProvider utils={DateMomentUtils}>
-          <DatePicker value={currentDate} onChange={setCurrentData} />
-          <TimePicker value={currentDate} onChange={setCurrentData} />
-          {/* <DateTimePicker value={currentDate} onChange={setCurrentData} /> */}
-        </MuiPickersUtilsProvider>
+        <div className="flex flex-col">
+          <span className="pb-8">Create A TimeSlot:</span>
+          <div>
+            <MuiPickersUtilsProvider utils={DateMomentUtils}>
+              <KeyboardDatePicker
+                value={timeSlotInput}
+                onChange={setTimeSlotInput}
+              />
+              <KeyboardTimePicker
+                value={timeSlotInput}
+                onChange={setTimeSlotInput}
+              />
+            </MuiPickersUtilsProvider>
+          </div>
+        </div>
+        {console.log(moment(timeSlotInput._d).unix())}
       </div>
-      
-      {console.log(moment(currentDate._d).unix())}
     </div>
   );
 }
