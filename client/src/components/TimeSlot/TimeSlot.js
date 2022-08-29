@@ -3,6 +3,7 @@ import { useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import { QUERY_TIMESLOTS_BY_SERVICEUSERID } from "../../../src/utils/queries";
 import Auth from "../../utils/auth";
+import * as moment from "moment";
 
 
 // TESTING URL 
@@ -20,7 +21,7 @@ export default function TimeSlot() {
 
   useEffect(() => {
     if (data) {
-      setServiceUser(data.serviceUser.timeSlots);
+      setServiceUser(data.serviceUser);
     }
   }, [data]);
 
@@ -43,12 +44,34 @@ export default function TimeSlot() {
   // )
   // console.log('I AM SERVICE USER TIME DATE', serviceUserTimeDate)
 
+  // PARSE THE UNIX DATA WITH MOMENT JS
+  const availableTimes = serviceUser?.map((times, i) => {
+    // destructuring the times object
+    const {
+      _id,
+      timeSlot
+    } = times;
+
+    const parsedDate = moment({ timeSlot }).format('lll')
+
+    return (
+      <>
+        <div>
+          <p>{parsedDate}</p>
+        </div>
+      </>
+
+    )
+  })
+
   return (
     <>
 
       <div>
         <h1> hi </h1>
+        {availableTimes}
       </div>
+
 
       {/* <div className="m-5 p-5">
         <div className="flex">
@@ -93,3 +116,4 @@ export default function TimeSlot() {
     </>
   );
 }
+
