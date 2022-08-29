@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ProfileSettings from "./ProfileSettings";
-import TimeSlot from '../../TimeSlot'
+import TimeSlot from '../../TimeSlotCreator'
 const avatarImg = ".././assets/images/man.png";
 
 
@@ -59,9 +59,6 @@ export default function ProfileTabs({loggedInUserId, email, firstName, lastName,
                     photo={photo}
                     location={location}
                     refetch={refetch} />
-            </div>
-            <div className={currentTab.name === "Services" ? null : "hidden"}>
-                <TimeSlot />
             </div>
         </>
 

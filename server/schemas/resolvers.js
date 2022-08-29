@@ -288,15 +288,14 @@ const resolvers = {
     },
 
     // ADD TIME SLOT
-    addTimeSlot: async (parent, { timeSlot, serviceUser, serviceType }) => {
+    addTimeSlot: async (parent, { timeSlot, serviceUserId }) => {
       const newTimeSlot = await TimeSlot.create({
         timeSlot,
-        serviceUser,
-        serviceType,
+        serviceUserId,
       });
       const updatedServiceUser = await ServiceUser.findOneAndUpdate(
         {
-          _id: serviceUser,
+          _id: serviceUserId,
         },
         { $push: { timeSlots: newTimeSlot._id } },
         { new: true }

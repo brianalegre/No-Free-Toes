@@ -15,13 +15,8 @@ import LoginProvider from "./components/Login/pages/ProviderLogin";
 import Signup from "./components/Signup/SignUp";
 import SignupClient from "./components/Signup/pages/ClientSignup";
 import SignupProvider from "./components/Signup/pages/ProviderSignup";
-<<<<<<< HEAD
-import UserProfilePage from "./components/UserProfilePage/UserProfilePage";
-import TimeSlot from "./components/TimeSlot";
-=======
 import UserAccount from "./components/UserAccount/UserAccount";
 import ServiceAccount from "./components/ServiceAccount/ServiceAccount";
->>>>>>> 0e70b0ed48e532eef0e661188fd5e69905c82308
 
 const client = new ApolloClient({
   uri: "/graphql",
@@ -43,18 +38,8 @@ const App = () => (
         <Route path="/signup" element={<Signup />} />
         <Route path="/signup/client" element={<SignupClient />} />
         <Route path="/signup/provider" element={<SignupProvider />} />
-
-<<<<<<< HEAD
-        {/* TEST ROUTE */}
-        <Route path="/test" element={<TimeSlot />} />
-        {/* TEST ROUTE */}
-
-        <Route path="/profile" element={<UserProfilePage />} />
-        <Route path="/profile/:loggedInUserId" element={<UserProfilePage />} />
-=======
         <Route path="/nuser/:loggedInUserId" element={<UserAccount />} />
         <Route path="/suser/:loggedInUserId" element={<ServiceAccount />} />
->>>>>>> 0e70b0ed48e532eef0e661188fd5e69905c82308
       </Routes>
       <Footer />
     </Router>

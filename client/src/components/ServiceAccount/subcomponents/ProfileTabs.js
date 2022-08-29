@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ProfileSettings from "./ProfileSettings";
 import ServiceSettings from "./ServiceSettings";
+import TimeSlotCreator from "../../TimeSlotCreator"
 const avatarImg = ".././assets/images/man.png";
 
 
@@ -14,6 +15,9 @@ export default function ProfileTabs({ loggedInUserId, email, firstName, lastName
         },
         {
             name: "Services",
+        },
+        {
+            name: "Time Slots",
         },
         {
             name: "Payment",
@@ -62,6 +66,9 @@ export default function ProfileTabs({ loggedInUserId, email, firstName, lastName
             </div>
             <div className={currentTab.name === "Services" ? null : "hidden"}>
                     <ServiceSettings/>
+            </div>
+            <div className={currentTab.name === "Time Slots" ? null : "hidden"}>
+                        <TimeSlotCreator />
             </div>
         </>
 

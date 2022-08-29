@@ -124,14 +124,9 @@ const typeDefs = gql`
 
     type Mutation {
         # SERVICE TYPE
-<<<<<<< HEAD
-        addServiceType(serviceName: String!, servicePrice: Float!, serviceDuration: Float, serviceDescription: String,  serviceCategory: ID!): ServiceType
-        editServiceType(serviceName: String, servicePrice: Float, serviceDuration: Float, serviceDescription: String): ServiceType
-=======
         addServiceType(serviceName: String!, servicePrice: Float!, serviceDuration: Float, serviceDescription: String, serviceUserId: ID!, serviceCategory: ID!): ServiceType
         editServiceType(serviceTypeId: ID!, serviceName: String, servicePrice: Float, serviceDuration: Float, serviceDescription: String): ServiceType
         removeServiceType(serviceTypeId: ID!, serviceUserId: ID!): ServiceType
->>>>>>> 0e70b0ed48e532eef0e661188fd5e69905c82308
 
         # SERVICE CATEGORY
         addServiceCategory(categoryName: String!): ServiceCategory
@@ -163,7 +158,7 @@ const typeDefs = gql`
         serviceLogin(email: String!, password: String!): ServiceAuth
 
         # TIME SLOT
-        addTimeSlot(timeSlot: String!, serviceUser: ID!, serviceType:[ID]): TimeSlot
+        addTimeSlot(timeSlot: String!, serviceUserId: ID!): TimeSlot
         removeTimeSlot(timeSlotId: ID!, serviceUserId: ID!): TimeSlot
         # editTimeSlot(timeSlot: String!, serviceUser: ID!, serviceType: [ID]): TimeSlot
 
