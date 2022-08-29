@@ -27,8 +27,8 @@ const typeDefs = gql`
     type TimeSlot {
     _id: ID
     timeSlot: String
-    serviceUser: ServiceUser
-    serviceType: [ServiceType]
+    # serviceUser: ServiceUser
+    # serviceType: [ServiceType]
     }
 
     type NormalUser {

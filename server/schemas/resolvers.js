@@ -20,14 +20,14 @@ const resolvers = {
     // GET ALL TIME SLOTS
     timeSlots: async () => {
       return await TimeSlot.find()
-        .populate("serviceUser")
-        .populate("serviceType");
+        // .populate("serviceUser")
+        // .populate("serviceType");
     },
     // GET SINGLE TIME SLOT
     timeSlot: async (parent, { timeSlotId }) => {
       return await TimeSlot.findOne({ _id: timeSlotId })
-        .populate("serviceUser")
-        .populate("serviceType");
+        // .populate("serviceUser")
+        // .populate("serviceType");
     },
     // GET SINGLE NORMAL USER
     normalUser: async (parent, { normalUserId }) => {
@@ -217,37 +217,37 @@ const resolvers = {
       return deletedComment, updatedUser;
     },
 
-    // ADD TIME SLOT
-    addTimeSlot: async (parent, { timeSlot, serviceUser, serviceType }) => {
-      const newTimeSlot = await TimeSlot.create({
-        timeSlot,
-        serviceUser,
-        serviceType,
-      });
-      const updatedServiceUser = await ServiceUser.findOneAndUpdate(
-        {
-          _id: serviceUser,
-        },
-        { $push: { timeSlots: newTimeSlot._id } },
-        { new: true }
-      );
-      return updatedServiceUser, newTimeSlot;
-    },
+    // // ADD TIME SLOT
+    // addTimeSlot: async (parent, { timeSlot, serviceUser, serviceType }) => {
+    //   const newTimeSlot = await TimeSlot.create({
+    //     timeSlot,
+    //     serviceUser,
+    //     serviceType,
+    //   });
+    //   const updatedServiceUser = await ServiceUser.findOneAndUpdate(
+    //     {
+    //       _id: serviceUser,
+    //     },
+    //     { $push: { timeSlots: newTimeSlot._id } },
+    //     { new: true }
+    //   );
+    //   return updatedServiceUser, newTimeSlot;
+    // },
 
-    // REMOVE TIME SLOT
-    removeTimeSlot: async (parent, { timeSlotId, serviceUserId }) => {
-      const deletedTimeSlot = await TimeSlot.findByIdAndDelete({
-        _id: timeSlotId,
-      });
-      const updatedUser = await ServiceUser.findByIdAndUpdate(
-        {
-          _id: serviceUserId,
-        },
-        { $pull: { timeSlots: deletedTimeSlot._id } },
-        { new: true }
-      );
-      return updatedUser, deletedTimeSlot;
-    },
+    // // REMOVE TIME SLOT
+    // removeTimeSlot: async (parent, { timeSlotId, serviceUserId }) => {
+    //   const deletedTimeSlot = await TimeSlot.findByIdAndDelete({
+    //     _id: timeSlotId,
+    //   });
+    //   const updatedUser = await ServiceUser.findByIdAndUpdate(
+    //     {
+    //       _id: serviceUserId,
+    //     },
+    //     { $pull: { timeSlots: deletedTimeSlot._id } },
+    //     { new: true }
+    //   );
+    //   return updatedUser, deletedTimeSlot;
+    // },
   },
 };
 
