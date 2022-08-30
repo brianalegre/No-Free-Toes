@@ -38,6 +38,10 @@ const serviceUserSchema = new Schema({
         type: String,
         trim: true
     },
+    userType: {
+        type: String,
+        default: 'serviceUser'
+    },
     serviceCategory: {
         type: Schema.Types.ObjectId,
         ref: 'ServiceCategory',
@@ -56,7 +60,7 @@ const serviceUserSchema = new Schema({
             unique: true,
         },
     ],
-    appointment: [
+    appointments: [
         {
             type: Schema.Types.ObjectId,
             ref: 'Appointment',
