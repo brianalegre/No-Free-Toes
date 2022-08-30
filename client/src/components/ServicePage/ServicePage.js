@@ -19,7 +19,7 @@ export default function ServicePage() {
       setServiceUser(data.serviceUser);
     }
   }, [data]);
-  console.log(data)
+  // console.log(data)
 
   return (
     <>
