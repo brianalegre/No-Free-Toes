@@ -13,7 +13,7 @@ const appointmentSchema = new Schema({
     ref: "ServiceUser",
     required: true,
   },
-  timeSlots: {
+  timeSlot: {
     type: Schema.Types.ObjectId,
     ref: "TimeSlot",
     required: true,
