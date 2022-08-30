@@ -8,7 +8,7 @@ export default function Services({ serviceUser }) {
   console.log('TIMESLOTS Services Tab ----', timeSlots);
 
 
-  console.log(serviceType);
+  // console.log(serviceType);
 
   // MAP TIME SLOTS TO DISPLAY
   const availableTimes = timeSlots?.map((times, i) => {

@@ -1,27 +1,40 @@
-import React, { useState,  } from "react";
+import React, { useState, useEffect } from "react";
 import ProfileTabs from "./subcomponents/ProfileTabs";
 import { useQuery } from "@apollo/client";
+import { createContext } from "react";
 import { useParams } from "react-router-dom";
 import { QUERY_SINGLE_SERVICEUSER } from "../../utils/queries";
 import Auth from "../../utils/auth";
 
 export default function ServiceAccount() {
     const { loggedInUserId } = useParams();
-    
+    const [serviceUser, setServiceUser] = useState("");
+
     const { loading, error, data, refetch } = useQuery(QUERY_SINGLE_SERVICEUSER, {
         variables: { serviceUserId: loggedInUserId },
         fetchPolicy: "no-cache",
     });
 
+    useEffect(() => {
+        if (data) {
+            setServiceUser(data.serviceUser);
+        }
+    }, [data]);
+    console.log(serviceUser)
 
-    // DESTRUCTURE TO GET SERVICE USER DATA
-    const { email, firstName, lastName, photo, location } = data?.serviceUser || {};
-    
+    // const serviceUserData = data?.serviceUser || []
+    // // DESTRUCTURE TO GET SERVICE USER DATA
+    // const { email, firstName, lastName, photo, location } = data?.serviceUser || {};
+
     // DESTRUCTURE TO GET CATEGORY NAME
     const { categoryName } = data?.serviceUser.serviceCategory || [];
-    // console.log(categoryName)
+    // // console.log(categoryName)
     // const { ...serviceType } = data?.serviceUser.serviceType || [];
     // console.log(serviceType)
+
+    // const ServiceUserContext = createContext(data)
+
+    // console.log(ServiceUserContext)
 
     // const serviceTypeMap = serviceType.map((serv)=> ({
     //     serviceType: serv._id,
@@ -36,7 +49,7 @@ export default function ServiceAccount() {
     // console.log(serviceTypeMap)
 
 
-    
+
     // USER NEEDS TO BE LOGGED IN TO DISPLAY
     const isLoggedIn = Auth.loggedIn() ? true : false;
 
@@ -53,7 +66,7 @@ export default function ServiceAccount() {
             </h4>
         );
     }
-    
+
     // IF LOGGED IN USER IS SERVICE USER, PAGE DISPLAYS
     if (userType === "serviceUser") {
         return (
@@ -65,15 +78,17 @@ export default function ServiceAccount() {
                         <div className="grid grid-cols-1 md:grid-cols-[25%_75%]">
                             {/* Tabs */}
                             <ProfileTabs
-                                loggedInUserId={loggedInUserId}
-                                email={email}
-                                firstName={firstName}
-                                lastName={lastName}
-                                photo={photo}
-                                location={location}
-                                categoryName={categoryName}
-                                // serviceUser={serviceUser}
-                                refetch={refetch}
+                                // loggedInUserId={loggedInUserId}
+                                // email={email}
+                                // firstName={firstName}
+                                // lastName={lastName}
+                                // photo={photo}
+                                // location={location}
+                                // categoryName={categoryName}
+                                // // serviceUser={serviceUser}
+                                // refetch={refetch}
+                                serviceUser= {serviceUser}
+                                // categoryName= {categoryName}
                             />
                         </div>
                     </div>

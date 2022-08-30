@@ -148,8 +148,27 @@ export const QUERY_SINGLE_SERVICEUSER = gql`
     }
   }
 }
-
 `
+
+// SERVICE TYPES
+export const QUERY_SERVICETYPES = gql `
+  query ServiceUser($serviceUserId: ID!) {
+  serviceUser(serviceUserId: $serviceUserId) {
+    _id
+    serviceCategory {
+      _id
+      categoryName
+    }
+    serviceType {
+      _id
+      serviceName
+      servicePrice
+      serviceDescription
+    }
+  }
+}
+`
+
 
 
 // export const QUERY_SERVICEUSERS_CATEGORY = gql`
