@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Modal from 'react-modal';
 import * as moment from "moment";
 
@@ -8,38 +8,16 @@ export default function Services({ serviceUser }) {
 
 // SET STATE FOR TIMESLOTS
 // const [timeSlotState, setTimeSlotState] = useState(timeSlots || []);
-const [timeSlotState, setTimeSlotState] = useState(timeSlots);
+// const [timeSlotState, setTimeSlotState] = useState(timeSlots);
+const [formState, setFormatsterState] = useState('')
+// const [scheduleAppointment, { error, data }] = useMutation(CREATE_APPOINTMENT);
 
-// Convert timeSlotState with moment
-var timeSlotArray = [];
-const convertTimeSlotState = timeSlotState => {
-  timeSlotState.forEach(element => {
-    // moment.unix(element).format('lll')
-    timeSlotArray.push(moment.unix(element.timeSlot).format('lll'));
-    console.log('i am timeSlotArray', timeSlotArray);
-  });
-
-//<td>{moment.unix(timeSlot.timeSlot).format('lll')}</td>
-
-timeSlotIndex()
-}
-
-// THIS WORKS !@#!#
-function timeSlotIndex() {
-  console.log('timeSLotIndex called')
-  console.log('timeSlotArray', timeSlotArray)
-  const today = moment().format('ddd MM/DD');
-  timeSlotArray.findIndex(element => {
-  if (moment(element).format('ddd MM/DD') === today) {
-    return console.log('i am today', element);
-  } else {
-    return console.log('i am NOT today', element);
-  }
-});
-}
-convertTimeSlotState(timeSlotState);
-// WORKS TO FIND TODAY
-
+// useEffect(() => {
+//   if (timeSlots) {
+//     setTimeSlotState(timeSlots)
+    
+//   }
+// }, [timeSlots]);
 
   // MODAL FOR BOOKING
   const customStyles = {
@@ -71,72 +49,20 @@ convertTimeSlotState(timeSlotState);
 
   }
 
-  // GET HEADER FUNCTION
-  // DISPLAY TODAYS DATE, AND THE NEXT 6 DAYS
-  // ONTO THE HEADER OF THE TABLE
-  // const getHeader = () => {
 
-  const today = moment().format("ddd MM/DD");
-  const todayPlusOne = moment().add(1, 'days').format("ddd MM/DD");
-  const todayPlusTwo = moment().add(2, 'days').format("ddd MM/DD");
-  const todayPlusThree = moment().add(3, 'days').format("ddd MM/DD");
-  const todayPlusFour = moment().add(4, 'days').format("ddd MM/DD");
-  // const todayPlusFive = moment().add(5, 'days').format("dddd MM/DD");
-  // const todayPlusSix = moment().add(6, 'days').format("dddd MM/DD");
+  const timeSlotStateData = timeSlots?.slice(0, 10).map((timeSlotState) => ( 
+    <button
+    data-id={timeSlotState._id}
+    // >{moment.unix(timeSlotState.timeSlot).format('lll')}</button>
+    >
+      {moment.unix(timeSlotState.timeSlot).format('ddd MM/DD hh:00 A')}
+    </button>
 
-  //   return (
-  //     <>
-  //       <tr>
-  //         <th>{today}</th>
-  //         <th>{todayPlusOne}</th>
-  //         <th>{todayPlusTwo}</th>
-  //         <th>{todayPlusThree}</th>
-  //         <th>{todayPlusFour}</th>
-  //         <th>{todayPlusFive}</th>
-  //         <th>{todayPlusSix}</th>
-  //       </tr>
-  //     </>
-  //   )
-  // }
-
-  // // DISPLAY THE TIME SLOTS FOR EACH DAY
-  // // ONTO THE TABLE
-  // const getTimeSlots = () => {
-  //   // const parsedDate = moment.unix(timeSlot).format("lll")
-  //   return (
-  //     <>
-  //       {timeSlots.map((timeSlot, i) => {
-  //         return (
-  //           <tr key={i}>
-  //             <td>{moment.unix(timeSlot.timeSlot).format('lll')}</td>
-  //             {/* <td>{moment.unix(timeSlot.timeSlot).format('lll')}</td>
-  //             <td>{moment.unix(timeSlot.timeSlot).format('lll')}</td>
-  //             <td>{moment.unix(timeSlot.timeSlot).format('lll')}</td>
-  //             <td>{moment.unix(timeSlot.timeSlot).format('lll')}</td>
-  //             <td>{moment.unix(timeSlot.timeSlot).format('lll')}</td>
-  //             <td>{moment.unix(timeSlot.timeSlot).format('lll')}</td> */}
-  //           </tr>
-  //         )
-  //       }
-  //       )}
-  //     </>
-  //   )
-  // }
-
-
-  // FOR LOOP ON TIMESLOTS
-  // for (let i = 0; i < 28; i++) {
-  //   console.log('dah', timeSlots[i].timeSlot);
-  // }
-
-
-
-
-
-
-
+  ));
 
   const services = serviceType?.map((service) => (
+
+    
     <tr key={service.serviceName}>
       <td className="px-5 py-8 border-b border-gray-200 bg-white text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
         <div className="flex items-center">
@@ -197,57 +123,8 @@ convertTimeSlotState(timeSlotState);
               <h2 className="text-center w-full font-semibold" >Pick an available time slot</h2>
               <button onClick={closeModal} className="text-red-500 font-extrabold text-right">X</button>
             </div>
-            <div className="w-full">
-              <table className="m-auto p-5">
-                <tr>
-                  <th>{today}</th>
-                  <th>{todayPlusOne}</th>
-                  <th>{todayPlusTwo}</th>
-                  <th>{todayPlusThree}</th>
-                  <th>{todayPlusFour}</th>
-                  {/* <th>{todayPlusFive}</th>
-                  <th>{todayPlusSix}</th> */}
-                </tr>
-                {/* <tr> */}
-                  {/* {getTimeSlots()} */}
-                  {/* {getTimeSlots()} */}
-                  {/* {getTimeSlots()} */}
-                  {/* {getTimeSlots()} */}
-                  {/* {getTimeSlots()} */}
-                  {/* {getTimeSlots()} */}
-                  {/* {getTimeSlots()} */}
-                {/* </tr> */}
-                <tr>
-                  <td><button
-                    onClick={createAppointment}
-                    data-id={timeSlots[0].id}
-                  >630e52e4f982dc3c37d663a5</button></td>
-                  <td><button>Time Slot 1</button></td>
-                  <td><button>Time Slot 1</button></td>
-                  <td><button>Time Slot 1</button></td>
-                  <td><button>Time Slot 1</button></td>
-                  {/* <td><button>Time Slot 1</button></td>
-                  <td><button>Time Slot 1</button></td> */}
-                </tr>
-                {/* <tr>
-                  <td><button>Time Slot 2</button></td>
-                  <td><button>Time Slot 2</button></td>
-                  <td><button>Time Slot 2</button></td>
-                  <td><button>Time Slot 2</button></td>
-                  <td><button>Time Slot 2</button></td>
-                  <td><button>Time Slot 2</button></td>
-                  <td><button>Time Slot 2</button></td>
-                </tr>
-                <tr>
-                  <td><button>Time Slot 3</button></td>
-                  <td><button>Time Slot 3</button></td>
-                  <td><button>Time Slot 3</button></td>
-                  <td><button>Time Slot 3</button></td>
-                  <td><button>Time Slot 3</button></td>
-                  <td><button>Time Slot 3</button></td>
-                  <td><button>Time Slot 3</button></td>
-                </tr> */}
-              </table>
+            <div className="w-full grid grid-cols-5 gap-3">
+              {timeSlotStateData}
             </div>
           </div>
         </Modal>
@@ -430,3 +307,124 @@ convertTimeSlotState(timeSlotState);
   //   )
   // }
   // )
+
+
+//   // THIS WORKS !@#!#
+// // Convert timeSlotState with moment
+// var timeSlotArray = [];
+// const convertTimeSlotState = timeSlotState => {
+//   timeSlotState.forEach(element => {
+//     // moment.unix(element).format('lll')
+//     timeSlotArray.push(moment.unix(element.timeSlot).format('lll'));
+//     console.log('i am timeSlotArray', timeSlotArray);
+//   });
+
+// //<td>{moment.unix(timeSlot.timeSlot).format('lll')}</td>
+
+// timeSlotIndex()
+// }
+
+
+// function timeSlotIndex() {
+//   console.log('timeSLotIndex called')
+//   console.log('timeSlotArray', timeSlotArray)
+//   const today = moment().format('ddd MM/DD');
+//   timeSlotArray.findIndex(element => {
+//   if (moment(element).format('ddd MM/DD') === today) {
+//     return console.log('i am today', element);
+//   } else {
+//     return console.log('i am NOT today', element);
+//   }
+// });
+// }
+// convertTimeSlotState(timeSlotState);
+// // WORKS TO FIND TODAY
+
+
+  // GET HEADER FUNCTION
+  // DISPLAY TODAYS DATE, AND THE NEXT 6 DAYS
+  // ONTO THE HEADER OF THE TABLE
+  // const getHeader = () => {
+
+  // const today = moment().format("ddd MM/DD");
+  // const todayPlusOne = moment().add(1, 'days').format("ddd MM/DD");
+  // const todayPlusTwo = moment().add(2, 'days').format("ddd MM/DD");
+  // const todayPlusThree = moment().add(3, 'days').format("ddd MM/DD");
+  // const todayPlusFour = moment().add(4, 'days').format("ddd MM/DD");
+  // const todayPlusFive = moment().add(5, 'days').format("dddd MM/DD");
+  // const todayPlusSix = moment().add(6, 'days').format("dddd MM/DD");
+
+  //   return (
+  //     <>
+  //       <tr>
+  //         <th>{today}</th>
+  //         <th>{todayPlusOne}</th>
+  //         <th>{todayPlusTwo}</th>
+  //         <th>{todayPlusThree}</th>
+  //         <th>{todayPlusFour}</th>
+  //         <th>{todayPlusFive}</th>
+  //         <th>{todayPlusSix}</th>
+  //       </tr>
+  //     </>
+  //   )
+  // }
+
+  // // DISPLAY THE TIME SLOTS FOR EACH DAY
+  // // ONTO THE TABLE
+  // const getTimeSlots = () => {
+  //   // const parsedDate = moment.unix(timeSlot).format("lll")
+  //   return (
+  //     <>
+  //       {timeSlots.map((timeSlot, i) => {
+  //         return (
+  //           <tr key={i}>
+  //             <td>{moment.unix(timeSlot.timeSlot).format('lll')}</td>
+  //             {/* <td>{moment.unix(timeSlot.timeSlot).format('lll')}</td>
+  //             <td>{moment.unix(timeSlot.timeSlot).format('lll')}</td>
+  //             <td>{moment.unix(timeSlot.timeSlot).format('lll')}</td>
+  //             <td>{moment.unix(timeSlot.timeSlot).format('lll')}</td>
+  //             <td>{moment.unix(timeSlot.timeSlot).format('lll')}</td>
+  //             <td>{moment.unix(timeSlot.timeSlot).format('lll')}</td> */}
+  //           </tr>
+  //         )
+  //       }
+  //       )}
+  //     </>
+  //   )
+  // }
+
+
+  // FOR LOOP ON TIMESLOTS
+  // for (let i = 0; i < 28; i++) {
+  //   console.log('dah', timeSlots[i].timeSlot);
+  // }
+
+
+  // const timeSlotStateData = timeSlots?.map((timeSlotState) => ( 
+  //   <button
+  //   data-id={timeSlotState._id}
+  //   // >{moment.unix(timeSlotState.timeSlot).format('lll')}</button>
+  //   >
+  //     {moment.unix(timeSlotState.timeSlot).format('ddd MM/DD hh:00 A')}
+  //   </button>
+
+  // ));
+
+//   const forTimeSlots = (params) => {
+// // function forTimeSlots(params) {
+//   for (let index = 0; index < 9; index++) {
+//     // const element = array[index];
+//     // console.log(params)
+//         <button
+//     data-id={params[index]._id}
+//     // >{moment.unix(timeSlotState.timeSlot).format('lll')}</button>
+//     >
+//       {moment.unix(params[index].timeSlot).format('ddd MM/DD hh:00 A')}
+//     </button> 
+//   }
+// }
+
+
+
+
+
