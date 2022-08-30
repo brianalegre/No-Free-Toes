@@ -72,9 +72,9 @@ export default function ProfileTabs({ serviceUser }) {
                 />
             </div>
             <div className={currentTab.name === "Services" ? null : "hidden"}>
-                <ServiceSettings
+                {/* <ServiceSettings
                     serviceUser={serviceUser}
-                />
+                /> */}
             </div>
             <div className={currentTab.name === "Time Slots" ? null : "hidden"}>
                         <TimeSlotSettings />
