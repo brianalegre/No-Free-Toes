@@ -145,7 +145,7 @@ const typeDefs = gql`
         
         # APPOINTMENT
         addAppointment(normalUserId:ID!, serviceUserId: ID!, timeSlotId: ID!, serviceTypeId: ID!): Appointment
-        removeAppointment(appointmentId: ID!, normalUserId:ID!, serviceUserId: ID!): Appointment
+        removeAppointment(appointmentId: ID!, serviceUserId: ID!, normalUserId:ID!): Appointment
         
         # SERVICE COMMENT
         addServiceComment(commentText: String!, serviceRating: Int, serviceUser: ID!, normalUser: ID!): ServiceComment

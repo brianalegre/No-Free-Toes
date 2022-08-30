@@ -44,11 +44,11 @@ const resolvers = {
     },
     // GET ALL TIME SLOTS
     timeSlots: async () => {
-      return await TimeSlot.find()
+      return await TimeSlot.find();
     },
     // GET SINGLE TIME SLOT
     timeSlot: async (parent, { timeSlotId }) => {
-      return await TimeSlot.findOne({ _id: timeSlotId })
+      return await TimeSlot.findOne({ _id: timeSlotId });
     },
     //  GET ALL SERVICE CATEGORIES
     serviceCategories: async () => {
@@ -359,6 +359,29 @@ const resolvers = {
         { new: true }
       );
       return appointment, updatedServiceUser, updatedNormalUser;
+    },
+
+    // DELETE APPOINTMENT
+    removeAppointment: async (
+      parent,
+      { appointmentId, serviceUserId, normalUserId }
+    ) => {
+      const deletedAppointment = await Appointment.findByIdAndDelete({
+        _id: appointmentId,
+      });
+      const updatedServiceUser = await ServiceUser.findByIdAndUpdate(
+        { _id: serviceUserId },
+        {
+          $pull: { appointments: deletedAppointment._id },
+        },
+        { new: true }
+      );
+      const updatedNormalUser = await NormalUser.findByIdAndUpdate(
+        { _id: normalUserId },
+        { $pull: { appointments: deletedAppointment._id } },
+        { new: true }
+      );
+      return updatedServiceUser, updatedNormalUser;
     },
   },
 };
