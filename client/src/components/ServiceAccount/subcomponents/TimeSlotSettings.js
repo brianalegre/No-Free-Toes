@@ -23,7 +23,7 @@ export default function TimeSlotSettings() {
 
     const mappedTimeSlots = data?.serviceUser?.timeSlots.map((slot) => (
         <div>
-            <span>{moment.unix(slot.timeSlot).format('llll')}</span>
+            <span key={slot._id}>{moment.unix(slot.timeSlot).format('llll')}</span>
         </div>
     ))
 
