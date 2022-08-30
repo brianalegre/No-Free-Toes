@@ -3,16 +3,22 @@ import Modal from 'react-modal';
 import * as moment from "moment";
 import { useMutation } from "@apollo/client";
 import { ADD_APPOINTMENT } from "../../../utils/mutations";
+import Auth from "../../../utils/auth";
 
 
 export default function Services({ serviceUser }) {
   const { serviceType } = serviceUser;
   const { timeSlots } = serviceUser;
+  const { serviceUserId } = serviceUser
+
+// CHECK IF LOGGED
+const isLoggedIn = Auth.loggedIn() ? true : false;
+const loggedInUserId = isLoggedIn ? Auth.getProfile().data._id : null;
 
 
 const [formState, setFormatsterState] = useState({
-  normalUserId: '',
-  serviceUserId: '',  
+  normalUserId: loggedInUserId,
+  serviceUserId: serviceUserId,  
   timeSlotId: '',
   serviceTypeId: ''
 
@@ -53,6 +59,7 @@ const [addAppointment, { error, data }] = useMutation(ADD_APPOINTMENT);
   const timeSlotStateData = timeSlots?.sort(((a,b) => a.timeSlot - b.timeSlot)).slice(0, 10).map((timeSlotState) => ( 
     <button
     className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+    name={timeSlotState._id}
     data-id={timeSlotState._id}
     // >{moment.unix(timeSlotState.timeSlot).format('lll')}</button>
     >
