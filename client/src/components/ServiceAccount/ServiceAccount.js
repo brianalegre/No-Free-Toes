@@ -20,8 +20,8 @@ export default function ServiceAccount() {
     // DESTRUCTURE TO GET CATEGORY NAME
     const { categoryName } = data?.serviceUser.serviceCategory || [];
     // console.log(categoryName)
-    // const { ...serviceType } = data?.serviceUser.serviceType || [];
-    // console.log(serviceType)
+    const { ...serviceType } = data?.serviceUser.serviceType || [];
+    console.log(serviceType)
 
     // const serviceTypeMap = serviceType.map((serv)=> ({
     //     serviceType: serv._id,
