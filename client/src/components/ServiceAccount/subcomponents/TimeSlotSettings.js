@@ -21,18 +21,15 @@ export default function TimeSlotSettings() {
         }
     }, [data]);
 
-    console.log(data)
-    const mappedTimeSlots = data?.serviceUser?.timeSlots?.map((slot) => (
+    const mappedTimeSlots = data?.serviceUser?.timeSlots.map((slot) => (
         <div>
-            
             <span>{moment.unix(slot.timeSlot).format('llll')}</span>
-        
         </div>
     ))
 
   return (
     <div>
-      {/* <TimeSlotCreator loggedInUserId={loggedInUserId} /> */}
+      <TimeSlotCreator loggedInUserId={loggedInUserId} refetch={refetch}/>
       {mappedTimeSlots}
     </div>
   );
