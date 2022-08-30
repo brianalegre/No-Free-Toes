@@ -6,6 +6,40 @@ export default function Services({ serviceUser }) {
   const { serviceType } = serviceUser;
   const { timeSlots } = serviceUser;
 
+// SET STATE FOR TIMESLOTS
+// const [timeSlotState, setTimeSlotState] = useState(timeSlots || []);
+const [timeSlotState, setTimeSlotState] = useState(timeSlots);
+
+// Convert timeSlotState with moment
+var timeSlotArray = [];
+const convertTimeSlotState = timeSlotState => {
+  timeSlotState.forEach(element => {
+    // moment.unix(element).format('lll')
+    timeSlotArray.push(moment.unix(element.timeSlot).format('lll'));
+    console.log('i am timeSlotArray', timeSlotArray);
+  });
+
+//<td>{moment.unix(timeSlot.timeSlot).format('lll')}</td>
+
+timeSlotIndex()
+}
+
+// THIS WORKS !@#!#
+function timeSlotIndex() {
+  console.log('timeSLotIndex called')
+  console.log('timeSlotArray', timeSlotArray)
+  const today = moment().format('ddd MM/DD');
+  timeSlotArray.findIndex(element => {
+  if (moment(element).format('ddd MM/DD') === today) {
+    return console.log('i am today', element);
+  } else {
+    return console.log('i am NOT today', element);
+  }
+});
+}
+convertTimeSlotState(timeSlotState);
+// WORKS TO FIND TODAY
+
 
   // MODAL FOR BOOKING
   const customStyles = {
@@ -42,13 +76,13 @@ export default function Services({ serviceUser }) {
   // ONTO THE HEADER OF THE TABLE
   // const getHeader = () => {
 
-  const today = moment().format("dddd MM/DD");
-  const todayPlusOne = moment().add(1, 'days').format("dddd MM/DD");
-  const todayPlusTwo = moment().add(2, 'days').format("dddd MM/DD");
-  const todayPlusThree = moment().add(3, 'days').format("dddd MM/DD");
-  const todayPlusFour = moment().add(4, 'days').format("dddd MM/DD");
-  const todayPlusFive = moment().add(5, 'days').format("dddd MM/DD");
-  const todayPlusSix = moment().add(6, 'days').format("dddd MM/DD");
+  const today = moment().format("ddd MM/DD");
+  const todayPlusOne = moment().add(1, 'days').format("ddd MM/DD");
+  const todayPlusTwo = moment().add(2, 'days').format("ddd MM/DD");
+  const todayPlusThree = moment().add(3, 'days').format("ddd MM/DD");
+  const todayPlusFour = moment().add(4, 'days').format("ddd MM/DD");
+  // const todayPlusFive = moment().add(5, 'days').format("dddd MM/DD");
+  // const todayPlusSix = moment().add(6, 'days').format("dddd MM/DD");
 
   //   return (
   //     <>
@@ -94,6 +128,7 @@ export default function Services({ serviceUser }) {
   // for (let i = 0; i < 28; i++) {
   //   console.log('dah', timeSlots[i].timeSlot);
   // }
+
 
 
 
@@ -170,26 +205,29 @@ export default function Services({ serviceUser }) {
                   <th>{todayPlusTwo}</th>
                   <th>{todayPlusThree}</th>
                   <th>{todayPlusFour}</th>
-                  <th>{todayPlusFive}</th>
-                  <th>{todayPlusSix}</th>
+                  {/* <th>{todayPlusFive}</th>
+                  <th>{todayPlusSix}</th> */}
                 </tr>
+                {/* <tr> */}
+                  {/* {getTimeSlots()} */}
+                  {/* {getTimeSlots()} */}
+                  {/* {getTimeSlots()} */}
+                  {/* {getTimeSlots()} */}
+                  {/* {getTimeSlots()} */}
+                  {/* {getTimeSlots()} */}
+                  {/* {getTimeSlots()} */}
+                {/* </tr> */}
                 <tr>
-                  {/* {getTimeSlots()} */}
-                  {/* {getTimeSlots()} */}
-                  {/* {getTimeSlots()} */}
-                  {/* {getTimeSlots()} */}
-                  {/* {getTimeSlots()} */}
-                  {/* {getTimeSlots()} */}
-                  {/* {getTimeSlots()} */}
-                </tr>
-                <tr>
+                  <td><button
+                    onClick={createAppointment}
+                    data-id={timeSlots[0].id}
+                  >630e52e4f982dc3c37d663a5</button></td>
                   <td><button>Time Slot 1</button></td>
                   <td><button>Time Slot 1</button></td>
                   <td><button>Time Slot 1</button></td>
                   <td><button>Time Slot 1</button></td>
-                  <td><button>Time Slot 1</button></td>
-                  <td><button>Time Slot 1</button></td>
-                  <td><button>Time Slot 1</button></td>
+                  {/* <td><button>Time Slot 1</button></td>
+                  <td><button>Time Slot 1</button></td> */}
                 </tr>
                 {/* <tr>
                   <td><button>Time Slot 2</button></td>
@@ -381,7 +419,6 @@ export default function Services({ serviceUser }) {
 
   //   // CONVERT TIME SLOTS WITH MOMENTJS
   //   const parsedDate = moment.unix(timeSlot).format("lll")
-  //   console.log('I AM PARSED DATE', parsedDate);
 
   //   // return parsedDate
   //   return (
