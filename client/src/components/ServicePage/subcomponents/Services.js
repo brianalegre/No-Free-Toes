@@ -7,32 +7,6 @@ export default function Services({ serviceUser }) {
   const { timeSlots } = serviceUser;
 
 
-
-  // console.log(serviceType);
-
-  // MAP TIME SLOTS TO DISPLAY
-  const availableTimes = timeSlots?.map((times, i) => {
-    // DESTRUCTURING THE TIMESLOTS OBJECT
-    const {
-      timeSlot,
-    } = times;
-
-    // CONVERT TIME SLOTS WITH MOMENTJS
-    const parsedDate = moment.unix(timeSlot).format("lll")
-    console.log('I AM PARSED DATE', parsedDate);
-
-    // return parsedDate
-    return (
-      <>
-        <div>
-          <p>{parsedDate}</p>
-        </div>
-      </>
-    )
-  }
-  )
-
-
   // MODAL FOR BOOKING
   const customStyles = {
     content: {
@@ -394,3 +368,28 @@ export default function Services({ serviceUser }) {
   // }
 
   // checkingTimeSlots();
+
+  
+
+
+  // MAP TIME SLOTS TO DISPLAY
+  // const availableTimes = timeSlots?.map((times, i) => {
+  //   // DESTRUCTURING THE TIMESLOTS OBJECT
+  //   const {
+  //     timeSlot,
+  //   } = times;
+
+  //   // CONVERT TIME SLOTS WITH MOMENTJS
+  //   const parsedDate = moment.unix(timeSlot).format("lll")
+  //   console.log('I AM PARSED DATE', parsedDate);
+
+  //   // return parsedDate
+  //   return (
+  //     <>
+  //       <div>
+  //         <p>{parsedDate}</p>
+  //       </div>
+  //     </>
+  //   )
+  // }
+  // )
