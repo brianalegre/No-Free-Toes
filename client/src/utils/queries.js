@@ -121,6 +121,13 @@ export const QUERY_SERVICECOMMENTS_BY_SERVICEUSERID = gql`
   }
 `;
 
+// Reviews Query
+
+export const QUERY_REVIEWS_BY_NORMAL_USER = gql`
+
+`
+
+
 
 
 // export const QUERY_SERVICEUSERS_CATEGORY = gql`
