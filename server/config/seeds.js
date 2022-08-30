@@ -6,6 +6,7 @@ const {
   ServiceComment,
   ServiceType,
   TimeSlot,
+  Appointment
 } = require("../models");
 const moment = require("moment");
 const currentDate = moment(Date.now()).format("ll");
@@ -1137,6 +1138,9 @@ db.once("open", async () => {
 
   // LOG TO BACKEND CONSOLE
   console.log("SUCCESSFULLY SEEDED SERVICE COMMENTS");
+
+  await Appointment.deleteMany();
+  console.log("SUCCESSFULLY DELETED MOCK APPOINTMENT DATA")
 
 
   process.exit();
