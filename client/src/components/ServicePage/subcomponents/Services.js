@@ -1,23 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Modal from 'react-modal';
 import * as moment from "moment";
+import { useMutation } from "@apollo/client";
+import { ADD_APPOINTMENT } from "../../../utils/mutations";
+
 
 export default function Services({ serviceUser }) {
   const { serviceType } = serviceUser;
   const { timeSlots } = serviceUser;
 
-// SET STATE FOR TIMESLOTS
-// const [timeSlotState, setTimeSlotState] = useState(timeSlots || []);
-// const [timeSlotState, setTimeSlotState] = useState(timeSlots);
-const [formState, setFormatsterState] = useState('')
-// const [scheduleAppointment, { error, data }] = useMutation(CREATE_APPOINTMENT);
 
-// useEffect(() => {
-//   if (timeSlots) {
-//     setTimeSlotState(timeSlots)
-    
-//   }
-// }, [timeSlots]);
+const [formState, setFormatsterState] = useState({
+  normalUserId: '',
+  serviceUserId: '',  
+  timeSlotId: '',
+  serviceTypeId: ''
+
+})
+const [addAppointment, { error, data }] = useMutation(ADD_APPOINTMENT);
+
 
   // MODAL FOR BOOKING
   const customStyles = {
