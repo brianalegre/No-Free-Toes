@@ -124,8 +124,20 @@ export const QUERY_SERVICECOMMENTS_BY_SERVICEUSERID = gql`
 // Reviews Query
 
 export const QUERY_REVIEWS_BY_NORMAL_USER = gql`
-
-`
+query Query($normalUserId: ID!) {
+  normalUser(normalUserId: $normalUserId) {
+    _id
+    firstName
+    lastName
+    serviceComments {
+      _id
+      commentText
+      commentCreated
+      serviceRating
+    }
+  }
+}
+`;
 
 
 
