@@ -4,38 +4,51 @@ const {
   ServiceCategory,
   ServiceComment,
   ServiceType,
+  TimeSlot,
+  Appointment,
 } = require("../models");
 
 const { signToken } = require("../utils/auth");
 const { AuthenticationError } = require("apollo-server-express");
-const { isObjectIdOrHexString } = require("mongoose");
+const { isObjectIdOrHexString, trusted } = require("mongoose");
 
 const resolvers = {
   Query: {
     // GET ALL NORMAL USERS
     normalUsers: async () => {
-      return await NormalUser.find().populate("serviceComments");
+      return await NormalUser.find()
+        .populate("serviceComments")
+        .populate("appointments");
     },
     // GET SINGLE NORMAL USER
     normalUser: async (parent, { normalUserId }) => {
-      return await NormalUser.findOne({ _id: normalUserId }).populate(
-        "serviceComments"
-      );
+      return await NormalUser.findOne({ _id: normalUserId })
+        .populate("serviceComments")
+        .populate("appointments");
     },
+    // GET SINGLE SERVICE USER
     serviceUser: async (parent, { serviceUserId }) => {
-      return ServiceUser.findOne({ _id: serviceUserId }).populate(
-        "serviceType"
-      );
+      return ServiceUser.findOne({ _id: serviceUserId })
+        .populate("serviceType")
+        .populate("timeSlots")
+        .populate("serviceCategory")
+        .populate("appointments");
     },
     // GET ALL SERVICE USERS
     serviceUsers: async () => {
       return await ServiceUser.find()
         .populate("serviceType")
-        .populate("serviceCategory");
+        .populate("serviceCategory")
+        .populate("timeSlots")
+        .populate("appointments");
     },
-    //  GET ALL SERVICE USERS + SERVICE CATEGORY
-    serviceUsers: async () => {
-      return await ServiceUser.find({}).populate("serviceCategory");
+    // GET ALL TIME SLOTS
+    timeSlots: async () => {
+      return await TimeSlot.find();
+    },
+    // GET SINGLE TIME SLOT
+    timeSlot: async (parent, { timeSlotId }) => {
+      return await TimeSlot.findOne({ _id: timeSlotId });
     },
     //  GET ALL SERVICE CATEGORIES
     serviceCategories: async () => {
@@ -43,7 +56,7 @@ const resolvers = {
     },
     // GET ALL SERVICE TYPES + SERVICE USERS
     serviceTypes: async () => {
-      return await ServiceType.find({}).populate("serviceUser");
+      return await ServiceType.find({});
     },
     // GET ALL SERVICE COMMENTS
     serviceComments: async (parent, { serviceUserId, normalUserId }) => {
@@ -83,6 +96,24 @@ const resolvers = {
       // }
       return await ServiceUser.find(params).populate("serviceCategory");
     },
+
+    // FIND ALL APPOINTMENTS
+    appointments: async () => {
+      return await Appointment.find({})
+        .populate("normalUser")
+        .populate("serviceUser")
+        .populate("serviceType")
+        .populate("timeSlot");
+    },
+
+    // FIND SINGLE APPOINTMENT
+    appointment: async (parent, { appointmentId }) => {
+      return await Appointment.findOne({ _id: appointmentId })
+        .populate("normalUser")
+        .populate("serviceUser")
+        .populate("serviceType")
+        .populate("timeSlot");
+    },
   },
 
   Mutation: {
@@ -103,12 +134,16 @@ const resolvers = {
       return { token, user };
     },
     // EDIT NORMAL USER
-    editNormalUser: async (parent, { normalUserId, firstName, lastName, email, password, location }) => {
-      const user = await NormalUser.findByIdAndUpdate( normalUserId ,
+    editNormalUser: async (
+      parent,
+      { normalUserId, firstName, lastName, email, password, location }
+    ) => {
+      const user = await NormalUser.findByIdAndUpdate(
+        normalUserId,
         { $set: { firstName, lastName, email, password, location } },
         { new: true }
-      )
-      return user
+      );
+      return user;
     },
     // LOGIN NORMAL USER
     loginNormalUser: async (parent, { email, password }) => {
@@ -166,6 +201,79 @@ const resolvers = {
       return { token, user };
     },
 
+    // ADD SERVICE TYPE
+    addServiceType: async (
+      parent,
+      {
+        serviceName,
+        servicePrice,
+        serviceDuration,
+        serviceDescription,
+        serviceUserId,
+        serviceCategory,
+      }
+    ) => {
+      const newService = await ServiceType.create({
+        serviceName,
+        servicePrice,
+        serviceDuration,
+        serviceDescription,
+        serviceUserId,
+        serviceCategory,
+      });
+      const updatedServiceUser = await ServiceUser.findByIdAndUpdate(
+        {
+          _id: serviceUserId,
+        },
+        { $push: { serviceType: newService._id } },
+        { new: true }
+      );
+      return newService, updatedServiceUser;
+    },
+
+    // REMOVE SERVICE TYPE
+    removeServiceType: async (parent, { serviceTypeId, serviceUserId }) => {
+      const deletedService = await ServiceType.findByIdAndDelete({
+        _id: serviceTypeId,
+      });
+      const updatedServiceUser = await ServiceUser.findByIdAndUpdate(
+        {
+          _id: serviceUserId,
+        },
+        { $pull: { serviceType: deletedService._id } },
+        { new: true }
+      );
+      return updatedServiceUser;
+    },
+
+    // EDIT SERVICE TYPE
+    editServiceType: async (
+      parent,
+      {
+        serviceTypeId,
+        serviceName,
+        servicePrice,
+        serviceDuration,
+        serviceDescription,
+      }
+    ) => {
+      const updatedService = await ServiceType.findByIdAndUpdate(
+        {
+          _id: serviceTypeId,
+        },
+        {
+          $set: {
+            serviceName,
+            servicePrice,
+            serviceDuration,
+            serviceDescription,
+          },
+        },
+        { new: true }
+      );
+      return updatedService;
+    },
+
     // ADD SERVICE COMMENT
     addServiceComment: async (
       parent,
@@ -182,7 +290,7 @@ const resolvers = {
         { $push: { serviceComments: newComment } },
         { new: true }
       );
-      return newComment, updatedUser
+      return newComment, updatedUser;
     },
 
     // REMOVE SERVICE COMMENT
@@ -195,7 +303,85 @@ const resolvers = {
         { $pull: { serviceComments: deletedComment._id } },
         { new: true }
       );
-      return deletedComment, updatedUser
+      return deletedComment, updatedUser;
+    },
+
+    // ADD TIME SLOT
+    addTimeSlot: async (parent, { timeSlot, serviceUserId }) => {
+      const newTimeSlot = await TimeSlot.create({
+        timeSlot,
+        serviceUserId,
+      });
+      const updatedServiceUser = await ServiceUser.findOneAndUpdate(
+        {
+          _id: serviceUserId,
+        },
+        { $push: { timeSlots: newTimeSlot._id } },
+        { new: true }
+      );
+      return updatedServiceUser, newTimeSlot;
+    },
+
+    // REMOVE TIME SLOT
+    removeTimeSlot: async (parent, { timeSlotId, serviceUserId }) => {
+      const deletedTimeSlot = await TimeSlot.findByIdAndDelete({
+        _id: timeSlotId,
+      });
+      const updatedUser = await ServiceUser.findByIdAndUpdate(
+        {
+          _id: serviceUserId,
+        },
+        { $pull: { timeSlots: deletedTimeSlot._id } },
+        { new: true }
+      );
+      return updatedUser, deletedTimeSlot;
+    },
+
+    // ADD APPOINTMENT
+    addAppointment: async (
+      parent,
+      { normalUserId, serviceUserId, timeSlotId, serviceTypeId }
+    ) => {
+      const appointment = await Appointment.create({
+        normalUser: normalUserId,
+        serviceUser: serviceUserId,
+        timeSlot: timeSlotId,
+        serviceType: serviceTypeId,
+      });
+      const updatedServiceUser = await ServiceUser.findByIdAndUpdate(
+        { _id: serviceUserId },
+        { $push: { appointments: appointment._id } },
+        { new: true }
+      );
+      const updatedNormalUser = await NormalUser.findByIdAndUpdate(
+        { _id: normalUserId },
+        { $push: { appointments: appointment._id } },
+        { new: true }
+      );
+      return appointment, updatedServiceUser, updatedNormalUser;
+    },
+
+    // DELETE APPOINTMENT
+    removeAppointment: async (
+      parent,
+      { appointmentId, serviceUserId, normalUserId }
+    ) => {
+      const deletedAppointment = await Appointment.findByIdAndDelete({
+        _id: appointmentId,
+      });
+      const updatedServiceUser = await ServiceUser.findByIdAndUpdate(
+        { _id: serviceUserId },
+        {
+          $pull: { appointments: deletedAppointment._id },
+        },
+        { new: true }
+      );
+      const updatedNormalUser = await NormalUser.findByIdAndUpdate(
+        { _id: normalUserId },
+        { $pull: { appointments: deletedAppointment._id } },
+        { new: true }
+      );
+      return updatedServiceUser, updatedNormalUser;
     },
   },
 };

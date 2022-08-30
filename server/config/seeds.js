@@ -5,11 +5,159 @@ const {
   ServiceCategory,
   ServiceComment,
   ServiceType,
+  TimeSlot,
+  Appointment
 } = require("../models");
 const moment = require("moment");
 const currentDate = moment(Date.now()).format("ll");
 
 db.once("open", async () => {
+
+
+
+  // CLEAR EXISTING TIMESLOTS SEEDS
+  await TimeSlot.deleteMany()
+
+  // // CREATE TIMESLOT DATA
+  // await TimeSlot.insertMany([
+  //   {
+  //     timeSlot: 1650456000,
+  //     serviceUser: serviceUserSeedOne._id,
+  //     serviceType: [serviceTypeSeed[0]._id, serviceTypeSeed[4]._id],
+  //   },
+  //   {
+  //     timeSlot: 1618920000,
+  //     serviceUser: serviceUserSeedOne._id,
+  //     serviceType: [serviceTypeSeed[2]._id, serviceTypeSeed[0]._id],
+  //   },
+  // ])
+
+  // CREATE TIMESLOT DATA
+  const timeSlot831 = await TimeSlot.insertMany([
+    // 8/31/22
+    {
+      // 8/31 @ 0900
+      timeSlot: 1661961600,
+    },
+    {
+      // 8/31 @ 1000
+      timeSlot: 1661965200,
+    },
+    {
+      // 8/31 @ 1100
+      timeSlot: 1661968800,
+    },
+    {
+      // 8/31 @ 1200
+      timeSlot: 1661972400,
+    },
+    {
+      // 8/31 @ 1300
+      timeSlot: 1661976000,
+    },
+    {
+      // 8/31 @ 1400
+      timeSlot: 1661979600,
+    },
+    {
+      // 8/31 @ 1500
+      timeSlot: 1661983200,
+    },
+    {
+      // 8/31 @ 1600
+      timeSlot: 1661986800,
+    },
+    {
+      // 8/31 @ 1700
+      timeSlot: 1661990400,
+    },
+  ]);
+
+  // CREATE TIMESLOT DATA
+  const timeSlot95 = await TimeSlot.insertMany([
+    // 9/5/22
+    {
+      // 9/5 @ 0900
+      timeSlot: 1662393600,
+    },
+    {
+      // 9/5 @ 1000
+      timeSlot: 1662397200,
+    },
+    {
+      // 9/5 @ 1100
+      timeSlot: 1662400800,
+    },
+    {
+      // 9/5 @ 1200
+      timeSlot: 1662404400,
+    },
+    {
+      // 9/5 @ 1300
+      timeSlot: 1662408000,
+    },
+    {
+      // 9/5 @ 1400
+      timeSlot: 1662411600,
+    },
+    {
+      // 9/5 @ 1500
+      timeSlot: 1662415200,
+    },
+    {
+      // 9/5 @ 1600
+      timeSlot: 1662418800,
+    },
+    {
+      // 9/5 @ 1700
+      timeSlot: 1662422400,
+    },
+  ]);
+
+  const timeSlot96 = await TimeSlot.insertMany([
+    // 9/6/22
+    {
+      // 9/6 @ 0900
+      timeSlot: 1662480000,
+    },
+    {
+      // 9/6 @ 1000
+      timeSlot: 1662483600,
+    },
+    {
+      // 9/6 @ 1100
+      timeSlot: 1662487200,
+    },
+    {
+      // 9/6 @ 1200
+      timeSlot: 1662490800,
+    },
+    {
+      // 9/6 @ 1300
+      timeSlot: 1662494400,
+    },
+    {
+      // 9/6 @ 1400
+      timeSlot: 1662498000,
+    },
+    {
+      // 9/6 @ 1500
+      timeSlot: 1662501600,
+    },
+    {
+      // 9/6 @ 1600
+      timeSlot: 1662505200,
+    },
+    {
+      // 9/6 @ 1700
+      timeSlot: 1662508800,
+    },
+
+  ])
+
+  // LOG TO BACKEND CONSOLE
+  console.log("SUCCESSFULLY SEEDED TIMESLOTS");
+
   // DELETE SERVICECATEGORY DATA
   await ServiceCategory.deleteMany();
 
@@ -628,7 +776,11 @@ db.once("open", async () => {
       "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
     bio: "First testing bio",
     location: "Garden Grove, CA",
-    serviceType: [serviceTypeSeed[0]._id, serviceTypeSeed[2]._id, serviceTypeSeed[4]._id]
+    serviceType: [serviceTypeSeed[0]._id, serviceTypeSeed[2]._id, serviceTypeSeed[4]._id],
+    timeSlots: [timeSlot95[0]._id, timeSlot95[1]._id, timeSlot95[2]._id, timeSlot95[3]._id, timeSlot95[4]._id, timeSlot95[5]._id, timeSlot95[6]._id, timeSlot95[7]._id, timeSlot95[8]._id,
+    timeSlot96[0]._id, timeSlot96[1]._id, timeSlot96[2]._id, timeSlot96[3]._id, timeSlot96[4]._id, timeSlot96[5]._id, timeSlot96[6]._id, timeSlot96[7]._id, timeSlot96[8]._id,
+    timeSlot831[0]._id, timeSlot831[1]._id, timeSlot831[2]._id, timeSlot831[3]._id, timeSlot831[4]._id, timeSlot831[5]._id, timeSlot831[6]._id, timeSlot831[7]._id, timeSlot831[8]._id,
+    ],
   });
 
   // CREATE SERVICEUSER DATA
@@ -986,6 +1138,10 @@ db.once("open", async () => {
 
   // LOG TO BACKEND CONSOLE
   console.log("SUCCESSFULLY SEEDED SERVICE COMMENTS");
+
+  await Appointment.deleteMany();
+  console.log("SUCCESSFULLY DELETED MOCK APPOINTMENT DATA")
+
 
   process.exit();
 });

@@ -16,6 +16,8 @@ export default function Tabs({ serviceUser }) {
     },
   ]);
 
+  console.log('i am TABS', serviceUser)
+
   const [currentTab, setCurrentTab] = useState(tabs[0]);
   return (
     <>

@@ -35,6 +35,10 @@ const normalUserSchema = new Schema({
     type: String,
     trim: true,
   },
+  userType: {
+    type: String,
+    default: 'normalUser'
+  },
   appointments: [
     {
       type: Schema.Types.ObjectId,

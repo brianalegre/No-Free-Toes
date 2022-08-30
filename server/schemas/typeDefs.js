@@ -18,10 +18,17 @@ const typeDefs = gql`
 
     type Appointment {
         _id: ID
-        appointmentDate: String
-        serviceType: ServiceType
         normalUser: NormalUser
         serviceUser: ServiceUser
+        timeSlot: TimeSlot
+        serviceType: ServiceType
+    }
+
+    type TimeSlot {
+    _id: ID
+    timeSlot: String
+    # serviceUser: ServiceUser
+    # serviceType: [ServiceType]
     }
 
     type NormalUser {
@@ -47,8 +54,10 @@ const typeDefs = gql`
         location: String
         serviceCategory: ServiceCategory
         serviceType: [ServiceType]
+        timeSlots: [TimeSlot]
         appointments: [Appointment]
     }
+    
 
     type ServiceComment {
         _id: ID
@@ -68,7 +77,8 @@ const typeDefs = gql`
     token: ID!
     serviceUser: ServiceUser
     }
-    
+
+
     type Query {
         # SERVICE TYPE
         serviceType(_id: ID!): ServiceType
@@ -89,13 +99,17 @@ const typeDefs = gql`
         serviceUsersCategory(serviceCategory: ID): [ServiceUser]
         
         # APPOINTMENT
-        appointment(_id: ID!): Appointment
+        appointment(appointmentId: ID!): Appointment
         appointments: [Appointment]
-
 
         # SERVICE COMMENT
         serviceComment(serviceCommentId: ID!): ServiceComment
         serviceComments(serviceUserId: ID, normalUserId: ID): [ServiceComment]
+    
+        # TIME SLOT
+        timeSlot(timeSlotId: ID!): TimeSlot
+        timeSlots: [TimeSlot]
+
     }
 
     type NormalAuth {
@@ -110,8 +124,9 @@ const typeDefs = gql`
 
     type Mutation {
         # SERVICE TYPE
-        addServiceType(serviceName: String!, servicePrice: Float!, serviceDuration: Float!, serviceDescription: String,  serviceCategory: ID!): ServiceType
-        editServiceType(serviceName: String, servicePrice: Float, serviceDuration: Float, serviceDescription: String): ServiceType
+        addServiceType(serviceName: String!, servicePrice: Float!, serviceDuration: Float, serviceDescription: String, serviceUserId: ID!, serviceCategory: ID!): ServiceType
+        editServiceType(serviceTypeId: ID!, serviceName: String, servicePrice: Float, serviceDuration: Float, serviceDescription: String): ServiceType
+        removeServiceType(serviceTypeId: ID!, serviceUserId: ID!): ServiceType
 
         # SERVICE CATEGORY
         addServiceCategory(categoryName: String!): ServiceCategory
@@ -124,13 +139,13 @@ const typeDefs = gql`
         
         # SERVICE USER
         addServiceUser(firstName: String!, lastName: String!, email: String!, password: String!, bio: String!, location: String!, serviceCategory: ID!): ServiceAuth
-        editServiceUser(firstName: String, lastName: String, email: String, password: String, photo: String, bio:String, location: String, serviceCategory: ID, serviceType: [ID]): ServiceUser
+        editServiceUser(firstName: String, lastName: String, email: String, password: String, photo: String, bio:String, location: String, serviceCategory: ID, serviceType: [ID], timeSlots: [ID]): ServiceUser
         removeServiceUser(_id: ID!): ServiceUser
         loginServiceUser(email: String!, password: String!): ServiceAuth
         
         # APPOINTMENT
-        addAppointment(appointmentDate: String!, serviceType: ID!, normalUser: ID!, serviceUser: ID!): Appointment
-        removeAppointment(_id: ID!): Appointment
+        addAppointment(normalUserId:ID!, serviceUserId: ID!, timeSlotId: ID!, serviceTypeId: ID!): Appointment
+        removeAppointment(appointmentId: ID!, serviceUserId: ID!, normalUserId:ID!): Appointment
         
         # SERVICE COMMENT
         addServiceComment(commentText: String!, serviceRating: Int, serviceUser: ID!, normalUser: ID!): ServiceComment
@@ -142,7 +157,9 @@ const typeDefs = gql`
         # Service User Login
         serviceLogin(email: String!, password: String!): ServiceAuth
 
-
+        # TIME SLOT
+        addTimeSlot(timeSlot: String!, serviceUserId: ID!): TimeSlot
+        removeTimeSlot(timeSlotId: ID!, serviceUserId: ID!): TimeSlot
     }
 `;
 
