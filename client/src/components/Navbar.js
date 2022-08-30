@@ -43,7 +43,7 @@ const memberNavLinks = [
   },
   {
     name: "Appointments",
-    link: "#",
+    link: `/appointments/${loggedInUserId}`
   },
   {
     name: "Account",
