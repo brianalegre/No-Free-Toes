@@ -82,9 +82,9 @@ const ProviderSignup = () => {
     })) || [];
 
   return (
-<div className="p-10 min-h-screen grid gap-6 mb-6 md:grid-cols-2">
-<div className="container mx-auto flex flex-col md:flex-row items-center my-12">
-        <div className="pl-24 w-full lg:py-6">
+    <div className="p-10 min-h-screen grid gap-6 mb-6 md:grid-cols-2">
+      <div className="container mx-auto flex flex-col md:flex-row items-center my-12">
+        <div className="pl-24 w-full lg:w-1/2 lg:py-6">
           <img src={heroImg} alt="hero" className="w-4/6" />
         </div>
         <div className="flex flex-col w-full justify-center items-start py-12 px-6">
@@ -99,108 +99,108 @@ const ProviderSignup = () => {
           </p>
         </div>
       </div>
-    <main className="p-5 min-w-center m-auto w-full text-center max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 md:p-8 bg-gray-800 border-gray-700">
-      <div className="col-12 col-lg-10">
-        <div className="card">
-        <h4 className="mb-4 text-3xl font-bold text-white">Provider Sign Up</h4>
-          <h5 className="mb-4 text-sm font-bold text-white">Please fill out the form below:</h5>
-          <div className="card-body text-green-500">
-            {data ? (
-              <p>
-                Success! You may now head{" "}
-                <Link to="/">back to the homepage.</Link>
-              </p>
-            ) : (
-              <form onSubmit={handleFormSubmit}>
-                <div className="grid gap-6 mb-6 md:grid-cols-2">
-                  <input
-                    className="form-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
-                    placeholder="Your first name"
-                    name="firstName"
-                    type="text"
-                    required
-                    value={formState.firstName}
-                    onChange={handleChange}
-                  />
-                  <input
-                    className="form-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
-                    placeholder="Your last name"
-                    name="lastName"
-                    type="text"
-                    value={formState.lastName}
-                    onChange={handleChange}
-                  />
+      <main className="p-5 min-w-center m-auto w-full text-center max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 md:p-8 bg-gray-800 border-gray-700">
+        <div className="col-12 col-lg-10">
+          <div className="card">
+            <h4 className="mb-4 text-3xl font-bold text-white">Provider Sign Up</h4>
+            <h5 className="mb-4 text-sm font-bold text-white">Please fill out the form below:</h5>
+            <div className="card-body text-green-500">
+              {data ? (
+                <p>
+                  Success! You may now head{" "}
+                  <Link to="/">back to the homepage.</Link>
+                </p>
+              ) : (
+                <form onSubmit={handleFormSubmit}>
+                  <div className="grid gap-6 mb-6 md:grid-cols-2">
+                    <input
+                      className="form-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                      placeholder="Your first name"
+                      name="firstName"
+                      type="text"
+                      required
+                      value={formState.firstName}
+                      onChange={handleChange}
+                    />
+                    <input
+                      className="form-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                      placeholder="Your last name"
+                      name="lastName"
+                      type="text"
+                      value={formState.lastName}
+                      onChange={handleChange}
+                    />
                   </div>
                   <div className="grid gap-6 mb-6">
-                  <input
-                    className="form-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
-                    placeholder="Your email"
-                    name="email"
-                    type="email"
-                    value={formState.email}
-                    onChange={handleChange}
-                  />
-                  <input
-                    className="form-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
-                    placeholder="********"
-                    name="password"
-                    type="password"
-                    value={formState.password}
-                    onChange={handleChange}
-                  />
+                    <input
+                      className="form-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                      placeholder="Your email"
+                      name="email"
+                      type="email"
+                      value={formState.email}
+                      onChange={handleChange}
+                    />
+                    <input
+                      className="form-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                      placeholder="********"
+                      name="password"
+                      type="password"
+                      value={formState.password}
+                      onChange={handleChange}
+                    />
 
-                  <textarea 
-                  id="message" 
-                  rows="4" 
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
-                  name="bio"
-                  type="text"
-                  placeholder="Tell us about yourself..."
-                  value={formState.bio}
-                  onChange={handleChange}
-                  />
+                    <textarea
+                      id="message"
+                      rows="4"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                      name="bio"
+                      type="text"
+                      placeholder="Tell us about yourself..."
+                      value={formState.bio}
+                      onChange={handleChange}
+                    />
 
-                  <input
-                    className="form-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
-                    placeholder="Your location"
-                    name="location"
-                    type="text"
-                    value={formState.location}
-                    onChange={handleChange}
-                  />
-                  <Select
-                    placeholder="Select service provided"
-                    value={selectedOption}
-                    options={cats4Dropdown}
-                    onChange={handleSelectedOption}
-                    name="serviceCategory"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5 inline-block"
-                  />
-                  <button
-                    className="py-3 px-5 mr-5 w-full text-lg font-semibold focus:outline-none rounded-full text-center bg-green-300 hover:bg-green-700 text-black hover:text-gray-100 transition duration-300 btn btn-block"
-                    style={{ cursor: "pointer" }}
-                    type="submit"
-                    onClick={() => handleFormSubmit()}
-                  >
-                    Submit
-                  </button>
-                  <div className="text-sm font-medium text-gray-300">
-                            Already registered? 
-                            <Link to="/login" className="text-green-500 hover:underline"> Login</Link>
-                            </div>
+                    <input
+                      className="form-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                      placeholder="Your location"
+                      name="location"
+                      type="text"
+                      value={formState.location}
+                      onChange={handleChange}
+                    />
+                    <Select
+                      placeholder="Select service provided"
+                      value={selectedOption}
+                      options={cats4Dropdown}
+                      onChange={handleSelectedOption}
+                      name="serviceCategory"
+                      className="text-gray-900 rounded-lg block w-full"
+                    />
+                    <button
+                      className="py-3 px-5 mr-5 w-full text-lg font-semibold focus:outline-none rounded-full text-center bg-green-300 hover:bg-green-700 text-black hover:text-gray-100 rounded transition duration-300 btn btn-block"
+                      style={{ cursor: "pointer" }}
+                      type="submit"
+                      onClick={() => handleFormSubmit()}
+                    >
+                      Submit
+                    </button>
+                    <div className="text-sm font-medium text-gray-300">
+                      Already registered?
+                      <Link to="/login" className="text-green-500 hover:underline"> Login</Link>
+                    </div>
+                  </div>
+                </form>
+              )}
+
+              {error && (
+                <div className="my-3 p-3 bg-danger text-red-500">
+                  {error.message}
                 </div>
-              </form>
-            )}
-            
-            {error && (
-              <div className="my-3 p-3 bg-danger text-red-500">
-                {error.message}
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </div>
-      </div>
-    </main>
+      </main>
     </div>
   );
 };
