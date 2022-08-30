@@ -105,6 +105,19 @@ export const QUERY_SERVICEUSER = gql`
   }
 `;
 
+export const QUERY_SERVICEUSER_TIMESLOTS = gql`
+  query serviceUser($serviceUserId: ID!) {
+    serviceUser(serviceUserId: $serviceUserId) {
+      firstName
+      lastName
+      timeSlots {
+        _id
+        timeSlot
+      }
+    }
+  }
+`;
+
 export const QUERY_SERVICECOMMENTS_BY_SERVICEUSERID = gql`
   query serviceComments($serviceUserId: ID) {
     serviceComments(serviceUserId: $serviceUserId) {
