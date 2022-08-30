@@ -6,32 +6,6 @@ export default function Services({ serviceUser }) {
   const { serviceType } = serviceUser;
   const { timeSlots } = serviceUser;
 
-  console.log('TIMESLOTS Services Tab ----', timeSlots);
-
-
-  console.log(serviceType);
-
-  // MAP TIME SLOTS TO DISPLAY
-  const availableTimes = timeSlots?.map((times, i) => {
-    // DESTRUCTURING THE TIMESLOTS OBJECT
-    const {
-      timeSlot,
-    } = times;
-
-    // CONVERT TIME SLOTS WITH MOMENTJS
-    const parsedDate = moment.unix(timeSlot).format("lll")
-    console.log('I AM PARSED DATE', parsedDate);
-
-    // return parsedDate
-    return (
-      <>
-        <div>
-          <p>{parsedDate}</p>
-        </div>
-      </>
-    )
-  }
-  )
 
   // MODAL FOR BOOKING
   const customStyles = {
@@ -64,32 +38,67 @@ export default function Services({ serviceUser }) {
   }
 
   // GET HEADER FUNCTION
-  // DISPLAY TODAYS DATE, TOMORROWS DATE, OR NEXT DAYS DATE
+  // DISPLAY TODAYS DATE, AND THE NEXT 6 DAYS
   // ONTO THE HEADER OF THE TABLE
-  const getHeader = () => {
+  // const getHeader = () => {
 
-    const today = moment().format("dddd MM/DD");
-    const todayPlusOne = moment().add(1, 'days').format("dddd MM/DD");
-    const todayPlusTwo = moment().add(2, 'days').format("dddd MM/DD");
-    const todayPlusThree = moment().add(3, 'days').format("dddd MM/DD");
-    const todayPlusFour = moment().add(4, 'days').format("dddd MM/DD");
-    const todayPlusFive = moment().add(5, 'days').format("dddd MM/DD");
-    const todayPlusSix = moment().add(6, 'days').format("dddd MM/DD");
+  const today = moment().format("dddd MM/DD");
+  const todayPlusOne = moment().add(1, 'days').format("dddd MM/DD");
+  const todayPlusTwo = moment().add(2, 'days').format("dddd MM/DD");
+  const todayPlusThree = moment().add(3, 'days').format("dddd MM/DD");
+  const todayPlusFour = moment().add(4, 'days').format("dddd MM/DD");
+  const todayPlusFive = moment().add(5, 'days').format("dddd MM/DD");
+  const todayPlusSix = moment().add(6, 'days').format("dddd MM/DD");
 
-    return (
-      <>
-        <th>{today}</th>
-        <th>{todayPlusOne}</th>
-        <th>{todayPlusTwo}</th>
-        <th>{todayPlusThree}</th>
-        <th>{todayPlusFour}</th>
-        <th>{todayPlusFive}</th>
-        <th>{todayPlusSix}</th>
-      </>
-    )
+  //   return (
+  //     <>
+  //       <tr>
+  //         <th>{today}</th>
+  //         <th>{todayPlusOne}</th>
+  //         <th>{todayPlusTwo}</th>
+  //         <th>{todayPlusThree}</th>
+  //         <th>{todayPlusFour}</th>
+  //         <th>{todayPlusFive}</th>
+  //         <th>{todayPlusSix}</th>
+  //       </tr>
+  //     </>
+  //   )
+  // }
+
+  // // DISPLAY THE TIME SLOTS FOR EACH DAY
+  // // ONTO THE TABLE
+  // const getTimeSlots = () => {
+  //   // const parsedDate = moment.unix(timeSlot).format("lll")
+  //   return (
+  //     <>
+  //       {timeSlots.map((timeSlot, i) => {
+  //         return (
+  //           <tr key={i}>
+  //             <td>{moment.unix(timeSlot.timeSlot).format('lll')}</td>
+  //             {/* <td>{moment.unix(timeSlot.timeSlot).format('lll')}</td>
+  //             <td>{moment.unix(timeSlot.timeSlot).format('lll')}</td>
+  //             <td>{moment.unix(timeSlot.timeSlot).format('lll')}</td>
+  //             <td>{moment.unix(timeSlot.timeSlot).format('lll')}</td>
+  //             <td>{moment.unix(timeSlot.timeSlot).format('lll')}</td>
+  //             <td>{moment.unix(timeSlot.timeSlot).format('lll')}</td> */}
+  //           </tr>
+  //         )
+  //       }
+  //       )}
+  //     </>
+  //   )
+  // }
 
 
-  }
+  // FOR LOOP ON TIMESLOTS
+  // for (let i = 0; i < 28; i++) {
+  //   console.log('dah', timeSlots[i].timeSlot);
+  // }
+
+
+
+
+
 
 
   const services = serviceType?.map((service) => (
@@ -155,9 +164,23 @@ export default function Services({ serviceUser }) {
             </div>
             <div className="w-full">
               <table className="m-auto p-5">
-                {/* {availableTimes} */}
                 <tr>
-                  {getHeader()}
+                  <th>{today}</th>
+                  <th>{todayPlusOne}</th>
+                  <th>{todayPlusTwo}</th>
+                  <th>{todayPlusThree}</th>
+                  <th>{todayPlusFour}</th>
+                  <th>{todayPlusFive}</th>
+                  <th>{todayPlusSix}</th>
+                </tr>
+                <tr>
+                  {/* {getTimeSlots()} */}
+                  {/* {getTimeSlots()} */}
+                  {/* {getTimeSlots()} */}
+                  {/* {getTimeSlots()} */}
+                  {/* {getTimeSlots()} */}
+                  {/* {getTimeSlots()} */}
+                  {/* {getTimeSlots()} */}
                 </tr>
                 <tr>
                   <td><button>Time Slot 1</button></td>
@@ -167,18 +190,17 @@ export default function Services({ serviceUser }) {
                   <td><button>Time Slot 1</button></td>
                   <td><button>Time Slot 1</button></td>
                   <td><button>Time Slot 1</button></td>
-
+                </tr>
+                {/* <tr>
+                  <td><button>Time Slot 2</button></td>
+                  <td><button>Time Slot 2</button></td>
+                  <td><button>Time Slot 2</button></td>
+                  <td><button>Time Slot 2</button></td>
+                  <td><button>Time Slot 2</button></td>
+                  <td><button>Time Slot 2</button></td>
+                  <td><button>Time Slot 2</button></td>
                 </tr>
                 <tr>
-                  <td><button>Time Slot 2</button></td>
-                  <td><button>Time Slot 2</button></td>
-                  <td><button>Time Slot 2</button></td>
-                  <td><button>Time Slot 2</button></td>
-                  <td><button>Time Slot 2</button></td>
-                  <td><button>Time Slot 2</button></td>
-                  <td><button>Time Slot 2</button></td>
-                </tr>
-                <tr>
                   <td><button>Time Slot 3</button></td>
                   <td><button>Time Slot 3</button></td>
                   <td><button>Time Slot 3</button></td>
@@ -186,7 +208,7 @@ export default function Services({ serviceUser }) {
                   <td><button>Time Slot 3</button></td>
                   <td><button>Time Slot 3</button></td>
                   <td><button>Time Slot 3</button></td>
-                </tr>
+                </tr> */}
               </table>
             </div>
           </div>
@@ -246,3 +268,103 @@ export default function Services({ serviceUser }) {
     </section>
   );
 }
+
+
+// UNUSED CODE
+
+
+
+  // MAP TIME SLOTS TO DISPLAY
+  // const availableTimes = timeSlots?.map((times, i) => {
+  //   // DESTRUCTURING THE TIMESLOTS OBJECT
+  //   const {
+  //     timeSlot,
+  //   } = times;
+
+  //   // CONVERT TIME SLOTS WITH MOMENTJS
+  //   const parsedDate = moment.unix(timeSlot).format("lll")
+
+  //   const today = moment().format("dddd MM/DD");
+  //   const todayPlusOne = moment().add(1, 'days').format("dddd MM/DD");
+  //   const todayPlusTwo = moment().add(2, 'days').format("dddd MM/DD");
+  //   const todayPlusThree = moment().add(3, 'days').format("dddd MM/DD");
+  //   const todayPlusFour = moment().add(4, 'days').format("dddd MM/DD");
+  //   const todayPlusFive = moment().add(5, 'days').format("dddd MM/DD");
+  //   const todayPlusSix = moment().add(6, 'days').format("dddd MM/DD");
+
+  //   // return parsedDate
+  //   return (
+  //     <>
+  //       <tr>
+  //         <td>{parsedDate}</td>
+  //       </tr>
+  //     </>
+  //   )
+  // }
+  // )
+
+    // // const parsedDate = moment.unix(timeSlot).format("lll")
+
+    // // GET TIME SLOTS
+    // // FILTER THE TIME SLOTS BY DATE
+    // // IF TIME SLOT DATE MATCHS TABLE HEADER DATE
+    // // THEN POPULATE
+    // const filteredTimeSlots = timeSlots.filter(times => {
+    //   if (times.timeSlot == today) {
+    //     return 'true'
+    //   } else {
+    //     return 'false'
+    //   }
+
+    // }
+    // )
+
+    // // if parseData.date === today {
+    // //   return <tr>parsed</tr>
+    // // }
+
+    // // 
+
+    
+  // const filteredTimeSlots = timeSlots.filter((obj) => {
+  //   // if (moment.unix(obj.timeSlot) == moment.unix)
+  //   let todayUnix = moment().unix();
+  //   if (moment.unix(obj.timeSlot).isSame(todayUnix,)) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
+  // )
+
+  // FILTER TIMESLOTS BY TODAY
+  // const filteredTimeSlots = timeSlots.filter((obj) => {
+  //   let todayUnix = moment().unix();
+  //   if (moment.unix(obj.timeSlot).isSame(todayUnix, 'day')) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
+  // )
+
+  // let now = moment().unix('day');
+
+  // function checkingTimeSlots() {
+  //   timeSlots.forEach((obj) => {
+  //     const now = moment().unix();
+
+  //     // if (moment(obj.timeSlot).isSame(now, 'year')) {
+  //     var result = moment().isSame(obj.timeSlot, 'year')
+
+  //     // if (moment('2010-10-20').isSame('2010-12-31', 'year')) {
+
+  //     //   console.log('true');
+  //     // } else {
+  //     //   console.log('false');
+  //     // }
+  //   }
+  //   )
+  // }
+
+  // checkingTimeSlots();

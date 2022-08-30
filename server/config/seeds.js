@@ -33,6 +33,10 @@ db.once("open", async () => {
 
   // CREATE TIMESLOT DATA
   const timeSlot831 = await TimeSlot.insertMany([
+    {
+      // 8/29 @ 2200
+      timeSlot: 1661835600,
+    },
     // 8/31/22
     {
       // 8/31 @ 0900
