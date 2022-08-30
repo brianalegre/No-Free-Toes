@@ -84,10 +84,10 @@ const ProviderSignup = () => {
   return (
 <div className="p-10 min-h-screen grid gap-6 mb-6 md:grid-cols-2">
 <div className="container mx-auto flex flex-col md:flex-row items-center my-12">
-        <div className="pl-24 w-full lg:w-1/2 lg:py-6">
+        <div className="pl-24 w-full lg:py-6">
           <img src={heroImg} alt="hero" className="w-4/6" />
         </div>
-        <div className="flex flex-col w-full lg:w-2/3 justify-center items-start py-12 px-6">
+        <div className="flex flex-col w-full justify-center items-start py-12 px-6">
           <h1 className="my-4 text-2xl text-bold lg:text-5xl">
             No Free Toes Scheduler
           </h1>
@@ -174,10 +174,10 @@ const ProviderSignup = () => {
                     options={cats4Dropdown}
                     onChange={handleSelectedOption}
                     name="serviceCategory"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5 inline-block"
                   />
                   <button
-                    className="py-3 px-5 mr-5 w-full text-lg font-semibold focus:outline-none rounded-full text-center bg-green-300 hover:bg-green-700 text-black hover:text-gray-100 rounded transition duration-300 btn btn-block"
+                    className="py-3 px-5 mr-5 w-full text-lg font-semibold focus:outline-none rounded-full text-center bg-green-300 hover:bg-green-700 text-black hover:text-gray-100 transition duration-300 btn btn-block"
                     style={{ cursor: "pointer" }}
                     type="submit"
                     onClick={() => handleFormSubmit()}
