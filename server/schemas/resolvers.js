@@ -45,14 +45,10 @@ const resolvers = {
     // GET ALL TIME SLOTS
     timeSlots: async () => {
       return await TimeSlot.find()
-        .populate("serviceUser")
-        .populate("serviceType");
     },
     // GET SINGLE TIME SLOT
     timeSlot: async (parent, { timeSlotId }) => {
       return await TimeSlot.findOne({ _id: timeSlotId })
-        .populate("serviceUser")
-        .populate("serviceType");
     },
     //  GET ALL SERVICE CATEGORIES
     serviceCategories: async () => {
