@@ -85,8 +85,6 @@ export const QUERY_SERVICEUSER = gql`
     serviceUser(serviceUserId: $serviceUserId) {
       firstName
       lastName
-      firstName
-      lastName
       photo
       email
       bio
@@ -97,19 +95,6 @@ export const QUERY_SERVICEUSER = gql`
         serviceDuration
         serviceDescription
       }
-      timeSlots {
-        _id
-        timeSlot
-      }
-    }
-  }
-`;
-
-export const QUERY_SERVICEUSER_TIMESLOTS = gql`
-  query serviceUser($serviceUserId: ID!) {
-    serviceUser(serviceUserId: $serviceUserId) {
-      firstName
-      lastName
       timeSlots {
         _id
         timeSlot

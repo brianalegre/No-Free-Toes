@@ -60,7 +60,7 @@ const serviceUserSchema = new Schema({
             unique: true,
         },
     ],
-    appointment: [
+    appointments: [
         {
             type: Schema.Types.ObjectId,
             ref: 'Appointment',

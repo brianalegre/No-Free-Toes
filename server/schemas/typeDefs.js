@@ -18,10 +18,10 @@ const typeDefs = gql`
 
     type Appointment {
         _id: ID
-        appointmentDate: String
-        serviceType: ServiceType
         normalUser: NormalUser
         serviceUser: ServiceUser
+        timeSlot: TimeSlot
+        serviceType: ServiceType
     }
 
     type TimeSlot {
@@ -99,7 +99,7 @@ const typeDefs = gql`
         serviceUsersCategory(serviceCategory: ID): [ServiceUser]
         
         # APPOINTMENT
-        appointment(_id: ID!): Appointment
+        appointment(appointmentId: ID!): Appointment
         appointments: [Appointment]
 
         # SERVICE COMMENT
@@ -144,8 +144,8 @@ const typeDefs = gql`
         loginServiceUser(email: String!, password: String!): ServiceAuth
         
         # APPOINTMENT
-        addAppointment(appointmentDate: String!, serviceType: ID!, normalUser: ID!, serviceUser: ID!): Appointment
-        removeAppointment(_id: ID!): Appointment
+        addAppointment(normalUserId:ID!, serviceUserId: ID!, timeSlotId: ID!, serviceTypeId: ID!): Appointment
+        removeAppointment(appointmentId: ID!, normalUserId:ID!, serviceUserId: ID!): Appointment
         
         # SERVICE COMMENT
         addServiceComment(commentText: String!, serviceRating: Int, serviceUser: ID!, normalUser: ID!): ServiceComment

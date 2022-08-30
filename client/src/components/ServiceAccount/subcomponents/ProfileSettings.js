@@ -44,9 +44,6 @@ export default function ProfileSettings({ loggedInUserId, email, firstName, last
             console.error(error);
         }
     };
-
-
-
     // console.log(updateProfile)
 
 

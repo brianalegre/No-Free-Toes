@@ -5,6 +5,7 @@ const {
   ServiceComment,
   ServiceType,
   TimeSlot,
+  Appointment,
 } = require("../models");
 
 const { signToken } = require("../utils/auth");
@@ -15,27 +16,31 @@ const resolvers = {
   Query: {
     // GET ALL NORMAL USERS
     normalUsers: async () => {
-      return await NormalUser.find().populate("serviceComments");
+      return await NormalUser.find()
+        .populate("serviceComments")
+        .populate("appointments");
     },
     // GET SINGLE NORMAL USER
     normalUser: async (parent, { normalUserId }) => {
-      return await NormalUser.findOne({ _id: normalUserId }).populate(
-        "serviceComments"
-      );
+      return await NormalUser.findOne({ _id: normalUserId })
+        .populate("serviceComments")
+        .populate("appointments");
     },
     // GET SINGLE SERVICE USER
     serviceUser: async (parent, { serviceUserId }) => {
       return ServiceUser.findOne({ _id: serviceUserId })
         .populate("serviceType")
         .populate("timeSlots")
-        .populate("serviceCategory");
+        .populate("serviceCategory")
+        .populate("appointments");
     },
     // GET ALL SERVICE USERS
     serviceUsers: async () => {
       return await ServiceUser.find()
         .populate("serviceType")
         .populate("serviceCategory")
-        .populate("timeSlots");
+        .populate("timeSlots")
+        .populate("appointments");
     },
     // GET ALL TIME SLOTS
     timeSlots: async () => {
@@ -94,6 +99,24 @@ const resolvers = {
 
       // }
       return await ServiceUser.find(params).populate("serviceCategory");
+    },
+
+    // FIND ALL APPOINTMENTS
+    appointments: async () => {
+      return await Appointment.find({})
+        .populate("normalUser")
+        .populate("serviceUser")
+        .populate("serviceType")
+        .populate("timeSlot");
+    },
+
+    // FIND SINGLE APPOINTMENT
+    appointment: async (parent, { appointmentId }) => {
+      return await Appointment.findOne({ _id: appointmentId })
+        .populate("normalUser")
+        .populate("serviceUser")
+        .populate("serviceType")
+        .populate("timeSlot");
     },
   },
 
@@ -252,7 +275,7 @@ const resolvers = {
         },
         { new: true }
       );
-      return updatedService
+      return updatedService;
     },
 
     // ADD SERVICE COMMENT
@@ -316,6 +339,30 @@ const resolvers = {
         { new: true }
       );
       return updatedUser, deletedTimeSlot;
+    },
+
+    // ADD APPOINTMENT
+    addAppointment: async (
+      parent,
+      { normalUserId, serviceUserId, timeSlotId, serviceTypeId }
+    ) => {
+      const appointment = await Appointment.create({
+        normalUser: normalUserId,
+        serviceUser: serviceUserId,
+        timeSlot: timeSlotId,
+        serviceType: serviceTypeId,
+      });
+      const updatedServiceUser = await ServiceUser.findByIdAndUpdate(
+        { _id: serviceUserId },
+        { $push: { appointments: appointment._id } },
+        { new: true }
+      );
+      const updatedNormalUser = await NormalUser.findByIdAndUpdate(
+        { _id: normalUserId },
+        { $push: { appointments: appointment._id } },
+        { new: true }
+      );
+      return appointment, updatedServiceUser, updatedNormalUser;
     },
   },
 };
