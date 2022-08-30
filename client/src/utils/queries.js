@@ -26,6 +26,7 @@ export const QUERY_ALL_NORMALUSERS = gql`
   }
 `;
 
+
 // GET SINGLE NORMAL USER
 export const QUERY_SINGLE_NORMALUSER = gql`
 query NormalUser($normalUserId: ID!) {
@@ -96,6 +97,10 @@ export const QUERY_SERVICEUSER = gql`
         serviceDuration
         serviceDescription
       }
+      timeSlots {
+        _id
+        timeSlot
+      }
     }
   }
 `;
@@ -147,7 +152,6 @@ export const QUERY_SINGLE_SERVICEUSER = gql`
 }
 
 `
-
 
 
 // export const QUERY_SERVICEUSERS_CATEGORY = gql`

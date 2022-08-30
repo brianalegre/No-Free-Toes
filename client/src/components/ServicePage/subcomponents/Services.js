@@ -1,10 +1,36 @@
 import React, { useState } from "react";
 import Modal from 'react-modal';
+import * as moment from "moment";
 
 export default function Services({ serviceUser }) {
   const { serviceType } = serviceUser;
+  const { timeSlots } = serviceUser;
+  console.log('TIMESLOTS Services Tab ----', timeSlots);
+
 
   console.log(serviceType);
+
+  // MAP TIME SLOTS TO DISPLAY
+  const availableTimes = timeSlots?.map((times, i) => {
+    // DESTRUCTURING THE TIMESLOTS OBJECT
+    const {
+      timeSlot,
+    } = times;
+
+    // CONVERT TIME SLOTS WITH MOMENTJS
+    const parsedDate = moment.unix(timeSlot).format("lll")
+    console.log('I AM PARSED DATE', parsedDate);
+
+    // return parsedDate
+    return (
+      <>
+        <div>
+          <p>{parsedDate}</p>
+        </div>
+      </>
+    )
+  }
+  )
 
   // MODAL FOR BOOKING
   const customStyles = {
@@ -36,6 +62,33 @@ export default function Services({ serviceUser }) {
 
   }
 
+  // GET HEADER FUNCTION
+  // DISPLAY TODAYS DATE, TOMORROWS DATE, OR NEXT DAYS DATE
+  // ONTO THE HEADER OF THE TABLE
+  const getHeader = () => {
+
+    const today = moment().format("dddd MM/DD");
+    const todayPlusOne = moment().add(1, 'days').format("dddd MM/DD");
+    const todayPlusTwo = moment().add(2, 'days').format("dddd MM/DD");
+    const todayPlusThree = moment().add(3, 'days').format("dddd MM/DD");
+    const todayPlusFour = moment().add(4, 'days').format("dddd MM/DD");
+    const todayPlusFive = moment().add(5, 'days').format("dddd MM/DD");
+    const todayPlusSix = moment().add(6, 'days').format("dddd MM/DD");
+
+    return (
+      <>
+        <th>{today}</th>
+        <th>{todayPlusOne}</th>
+        <th>{todayPlusTwo}</th>
+        <th>{todayPlusThree}</th>
+        <th>{todayPlusFour}</th>
+        <th>{todayPlusFive}</th>
+        <th>{todayPlusSix}</th>
+      </>
+    )
+
+
+  }
 
 
   const services = serviceType?.map((service) => (
@@ -101,13 +154,9 @@ export default function Services({ serviceUser }) {
             </div>
             <div className="w-full">
               <table className="m-auto p-5">
+                {/* {availableTimes} */}
                 <tr>
-                  <th>Monday</th>
-                  <th>Tuesday</th>
-                  <th>Wednesday</th>
-                  <th>Thursday</th>
-                  <th>Friday</th>
-
+                  {getHeader()}
                 </tr>
                 <tr>
                   <td><button>Time Slot 1</button></td>
@@ -115,6 +164,8 @@ export default function Services({ serviceUser }) {
                   <td><button>Time Slot 1</button></td>
                   <td><button>Time Slot 1</button></td>
                   <td><button>Time Slot 1</button></td>
+                  <td><button>Time Slot 1</button></td>
+                  <td><button>Time Slot 1</button></td>
 
                 </tr>
                 <tr>
@@ -123,9 +174,12 @@ export default function Services({ serviceUser }) {
                   <td><button>Time Slot 2</button></td>
                   <td><button>Time Slot 2</button></td>
                   <td><button>Time Slot 2</button></td>
-
+                  <td><button>Time Slot 2</button></td>
+                  <td><button>Time Slot 2</button></td>
                 </tr>
                 <tr>
+                  <td><button>Time Slot 3</button></td>
+                  <td><button>Time Slot 3</button></td>
                   <td><button>Time Slot 3</button></td>
                   <td><button>Time Slot 3</button></td>
                   <td><button>Time Slot 3</button></td>
