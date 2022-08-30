@@ -49,13 +49,13 @@ const [formState, setFormatsterState] = useState('')
 
   }
 
-
-  const timeSlotStateData = timeSlots?.slice(0, 10).map((timeSlotState) => ( 
+  const timeSlotStateData = timeSlots?.sort(((a,b) => a.timeSlot - b.timeSlot)).slice(0, 10).map((timeSlotState) => ( 
     <button
+    className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
     data-id={timeSlotState._id}
     // >{moment.unix(timeSlotState.timeSlot).format('lll')}</button>
     >
-      {moment.unix(timeSlotState.timeSlot).format('ddd MM/DD hh:00 A')}
+      {moment.unix(timeSlotState.timeSlot).format('ddd MM/DD HH:mm')}
     </button>
 
   ));
@@ -123,7 +123,7 @@ const [formState, setFormatsterState] = useState('')
               <h2 className="text-center w-full font-semibold" >Pick an available time slot</h2>
               <button onClick={closeModal} className="text-red-500 font-extrabold text-right">X</button>
             </div>
-            <div className="w-full grid grid-cols-5 gap-3">
+            <div className="w-full grid grid-cols-5 gap-3 pt-5">
               {timeSlotStateData}
             </div>
           </div>
