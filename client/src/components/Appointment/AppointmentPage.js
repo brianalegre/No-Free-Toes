@@ -3,10 +3,10 @@ import AppointmentCards from "./subcomponents/AppointmentCards";
 
 export default function AppointmentPage() {
   return (
-    <div className="min-h-screen">
-      <div className="py-12 md:py-24 flex justify-center">
+    <main className="flex flex-col min-h-screen">
+
         <AppointmentCards />
-      </div>
-    </div>
+
+    </main>
   );
 }
