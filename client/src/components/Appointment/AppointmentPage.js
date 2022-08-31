@@ -5,7 +5,6 @@ import Auth from "../../utils/auth";
 
 export default function AppointmentPage() {
   const userType = Auth.getProfile().data.userType;
-  console.log(userType);
 
   return (
     <main className="flex flex-col min-h-screen">

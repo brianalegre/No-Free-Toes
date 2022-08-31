@@ -3,6 +3,7 @@ import { useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import { QUERY_SERVICEUSER } from "../../../utils/queries";
 import moment from "moment";
+import NoAppointmentCard from "./NoAppointmentCard";
 
 export default function SUAppointmentCards() {
   const { loggedInUserId } = useParams();
@@ -11,7 +12,6 @@ export default function SUAppointmentCards() {
   });
 
   const userAppointments = data?.serviceUser?.appointments.map((appt, i) => (
-    
     <div key={`appointment ${i}`} className="py-8 md:py-16 flex justify-center">
       <div
         href="##"
@@ -61,5 +61,6 @@ export default function SUAppointmentCards() {
     </div>
   ));
 
-  return <div>{userAppointments}</div>;
+  const length = userAppointments?.length;
+  return <div>{length !== 0 ? userAppointments : <NoAppointmentCard />}</div>;
 }
