@@ -3,7 +3,7 @@ import Modal from 'react-modal';
 import * as moment from "moment";
 import { useMutation } from "@apollo/client";
 import { ADD_APPOINTMENT } from "../../../utils/mutations";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Auth from "../../../utils/auth";
 import toast from "react-hot-toast";
 
@@ -13,6 +13,8 @@ export default function Services({ serviceUser }) {
   const { serviceType } = serviceUser;
   const { timeSlots } = serviceUser;
   const { serviceUserId } = useParams();
+  const navigate = useNavigate()
+
 
 
 // CHECK IF LOGGED
@@ -140,7 +142,12 @@ const [addAppointment, { error, data }] = useMutation(ADD_APPOINTMENT);
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
         <button 
-          onClick={openModal}
+          // onClick={openModal}
+          onClick={() =>
+            Auth.loggedIn() === true
+            ? openModal()
+            : navigate('/login')
+          }
           value={service._id}
           name="serviceTypeId"
           data-id={service._id}
