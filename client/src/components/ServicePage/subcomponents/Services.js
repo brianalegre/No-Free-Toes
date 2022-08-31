@@ -122,9 +122,7 @@ const [addAppointment, { error, data }] = useMutation(ADD_APPOINTMENT);
           {service.servicePrice}
         </p>
       </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
-        <p className="whitespace-no-wrap">{service.serviceDuration} minutes</p>
-      </td>
+      
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm dark:border-gray-700 dark:bg-gray-800">
         <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight dark:text-green-100">
           <span
@@ -176,34 +174,27 @@ const [addAppointment, { error, data }] = useMutation(ADD_APPOINTMENT);
 
   return (
     <section>
-      <table className="min-w-full leading-normal">
+      <table className="min-w-full leading-normal text-center">
         <thead>
           <tr>
             <td className="px-5 py-8 border-b border-gray-200 bg-white text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
               <div className="flex items-center">
                 <div className="pl-1">
-                  <p className="whitespace-no-wrap font-semibold">
+                  <p className="whitespace-no-wrap font-semibold text-center">
                     Service Type
                   </p>
                 </div>
               </div>
             </td>
             <td className="px-5 py-8 border-b border-gray-200 bg-white text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
-              <div className="flex items-center">
+              <div className="flex justify-center">
                 <div className="pl-1">
                   <p className="whitespace-no-wrap font-semibold">Price</p>
                 </div>
               </div>
             </td>
             <td className="px-5 py-8 border-b border-gray-200 bg-white text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
-              <div className="flex items-center">
-                <div className="pl-1">
-                  <p className="whitespace-no-wrap font-semibold">Duration</p>
-                </div>
-              </div>
-            </td>
-            <td className="px-5 py-8 border-b border-gray-200 bg-white text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
-              <div className="flex items-center">
+              <div className="flex justify-center">
                 <div className="pl-1">
                   <p className=" whitespace-no-wrap font-semibold">
                     Availability
@@ -211,8 +202,14 @@ const [addAppointment, { error, data }] = useMutation(ADD_APPOINTMENT);
                 </div>
               </div>
             </td>
-            <td className="px-5 py-8 border-b border-gray-200 bg-white text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white ">
-              <div className="pl-1"></div>
+            <td className="px-5 py-8 border-b border-gray-200 bg-white text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
+              <div className="flex justify-center">
+                <div className="pl-1">
+                  <p className=" whitespace-no-wrap font-semibold">
+                    Scheduling
+                  </p>
+                </div>
+              </div>
             </td>
           </tr>
         </thead>
