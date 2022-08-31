@@ -76,7 +76,6 @@ export default function Reviews() {
 
     // parsing the UNIX date that received from backend using moment.js
     const parsedDate = moment({ commentCreated }).format("ll");
-    console.log('I AM PARSED DATE serviceComments', parsedDate)
 
     // renders the user's ratings as stars
     let showRating;
