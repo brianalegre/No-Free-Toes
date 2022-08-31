@@ -31,5 +31,13 @@ module.exports = {
 
     return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
   },
+
+  removeNullishFields(obj){
+    //bonus - make it recursive so removes nullish fields on nested objects as well
+    Object.keys(obj).forEach(key => {
+      !obj[key] && delete obj[key]
+    });
+    return obj;
+  }
 };
 

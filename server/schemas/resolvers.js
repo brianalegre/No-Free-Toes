@@ -8,7 +8,7 @@ const {
   Appointment,
 } = require("../models");
 
-const { signToken } = require("../utils/auth");
+const { signToken, removeNullishFields } = require("../utils/auth");
 const { AuthenticationError } = require("apollo-server-express");
 const { isObjectIdOrHexString, trusted } = require("mongoose");
 
@@ -184,11 +184,12 @@ const resolvers = {
     // EDIT SERVICE USER
     editServiceUser: async (
       parent,
-      { serviceUserId, firstName, lastName, email, password, bio, location }
+      { serviceUserId, ...serviceUserInfo }
     ) => {
+      const cleanedFields = removeNullishFields(serviceUserInfo);
       const user = await ServiceUser.findByIdAndUpdate(
         serviceUserId,
-        { $set: { firstName, lastName, email, password, bio, location } },
+        { $set: cleanedFields },
         { new: true }
       );
       return user;

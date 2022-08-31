@@ -13,7 +13,7 @@ export default function ProfileSettings({ loggedInUserId, serviceUser, refetch})
         email: email,
         firstName: firstName,
         lastName: lastName,
-        password: '',
+        password: null,
         bio: bio,
         location: location
     })
@@ -76,7 +76,7 @@ export default function ProfileSettings({ loggedInUserId, serviceUser, refetch})
                 </div>
                 <div className="relative z-0 mb-6 w-full group">
                     <label for="floating_location" className="text-xs">Bio</label>
-                    <input onChange={handleUserInput} defaultValue={bio} type="text" name="location" id="floating_location" className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder={bio} required />
+                    <input onChange={handleUserInput} defaultValue={bio} type="text" name="bio" id="floating_bio" className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder={bio} required />
                 </div>
                 <div className="grid md:grid-cols-2 md:gap-6">
                     <div className="relative z-0 mb-6 w-full group">
