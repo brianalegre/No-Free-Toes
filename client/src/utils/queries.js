@@ -115,6 +115,24 @@ export const QUERY_SERVICEUSER = gql`
         _id
         timeSlot
       }
+      appointments {
+        _id
+        normalUser {
+          _id
+          firstName
+          lastName
+          photo
+        }
+        timeSlot {
+          _id
+          timeSlot
+        }
+        serviceType {
+          _id
+          serviceName
+          servicePrice
+        }
+      }
     }
   }
 `;

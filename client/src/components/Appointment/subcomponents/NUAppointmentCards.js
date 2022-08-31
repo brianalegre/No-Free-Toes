@@ -1,5 +1,4 @@
-import React, {useEffect, useState} from "react";
-import defaultImg from "../../../images/man.png";
+import React from "react";
 import { useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import { QUERY_SINGLE_NORMALUSER } from "../../../utils/queries";
@@ -30,7 +29,7 @@ export default function AppointmentCards() {
           className="relative flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-3xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
         >
           <img
-            className="object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg p-2"
+            className="object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg p-2 md:p-4"
             src={appt.serviceUser.photo}
             alt="default"
           />
@@ -56,11 +55,11 @@ export default function AppointmentCards() {
             <h5 className="mb-8 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
               {moment.unix(appt.timeSlot.timeSlot).format("ddd MM/DD HH:mm")}
             </h5>
-            <span>Appointment with:</span>
+            <span className="dark: text-gray-200">Appointment with:</span>
             <h5 className="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
               {appt.serviceUser.firstName}{" "}{appt.serviceUser.lastName}
             </h5>
-            <p className="font-normal text-gray-700 dark:text-gray-400">
+            <p className="font-normal text-gray-700 dark:text-gray-200">
               {appt.serviceType.serviceName}
             </p>
           </div>
