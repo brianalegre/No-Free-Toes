@@ -10,9 +10,9 @@ export default function SUAppointmentCards() {
     variables: { serviceUserId: loggedInUserId },
   });
 
-
-  const userAppointments = data?.serviceUser?.appointments.map((appt) => (
-    <div className="py-8 md:py-16 flex justify-center">
+  const userAppointments = data?.serviceUser?.appointments.map((appt, i) => (
+    
+    <div key={`appointment ${i}`} className="py-8 md:py-16 flex justify-center">
       <div
         href="##"
         className="relative flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-3xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
@@ -61,6 +61,5 @@ export default function SUAppointmentCards() {
     </div>
   ));
 
-  
   return <div>{userAppointments}</div>;
 }

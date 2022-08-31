@@ -5,7 +5,6 @@ import { QUERY_SINGLE_NORMALUSER } from "../../../utils/queries";
 import moment from 'moment'
 
 export default function AppointmentCards() {
-    // const [userData, setUserData] = useState()
 
     const { loggedInUserId } = useParams();
     const { data, loading, error, refetch } = useQuery(
@@ -15,15 +14,8 @@ export default function AppointmentCards() {
         }
       );
 
-    //   useEffect(()=> {
-    //     if (data) {
-    //         setUserData(data)
-    //         refetch()
-    //     }
-    //   },[data, refetch])
-
-      const userAppointments = data?.normalUser?.appointments.map(appt=> (
-        <div className="py-8 md:py-16 flex justify-center">
+      const userAppointments = data?.normalUser?.appointments.map((appt, i) => (
+        <div key={`appointment ${i}`} className="py-8 md:py-16 flex justify-center">
         <div
           href="##"
           className="relative flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-3xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
