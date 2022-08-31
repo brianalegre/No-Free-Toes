@@ -25,7 +25,6 @@ const resolvers = {
       const userData = await NormalUser.findOne({ _id: normalUserId })
         .populate({
           path: "serviceComments",
-          populate: { path: "normalUser"},
           populate: { path: "serviceUser",
           populate: { path: "serviceCategory"},
         },
