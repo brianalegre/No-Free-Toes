@@ -6,7 +6,7 @@ import { EDIT_SERVICEUSER } from "../../../utils/mutations"
 export default function ProfileSettings({ loggedInUserId, serviceUser, refetch}) {
     // const { firstName, lastName, email } = serviceUser;
     const { email, firstName, lastName, bio, location } = serviceUser
-    console.log(bio)
+
     // CREATE STATE FROM FORM
     const [userInfo, setUserInfo] = useState({
         serviceUserId: loggedInUserId,

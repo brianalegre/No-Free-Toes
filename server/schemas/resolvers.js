@@ -136,11 +136,12 @@ const resolvers = {
     // EDIT NORMAL USER
     editNormalUser: async (
       parent,
-      { normalUserId, firstName, lastName, email, password, location }
+      { normalUserId, ...normalUserInfo }
     ) => {
+      const cleanedInfo = removeNullishFields(normalUserInfo)
       const user = await NormalUser.findByIdAndUpdate(
         normalUserId,
-        { $set: { firstName, lastName, email, password, location } },
+        { $set: cleanedInfo },
         { new: true }
       );
       return user;
@@ -186,10 +187,10 @@ const resolvers = {
       parent,
       { serviceUserId, ...serviceUserInfo }
     ) => {
-      const cleanedFields = removeNullishFields(serviceUserInfo);
+      const cleanedInfo = removeNullishFields(serviceUserInfo);
       const user = await ServiceUser.findByIdAndUpdate(
         serviceUserId,
-        { $set: cleanedFields },
+        { $set: cleanedInfo },
         { new: true }
       );
       return user;

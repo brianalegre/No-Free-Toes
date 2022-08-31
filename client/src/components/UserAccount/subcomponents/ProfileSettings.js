@@ -12,7 +12,7 @@ export default function ProfileSettings({ loggedInUserId, email, firstName, last
         email: email,
         firstName: firstName,
         lastName: lastName,
-        password: '',
+        password: null,
         // photo: '',
         location: location
     })
