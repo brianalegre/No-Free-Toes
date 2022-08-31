@@ -87,7 +87,9 @@ export default function ServiceAccount() {
                                 // categoryName={categoryName}
                                 // // serviceUser={serviceUser}
                                 // refetch={refetch}
+                                loggedInUserId= {loggedInUserId}
                                 serviceUser= {serviceUser}
+                                refetch={refetch}
                                 // categoryName= {categoryName}
                             />
                         </div>

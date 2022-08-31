@@ -150,6 +150,37 @@ export const EDIT_NORMALUSER = gql`
   }
 `;
 
+// EDIT SERVICE USER
+export const EDIT_SERVICEUSER = gql`
+mutation Mutation(
+  $serviceUserId: ID!, 
+  $firstName: String, 
+  $lastName: String, 
+  $email: String, 
+  $password: String, 
+  $bio: String, 
+  $location: String
+  ) {
+  editServiceUser(
+    serviceUserId: $serviceUserId, 
+    firstName: $firstName, 
+    lastName: $lastName, 
+    email: $email, 
+    password: $password, 
+    bio: $bio, 
+    location: $location
+    ) {
+    _id
+    firstName
+    lastName
+    email
+    password
+    bio
+    location
+  }
+}
+`;
+
 export const ADD_TIMESLOT = gql`
   mutation AddTimeSlot($timeSlot: String!, $serviceUserId: ID!) {
     addTimeSlot(timeSlot: $timeSlot, serviceUserId: $serviceUserId) {

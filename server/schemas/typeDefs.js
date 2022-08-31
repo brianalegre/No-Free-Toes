@@ -139,8 +139,8 @@ const typeDefs = gql`
         
         # SERVICE USER
         addServiceUser(firstName: String!, lastName: String!, email: String!, password: String!, bio: String!, location: String!, serviceCategory: ID!): ServiceAuth
-        editServiceUser(firstName: String, lastName: String, email: String, password: String, photo: String, bio:String, location: String, serviceCategory: ID, serviceType: [ID], timeSlots: [ID]): ServiceUser
-        removeServiceUser(_id: ID!): ServiceUser
+        editServiceUser(serviceUserId: ID!, firstName: String, lastName: String, email: String, password: String, photo: String, bio:String, location: String, serviceCategory: ID, serviceType: [ID], timeSlots: [ID]): ServiceUser
+        removeServiceUser(_id: ID !): ServiceUser
         loginServiceUser(email: String!, password: String!): ServiceAuth
         
         # APPOINTMENT

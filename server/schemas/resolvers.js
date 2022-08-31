@@ -181,6 +181,18 @@ const resolvers = {
 
       return { token, user };
     },
+    // EDIT SERVICE USER
+    editServiceUser: async (
+      parent,
+      { serviceUserId, firstName, lastName, email, password, bio, location }
+    ) => {
+      const user = await ServiceUser.findByIdAndUpdate(
+        serviceUserId,
+        { $set: { firstName, lastName, email, password, bio, location } },
+        { new: true }
+      );
+      return user;
+    },
 
     // LOGIN SERVICE USER
     loginServiceUser: async (parent, { email, password }) => {

@@ -74,16 +74,16 @@ export default function ProfileSettings({ loggedInUserId, email, firstName, last
                 </div> */}
                 <div className="relative z-0 mb-6 w-full group">
                     <label for="floating_location" className="text-xs">Location</label>
-                    <input onChange={handleUserInput} type="text" name="location" id="floating_location" className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder={location} required />
+                    <input onChange={handleUserInput} defaultValue={location} type="text" name="location" id="floating_location" className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"  required />
                 </div>
                 <div className="grid md:grid-cols-2 md:gap-6">
                     <div className="relative z-0 mb-6 w-full group">
                         <label for="floating_email" className="text-xs">First name</label>
-                        <input onChange={handleUserInput} type="text" name="firstName" id="floating_fn" className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder={firstName} required />
+                        <input onChange={handleUserInput} defaultValue={firstName} type="text" name="firstName" id="floating_fn" className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"  required />
                     </div>
                     <div className="relative z-0 mb-6 w-full group">
                         <label for="floating_email" className="text-xs">Last name</label>
-                        <input onChange={handleUserInput} type="text" name="lastName" id="floating_ln" className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder={lastName} required />
+                        <input onChange={handleUserInput} defaultValue={lastName} type="text" name="lastName" id="floating_ln" className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"  required />
                     </div>
                 </div>
                 <button onClick={handleFormSubmit} type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>

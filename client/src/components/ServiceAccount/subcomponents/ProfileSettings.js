@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { EDIT_NORMALUSER } from "../../../utils/mutations"
+import { EDIT_SERVICEUSER } from "../../../utils/mutations"
 
 
-export default function ProfileSettings({ loggedInUserId, email, firstName, lastName, location, refetch }) {
+export default function ProfileSettings({ loggedInUserId, serviceUser, refetch}) {
     // const { firstName, lastName, email } = serviceUser;
-
+    const { email, firstName, lastName, bio, location } = serviceUser
+    console.log(bio)
     // CREATE STATE FROM FORM
     const [userInfo, setUserInfo] = useState({
-        normalUserId: loggedInUserId,
+        serviceUserId: loggedInUserId,
         email: email,
         firstName: firstName,
         lastName: lastName,
         password: '',
-        // photo: '',
+        bio: bio,
         location: location
     })
 
@@ -29,7 +30,7 @@ export default function ProfileSettings({ loggedInUserId, email, firstName, last
     };
 
     // MUTATION TO EDIT NORMAL USER
-    const [updateProfile, { error, data }] = useMutation(EDIT_NORMALUSER)
+    const [updateProfile, { error, data }] = useMutation(EDIT_SERVICEUSER)
 
     // SUBMIT FORM
     const handleFormSubmit = async (event) => {
@@ -72,6 +73,10 @@ export default function ProfileSettings({ loggedInUserId, email, firstName, last
                 <div className="relative z-0 mb-6 w-full group">
                     <label for="floating_location" className="text-xs">Location</label>
                     <input onChange={handleUserInput} defaultValue={location} type="text" name="location" id="floating_location" className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder={location} required />
+                </div>
+                <div className="relative z-0 mb-6 w-full group">
+                    <label for="floating_location" className="text-xs">Bio</label>
+                    <input onChange={handleUserInput} defaultValue={bio} type="text" name="location" id="floating_location" className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder={bio} required />
                 </div>
                 <div className="grid md:grid-cols-2 md:gap-6">
                     <div className="relative z-0 mb-6 w-full group">

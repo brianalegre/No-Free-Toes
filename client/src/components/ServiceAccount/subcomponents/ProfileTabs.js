@@ -5,7 +5,7 @@ import TimeSlotSettings from "./TimeSlotSettings"
 const avatarImg = ".././assets/images/man.png";
 
 
-export default function ProfileTabs({ serviceUser }) {
+export default function ProfileTabs({ loggedInUserId, serviceUser, refetch }) {
     const [profileTabs] = useState([
         {
             name: "Profile",
@@ -68,7 +68,9 @@ export default function ProfileTabs({ serviceUser }) {
                     // photo={photo}
                     // location={location}
                     // refetch={refetch}
+                    loggedInUserId={loggedInUserId}
                     serviceUser={serviceUser}
+                    refetch={refetch}
                 />
             </div>
             <div className={currentTab.name === "Services" ? null : "hidden"}>
