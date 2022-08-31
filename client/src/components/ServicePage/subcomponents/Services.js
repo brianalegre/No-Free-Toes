@@ -5,6 +5,8 @@ import { useMutation } from "@apollo/client";
 import { ADD_APPOINTMENT } from "../../../utils/mutations";
 import { useParams } from "react-router-dom";
 import Auth from "../../../utils/auth";
+import toast from "react-hot-toast";
+
 
 
 export default function Services({ serviceUser }) {
@@ -39,9 +41,13 @@ const [addAppointment, { error, data }] = useMutation(ADD_APPOINTMENT);
         variables: { ...formState },
       });
 
-    } catch (e) {
-      console.error(e);
+      toast.success("Successfully Booked!");
+      closeModal();
 
+    } catch (e) {
+      toast.error(
+        "Please Select an Available Time Slot"
+      )
     }
   };
 
@@ -151,13 +157,13 @@ const [addAppointment, { error, data }] = useMutation(ADD_APPOINTMENT);
           {/* <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2> */}
           <div className="m-5 p-5">
             <div className="flex">
-              <h2 className="text-center w-full font-semibold" >Pick an available time slot</h2>
+              <h2 className="text-center w-full font-semibold" >Pick an Available Time Slot</h2>
               <button onClick={closeModal} className="text-red-500 font-extrabold text-right">X</button>
             </div>
             <div className="w-full grid grid-cols-5 gap-3 pt-5">
               {timeSlotStateData}
             </div>
-            <div>
+            <div className="flex justify-end pt-5">
               <button 
                 type="button" 
                 onClick={handleFormSubmit}
