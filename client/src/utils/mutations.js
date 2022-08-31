@@ -148,13 +148,6 @@ export const EDIT_NORMALUSER = gql`
       location
     }
   }
-<<<<<<< HEAD
-}
-`;
-
-
-
-=======
 `;
 
 export const ADD_TIMESLOT = gql`
@@ -164,7 +157,6 @@ export const ADD_TIMESLOT = gql`
     }
   }
 `;
->>>>>>> 4e8be9b84abb007d57446422ca17403da3430c52
 
 // export const ADD_NORMALUSER2 = gql`
 // mutation Mutation($firstName: String!, $lastName: String!, $email: String!, $password: String!, $location: String!) {

@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import ProfileSettings from "./ProfileSettings";
-<<<<<<< HEAD:client/src/components/UserProfilePage/subcomponents/ProfileTabs.js
 import { useQuery } from "@apollo/client";
 import { QUERY_REVIEWS_BY_NORMAL_USER } from "../../../utils/queries";
-=======
 import TimeSlot from '../../TimeSlotCreator'
->>>>>>> 4e8be9b84abb007d57446422ca17403da3430c52:client/src/components/UserAccount/subcomponents/ProfileTabs.js
 const avatarImg = ".././assets/images/man.png";
 
 
