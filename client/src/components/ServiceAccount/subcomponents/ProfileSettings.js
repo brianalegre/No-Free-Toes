@@ -77,6 +77,7 @@ export default function ProfileSettings({ loggedInUserId, serviceUser, refetch})
                 <div className="relative z-0 mb-6 w-full group">
                     <label for="floating_location" className="text-xs">Bio</label>
                     <input onChange={handleUserInput} defaultValue={bio} type="text" name="bio" id="floating_bio" className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder={bio} required />
+                    <p id="floating_helper_text" class="mt-2 text-xs text-gray-500 dark:text-gray-400">Tell us about yourself.... </p>
                 </div>
                 <div className="grid md:grid-cols-2 md:gap-6">
                     <div className="relative z-0 mb-6 w-full group">
