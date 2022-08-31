@@ -105,7 +105,6 @@ const [addAppointment, { error, data }] = useMutation(ADD_APPOINTMENT);
 
   ));
 
-  console.log('i am servicetype', serviceType)
   const services = serviceType?.map((service) => (
 
     
