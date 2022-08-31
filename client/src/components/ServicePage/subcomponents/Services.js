@@ -1,14 +1,11 @@
 import React, { useState } from "react";
-// import Modal from 'react-modal';
+import Modal from 'react-modal';
 import * as moment from "moment";
 import { useMutation } from "@apollo/client";
 import { ADD_APPOINTMENT } from "../../../utils/mutations";
 import { useParams, useNavigate } from "react-router-dom";
 import Auth from "../../../utils/auth";
 import toast from "react-hot-toast";
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-
 
 
 
@@ -47,7 +44,7 @@ const [addAppointment, { error, data }] = useMutation(ADD_APPOINTMENT);
       });
 
       toast.success("Successfully Booked!");
-      // closeModal();
+      closeModal();
       refetch();
 
     } catch (e) {
@@ -67,42 +64,42 @@ const [addAppointment, { error, data }] = useMutation(ADD_APPOINTMENT);
       });
     };
 
-  // // MODAL FOR BOOKING
-  // const customStyles = {
-  //   content: {
-  //     top: '50%',
-  //     left: '50%',
-  //     right: 'auto',
-  //     bottom: 'auto',
-  //     marginRight: '-50%',
-  //     transform: 'translate(-50%, -50%)',
-  //     width: '50%',
-  //   },
-  // };
+  // MODAL FOR BOOKING
+  const customStyles = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+      width: '50%',
+    },
+  };
 
-  // // let subtitle;
-  // const [modalIsOpen, setmodalIsOpen] = useState(false);
+  // let subtitle;
+  const [modalIsOpen, setmodalIsOpen] = useState(false);
 
-  // function openModal(event) {
-  //   Auth.loggedIn() === true ? setmodalIsOpen(true)  : navigate('/login')
-  //   // setmodalIsOpen(true);
-  //   const { name, value } = event.target;
+  function openModal(event) {
+    Auth.loggedIn() === true ? setmodalIsOpen(true)  : navigate('/login')
+    // setmodalIsOpen(true);
+    const { name, value } = event.target;
   
-  //   setFormState({
-  //     ...formState,
-  //     [name]: value,
-  //   });
-  // }
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  }
 
   // function afterOpenModal() {
   //   // references are now sync'd and can be accessed.
   //   subtitle.style.color = '#f00';
   // }
 
-  // function closeModal() {
-  //   setmodalIsOpen(false);
+  function closeModal() {
+    setmodalIsOpen(false);
 
-  // }
+  }
 
   const timeSlotStateData = timeSlots?.sort(((a,b) => a.timeSlot - b.timeSlot)).slice(0, 10).map((timeSlotState) => ( 
     <button
@@ -145,7 +142,7 @@ const [addAppointment, { error, data }] = useMutation(ADD_APPOINTMENT);
           <span className="relative">available</span>
         </span>
       </td>
-      {/* <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
+      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
         <button 
           onClick={openModal}
 
@@ -162,6 +159,7 @@ const [addAppointment, { error, data }] = useMutation(ADD_APPOINTMENT);
           style={customStyles}
           contentLabel="Example Modal"
         >
+          {/* <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2> */}
           <div className="m-5 p-5">
             <div className="flex">
               <h2 className="text-center w-full font-semibold" >Pick an Available Time Slot</h2>
@@ -181,7 +179,7 @@ const [addAppointment, { error, data }] = useMutation(ADD_APPOINTMENT);
             </div>
           </div>
         </Modal>
-      </td> */}
+      </td>
     </tr>
   ));
 
