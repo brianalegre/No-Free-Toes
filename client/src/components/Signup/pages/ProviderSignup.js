@@ -84,11 +84,11 @@ const ProviderSignup = () => {
   return (
     <div className="p-10 min-h-screen grid gap-6 mb-6 md:grid-cols-2">
       <div className="container mx-auto flex flex-col md:flex-row items-center my-12">
-        <div className="pl-24 w-full lg:w-1/2 lg:py-6">
-          <img src={heroImg} alt="hero" className="w-4/6" />
+        <div className="pl-24 w-full">
+          <img src={heroImg} alt="hero" className="w-2/3" />
         </div>
         <div className="flex flex-col w-full justify-center items-start py-12 px-6">
-          <h1 className="my-4 text-2xl text-bold lg:text-5xl">
+          <h1 className="my-4 text-2xl text-bold lg:text-3xl">
             No Free Toes Scheduler
           </h1>
           <p className="leading-normal mb-4">

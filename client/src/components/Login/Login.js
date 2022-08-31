@@ -13,7 +13,7 @@ const Login = () => {
             <img src={heroImg} alt="hero" className="w-4/6" />
           </div>
           <div className="flex flex-col w-full lg:w-2/3 justify-center items-start py-12 px-6">
-            <h1 className="my-4 text-2xl text-bold lg:text-5xl">
+            <h1 className="my-4 text-2xl text-bold lg:text-3xl">
               No Free Toes Scheduler
             </h1>
             <p className="leading-normal mb-4">
