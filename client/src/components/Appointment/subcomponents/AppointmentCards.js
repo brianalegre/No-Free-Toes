@@ -1,17 +1,37 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import defaultImg from "../../../images/man.png";
+import { useQuery } from "@apollo/client";
+import { useParams } from "react-router-dom";
+import { QUERY_SINGLE_NORMALUSER } from "../../../utils/queries";
+import moment from 'moment'
 
 export default function AppointmentCards() {
-  return (
-    <>
-      <div className="py-8 md:py-16 flex justify-center">
+    const [userData, setUserData] = useState()
+
+    const { loggedInUserId } = useParams();
+    const { data, loading, error, refetch } = useQuery(
+        QUERY_SINGLE_NORMALUSER,
+        {
+          variables: { normalUserId: loggedInUserId },
+        }
+      );
+
+      useEffect(()=> {
+        if (data) {
+            setUserData(data)
+            refetch()
+        }
+      },[data, refetch])
+
+      const userAppointments = userData?.normalUser?.appointments.map(appt=> (
+        <div className="py-8 md:py-16 flex justify-center">
         <div
           href="##"
           className="relative flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-3xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
         >
           <img
             className="object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg p-2"
-            src={defaultImg}
+            src={appt.serviceUser.photo}
             alt="default"
           />
           <div className="absolute top-2 -right-0.5 md:bottom-40">
@@ -34,14 +54,14 @@ export default function AppointmentCards() {
           </div>
           <div className="flex flex-col p-4 w-96">
             <h5 className="mb-8 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              Wed, 8/31/2022 @ 3 PM
+              {moment.unix(appt.timeSlot.timeSlot).format("ddd MM/DD HH:mm")}
             </h5>
             <span>Appointment with:</span>
             <h5 className="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              Kevin Lazaro
+              {appt.serviceUser.firstName}{" "}{appt.serviceUser.lastName}
             </h5>
             <p className="font-normal text-gray-700 dark:text-gray-400">
-              Deep Tissue Massage {"(Happy ending)"}
+              {appt.serviceType.serviceName}
             </p>
           </div>
           <div className="pt-0 md:pt-28">
@@ -51,6 +71,11 @@ export default function AppointmentCards() {
           </div>
         </div>
       </div>
+      ))
+
+  return (
+    <>
+      {userAppointments}
     </>
   );
 }
