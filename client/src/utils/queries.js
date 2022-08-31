@@ -185,6 +185,13 @@ query Query($normalUserId: ID!) {
         firstName
         lastName
       }
+      serviceUser {
+        firstName
+        lastName
+        serviceCategory{
+          categoryName
+        }
+      }
     }
   }
 }

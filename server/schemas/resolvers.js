@@ -26,6 +26,9 @@ const resolvers = {
         .populate({
           path: "serviceComments",
           populate: { path: "normalUser"},
+          populate: { path: "serviceUser",
+          populate: { path: "serviceCategory"},
+        },
         })
         .populate("appointments");
 

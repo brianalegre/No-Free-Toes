@@ -40,12 +40,14 @@ export default function ProfileTabs({
   console.log("----SERVICES----", serviceComments);
 
   const reviews =
-    serviceComments?.normalUser?.serviceComments?.map((review) => ({
+    serviceComments?.normalUser?.serviceUser?.serviceComments?.map((review) => ({
       userId: review._id,
       reviewText: review.commentText,
       reviewAuthor: `${review.normalUser.firstName} ${review.normalUser.lastName}`,
       reviewCreated: review.commentCreated,
       reviewRating: review.serviceRating,
+      serviceUserReviewed: `${review.serviceUser.firstName} ${review.serviceUser.lastName}`,
+      serviceUserReviewedCat: review.serviceUser.serviceCategory,
     })) || [];
 
   console.log("reviews", reviews);
