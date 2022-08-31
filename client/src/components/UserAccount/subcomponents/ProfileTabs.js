@@ -32,18 +32,18 @@ export default function ProfileTabs({
   ]);
 
   const {
-    data: serviceComments,
+    data: normalUser, 
     error: serviceError,
     loading,
   } = useQuery(QUERY_REVIEWS_BY_NORMAL_USER, {
     variables: { normalUserId: loggedInUserId },
   });
 
-  console.log("----SERVICES----", serviceComments);
+  console.log("----SERVICES----", normalUser);
   // console.log("--DATE---", serviceComments[0].commentCreated);
 
-  const reviews =
-    serviceComments?.serviceUser?.serviceComments?.map((review) => ({
+  const profileReviews =
+    normalUser?.map((review) => ({
       _Id: review._id,
       reviewText: review.commentText,
       reviewedServicer: `${review.serviceUser.firstName} ${review.serviceUser.lastName}`,
@@ -56,7 +56,7 @@ export default function ProfileTabs({
     })) || [];
 
 
-  console.log("---REVIEWS----", reviews);
+  console.log("---REVIEWS----", profileReviews);
   
   // console.log(serviceComments.normalUser)
 
