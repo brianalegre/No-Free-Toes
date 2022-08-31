@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 
 
 
-export default function Services({ serviceUser }) {
+export default function Services({ serviceUser, refetch }) {
   const { serviceType } = serviceUser;
   const { timeSlots } = serviceUser;
   const { serviceUserId } = useParams();
@@ -45,6 +45,7 @@ const [addAppointment, { error, data }] = useMutation(ADD_APPOINTMENT);
 
       toast.success("Successfully Booked!");
       closeModal();
+      refetch();
 
     } catch (e) {
       toast.error(
@@ -80,7 +81,8 @@ const [addAppointment, { error, data }] = useMutation(ADD_APPOINTMENT);
   const [modalIsOpen, setmodalIsOpen] = useState(false);
 
   function openModal(event) {
-    setmodalIsOpen(true);
+    Auth.loggedIn() === true ? setmodalIsOpen(true)  : navigate('/login')
+    // setmodalIsOpen(true);
     const { name, value } = event.target;
   
     setFormState({
@@ -142,12 +144,8 @@ const [addAppointment, { error, data }] = useMutation(ADD_APPOINTMENT);
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
         <button 
-          // onClick={openModal}
-          onClick={() =>
-            Auth.loggedIn() === true
-            ? openModal()
-            : navigate('/login')
-          }
+          onClick={openModal}
+
           value={service._id}
           name="serviceTypeId"
           data-id={service._id}
