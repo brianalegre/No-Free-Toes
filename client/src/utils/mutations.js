@@ -158,6 +158,16 @@ export const ADD_TIMESLOT = gql`
   }
 `;
 
+
+// ADD APPOINTMENT
+export const ADD_APPOINTMENT = gql`
+mutation Mutation($normalUserId: ID!, $serviceUserId: ID!, $timeSlotId: ID!, $serviceTypeId: ID!) {
+  addAppointment(normalUserId: $normalUserId, serviceUserId: $serviceUserId, timeSlotId: $timeSlotId, serviceTypeId: $serviceTypeId) {
+    _id
+  }
+}
+  `
+
 // export const ADD_NORMALUSER2 = gql`
 // mutation Mutation($firstName: String!, $lastName: String!, $email: String!, $password: String!, $location: String!) {
 //   addNormalUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password, location: $location) {
