@@ -45,7 +45,6 @@ export default function Reviews() {
     QUERY_SERVICECOMMENTS_BY_SERVICEUSERID,
     {
       variables: { serviceUserId: serviceUserId },
-      fetchPolicy: "no-cache",
     }
   );
 
