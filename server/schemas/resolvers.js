@@ -24,7 +24,27 @@ const resolvers = {
     normalUser: async (parent, { normalUserId }) => {
       return await NormalUser.findOne({ _id: normalUserId })
         .populate("serviceComments")
-        .populate("appointments");
+        .populate({
+          path: "appointments",
+          populate: {
+            path: "serviceType",
+            model: "ServiceType",
+          },
+        })
+        .populate({
+          path: "appointments",
+          populate: {
+            path: "serviceUser",
+            model: "ServiceUser",
+          },
+        })
+        .populate({
+          path: "appointments",
+          populate: {
+            path: "timeSlot",
+            model: "TimeSlot",
+          },
+        });
     },
     // GET SINGLE SERVICE USER
     serviceUser: async (parent, { serviceUserId }) => {
@@ -32,7 +52,27 @@ const resolvers = {
         .populate("serviceType")
         .populate("timeSlots")
         .populate("serviceCategory")
-        .populate("appointments");
+        .populate({
+          path: "appointments",
+          populate: {
+            path: "serviceType",
+            model: "ServiceType",
+          },
+        })
+        .populate({
+          path: "appointments",
+          populate: {
+            path: "normalUser",
+            model: "NormalUser",
+          },
+        })
+        .populate({
+          path: "appointments",
+          populate: {
+            path: "timeSlot",
+            model: "TimeSlot",
+          },
+        });
     },
     // GET ALL SERVICE USERS
     serviceUsers: async () => {
@@ -364,7 +404,10 @@ const resolvers = {
       });
       const updatedServiceUser = await ServiceUser.findByIdAndUpdate(
         { _id: serviceUserId },
-        { $push: { appointments: appointment._id } },
+        {
+          $push: { appointments: appointment._id },
+          $pull: { timeSlots: timeSlotId },
+        },
         { new: true }
       );
       const updatedNormalUser = await NormalUser.findByIdAndUpdate(

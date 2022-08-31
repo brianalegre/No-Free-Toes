@@ -9,7 +9,7 @@ export default function ServicePage() {
   const { serviceUserId } = useParams();
   const [serviceUser, setServiceUser] = useState("");
 
-  const { loading, error, data } = useQuery(QUERY_SERVICEUSER, {
+  const { loading, error, data, refetch } = useQuery(QUERY_SERVICEUSER, {
     variables: { serviceUserId: serviceUserId },
     fetchPolicy: "no-cache",
   });
@@ -33,7 +33,7 @@ export default function ServicePage() {
             <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 bg-gray-100">
               <div className="inline-block min-w-full"></div>
             </div>
-            <Tabs serviceUser={serviceUser} />
+            <Tabs serviceUser={serviceUser} refetch={refetch} />
           </div>
         </div>
       </div>

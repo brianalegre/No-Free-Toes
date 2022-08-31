@@ -3,7 +3,7 @@ import Services from "./Services";
 import About from "./About";
 import Reviews from "./ServiceComments";
 
-export default function Tabs({ serviceUser }) {
+export default function Tabs({ serviceUser, refetch }) {
   const [tabs] = useState([
     {
       name: "About Provider",
@@ -16,7 +16,6 @@ export default function Tabs({ serviceUser }) {
     },
   ]);
 
-  console.log('i am TABS', serviceUser)
 
   const [currentTab, setCurrentTab] = useState(tabs[0]);
   return (
@@ -47,7 +46,7 @@ export default function Tabs({ serviceUser }) {
           <About serviceUser={serviceUser} />
         </div>
         <div className={currentTab.name === "Services" ? null : "hidden"}>
-          <Services serviceUser={serviceUser} />
+          <Services serviceUser={serviceUser} refetch={refetch}/>
         </div>
         <div className={currentTab.name === "Reviews" ? null : "hidden"}>
           <Reviews />
