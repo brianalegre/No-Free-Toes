@@ -181,9 +181,14 @@ query Query($normalUserId: ID!) {
       commentText
       commentCreated
       serviceRating
+      normalUser {
+        firstName
+        lastName
+      }
     }
   }
 }
+`
 
 
 

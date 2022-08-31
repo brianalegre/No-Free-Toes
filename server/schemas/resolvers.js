@@ -22,9 +22,15 @@ const resolvers = {
     },
     // GET SINGLE NORMAL USER
     normalUser: async (parent, { normalUserId }) => {
-      return await NormalUser.findOne({ _id: normalUserId })
-        .populate("serviceComments")
+      const userData = await NormalUser.findOne({ _id: normalUserId })
+        .populate({
+          path: "serviceComments",
+          populate: { path: "normalUser"},
+        })
         .populate("appointments");
+
+        console.log("userdata", userData);
+        return userData
     },
     // GET SINGLE SERVICE USER
     serviceUser: async (parent, { serviceUserId }) => {
