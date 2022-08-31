@@ -90,6 +90,7 @@ export const QUERY_SERVICEUSER = gql`
       bio
       location
       serviceType {
+        _id
         serviceName
         servicePrice
         serviceDuration

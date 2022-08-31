@@ -21,8 +21,10 @@ const loggedInUserId = isLoggedIn ? Auth.getProfile().data._id : null;
 const [formState, setFormState] = useState({
   normalUserId: loggedInUserId,
   serviceUserId: serviceUserId,  
-  timeSlotId: '630e839a62eac29c9b71c66d',
-  serviceTypeId: '630e839a62eac29c9b71c698'
+  timeSlotId: '',
+  // serviceTypeId: '630e839a62eac29c9b71c698'
+  serviceTypeId: ''
+
 
 })
 const [addAppointment, { error, data }] = useMutation(ADD_APPOINTMENT);
@@ -41,8 +43,17 @@ const [addAppointment, { error, data }] = useMutation(ADD_APPOINTMENT);
       console.error(e);
 
     }
-
   };
+
+    // UPDATE  STATE
+    const handleChange = (event) => {
+      const { name, value } = event.target;
+  
+      setFormState({
+        ...formState,
+        [name]: value,
+      });
+    };
 
   // MODAL FOR BOOKING
   const customStyles = {
@@ -60,8 +71,14 @@ const [addAppointment, { error, data }] = useMutation(ADD_APPOINTMENT);
   // let subtitle;
   const [modalIsOpen, setmodalIsOpen] = useState(false);
 
-  function openModal() {
+  function openModal(event) {
     setmodalIsOpen(true);
+    const { name, value } = event.target;
+  
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
   }
 
   // function afterOpenModal() {
@@ -76,9 +93,10 @@ const [addAppointment, { error, data }] = useMutation(ADD_APPOINTMENT);
 
   const timeSlotStateData = timeSlots?.sort(((a,b) => a.timeSlot - b.timeSlot)).slice(0, 10).map((timeSlotState) => ( 
     <button
-    onClick={handleFormSubmit}
+    onClick={handleChange}
     className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-    name={timeSlotState._id}
+    value={timeSlotState._id}
+    name="timeSlotId"
     data-id={timeSlotState._id}
     // >{moment.unix(timeSlotState.timeSlot).format('lll')}</button>
     >
@@ -87,6 +105,7 @@ const [addAppointment, { error, data }] = useMutation(ADD_APPOINTMENT);
 
   ));
 
+  console.log('i am servicetype', serviceType)
   const services = serviceType?.map((service) => (
 
     
@@ -117,26 +136,14 @@ const [addAppointment, { error, data }] = useMutation(ADD_APPOINTMENT);
         </span>
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
-        {/* <button
-          type="button"
-          className="font-medium rounded-lg text-sm px-2 py-1 text-center inline-flex items-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        >
-          Book Now
-          <svg
-            aria-hidden="true"
-            className="ml-2 -mr-1 w-5 h-5"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
+        <button 
+          onClick={openModal}
+          value={service._id}
+          name="serviceTypeId"
+          data-id={service._id}
           >
-            <path
-              fill-rule="evenodd"
-              d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-              clip-rule="evenodd"
-            ></path>
-          </svg>
-        </button> */}
-        <button onClick={openModal}>Book Now</button>
+            Book Now
+        </button>
         <Modal
           isOpen={modalIsOpen}
           // onAfterOpen={afterOpenModal}
@@ -152,6 +159,15 @@ const [addAppointment, { error, data }] = useMutation(ADD_APPOINTMENT);
             </div>
             <div className="w-full grid grid-cols-5 gap-3 pt-5">
               {timeSlotStateData}
+            </div>
+            <div>
+              <button 
+                type="button" 
+                onClick={handleFormSubmit}
+                className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                >
+                  Submit
+              </button>
             </div>
           </div>
         </Modal>
@@ -214,7 +230,25 @@ const [addAppointment, { error, data }] = useMutation(ADD_APPOINTMENT);
 
 // UNUSED CODE
 
-
+        // <button
+        //   type="button"
+        //   className="font-medium rounded-lg text-sm px-2 py-1 text-center inline-flex items-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        // >
+        //   Book Now
+        //   <svg
+        //     aria-hidden="true"
+        //     className="ml-2 -mr-1 w-5 h-5"
+        //     fill="currentColor"
+        //     viewBox="0 0 20 20"
+        //     xmlns="http://www.w3.org/2000/svg"
+        //   >
+        //     <path
+        //       fill-rule="evenodd"
+        //       d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+        //       clip-rule="evenodd"
+        //     ></path>
+        //   </svg>
+        // </button> 
 
   // MAP TIME SLOTS TO DISPLAY
   // const availableTimes = timeSlots?.map((times, i) => {
