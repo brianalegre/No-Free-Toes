@@ -25,24 +25,24 @@ const resolvers = {
       return await NormalUser.findOne({ _id: normalUserId })
         .populate("serviceComments")
         .populate({
-          path: 'appointments',
+          path: "appointments",
           populate: {
-            path: 'serviceType',
-            model: 'ServiceType',
+            path: "serviceType",
+            model: "ServiceType",
           },
         })
         .populate({
-          path: 'appointments',
+          path: "appointments",
           populate: {
-            path: 'serviceUser',
-            model: 'ServiceUser',
+            path: "serviceUser",
+            model: "ServiceUser",
           },
         })
         .populate({
-          path: 'appointments',
+          path: "appointments",
           populate: {
-            path: 'timeSlot',
-            model: 'TimeSlot',
+            path: "timeSlot",
+            model: "TimeSlot",
           },
         });
     },
@@ -53,24 +53,24 @@ const resolvers = {
         .populate("timeSlots")
         .populate("serviceCategory")
         .populate({
-          path: 'appointments',
+          path: "appointments",
           populate: {
-            path: 'serviceType',
-            model: 'ServiceType',
+            path: "serviceType",
+            model: "ServiceType",
           },
         })
         .populate({
-          path: 'appointments',
+          path: "appointments",
           populate: {
-            path: 'normalUser',
-            model: 'NormalUser',
+            path: "normalUser",
+            model: "NormalUser",
           },
         })
         .populate({
-          path: 'appointments',
+          path: "appointments",
           populate: {
-            path: 'timeSlot',
-            model: 'TimeSlot',
+            path: "timeSlot",
+            model: "TimeSlot",
           },
         });
     },
@@ -390,7 +390,10 @@ const resolvers = {
       });
       const updatedServiceUser = await ServiceUser.findByIdAndUpdate(
         { _id: serviceUserId },
-        { $push: { appointments: appointment._id } },
+        {
+          $push: { appointments: appointment._id },
+          $pull: { timeSlots: timeSlotId },
+        },
         { new: true }
       );
       const updatedNormalUser = await NormalUser.findByIdAndUpdate(
