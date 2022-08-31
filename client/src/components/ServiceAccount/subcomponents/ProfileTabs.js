@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import ProfileSettings from "./ProfileSettings";
-import { useQuery } from "@apollo/client";
-import { QUERY_REVIEWS_BY_NORMAL_USER } from "../../../utils/queries";
+import ServiceSettings from "./ServiceSettings";
+import TimeSlotSettings from "./TimeSlotSettings"
 const avatarImg = ".././assets/images/man.png";
 
 
-export default function ProfileTabs({loggedInUserId, email, firstName, lastName, photo, location, refetch }) {
+export default function ProfileTabs({ serviceUser }) {
     const [profileTabs] = useState([
         {
             name: "Profile",
@@ -17,30 +17,17 @@ export default function ProfileTabs({loggedInUserId, email, firstName, lastName,
             name: "Services",
         },
         {
+            name: "Time Slots",
+        },
+        {
             name: "Payment",
         },
     ])
+    // const { serviceCategory } = serviceUser
+    // console.log(serviceCategory)
 
-    const {
-        data: serviceComments,
-        error: serviceError,
-        loading,
-      } = useQuery(QUERY_REVIEWS_BY_NORMAL_USER);
-
-      const reviews =
-    serviceComments?.serviceComments?.map((review) => ({
-      userId: review._id,
-      reviewText: review.commentText,
-      reviewAuthor: review.firstName.lastName,
-      reviewCreated: review.commentCreated,
-      reviewRating: review.serviceRating,
-    })) || [];
-
-    console.log("reviews",reviews);
-    console.log("servicess----", serviceComments)
-
-  
-
+    const { categoryName } = serviceUser?.serviceCategory || [];
+    // console.log(categoryName)
     // const { firstName, lastName, photo } = serviceUser;
 
     const [currentTab, setCurrentTab] = useState(profileTabs[0]);
@@ -48,11 +35,11 @@ export default function ProfileTabs({loggedInUserId, email, firstName, lastName,
         <>
             <aside className="md:border-r">
                 {/* Avatar image, User/Service user info */}
-                <div className="flex items-center space-x-4 p-2 border-b">
-                    <img className="w-10 h-10 rounded-full" src={photo} alt="avatar" />
+                <div class="flex items-center space-x-4 p-2 border-b">
+                    <img className="w-10 h-10 rounded-full" src={serviceUser.photo} alt="avatar" />
                     <div className="font-medium dark:text-white">
-                        <div>{firstName} {lastName}</div>
-                        <div className="text-base text-gray-500 dark:text-gray-400">Client</div>
+                        <div>{serviceUser.firstName} {serviceUser.lastName}</div>
+                        <div className="text-base text-gray-500 dark:text-gray-400">{categoryName}</div>
                     </div>
                 </div>
                 {/* Tabs */}
@@ -73,27 +60,42 @@ export default function ProfileTabs({loggedInUserId, email, firstName, lastName,
 
             <div className={currentTab.name === "Profile" ? null : "hidden"}>
                 {/* Form Card template, TODO update to fit needs */}
-                <ProfileSettings email={email}
-                    loggedInUserId={loggedInUserId}
-                    firstName={firstName}
-                    lastName={lastName}
-                    photo={photo}
-                    location={location}
-                    refetch={refetch} />
+                <ProfileSettings
+                    // email={email}
+                    // loggedInUserId={loggedInUserId}
+                    // firstName={firstName}
+                    // lastName={lastName}
+                    // photo={photo}
+                    // location={location}
+                    // refetch={refetch}
+                    serviceUser={serviceUser}
+                />
             </div>
-
-            <div className={currentTab.name === "Review" ? null : "hidden"}>
-            {reviews.length === 0 ? (
-                <h3>No reviews.</h3>
-                ) : (
-                    {reviews}
-                )};
-        </div>
-
+            <div className={currentTab.name === "Services" ? null : "hidden"}>
+                {/* <ServiceSettings
+                    serviceUser={serviceUser}
+                /> */}
+            </div>
+            <div className={currentTab.name === "Time Slots" ? null : "hidden"}>
+                        <TimeSlotSettings />
+            </div>
         </>
+
     );
 }
 
+// OLD CODE
+{/* <ul className>
+                <li className="flex items-center justify-between border-b p-2">
+                    <button
+                        className="inline-block py-3 px-3 rounded-lg w-full text-left hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white">
+                        <span className="text-red-600">My Profile</span>
+                    </button>
+                </li>
+                <li className="flex items-center justify-between border-b p-2">My Reviews</li>
+                <li className="flex items-center justify-between border-b p-2">My Services</li>
+                <li className="flex items-center justify-between border-b p-2">My Payment</li>
+            </ul> */}
 
 
 

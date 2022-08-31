@@ -15,8 +15,8 @@ const serviceTypeSchema = new Schema({
   // service duration in minutes
   serviceDuration: {
     type: Number,
-    required: true,
     min: 0,
+    default: 30,
   },
   serviceDescription: {
     type: String,

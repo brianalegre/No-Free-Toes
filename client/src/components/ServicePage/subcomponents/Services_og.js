@@ -1,95 +1,9 @@
-import React, { useState } from "react";
-import Modal from 'react-modal';
-import * as moment from "moment";
+import React from "react";
 
 export default function Services({ serviceUser }) {
   const { serviceType } = serviceUser;
-  const { timeSlots } = serviceUser;
-  console.log('TIMESLOTS Services Tab ----', timeSlots);
-
 
   // console.log(serviceType);
-
-  // MAP TIME SLOTS TO DISPLAY
-  const availableTimes = timeSlots?.map((times, i) => {
-    // DESTRUCTURING THE TIMESLOTS OBJECT
-    const {
-      timeSlot,
-    } = times;
-
-    // CONVERT TIME SLOTS WITH MOMENTJS
-    const parsedDate = moment.unix(timeSlot).format("lll")
-    console.log('I AM PARSED DATE', parsedDate);
-
-    // return parsedDate
-    return (
-      <>
-        <div>
-          <p>{parsedDate}</p>
-        </div>
-      </>
-    )
-  }
-  )
-
-  // MODAL FOR BOOKING
-  const customStyles = {
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-      width: '50%',
-    },
-  };
-
-  // let subtitle;
-  const [modalIsOpen, setmodalIsOpen] = useState(false);
-
-  function openModal() {
-    setmodalIsOpen(true);
-  }
-
-  // function afterOpenModal() {
-  //   // references are now sync'd and can be accessed.
-  //   subtitle.style.color = '#f00';
-  // }
-
-  function closeModal() {
-    setmodalIsOpen(false);
-
-  }
-
-  // GET HEADER FUNCTION
-  // DISPLAY TODAYS DATE, TOMORROWS DATE, OR NEXT DAYS DATE
-  // ONTO THE HEADER OF THE TABLE
-  const getHeader = () => {
-
-    const today = moment().format("dddd MM/DD");
-    const todayPlusOne = moment().add(1, 'days').format("dddd MM/DD");
-    const todayPlusTwo = moment().add(2, 'days').format("dddd MM/DD");
-    const todayPlusThree = moment().add(3, 'days').format("dddd MM/DD");
-    const todayPlusFour = moment().add(4, 'days').format("dddd MM/DD");
-    const todayPlusFive = moment().add(5, 'days').format("dddd MM/DD");
-    const todayPlusSix = moment().add(6, 'days').format("dddd MM/DD");
-
-    return (
-      <>
-        <th>{today}</th>
-        <th>{todayPlusOne}</th>
-        <th>{todayPlusTwo}</th>
-        <th>{todayPlusThree}</th>
-        <th>{todayPlusFour}</th>
-        <th>{todayPlusFive}</th>
-        <th>{todayPlusSix}</th>
-      </>
-    )
-
-
-  }
-
 
   const services = serviceType?.map((service) => (
     <tr key={service.serviceName}>
@@ -119,7 +33,7 @@ export default function Services({ serviceUser }) {
         </span>
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
-        {/* <button
+        <button
           type="button"
           className="font-medium rounded-lg text-sm px-2 py-1 text-center inline-flex items-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
@@ -137,59 +51,7 @@ export default function Services({ serviceUser }) {
               clip-rule="evenodd"
             ></path>
           </svg>
-        </button> */}
-        <button onClick={openModal}>Book Now</button>
-        <Modal
-          isOpen={modalIsOpen}
-          // onAfterOpen={afterOpenModal}
-          onRequestClose={closeModal}
-          style={customStyles}
-          contentLabel="Example Modal"
-        >
-          {/* <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2> */}
-          <div className="m-5 p-5">
-            <div className="flex">
-              <h2 className="text-center w-full font-semibold" >Pick an available time slot</h2>
-              <button onClick={closeModal} className="text-red-500 font-extrabold text-right">X</button>
-            </div>
-            <div className="w-full">
-              <table className="m-auto p-5">
-                {/* {availableTimes} */}
-                <tr>
-                  {getHeader()}
-                </tr>
-                <tr>
-                  <td><button>Time Slot 1</button></td>
-                  <td><button>Time Slot 1</button></td>
-                  <td><button>Time Slot 1</button></td>
-                  <td><button>Time Slot 1</button></td>
-                  <td><button>Time Slot 1</button></td>
-                  <td><button>Time Slot 1</button></td>
-                  <td><button>Time Slot 1</button></td>
-
-                </tr>
-                <tr>
-                  <td><button>Time Slot 2</button></td>
-                  <td><button>Time Slot 2</button></td>
-                  <td><button>Time Slot 2</button></td>
-                  <td><button>Time Slot 2</button></td>
-                  <td><button>Time Slot 2</button></td>
-                  <td><button>Time Slot 2</button></td>
-                  <td><button>Time Slot 2</button></td>
-                </tr>
-                <tr>
-                  <td><button>Time Slot 3</button></td>
-                  <td><button>Time Slot 3</button></td>
-                  <td><button>Time Slot 3</button></td>
-                  <td><button>Time Slot 3</button></td>
-                  <td><button>Time Slot 3</button></td>
-                  <td><button>Time Slot 3</button></td>
-                  <td><button>Time Slot 3</button></td>
-                </tr>
-              </table>
-            </div>
-          </div>
-        </Modal>
+        </button>
       </td>
     </tr>
   ));
