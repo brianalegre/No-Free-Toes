@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ProfileSettings from "./ProfileSettings";
 import { useQuery } from "@apollo/client";
-import * as moment from "moment";
+import moment from "moment";
 import { QUERY_REVIEWS_BY_NORMAL_USER } from "../../../utils/queries";
 import TimeSlot from "../../TimeSlotCreator";
 const avatarImg = ".././assets/images/man.png";
@@ -43,13 +43,13 @@ export default function ProfileTabs({
   // console.log("--DATE---", serviceComments[0].commentCreated);
 
   const reviews =
-    serviceComments?.serviceUser?.serviceCategory?.map((review) => ({
-      userId: review.serviceComments._id,
-      reviewText: review.serviceComments.commentText,
-      reviewAuthor: `${review.serviceUser.firstName} ${review.serviceUser.lastName}`,
+    serviceComments?.serviceUser?.serviceComments?.map((review) => ({
+      _Id: review._id,
+      reviewText: review.commentText,
+      reviewedServicer: `${review.serviceUser.firstName} ${review.serviceUser.lastName}`,
       reviewCreated: review.commentCreated,
-      // reviewCreated: moment.unix(review[0].commentCreated).format("MM/DD/YYYY"),
-      reviewRating: review.serviceComments.serviceRating,
+      // // reviewCreated: moment.unix(review[0].commentCreated).format("MM/DD/YYYY"),
+      reviewRating: review.serviceRating,
       // serviceUserReviewed: `${review.serviceUser.firstName} ${review.serviceUser.lastName}`,
       // serviceUserReviewedCat: review.serviceUser.serviceCategory,
       
@@ -118,7 +118,7 @@ export default function ProfileTabs({
         />
       </div>
 
-      <div className={currentTab.name === "Reviews" ? null : "hidden"}>
+      {/* <div className={currentTab.name === "Reviews" ? null : "hidden"}>
         {reviews.length === 0 ? (
           <h3>No reviews.</h3>
         ) : (
@@ -126,7 +126,7 @@ export default function ProfileTabs({
           <h3 key={r._id}>{r.reviewText}</h3>)
         )}
         ;
-      </div>
+      </div> */}
     </>
   );
 }

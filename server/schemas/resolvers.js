@@ -22,7 +22,7 @@ const resolvers = {
     },
     // GET SINGLE NORMAL USER
     normalUser: async (parent, { normalUserId }) => {
-      const userData = await NormalUser.findOne({ _id: normalUserId })
+      return await NormalUser.findOne({ _id: normalUserId })
         .populate({
           path: "serviceComments",
           populate: { path: "serviceUser",
