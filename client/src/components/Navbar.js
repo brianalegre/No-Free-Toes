@@ -59,55 +59,51 @@ const memberNavLinks = [
 ];
 
 const visitorLgNav = visitorNavLinks.map((navlinks, i) => (
-  <>
-    <Link to={navlinks.link}>
-      <div key={"visitor_large_nav_link " + i} className={navlinks.class}>
-        {navlinks.name}
-      </div>
-    </Link>
-  </>
+
+  <Link to={navlinks.link} key={"visitor_large_nav_link " + i}>
+    <div className={navlinks.class}>
+      {navlinks.name}
+    </div>
+  </Link>
+
 ));
 
 const visitorMobileNav = visitorNavLinks.map((navlinks, i) => (
-  <>
-    <Link to={navlinks.link}>
-      <div
-        key={"visitor_mobile_nav_link " + i}
-        href={navlinks.link}
-        className="block py-2 px-4 text-sm text-black hover:text-pink-500"
-      >
-        {navlinks.name}
-      </div>
-    </Link>
-  </>
+
+  <Link to={navlinks.link} key={"visitor_mobile_nav_link " + i}>
+    <div
+
+      href={navlinks.link}
+      className="block py-2 px-4 text-sm text-black hover:text-pink-500"
+    >
+      {navlinks.name}
+    </div>
+  </Link>
+
 ));
 
 const memberLgNav = memberNavLinks.map((navlinks, i) => (
-  <>
-    <Link to={navlinks.link}>
-      <div
-        key={"member_large_nav_link " + i}
-        href={navlinks.link}
-        className="py-5 px-3"
-      >
-        {navlinks.name}
-      </div>
-    </Link>
-  </>
+
+  <Link to={navlinks.link} key={"member_large_nav_link " + i}>
+    <div
+      href={navlinks.link}
+      className="py-5 px-3"
+    >
+      {navlinks.name}
+    </div>
+  </Link>
+
 ));
 
 const memberMobileNav = memberNavLinks.map((navlinks, i) => (
-  <>
-    <Link to={navlinks.link}>
-      <div
-        key={"member_mobile_nav_link " + i}
-        href={navlinks.link}
-        className="block py-2 px-4 text-sm text-black hover:text-pink-500"
-      >
-        {navlinks.name}
-      </div>
-    </Link>
-  </>
+  <Link to={navlinks.link} key={"member_mobile_nav_link " + i}>
+    <div
+      href={navlinks.link}
+      className="block py-2 px-4 text-sm text-black hover:text-pink-500"
+    >
+      {navlinks.name}
+    </div>
+  </Link>
 ));
 
 export default function Navbar() {
@@ -136,7 +132,7 @@ export default function Navbar() {
           </div>
 
           {/* large screen visitor nav */}
-          <div className="hidden lg:flex items-center gap-x-16">
+          <div className="hidden lg:flex items-center gap-x-16" key='lg-scrn-visit'>
             {/* FOR USE WHEN WE IMPLEMENT LOGGED IN FUNCTIONALITY */}
             {/* {isLoggedIn ? visitorLgNav : memberLgNav} */}
 
@@ -144,6 +140,7 @@ export default function Navbar() {
               <>
                 {memberLgNav}
                 <button
+                  key='lg-logout'
                   onClick={logout}
                   className="py-2 px-3 bg-green-300 hover:bg-green-700 text-black hover:text-gray-100 rounded transition duration-300"
                 >
@@ -157,8 +154,9 @@ export default function Navbar() {
           </div>
 
           {/* hamburger menu button */}
-          <div className="lg:hidden flex items-center">
-            <button onClick={mobileBtnHandler} className="mobile-menu-button">
+          <div className="lg:hidden flex items-center" key='hamburger'>
+            <button
+              onClick={mobileBtnHandler} className="mobile-menu-button">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6"
@@ -179,7 +177,7 @@ export default function Navbar() {
       </div>
 
       {/* mobile nav */}
-      <div className={isActive ? "hidden lg:hidden" : "lg:hidden"}>
+      <div className={isActive ? "hidden lg:hidden" : "lg:hidden"} key='movile-nav'>
         {Auth.loggedIn() ? (
           <>
             {memberMobileNav}

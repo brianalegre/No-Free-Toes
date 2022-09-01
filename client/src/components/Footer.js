@@ -3,26 +3,29 @@ import mainLogo from "../images/icons/navlogo.svg";
 
 const teamArray = [
   {
+    teamArryId: 1,
     name: "Brian Alegre",
     github: "https://github.com/brianalegre",
   },
   {
+    teamArryId: 2,
     name: "Allec Arzadon",
     github: "https://github.com/axe714",
   },
   {
+    teamArryId: 3,
     name: "Kevin Lazaro",
     github: "https://github.com/keeezy",
   },
   {
+    teamArryId: 4,
     name: "Philip Hwang",
     github: "https://github.com/phwang93",
   },
 ];
 
-const teamMembers = teamArray.map((member, i) => (
-  <>
-    <li key={"Github Logo " + i}>
+const teamMembers = teamArray.map((member) => (
+    <li key={member.teamArryId}>
       <a href={member.github}>
         <button
           type="button"
@@ -55,12 +58,10 @@ const teamMembers = teamArray.map((member, i) => (
         </button>
       </a>
     </li>
-  </>
 ));
 
 export default function Footer() {
   return (
-    <>
       <footer className="bg-gray-900 bottom-0 w-full">
         <div className="max-w-screen-xl px-4 py-6 mx-auto sm:px-6 lg:px-8 lg:pt-20">
           <div className="md:grid md:grid-cols-1 gap-8 lg:grid-cols-2">
@@ -108,6 +109,5 @@ export default function Footer() {
           </div>
         </div>
       </footer>
-    </>
   );
 }
