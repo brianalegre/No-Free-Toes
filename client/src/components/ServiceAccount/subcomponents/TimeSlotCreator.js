@@ -21,7 +21,7 @@ export default function TimeSlot({loggedInUserId, refetch}) {
     <div>
       <div className="flex py-24 justify-center items-center align-middle">
         <div className="flex flex-col justify-center">
-          <span className="pb-8 md:text-2xl text-xl">Create A Time Slot:</span>
+          <span className="pb-8 md:text-2xl text-xl">Create A Timeslot:</span>
           <div>
             <MuiPickersUtilsProvider utils={DateMomentUtils}>
               <KeyboardDatePicker
@@ -51,7 +51,7 @@ export default function TimeSlot({loggedInUserId, refetch}) {
                       },
                     });
                     // refetch to re-render data if it changes + toast to provide visual feedback for a successfully/unsuccessfully request
-                    toast.success("Time slot successfully added!");
+                    toast.success("Timeslot successfully added!");
                     refetch()
                     // resetting the state to our default value
                     setTimeSlotInput(defaultTimeSlot);

@@ -86,9 +86,9 @@ export default function ServiceAccount() {
                                 // location={location}
                                 // categoryName={categoryName}
                                 // // serviceUser={serviceUser}
-                                // refetch={refetch}
-                                serviceUser={serviceUser}
-                            // categoryName= {categoryName}
+                                refetch={refetch}
+                                serviceUser= {serviceUser}
+                                // categoryName= {categoryName}
                             />
                         </div>
                     </div>

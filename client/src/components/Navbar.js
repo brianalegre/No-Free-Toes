@@ -80,16 +80,14 @@ const visitorMobileNav = visitorNavLinks.map((navlinks, i) => (
 ));
 
 const memberLgNav = memberNavLinks.map((navlinks, i) => (
-
-  <Link to={navlinks.link} key={"member_large_nav_link " + i}>
-    <div
-      href={navlinks.link}
-      className="py-5 px-3"
-    >
-      {navlinks.name}
-    </div>
-  </Link>
-
+    <Link to={navlinks.link} key={"member_large_nav_link " + i}>
+      <div
+        href={navlinks.link}
+        className="font-kanit py-5 px-3"
+      >
+        {navlinks.name}
+      </div>
+    </Link>
 ));
 
 const memberMobileNav = memberNavLinks.map((navlinks, i) => (
