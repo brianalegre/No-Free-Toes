@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useQuery, useMutation } from "@apollo/client";
+import { useParams } from "react-router-dom";
 import { DELETE_SERVICETYPE } from "../../../utils/mutations"
 import { ADD_SERVICETYPE } from "../../../utils/mutations"
 import ConfirmationModal from "../../modals/ConfirmationModal";
@@ -6,7 +8,6 @@ import { Reoverlay } from "reoverlay";
 import toast from "react-hot-toast";
 
 import Auth from "../../../utils/auth"
-import { useMutation } from "@apollo/client";
 // serviceDescription: "Fades, Tapers, etc + lineup (if requested)"
 // serviceName: "Haircut"
 // servicePrice: 40
@@ -17,7 +18,7 @@ const isLoggedIn = Auth.loggedIn() ? true : false;
 
 const serviceCategoryId = isLoggedIn ? Auth.getProfile().data.serviceCategory : null;
 
-export default function ServiceSettings({ loggedInUserId, serviceUser, }) {
+export default function ServiceSettings({ loggedInUserId, serviceUser, refetch }) {
     // console.log(serviceType)
     const { serviceType } = serviceUser
 
@@ -45,18 +46,18 @@ export default function ServiceSettings({ loggedInUserId, serviceUser, }) {
 
     const [deleteServiceType] = useMutation(DELETE_SERVICETYPE);
 
-    const deleteService = () => {
+    const deleteService = (serviceType) => {
         Reoverlay.showModal(ConfirmationModal, {
-            confirmText: "Are you sure you want to delete this review?",
+            confirmText: "Are you sure you want to delete this service type?",
             onConfirm: async () => {
                 await deleteServiceType({
                     variables: {
-                        _id: serviceUser,
                         serviceUserId: loggedInUserId,
+                        serviceTypeId: serviceType
                     },
                 });
 
-                // refetch();
+                refetch();
                 toast.success("Review successfully deleted!");
                 return Reoverlay.hideModal();
             },
@@ -84,7 +85,7 @@ export default function ServiceSettings({ loggedInUserId, serviceUser, }) {
 
             <button
                 className="inline-flex items-center justify-center w-5 h-5 mr-2 text-pink-100 transition delay-50 ease-in-out bg-red-500 rounded-lg focus:shadow-outline hover:bg-red-700"
-                onClick={() => deleteService()}
+                onClick={() => deleteService(service._id)}
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"

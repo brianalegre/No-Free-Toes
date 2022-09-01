@@ -78,6 +78,7 @@ export default function ProfileTabs({ loggedInUserId, serviceUser, refetch }) {
                 <ServiceSettings
                     loggedInUserId={loggedInUserId}
                     serviceUser={serviceUser}
+                    refetch={refetch}
                     _id={_id}
                 />
             </div>
