@@ -121,8 +121,7 @@ export default function Services({ serviceUser, refetch }) {
     setmodalIsOpen(false);
   }
 
-  const timeSlotStateData = timeSlots
-    ?.sort((a, b) => a.timeSlot - b.timeSlot)
+  const timeSlotStateData = timeSlots?.sort((a, b) => a.timeSlot - b.timeSlot)
     .slice(0, 10)
     .map((timeSlotState) => (
       <button
@@ -131,7 +130,8 @@ export default function Services({ serviceUser, refetch }) {
         value={timeSlotState._id}
         name="timeSlotId"
         data-id={timeSlotState._id}
-        // >{moment.unix(timeSlotState.timeSlot).format('lll')}</button>
+        key={timeSlotState._id}
+      // >{moment.unix(timeSlotState.timeSlot).format('lll')}</button>
       >
         {moment.unix(timeSlotState.timeSlot).format("ddd M/D hh:mm A")}
       </button>
