@@ -1,7 +1,12 @@
 import React, { useState } from "react";
-import { useMutation } from "@apollo/client";
+import { DELETE_SERVICETYPE } from "../../../utils/mutations"
 import { ADD_SERVICETYPE } from "../../../utils/mutations"
+import ConfirmationModal from "../../modals/ConfirmationModal";
+import { Reoverlay } from "reoverlay";
+import toast from "react-hot-toast";
+
 import Auth from "../../../utils/auth"
+import { useMutation } from "@apollo/client";
 // serviceDescription: "Fades, Tapers, etc + lineup (if requested)"
 // serviceName: "Haircut"
 // servicePrice: 40
@@ -14,8 +19,8 @@ const serviceCategoryId = isLoggedIn ? Auth.getProfile().data.serviceCategory : 
 
 export default function ServiceSettings({ loggedInUserId, serviceUser, }) {
     // console.log(serviceType)
-    const { serviceType } = serviceUser 
-    
+    const { serviceType } = serviceUser
+
     const { serviceName, servicePrice, serviceDescription } = serviceUser
 
     const [serviceInfo, setServiceInfo] = useState({
@@ -36,7 +41,27 @@ export default function ServiceSettings({ loggedInUserId, serviceUser, }) {
     };
     // console.log(serviceInfo)
 
-    const [addServiceType, { error, data }] = useMutation(ADD_SERVICETYPE)
+    const [addServiceType, { error, data }] = useMutation(ADD_SERVICETYPE);
+
+    const [deleteServiceType] = useMutation(DELETE_SERVICETYPE);
+
+    const deleteService = () => {
+        Reoverlay.showModal(ConfirmationModal, {
+            confirmText: "Are you sure you want to delete this review?",
+            onConfirm: async () => {
+                await deleteServiceType({
+                    variables: {
+                        _id: serviceUser,
+                        serviceUserId: loggedInUserId,
+                    },
+                });
+
+                // refetch();
+                toast.success("Review successfully deleted!");
+                return Reoverlay.hideModal();
+            },
+        });
+    };
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
@@ -52,11 +77,32 @@ export default function ServiceSettings({ loggedInUserId, serviceUser, }) {
     }
     // console.log(serviceInfo)
     const services = serviceType?.map((service) => (
-        <div key={service.serviceName}>
+        <div key={service._id}>
             <h1>
                 {service.serviceName}: {service.serviceDescription}<br></br> ${service.servicePrice}
             </h1>
-        </div >
+
+            <button
+                className="inline-flex items-center justify-center w-5 h-5 mr-2 text-pink-100 transition delay-50 ease-in-out bg-red-500 rounded-lg focus:shadow-outline hover:bg-red-700"
+                onClick={() => deleteService()}
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                    />
+                </svg>
+            </button>
+        </div>
+
     ))
 
     return (

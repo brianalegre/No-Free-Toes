@@ -231,7 +231,17 @@ export const ADD_SERVICETYPE = gql`
     _id
   }
 }
+`;
+
+export const DELETE_SERVICETYPE = gql`
+  mutation Mutation($serviceTypeId: ID!, $serviceUserId: ID!) {
+  removeServiceType(serviceTypeId: $serviceTypeId, serviceUserId: $serviceUserId) {
+    _id
+  }
+}
 `
+
+
 
 // export const ADD_NORMALUSER2 = gql`
 // mutation Mutation($firstName: String!, $lastName: String!, $email: String!, $password: String!, $location: String!) {
