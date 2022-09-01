@@ -10,23 +10,14 @@ import TimeSlotModal from "../../modals/TimeSlotModal";
 import ConfirmationModal from "../../modals/ConfirmationModal";
 import moment from "moment";
 
-export default function TimeSlotSettings(serviceUser) {
-  // const [userData, setUserData] = useState({});
+export default function TimeSlotSettings({serviceUser, refetch}) {
   const { loggedInUserId } = useParams();
-  const { data, loading, error, refetch } = useQuery(QUERY_SERVICEUSER, {
+  const { data, loading, error } = useQuery(QUERY_SERVICEUSER, {
     variables: { serviceUserId: loggedInUserId },
-    refetch: { variables: { serviceUserId: loggedInUserId } },
   });
   const [removeTimeSlot] = useMutation(DELETE_TIMESLOT);
-  const { timeSlots } = serviceUser.serviceUser;
-
-  // useEffect(() => {
-  //   if (data) {
-  //     setUserData(data);
-  //     refetch()
-  //   }
-  // }, [data]);
-
+  const { timeSlots } = serviceUser;
+  
   const addTimeSlotHandler = () => {
     Reoverlay.showModal(TimeSlotModal, {
       loggedInUserId: loggedInUserId,
