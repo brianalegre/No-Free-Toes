@@ -158,6 +158,15 @@ export const ADD_TIMESLOT = gql`
   }
 `;
 
+// DELETE TIMESLOT
+export const DELETE_TIMESLOT = gql`
+  mutation RemoveTimeSlot($timeSlotId: ID!, $serviceUserId: ID!) {
+    removeTimeSlot(timeSlotId: $timeSlotId, serviceUserId: $serviceUserId) {
+      _id
+    }
+  }
+`;
+
 // ADD APPOINTMENT
 export const ADD_APPOINTMENT = gql`
   mutation Mutation(

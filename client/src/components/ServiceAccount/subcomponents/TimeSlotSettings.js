@@ -1,47 +1,81 @@
 import React, { useState, useEffect } from "react";
-// import TimeSlotCreator from "./TimeSlotCreator";
 import { useParams } from "react-router-dom";
 import { QUERY_SERVICEUSER } from "../../../utils/queries";
-import { useQuery } from "@apollo/client";
+import { DELETE_TIMESLOT } from "../../../utils/mutations";
+import { useQuery, useMutation } from "@apollo/client";
 import { Reoverlay } from "reoverlay";
+import { TiDelete } from "react-icons/ti";
+import { toast } from "react-hot-toast";
 import TimeSlotModal from "../../modals/TimeSlotModal";
+import ConfirmationModal from "../../modals/ConfirmationModal";
 import moment from "moment";
 
 export default function TimeSlotSettings(serviceUser) {
-  const [userData, setUserData] = useState({});
+  // const [userData, setUserData] = useState({});
   const { loggedInUserId } = useParams();
   const { data, loading, error, refetch } = useQuery(QUERY_SERVICEUSER, {
     variables: { serviceUserId: loggedInUserId },
-    refetch: { variables: { serviceUserId: loggedInUserId } }
+    refetch: { variables: { serviceUserId: loggedInUserId } },
   });
+  const [removeTimeSlot] = useMutation(DELETE_TIMESLOT);
   const { timeSlots } = serviceUser.serviceUser;
 
-
-  useEffect(() => {
-    if (data) {
-      setUserData(data);
-    }
-  }, [data]);
+  // useEffect(() => {
+  //   if (data) {
+  //     setUserData(data);
+  //     refetch()
+  //   }
+  // }, [data]);
 
   const addTimeSlotHandler = () => {
     Reoverlay.showModal(TimeSlotModal, {
       loggedInUserId: loggedInUserId,
-      refetch: refetch
+      refetch: refetch,
     });
   };
 
+  const removeTimeSlotHandler = (timeSlot) => {
+    Reoverlay.showModal(ConfirmationModal, {
+      confirmText: "Would you like to remove this time slot?",
+      onConfirm: async () => {
+        try {
+          await removeTimeSlot({
+            variables: {
+              serviceUserId: loggedInUserId,
+              timeSlotId: timeSlot,
+            },
+          });
+          refetch();
+          toast.success("Timeslot successfully deleted");
+          return Reoverlay.hideModal();
+        } catch (error) {
+          refetch();
+          console.log(error);
+          return toast.error("Something went wrong. Please try again.");
+        }
+      },
+    });
+  };
 
-  const mappedTimeSlots = timeSlots?.sort((a, b) => a.timeSlot - b.timeSlot).map((timeSlotState) => (
-    <button
-      className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-xs px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-      value={timeSlotState._id}
-      name="timeSlotId"
-      data-id={timeSlotState._id}
-      key={timeSlotState._id}
-    >
-      {moment.unix(timeSlotState.timeSlot).format("ddd M/D hh:mm A")}
-    </button>
-  ));
+  const mappedTimeSlots = timeSlots
+    ?.sort((a, b) => a.timeSlot - b.timeSlot)
+    .map((timeSlotState) => (
+      <button
+        className="relative cursor-default text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700"
+        value={timeSlotState._id}
+        name="timeSlotId"
+        data-id={timeSlotState._id}
+        key={timeSlotState._id}
+      >
+        {moment.unix(timeSlotState.timeSlot).format("ddd M/D hh:mm A")}
+        <div
+          onClick={() => removeTimeSlotHandler(timeSlotState._id)}
+          className="absolute right-0.5 top-0.5 transition hover:text-red-500 ease-in-out duration-300"
+        >
+          <TiDelete />
+        </div>
+      </button>
+    ));
 
   return (
     <div>
@@ -70,7 +104,7 @@ export default function TimeSlotSettings(serviceUser) {
       <div className="py-32 md:py-64 w-full h-full">
         <div className="pl-10 text-center md:text-2xl">
           <span>Current Time Slots:</span>
-        </div >
+        </div>
         <div className="pl-10 pt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
           {mappedTimeSlots}
         </div>

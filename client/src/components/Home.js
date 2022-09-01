@@ -24,7 +24,7 @@ const Home = () => {
 
   const categoryItems = savedCategories?.map((category) => (
     <div key={category._id} className="align-items-center">
-      <button className="transform translate-y-4 hover:translate-y-0 duration-500 ease-in-out">
+      <button className="transform hover:scale-105 duration-500 ease-in-out">
         <Link to={"/category/" + category._id}>
           <img
             src={category.categoryIcon}
