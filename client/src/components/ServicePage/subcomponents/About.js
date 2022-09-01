@@ -8,7 +8,7 @@ export default function About({ serviceUser }) {
       <div className="divide-y divide-solid">
         <div className="min-w-full leading-normal bg-white dark:border-gray-700 dark:bg-gray-800">
           <div className="pl-6 py-6 font-bold text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
-            <p>About Us</p>
+            <p>About Me</p>
           </div>
         </div>
         <div className="min-w-full leading-normal bg-white dark:border-gray-700 dark:bg-gray-800">
