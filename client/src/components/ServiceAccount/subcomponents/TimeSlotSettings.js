@@ -12,7 +12,7 @@ export default function TimeSlotSettings() {
   const { loggedInUserId } = useParams();
   const { data, loading, error, refetch } = useQuery(QUERY_SERVICEUSER, {
     variables: { serviceUserId: loggedInUserId },
-    refetch: {variables: {serviceUserId: loggedInUserId}}
+    refetch: { variables: { serviceUserId: loggedInUserId } }
   });
 
   useEffect(() => {
@@ -27,6 +27,12 @@ export default function TimeSlotSettings() {
       refetch: refetch
     });
   };
+
+  // const mappedTimeSlots = data?.serviceUser?.timeSlots?.map((slot) => (
+  //   <div>
+  //     <span>{moment.unix(slot.timeSlot).format("llll")}</span>
+  //   </div>
+  // ));
 
   const mappedTimeSlots = data?.serviceUser?.timeSlots?.map((slot) => (
     <div>
@@ -60,9 +66,9 @@ export default function TimeSlotSettings() {
       </div>
       <div className="py-32 md:py-64 w-full h-full">
         <div className="text-center md:text-2xl">
-        <span>Current Time Slots:</span>
+          <span>Current Time Slots:</span>
         </div>
-      {mappedTimeSlots}
+        {mappedTimeSlots}
       </div>
     </div>
   );
