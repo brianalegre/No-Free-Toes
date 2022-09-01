@@ -1,15 +1,42 @@
 import React from "react";
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import { QUERY_SINGLE_NORMALUSER } from "../../../utils/queries";
+import { DELETE_APPOINTMENT } from "../../../utils/mutations";
+import ConfirmationModal from "../../modals/ConfirmationModal";
+import { Reoverlay } from "reoverlay";
+import { toast } from "react-hot-toast";
 import moment from "moment";
 import NoAppointmentCard from "./NoAppointmentCard";
 
 export default function AppointmentCards() {
+  const [deleteAppointment] = useMutation(DELETE_APPOINTMENT);
   const { loggedInUserId } = useParams();
   const { data, loading, error, refetch } = useQuery(QUERY_SINGLE_NORMALUSER, {
     variables: { normalUserId: loggedInUserId },
   });
+
+  const deleteApptHandler = (appointment, serviceUser) => {
+    Reoverlay.showModal(ConfirmationModal, {
+      confirmText: "Would you like to mark this appointment completed?",
+      onConfirm: async () => {
+        await deleteAppointment({
+          variables: {
+            appointmentId: appointment,
+            normalUserId: loggedInUserId,
+            serviceUserId: serviceUser,
+          },
+        });
+
+        toast.success("Appointment successfully deleted");
+        refetch();
+        return Reoverlay.hideModal();
+      },
+    });
+  };
+
+  const test = data?.normalUser?.appointments;
+  console.log(test);
 
   const userAppointments = data?.normalUser?.appointments.map((appt, i) => (
     <div key={`appointment ${i}`} className="py-8 md:py-16 flex justify-center">
@@ -23,7 +50,10 @@ export default function AppointmentCards() {
           alt="default"
         />
         <div className="absolute top-2 -right-0.5 md:bottom-40">
-          <button className="inline-flex items-center justify-center w-5 h-5 mr-2 text-pink-100 transition delay-50 ease-in-out bg-red-500 rounded-lg focus:shadow-outline hover:bg-red-700">
+          <button
+            onClick={() => deleteApptHandler(appt._id, appt.serviceUser._id)}
+            className="inline-flex items-center justify-center w-5 h-5 mr-2 text-pink-100 transition delay-50 ease-in-out bg-red-500 rounded-lg focus:shadow-outline hover:bg-red-700"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-4 w-4"
