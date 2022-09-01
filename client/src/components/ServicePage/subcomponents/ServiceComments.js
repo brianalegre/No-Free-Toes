@@ -37,9 +37,10 @@ export default function Reviews() {
   //create navigate function to assign to useNavigate to redirect user to login page if not logged in
   const navigate = useNavigate();
 
-  // if isLoggedin true then get the user id from the token
-  // else set the user id to null
+  // if isLoggedin true then get the user id + userType from the token
+  // else set to null
   const loggedInUserId = isLoggedIn ? Auth.getProfile().data._id : null;
+  const userType = isLoggedIn ? Auth.getProfile().data.userType : null;
 
   // using the useQuery hook to retrieve data from the back end
   const { loading, error, data, refetch } = useQuery(
@@ -189,17 +190,19 @@ export default function Reviews() {
       {renderReviewForm === false ? (
         <div className="-mx-6 sm:-mx-8 px-4 sm:px-6 bg-gray-100">
           <div className="flex justify-end">
-            <button
-              type="button"
-              className="text-white bg-green-400 hover:bg-green-800 font-medium rounded-lg text-sm px-2 py-1 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700"
-              onClick={() =>
-                Auth.loggedIn() === true
-                  ? setRenderReviewForm(true)
-                  : navigate("/login")
-              }
-            >
-              Leave Review
-            </button>
+            {userType !== "normalUser" ? null : (
+              <button
+                type="button"
+                className="text-white bg-green-400 hover:bg-green-800 font-medium rounded-lg text-sm px-2 py-1 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700"
+                onClick={() =>
+                  Auth.loggedIn() === true
+                    ? setRenderReviewForm(true)
+                    : navigate("/login")
+                }
+              >
+                Leave Review
+              </button>
+            )}
           </div>
         </div>
       ) : (
