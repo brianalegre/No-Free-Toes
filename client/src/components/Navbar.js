@@ -12,6 +12,9 @@ const loggedInUserId = isLoggedIn ? Auth.getProfile().data._id : null;
 
 const userType = isLoggedIn ? Auth.getProfile().data.userType : null;
 
+// const userInfo = Auth.getProfile()
+
+
 const userLink =
   userType === "normalUser"
     ? "/nuser/" + loggedInUserId

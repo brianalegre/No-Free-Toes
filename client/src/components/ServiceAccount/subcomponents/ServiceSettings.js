@@ -1,48 +1,49 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_SERVICETYPE } from "../../../utils/mutations"
+import Auth from "../../../utils/auth"
 // serviceDescription: "Fades, Tapers, etc + lineup (if requested)"
 // serviceName: "Haircut"
 // servicePrice: 40
 // __typename: "ServiceType"
 // _id: "63100af7005a60b9d0495e9f"
 
-export default function ServiceSettings({ loggedInUserId, serviceUser }) {
-    const {serviceCategory} = serviceUser
-    console.log(serviceCategory)
-    
-    
-    const { serviceType } = serviceUser
+const isLoggedIn = Auth.loggedIn() ? true : false;
+
+const serviceCategoryId = isLoggedIn ? Auth.getProfile().data.serviceCategory : null;
+
+export default function ServiceSettings({ loggedInUserId, serviceUser, }) {
     // console.log(serviceType)
+    const { serviceType } = serviceUser 
     
     const { serviceName, servicePrice, serviceDescription } = serviceUser
 
-    const[serviceInfo, setServiceInfo] = useState ({
+    const [serviceInfo, setServiceInfo] = useState({
         serviceUserId: loggedInUserId,
         serviceName: "",
         servicePrice: "",
         // serviceDescription: "",
-        serviceCategory: "63103c5ed350e5e04bdf093e"
+        serviceCategory: serviceCategoryId
     });
 
     const handleUserInput = (event) => {
-        const {name, value} = event.target;
+        const { name, value } = event.target;
 
-        setServiceInfo ({
+        setServiceInfo({
             ...serviceInfo,
             [name]: value,
         })
     };
     // console.log(serviceInfo)
 
-    const[addServiceType, {error, data}] = useMutation(ADD_SERVICETYPE)
+    const [addServiceType, { error, data }] = useMutation(ADD_SERVICETYPE)
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
 
         try {
-            await addServiceType ({
-                variables: {...serviceInfo}
+            await addServiceType({
+                variables: { ...serviceInfo }
             })
             // refetch()
         } catch (error) {

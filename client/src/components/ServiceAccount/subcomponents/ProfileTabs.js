@@ -27,6 +27,7 @@ export default function ProfileTabs({ loggedInUserId, serviceUser, refetch }) {
     // console.log(serviceCategory)
 
     const { categoryName } = serviceUser?.serviceCategory || [];
+    const { _id } = serviceUser?.serviceCategory || {}
     // console.log(categoryName)
     // const { firstName, lastName, photo } = serviceUser;
 
@@ -77,10 +78,11 @@ export default function ProfileTabs({ loggedInUserId, serviceUser, refetch }) {
                 <ServiceSettings
                     loggedInUserId={loggedInUserId}
                     serviceUser={serviceUser}
+                    _id={_id}
                 />
             </div>
             <div className={currentTab.name === "Time Slots" ? null : "hidden"}>
-                        <TimeSlotSettings />
+                <TimeSlotSettings />
             </div>
         </>
 
