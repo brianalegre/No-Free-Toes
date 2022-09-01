@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_TIMESLOT } from "../utils/mutations";
+import {useParams} from 'react-router-dom'
 import toast from "react-hot-toast";
 import DateMomentUtils from "@date-io/moment";
 import {
@@ -10,15 +11,16 @@ import {
 } from "@material-ui/pickers";
 import moment from "moment";
 
-export default function TimeSlot({ loggedInUserId, refetch }) {
+export default function TimeSlot() {
   // Set default date to the next day @ 8 AM
   const defaultTimeSlot = moment().add(1, "days").hours(8).startOf("hour");
   const [timeSlotInput, setTimeSlotInput] = useState(defaultTimeSlot);
   const [addTimeSlot] = useMutation(ADD_TIMESLOT);
+  const { loggedInUserId } = useParams();
 
   return (
     <div>
-      <div className="flex py-36 justify-center items-center align-middle">
+      <div className="flex py-24 justify-center items-center align-middle">
         <div className="flex flex-col">
           <span className="pb-8">Create A Time Slot:</span>
           <div>
@@ -50,7 +52,6 @@ export default function TimeSlot({ loggedInUserId, refetch }) {
                       },
                     });
                     // refetch to re-render data if it changes + toast to provide visual feedback for a successfully/unsuccessfully request
-                    refetch();
                     toast.success("Time slot successfully added!");
                     // resetting the state to our default value
                     setTimeSlotInput(defaultTimeSlot);
