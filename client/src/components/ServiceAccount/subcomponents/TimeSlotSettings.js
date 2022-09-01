@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import TimeSlotCreator from "../../TimeSlotCreator";
+// import TimeSlotCreator from "./TimeSlotCreator";
 import { useParams } from "react-router-dom";
 import { QUERY_SERVICEUSER } from "../../../utils/queries";
 import { useQuery } from "@apollo/client";
@@ -12,6 +12,7 @@ export default function TimeSlotSettings() {
   const { loggedInUserId } = useParams();
   const { data, loading, error, refetch } = useQuery(QUERY_SERVICEUSER, {
     variables: { serviceUserId: loggedInUserId },
+    refetch: {variables: {serviceUserId: loggedInUserId}}
   });
 
   useEffect(() => {
@@ -22,19 +23,8 @@ export default function TimeSlotSettings() {
 
   const addTimeSlotHandler = () => {
     Reoverlay.showModal(TimeSlotModal, {
-      onConfirm: async () => {
-        // await deleteReview({
-        //   variables: {
-        //     serviceCommentId,
-        //     normalUser: loggedInUserId,
-        //   },
-        // });
-        console.log("hi");
-
-        // refetch();
-        // toast.success("Review successfully deleted!");
-        // return Reoverlay.hideModal();
-      },
+      loggedInUserId: loggedInUserId,
+      refetch: refetch
     });
   };
 
@@ -46,10 +36,10 @@ export default function TimeSlotSettings() {
 
   return (
     <div>
-      <div className="flex justify-center">
+      <div className="flex justify-center pt-20 md:pt-0">
         <button
           onClick={addTimeSlotHandler}
-          className="inline-flex px-5 py-3 text-white bg-green-700 hover:bg-green-400 hover:text-gray-600 rounded-lg ml-6 mb-3"
+          className="inline-flex px-5 py-3 justify-center text-gray-100 bg-green-700 hover:bg-green-800 hover:text-white transition ease-in-out duration-200 rounded-lg ml-4 mb-3"
         >
           <svg
             aria-hidden="true"
@@ -68,7 +58,12 @@ export default function TimeSlotSettings() {
           Add A New Timeslot
         </button>
       </div>
+      <div className="py-32 md:py-64 w-full h-full">
+        <div className="text-center md:text-2xl">
+        <span>Current Time Slots:</span>
+        </div>
       {mappedTimeSlots}
+      </div>
     </div>
   );
 }

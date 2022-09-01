@@ -1,9 +1,9 @@
 import React from "react";
 import { ModalWrapper, Reoverlay } from "reoverlay";
 import "reoverlay/lib/ModalWrapper.css";
-import TimeSlotCreator from "../TimeSlotCreator"
+import TimeSlotCreator from "../ServiceAccount/subcomponents/TimeSlotCreator"
 
-const TimeSlotModal = ({ confirmText, onConfirm }) => {
+const TimeSlotModal = ({ loggedInUserId, refetch }) => {
   const closeModal = () => {
     Reoverlay.hideModal();
   };
@@ -11,22 +11,15 @@ const TimeSlotModal = ({ confirmText, onConfirm }) => {
   return (
     <ModalWrapper>
       <div className="bg-gray-200 px-24">
-        {/* <span className="text-xl">{confirmText}</span>
-        <div className="flex justify-around mt-24 -mb-12">
-          <button
-            className="outline outline-1 outline-gray-500 py-2 px-6 rounded-xl transition ease-in-out duration-150 hover:bg-green-600 hover:text-white"
-            onClick={onConfirm}
-          >
-            Yes
-          </button>
+          <TimeSlotCreator loggedInUserId={loggedInUserId} refetch={refetch} />
+        <div className="flex justify-around pb-8">
           <button
             className="outline outline-1 outline-gray-500 py-2 px-6 rounded-xl transition ease-in-out duration-150 hover:bg-red-600 hover:text-white"
             onClick={closeModal}
           >
-            No
+            Close 
           </button>
-        </div> */}
-        <TimeSlotCreator />
+        </div>
       </div>
     </ModalWrapper>
   );
