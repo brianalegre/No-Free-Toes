@@ -1,15 +1,40 @@
 import React from "react";
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import { QUERY_SERVICEUSER } from "../../../utils/queries";
+import { DELETE_APPOINTMENT } from "../../../utils/mutations";
 import moment from "moment";
 import NoAppointmentCard from "./NoAppointmentCard";
+import { Reoverlay } from "reoverlay";
+import ConfirmationModal from "../../modals/ConfirmationModal";
+import { toast } from 'react-hot-toast'
 
 export default function SUAppointmentCards() {
   const { loggedInUserId } = useParams();
   const { data, loading, error, refetch } = useQuery(QUERY_SERVICEUSER, {
     variables: { serviceUserId: loggedInUserId },
   });
+
+  const [deleteAppointment] = useMutation(DELETE_APPOINTMENT);
+
+  const deleteApptHandler = (appointment, normalUser) => {
+    Reoverlay.showModal(ConfirmationModal, {
+      confirmText: "Would you like to mark this appointment completed?",
+      onConfirm: async () => {
+        await deleteAppointment({
+          variables: {
+            appointmentId: appointment,
+            normalUserId: normalUser,
+            serviceUserId: loggedInUserId
+          },
+        });
+
+       toast.success("Appointment successfully deleted")
+       refetch()
+       return Reoverlay.hideModal()
+      }
+    })
+  }
 
   const userAppointments = data?.serviceUser?.appointments.map((appt, i) => (
     <div key={`appointment ${i}`} className="py-8 md:py-16 flex justify-center">
@@ -23,7 +48,10 @@ export default function SUAppointmentCards() {
           alt="default"
         />
         <div className="absolute top-2 -right-0.5 md:bottom-40">
-          <button className="inline-flex items-center justify-center w-5 h-5 mr-2 text-pink-100 transition delay-50 ease-in-out bg-red-500 rounded-lg focus:shadow-outline hover:bg-red-700">
+          <button
+            onClick={()=> deleteApptHandler(appt._id, appt.normalUser._id)}
+            className="inline-flex items-center justify-center w-5 h-5 mr-2 text-pink-100 transition delay-50 ease-in-out bg-red-500 rounded-lg focus:shadow-outline hover:bg-red-700"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-4 w-4"
@@ -60,6 +88,8 @@ export default function SUAppointmentCards() {
       </div>
     </div>
   ));
+
+  // console.log(userAppointments)
 
   const length = userAppointments?.length;
   return <div>{length !== 0 ? userAppointments : <NoAppointmentCard />}</div>;
