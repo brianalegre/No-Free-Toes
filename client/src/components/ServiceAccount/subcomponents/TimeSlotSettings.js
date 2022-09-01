@@ -27,7 +27,7 @@ export default function TimeSlotSettings({serviceUser, refetch}) {
 
   const removeTimeSlotHandler = (timeSlot) => {
     Reoverlay.showModal(ConfirmationModal, {
-      confirmText: "Would you like to remove this time slot?",
+      confirmText: "Would you like to remove this timeslot?",
       onConfirm: async () => {
         try {
           await removeTimeSlot({
@@ -94,7 +94,7 @@ export default function TimeSlotSettings({serviceUser, refetch}) {
       </div>
       <div className="py-32 md:py-64 w-full h-full">
         <div className="pl-10 text-center md:text-2xl">
-          <span>Current Time Slots:</span>
+          <span>Current Timeslots:</span>
         </div>
         <div className="pl-10 pt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
           {mappedTimeSlots}
