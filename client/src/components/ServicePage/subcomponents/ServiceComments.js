@@ -102,7 +102,7 @@ export default function Reviews() {
     // confirmation modal when user tries to delet a review
     const deletePost = () => {
       Reoverlay.showModal(ConfirmationModal, {
-        confirmText: "Are you sure you want to delete this post?",
+        confirmText: "Are you sure you want to delete this review?",
         onConfirm: async () => {
           await deleteReview({
             variables: {

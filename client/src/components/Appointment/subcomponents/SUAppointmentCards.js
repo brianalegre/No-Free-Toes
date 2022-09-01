@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useQuery, useMutation } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import { QUERY_SERVICEUSER } from "../../../utils/queries";
@@ -16,6 +16,11 @@ export default function SUAppointmentCards() {
   });
 
   const [deleteAppointment] = useMutation(DELETE_APPOINTMENT);
+
+  useEffect(()=> {
+    refetch()
+  }, [data, refetch])
+
 
   const deleteApptHandler = (appointment, normalUser) => {
     Reoverlay.showModal(ConfirmationModal, {
@@ -80,16 +85,9 @@ export default function SUAppointmentCards() {
             {appt.serviceType.serviceName}
           </p>
         </div>
-        <div className="pt-0 md:pt-28">
-          <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1.5 md:px-5 md:py-2.5 mr-3 mb-3 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-            Contact Information
-          </button>
-        </div>
       </div>
     </div>
   ));
-
-  // console.log(userAppointments)
 
   const length = userAppointments?.length;
   return <div>{length !== 0 ? userAppointments : <NoAppointmentCard />}</div>;

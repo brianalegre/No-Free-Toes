@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useQuery, useMutation } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import { QUERY_SINGLE_NORMALUSER } from "../../../utils/queries";
@@ -8,16 +8,23 @@ import { Reoverlay } from "reoverlay";
 import { toast } from "react-hot-toast";
 import moment from "moment";
 import NoAppointmentCard from "./NoAppointmentCard";
+import RedirectModal from "../../modals/RedirectModal";
+import { useNavigate } from "react-router-dom";
 
 export default function AppointmentCards() {
+  const navigate = useNavigate()
   const [deleteAppointment] = useMutation(DELETE_APPOINTMENT);
   const { loggedInUserId } = useParams();
   const { data, loading, error, refetch } = useQuery(QUERY_SINGLE_NORMALUSER, {
     variables: { normalUserId: loggedInUserId },
   });
 
+  useEffect(()=> {
+    refetch()
+  }, [data, refetch])
+
   const deleteApptHandler = (appointment, serviceUser) => {
-    Reoverlay.showModal(ConfirmationModal, {
+     Reoverlay.showModal(ConfirmationModal, {
       confirmText: "Would you like to mark this appointment completed?",
       onConfirm: async () => {
         await deleteAppointment({
@@ -27,16 +34,21 @@ export default function AppointmentCards() {
             serviceUserId: serviceUser,
           },
         });
-
+        
+        refetch()
         toast.success("Appointment successfully deleted");
-        refetch();
-        return Reoverlay.hideModal();
-      },
-    });
-  };
+        Reoverlay.hideModal()
 
-  const test = data?.normalUser?.appointments;
-  console.log(test);
+       Reoverlay.showModal(RedirectModal, {
+          redirectText: "Don't forget to leave a review!",
+          onConfirm: () => {
+            Reoverlay.hideModal()
+            navigate(`/service/${serviceUser}`)
+          }
+        })
+      },
+    })
+  };
 
   const userAppointments = data?.normalUser?.appointments.map((appt, i) => (
     <div key={`appointment ${i}`} className="py-8 md:py-16 flex justify-center">
@@ -83,8 +95,8 @@ export default function AppointmentCards() {
           </p>
         </div>
         <div className="pt-0 md:pt-28">
-          <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1.5 md:px-5 md:py-2.5 mr-3 mb-3 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-            Contact Information
+          <button onClick={()=>navigate(`/service/${appt.serviceUser._id}`)} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1.5 md:px-5 md:py-2.5 mr-3 mb-3 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+            View Profile
           </button>
         </div>
       </div>
