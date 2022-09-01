@@ -180,6 +180,11 @@ export const QUERY_SINGLE_SERVICEUSER = gql`
         servicePrice
         serviceDescription
       }
+      timeSlots {
+        _id
+        timeSlot
+      }
+      
     }
   }
 `;

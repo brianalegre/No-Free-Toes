@@ -7,13 +7,16 @@ import { Reoverlay } from "reoverlay";
 import TimeSlotModal from "../../modals/TimeSlotModal";
 import moment from "moment";
 
-export default function TimeSlotSettings() {
+export default function TimeSlotSettings(serviceUser) {
   const [userData, setUserData] = useState({});
   const { loggedInUserId } = useParams();
   const { data, loading, error, refetch } = useQuery(QUERY_SERVICEUSER, {
     variables: { serviceUserId: loggedInUserId },
     refetch: { variables: { serviceUserId: loggedInUserId } }
   });
+  const { timeSlots } = serviceUser.serviceUser;
+  // console.log('i am serviceUser', serviceUser.serviceUser)
+
 
   useEffect(() => {
     if (data) {
@@ -34,10 +37,35 @@ export default function TimeSlotSettings() {
   //   </div>
   // ));
 
-  const mappedTimeSlots = data?.serviceUser?.timeSlots?.map((slot) => (
-    <div>
-      <span>{moment.unix(slot.timeSlot).format("llll")}</span>
-    </div>
+  // const { timeSlots } = data.serviceUser || {};
+  // console.log('i am timeslots 1', timeSlots)
+
+  // const mappedTimeSlots = availableTimeslots?.sort((a, b) => a.timeSlot - b.timeSlot).map((slot) => (
+  //   <div>
+  //     <span>{moment.unix(slot.timeSlot).format("llll")}</span>
+  //   </div>
+  // ));
+
+  // const mappedTimeSlots = availableTimeslots?.sort((a, b) => a.timeSlot - b.timeSlot)
+  //   .map((timeSlotState) => (
+  //     <button
+  //     >
+  //       {moment.unix(timeSlotState.timeSlot).format("lll")}
+  //     </button>
+  //   ));
+
+  // const mappedTimeSlotsSort = timeSlots?.sort((a, b) => a.timeSlot - b.timeSlot)
+
+  const mappedTimeSlots = timeSlots?.sort((a, b) => a.timeSlot - b.timeSlot).map((timeSlotState) => (
+    <button
+      className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-xs px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+      value={timeSlotState._id}
+      name="timeSlotId"
+      data-id={timeSlotState._id}
+    // >{moment.unix(timeSlotState.timeSlot).format('lll')}</button>
+    >
+      {moment.unix(timeSlotState.timeSlot).format("ddd M/D hh:mm A")}
+    </button>
   ));
 
   return (
@@ -65,10 +93,12 @@ export default function TimeSlotSettings() {
         </button>
       </div>
       <div className="py-32 md:py-64 w-full h-full">
-        <div className="text-center md:text-2xl">
+        <div className="pl-10 text-center md:text-2xl">
           <span>Current Time Slots:</span>
+        </div >
+        <div className="pl-10 pt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+          {mappedTimeSlots}
         </div>
-        {mappedTimeSlots}
       </div>
     </div>
   );
