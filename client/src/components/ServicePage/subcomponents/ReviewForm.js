@@ -43,7 +43,7 @@ export default function ReviewForm({ refetch, data }) {
             Service Provider Rating:{" "}
           </span>
           {/* we pass in starRef as a prop so we can use it in our DynamicStar component */}
-          <DynamicStar starRef={starRef} data={data}/>
+          <DynamicStar starRef={starRef} data={data} />
         </div>
       </div>
 
@@ -69,11 +69,11 @@ export default function ReviewForm({ refetch, data }) {
           <button
             onClick={() => {
               // error handling
-              if (commentText == "") 
+              if (commentText == "")
                 return toast.error(
                   "Please make sure to fill in all required fields."
                 );
-              
+
 
               // we invoke an anonymous function on click that calls addReview as a call back function.
               // we pass in the variables required in our mutation, and send the data over to add to our backend
