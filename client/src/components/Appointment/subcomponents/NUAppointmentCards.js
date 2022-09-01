@@ -74,7 +74,7 @@ export default function AppointmentCards() {
           <h5 className="mb-8 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             {moment.unix(appt.timeSlot.timeSlot).format("ddd MM/DD HH:mm")}
           </h5>
-          <span className="dark: text-gray-200">Appointment with:</span>
+          <span className="dark:text-gray-200">Appointment with:</span>
           <h5 className="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             {appt.serviceUser.firstName} {appt.serviceUser.lastName}
           </h5>
