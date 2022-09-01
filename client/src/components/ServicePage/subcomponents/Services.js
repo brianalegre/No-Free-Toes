@@ -3,14 +3,18 @@ import Modal from "react-modal";
 import * as moment from "moment";
 import { useMutation } from "@apollo/client";
 import { ADD_APPOINTMENT } from "../../../utils/mutations";
-import { QUERY_SINGLE_NORMALUSER } from "../../../utils/queries";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Auth from "../../../utils/auth";
+import toast from "react-hot-toast";
 
-export default function Services({ serviceUser }) {
+
+
+export default function Services({ serviceUser, refetch }) {
   const { serviceType } = serviceUser;
   const { timeSlots } = serviceUser;
   const { serviceUserId } = useParams();
+  const navigate = useNavigate()
+
 
   // CHECK IF LOGGED
   const isLoggedIn = Auth.loggedIn() ? true : false;
@@ -32,15 +36,17 @@ export default function Services({ serviceUser }) {
     try {
       const { data } = await addAppointment({
         variables: { ...formState },
-        refetchQueries: [
-          {
-            query: QUERY_SINGLE_NORMALUSER,
-            variables: { normalUserId: loggedInUserId },
-          },
-        ],
+
       });
+
+      toast.success("Successfully Booked!");
+      closeModal();
+      refetch();
+
     } catch (e) {
-      console.error("services", e);
+      toast.error(
+        "Please Select an Available Time Slot"
+      )
     }
   };
 
@@ -56,22 +62,55 @@ export default function Services({ serviceUser }) {
 
   // MODAL FOR BOOKING
   const customStyles = {
-    content: {
-      top: "50%",
-      left: "50%",
-      right: "auto",
-      bottom: "auto",
-      marginRight: "-50%",
-      transform: "translate(-50%, -50%)",
-      width: "50%",
+    overlay: {
+      height: '38%',
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      width: '50%',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+      border: 'none'
     },
+    content: {
+      border: 'none',
+    },
+
   };
+
+//   const customStyles = {
+//     overlay: {
+//         position: 'absolute',
+//         top: '95px',
+//         bottom: '70px',
+//         left: '50%',
+//         marginLeft: '35px',
+//         marginRight: 'auto',
+//         transform: 'translate(-50%, -0%)',
+//         backgroundColor: 'rgba(255, 255, 255, 0.75)',
+//         border: 'none',
+//     },
+//     content: {
+//         position: 'absolute',
+//         top: '0px',
+//         left: '0px',
+//         right: '0px',
+//         bottom: '0px',
+//         background: '#fff',
+//         overflow: 'auto',
+//         WebkitOverflowScrolling: 'touch',
+//         padding: '10px',
+//         border: 'none',
+//     }
+// };
 
   // let subtitle;
   const [modalIsOpen, setmodalIsOpen] = useState(false);
 
   function openModal(event) {
-    setmodalIsOpen(true);
+    Auth.loggedIn() === true ? setmodalIsOpen(true)  : navigate('/login')
+    // setmodalIsOpen(true);
     const { name, value } = event.target;
 
     setFormState({
@@ -89,21 +128,19 @@ export default function Services({ serviceUser }) {
     setmodalIsOpen(false);
   }
 
-  const timeSlotStateData = timeSlots
-    ?.sort((a, b) => a.timeSlot - b.timeSlot)
-    .slice(0, 10)
-    .map((timeSlotState) => (
-      <button
-        onClick={handleChange}
-        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-        value={timeSlotState._id}
-        name="timeSlotId"
-        data-id={timeSlotState._id}
-        // >{moment.unix(timeSlotState.timeSlot).format('lll')}</button>
-      >
-        {moment.unix(timeSlotState.timeSlot).format("ddd MM/DD HH:mm")}
-      </button>
-    ));
+  const timeSlotStateData = timeSlots?.sort(((a,b) => a.timeSlot - b.timeSlot)).slice(0, 10).map((timeSlotState) => ( 
+    <button
+    onClick={handleChange}
+    className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-xs px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+    value={timeSlotState._id}
+    name="timeSlotId"
+    data-id={timeSlotState._id}
+    // >{moment.unix(timeSlotState.timeSlot).format('lll')}</button>
+    >
+      {moment.unix(timeSlotState.timeSlot).format('ddd M/D hh:mm A')}
+    </button>
+
+  ));
 
   const services = serviceType?.map((service) => (
     <tr key={service.serviceName}>
@@ -120,9 +157,7 @@ export default function Services({ serviceUser }) {
           {service.servicePrice}
         </p>
       </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
-        <p className="whitespace-no-wrap">{service.serviceDuration} minutes</p>
-      </td>
+      
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm dark:border-gray-700 dark:bg-gray-800">
         <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight dark:text-green-100">
           <span
@@ -132,9 +167,11 @@ export default function Services({ serviceUser }) {
           <span className="relative">available</span>
         </span>
       </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
-        <button
+      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm dark:border-gray-700 dark:bg-gray-800">
+        <button 
+        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
           onClick={openModal}
+
           value={service._id}
           name="serviceTypeId"
           data-id={service._id}
@@ -151,22 +188,15 @@ export default function Services({ serviceUser }) {
           {/* <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2> */}
           <div className="m-5 p-5">
             <div className="flex">
-              <h2 className="text-center w-full font-semibold">
-                Pick an available time slot
-              </h2>
-              <button
-                onClick={closeModal}
-                className="text-red-500 font-extrabold text-right"
-              >
-                X
-              </button>
+              <h2 className="text-center w-full font-semibold top-0" >Pick an Available Time Slot</h2>
+              <button onClick={closeModal} className="text-red-500 font-extrabold text-right">X</button>
             </div>
-            <div className="w-full grid grid-cols-5 gap-3 pt-5">
+            <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-3 pt-5">
               {timeSlotStateData}
             </div>
-            <div>
-              <button
-                type="button"
+            <div className="flex justify-end pt-5">
+              <button 
+                type="button" 
                 onClick={handleFormSubmit}
                 className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
               >
@@ -181,34 +211,27 @@ export default function Services({ serviceUser }) {
 
   return (
     <section>
-      <table className="min-w-full leading-normal">
+      <table className="min-w-full leading-normal text-center">
         <thead>
           <tr>
             <td className="px-5 py-8 border-b border-gray-200 bg-white text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
               <div className="flex items-center">
                 <div className="pl-1">
-                  <p className="whitespace-no-wrap font-semibold">
+                  <p className="whitespace-no-wrap font-semibold text-center">
                     Service Type
                   </p>
                 </div>
               </div>
             </td>
             <td className="px-5 py-8 border-b border-gray-200 bg-white text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
-              <div className="flex items-center">
+              <div className="flex justify-center">
                 <div className="pl-1">
                   <p className="whitespace-no-wrap font-semibold">Price</p>
                 </div>
               </div>
             </td>
             <td className="px-5 py-8 border-b border-gray-200 bg-white text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
-              <div className="flex items-center">
-                <div className="pl-1">
-                  <p className="whitespace-no-wrap font-semibold">Duration</p>
-                </div>
-              </div>
-            </td>
-            <td className="px-5 py-8 border-b border-gray-200 bg-white text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
-              <div className="flex items-center">
+              <div className="flex justify-center">
                 <div className="pl-1">
                   <p className=" whitespace-no-wrap font-semibold">
                     Availability
@@ -216,8 +239,14 @@ export default function Services({ serviceUser }) {
                 </div>
               </div>
             </td>
-            <td className="px-5 py-8 border-b border-gray-200 bg-white text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white ">
-              <div className="pl-1"></div>
+            <td className="px-5 py-8 border-b border-gray-200 bg-white text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
+              <div className="flex justify-center">
+                <div className="pl-1">
+                  <p className=" whitespace-no-wrap font-semibold">
+                    Scheduling
+                  </p>
+                </div>
+              </div>
             </td>
           </tr>
         </thead>
