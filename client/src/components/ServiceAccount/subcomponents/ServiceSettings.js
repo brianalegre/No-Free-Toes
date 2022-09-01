@@ -19,10 +19,9 @@ const isLoggedIn = Auth.loggedIn() ? true : false;
 const serviceCategoryId = isLoggedIn ? Auth.getProfile().data.serviceCategory : null;
 
 export default function ServiceSettings({ loggedInUserId, serviceUser, refetch }) {
-    // console.log(serviceType)
+    
+    // DESTRUCTURE SERVICE TYPES
     const { serviceType } = serviceUser
-
-    const { serviceName, servicePrice, serviceDescription } = serviceUser
 
     const [serviceInfo, setServiceInfo] = useState({
         serviceUserId: loggedInUserId,
@@ -40,7 +39,6 @@ export default function ServiceSettings({ loggedInUserId, serviceUser, refetch }
             [name]: value,
         })
     };
-    // console.log(serviceInfo)
 
     const [addServiceType, { error, data }] = useMutation(ADD_SERVICETYPE);
 
@@ -77,6 +75,8 @@ export default function ServiceSettings({ loggedInUserId, serviceUser, refetch }
         }
     }
     // console.log(serviceInfo)
+    
+    // MAPPING SERVICE TYPE CARD
     const services = serviceType?.map((service) => (
         <div key={service._id}>
             <h1>
