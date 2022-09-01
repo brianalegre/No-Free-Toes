@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import ProfileSettings from "./ProfileSettings";
-import TimeSlot from '../../TimeSlotCreator'
 const avatarImg = ".././assets/images/man.png";
 
 
@@ -29,7 +28,7 @@ export default function ProfileTabs({loggedInUserId, email, firstName, lastName,
                 {/* Avatar image, User/Service user info */}
                 <div class="flex items-center space-x-4 p-2 border-b">
                     <img className="w-10 h-10 rounded-full" src={photo} alt="avatar" />
-                    <div className="font-medium dark:text-white">
+                    <div className="font-bold">
                         <div>{firstName} {lastName}</div>
                         <div className="text-base text-gray-500 dark:text-gray-400">Client</div>
                     </div>

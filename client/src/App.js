@@ -18,6 +18,7 @@ import SignupProvider from "./components/Signup/pages/ProviderSignup";
 import UserAccount from "./components/UserAccount/UserAccount";
 import ServiceAccount from "./components/ServiceAccount/ServiceAccount";
 import AppointmentPage from "../src/components/Appointment/AppointmentPage"
+import { ModalContainer } from 'reoverlay';
 
 const client = new ApolloClient({
   uri: "/graphql",
@@ -26,6 +27,7 @@ const client = new ApolloClient({
 
 const App = () => (
   <ApolloProvider client={client}>
+    <ModalContainer />
     <Toaster position="bottom-center" reverseOrder={false} />
     <Router>
       <Navbar />

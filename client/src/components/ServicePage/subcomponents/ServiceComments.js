@@ -3,6 +3,8 @@ import { useQuery, useMutation } from "@apollo/client";
 import { useParams, useNavigate } from "react-router-dom";
 import { QUERY_SERVICECOMMENTS_BY_SERVICEUSERID } from "../../../utils/queries";
 import { DELETE_SERVICECOMMENT } from "../../../utils/mutations";
+import { Reoverlay } from "reoverlay";
+import ConfirmationModal from "../../modals/ConfirmationModal";
 import toast from "react-hot-toast";
 import {
   FiveStar,
@@ -33,19 +35,17 @@ export default function Reviews() {
   const isLoggedIn = Auth.loggedIn() ? true : false;
 
   //create navigate function to assign to useNavigate to redirect user to login page if not logged in
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   // if isLoggedin true then get the user id from the token
   // else set the user id to null
   const loggedInUserId = isLoggedIn ? Auth.getProfile().data._id : null;
-
 
   // using the useQuery hook to retrieve data from the back end
   const { loading, error, data, refetch } = useQuery(
     QUERY_SERVICECOMMENTS_BY_SERVICEUSERID,
     {
       variables: { serviceUserId: serviceUserId },
-      fetchPolicy: "no-cache",
     }
   );
 
@@ -99,6 +99,25 @@ export default function Reviews() {
       showRating = <ZeroStar />;
     }
 
+    // confirmation modal when user tries to delet a review
+    const deletePost = () => {
+      Reoverlay.showModal(ConfirmationModal, {
+        confirmText: "Are you sure you want to delete this post?",
+        onConfirm: async () => {
+          await deleteReview({
+            variables: {
+              serviceCommentId,
+              normalUser: loggedInUserId,
+            },
+          });
+
+          refetch();
+          toast.success("Review successfully deleted!");
+          return Reoverlay.hideModal();
+        },
+      });
+    };
+
     return (
       <>
         <div
@@ -136,26 +155,7 @@ export default function Reviews() {
               <div className="absolute bottom-28 -right-0.5">
                 <button
                   className="inline-flex items-center justify-center w-5 h-5 mr-2 text-pink-100 transition delay-50 ease-in-out bg-red-500 rounded-lg focus:shadow-outline hover:bg-red-700"
-                  onClick={() => {
-                    deleteReview({
-                      variables: {
-                        serviceCommentId,
-                        normalUser: loggedInUserId,
-                      },
-                    });
-
-                    // error handling
-                    if (!deleteReview)
-                      return toast.error(
-                        "Something went wrong. Unable to delete review."
-                      );
-
-                    // provide user a visual confirmation
-                    else {
-                      refetch();
-                      return toast.success("Review successfully deleted!");
-                    }
-                  }}
+                  onClick={() => deletePost()}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -203,7 +203,11 @@ export default function Reviews() {
           </div>
         </div>
       ) : (
-        <ReviewForm renderReviewForm={renderReviewForm} refetch={refetch} data={data} />
+        <ReviewForm
+          renderReviewForm={renderReviewForm}
+          refetch={refetch}
+          data={data}
+        />
       )}
       <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 bg-gray-100">
         <div className="inline-block min-w-full"></div>

@@ -37,7 +37,7 @@ export default function ProfileTabs({ serviceUser }) {
                 {/* Avatar image, User/Service user info */}
                 <div class="flex items-center space-x-4 p-2 border-b">
                     <img className="w-10 h-10 rounded-full" src={serviceUser.photo} alt="avatar" />
-                    <div className="font-medium dark:text-white">
+                    <div className="font-bold">
                         <div>{serviceUser.firstName} {serviceUser.lastName}</div>
                         <div className="text-base text-gray-500 dark:text-gray-400">{categoryName}</div>
                     </div>
