@@ -15,7 +15,6 @@ export default function TimeSlotSettings(serviceUser) {
     refetch: { variables: { serviceUserId: loggedInUserId } }
   });
   const { timeSlots } = serviceUser.serviceUser;
-  // console.log('i am serviceUser', serviceUser.serviceUser)
 
 
   useEffect(() => {
@@ -31,30 +30,6 @@ export default function TimeSlotSettings(serviceUser) {
     });
   };
 
-  // const mappedTimeSlots = data?.serviceUser?.timeSlots?.map((slot) => (
-  //   <div>
-  //     <span>{moment.unix(slot.timeSlot).format("llll")}</span>
-  //   </div>
-  // ));
-
-  // const { timeSlots } = data.serviceUser || {};
-  // console.log('i am timeslots 1', timeSlots)
-
-  // const mappedTimeSlots = availableTimeslots?.sort((a, b) => a.timeSlot - b.timeSlot).map((slot) => (
-  //   <div>
-  //     <span>{moment.unix(slot.timeSlot).format("llll")}</span>
-  //   </div>
-  // ));
-
-  // const mappedTimeSlots = availableTimeslots?.sort((a, b) => a.timeSlot - b.timeSlot)
-  //   .map((timeSlotState) => (
-  //     <button
-  //     >
-  //       {moment.unix(timeSlotState.timeSlot).format("lll")}
-  //     </button>
-  //   ));
-
-  // const mappedTimeSlotsSort = timeSlots?.sort((a, b) => a.timeSlot - b.timeSlot)
 
   const mappedTimeSlots = timeSlots?.sort((a, b) => a.timeSlot - b.timeSlot).map((timeSlotState) => (
     <button
@@ -62,7 +37,7 @@ export default function TimeSlotSettings(serviceUser) {
       value={timeSlotState._id}
       name="timeSlotId"
       data-id={timeSlotState._id}
-    // >{moment.unix(timeSlotState.timeSlot).format('lll')}</button>
+      key={timeSlotState._id}
     >
       {moment.unix(timeSlotState.timeSlot).format("ddd M/D hh:mm A")}
     </button>
