@@ -1,87 +1,61 @@
 import React, { useState } from "react";
-import Modal from 'react-modal';
+import { useMutation } from "@apollo/client";
+import { ADD_SERVICETYPE } from "../../../utils/mutations"
+// serviceDescription: "Fades, Tapers, etc + lineup (if requested)"
+// serviceName: "Haircut"
+// servicePrice: 40
+// __typename: "ServiceType"
+// _id: "63100af7005a60b9d0495e9f"
 
-
-export default function ServiceSettings({ serviceUser }) {
+export default function ServiceSettings({ loggedInUserId, serviceUser }) {
+    const {serviceCategory} = serviceUser
+    console.log(serviceCategory)
+    
+    
     const { serviceType } = serviceUser
-    console.log(serviceType)
-    const { serviceName, serviceDescription, servicePrice } = serviceUser
-    console.log(serviceName)
+    // console.log(serviceType)
+    
+    const { serviceName, servicePrice, serviceDescription } = serviceUser
 
-    // MODAL FOR BOOKING
-    const customStyles = {
-        content: {
-            top: '50%',
-            left: '50%',
-            right: 'auto',
-            bottom: 'auto',
-            marginRight: '-50%',
-            transform: 'translate(-50%, -50%)',
-            width: '30%',
-            border: 'border-none'
-        },
+    const[serviceInfo, setServiceInfo] = useState ({
+        serviceUserId: loggedInUserId,
+        serviceName: "",
+        servicePrice: "",
+        // serviceDescription: "",
+        serviceCategory: "63103c5ed350e5e04bdf093e"
+    });
+
+    const handleUserInput = (event) => {
+        const {name, value} = event.target;
+
+        setServiceInfo ({
+            ...serviceInfo,
+            [name]: value,
+        })
     };
+    // console.log(serviceInfo)
 
-    const [modalIsOpen, setmodalIsOpen] = useState(false);
+    const[addServiceType, {error, data}] = useMutation(ADD_SERVICETYPE)
 
-    function openModal() {
-        setmodalIsOpen(true);
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+
+        try {
+            await addServiceType ({
+                variables: {...serviceInfo}
+            })
+            // refetch()
+        } catch (error) {
+            console.error(error)
+        }
     }
-
-    function closeModal() {
-        setmodalIsOpen(false);
-
-    }
-
-
+    // console.log(serviceInfo)
     const services = serviceType?.map((service) => (
         <div key={service.serviceName}>
             <h1>
                 {service.serviceName}: {service.serviceDescription}<br></br> ${service.servicePrice}
             </h1>
-            <button onClick={openModal}>Edit service</button>
-            <Modal
-                isOpen={modalIsOpen}
-                // onAfterOpen={afterOpenModal}
-                onRequestClose={closeModal}
-                style={customStyles}
-                contentLabel="Example Modal"
-            >
-                {/* <!-- Modal content --> */}
-                <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                    <button onClick={closeModal} type="button" className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-toggle="authentication-modal">
-                        <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                        <span className="sr-only">Close modal</span>
-                    </button>
-                    <div className="py-6 px-6 lg:px-8">
-                        <h3 className="mb-4 text-xl font-medium text-gray-900 dark:text-white">Sign in to our platform</h3>
-                        <form className="space-y-6" action="#">
-                            <div>
-                                <label for="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your email</label>
-                                <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required />
-                            </div>
-                            <div>
-                                <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your password</label>
-                                <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
-                            </div>
-                            <div className="flex justify-between">
-                                <div className="flex items-start">
-                                    <div className="flex items-center h-5">
-                                        <input id="remember" type="checkbox" value="" className="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800" required />
-                                    </div>
-                                    <label for="remember" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember me</label>
-                                </div>
-                                <a href="#" className="text-sm text-blue-700 hover:underline dark:text-blue-500">Lost Password?</a>
-                            </div>
-                            <button type="submit" className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login to your account</button>
-                            <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
-                                Not registered? <a href="#" className="text-blue-700 hover:underline dark:text-blue-500">Create account</a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </Modal>
-        </div>
+        </div >
     ))
 
     return (
@@ -91,7 +65,26 @@ export default function ServiceSettings({ serviceUser }) {
             </h1>
             <div>
                 {services}
+                <button
+                    type="submit"
+                    className="text-white bg-green-400 hover:bg-green-800 font-medium rounded-lg text-sm px-2 py-1 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700"
+                    onClick={handleFormSubmit}
+                >
+                    Add Service Type
+                </button>
 
+                <div className="relative z-0 mb-6 w-full group">
+                    <label for="floating_email" className="text-xs">Service Name</label>
+                    <input onChange={handleUserInput} type="text" name="serviceName" id="floating_text" placeholder="Service Name" className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
+                </div>
+                <div className="relative z-0 mb-6 w-full group">
+                    <label for="floating_email" className="text-xs">Service Price</label>
+                    <input onChange={handleUserInput} type="number" name="servicePrice" id="floating_text" placeholder="Service Price" className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
+                </div>
+                {/* <div className="relative z-0 mb-6 w-full group">
+                    <label for="floating_email" className="text-xs">Service Description</label>
+                    <input onChange={handleUserInput} type="text" name="serviceDescription" id="floating_text" placeholder="Service Description" className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
+                </div> */}
             </div>
         </div>
     )

@@ -199,6 +199,14 @@ mutation Mutation($normalUserId: ID!, $serviceUserId: ID!, $timeSlotId: ID!, $se
 }
   `
 
+export const ADD_SERVICETYPE = gql`
+  mutation Mutation($serviceName: String!, $servicePrice: String!, $serviceUserId: ID!, $serviceCategory: ID!) {
+  addServiceType(serviceName: $serviceName, servicePrice: $servicePrice, serviceUserId: $serviceUserId, serviceCategory: $serviceCategory) {
+    _id
+  }
+}
+`
+
 // export const ADD_NORMALUSER2 = gql`
 // mutation Mutation($firstName: String!, $lastName: String!, $email: String!, $password: String!, $location: String!) {
 //   addNormalUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password, location: $location) {

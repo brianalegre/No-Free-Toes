@@ -73,6 +73,7 @@ const resolvers = {
             model: "TimeSlot",
           },
         });
+
     },
     // GET ALL SERVICE USERS
     serviceUsers: async () => {
@@ -96,7 +97,8 @@ const resolvers = {
     },
     // GET ALL SERVICE TYPES + SERVICE USERS
     serviceTypes: async () => {
-      return await ServiceType.find({});
+      return await ServiceType.find({})
+        .populate("serviceCategory");
     },
     // GET ALL SERVICE COMMENTS
     serviceComments: async (parent, { serviceUserId, normalUserId }) => {

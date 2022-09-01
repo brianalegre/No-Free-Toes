@@ -14,7 +14,7 @@ export default function Services({ serviceUser, refetch }) {
   const { timeSlots } = serviceUser;
   const { serviceUserId } = useParams();
   const navigate = useNavigate()
-
+  console.log(serviceUser)
 
 
 // CHECK IF LOGGED
