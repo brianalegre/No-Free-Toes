@@ -59,7 +59,7 @@ export default function TimeSlotSettings(serviceUser) {
 
   const mappedTimeSlots = timeSlots
     ?.sort((a, b) => a.timeSlot - b.timeSlot)
-    .map((timeSlotState) => (
+    .map((timeSlotState, i) => (
       <button
         className="relative cursor-default text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700"
         value={timeSlotState._id}
@@ -79,7 +79,7 @@ export default function TimeSlotSettings(serviceUser) {
 
   return (
     <div>
-      <div className="flex justify-center pt-20 md:pt-0">
+      <div className="flex justify-center pt-20 md:pt-24">
         <button
           onClick={addTimeSlotHandler}
           className="inline-flex px-5 py-3 justify-center text-gray-100 bg-green-700 hover:bg-green-800 hover:text-white transition ease-in-out duration-200 rounded-lg ml-4 mb-3"

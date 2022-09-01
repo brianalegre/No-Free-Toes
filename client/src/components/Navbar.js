@@ -85,7 +85,7 @@ const memberLgNav = memberNavLinks.map((navlinks, i) => (
       <div
         key={"member_large_nav_link " + i}
         href={navlinks.link}
-        className="py-5 px-3"
+        className="font-kanit py-5 px-3"
       >
         {navlinks.name}
       </div>

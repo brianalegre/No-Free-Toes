@@ -4,8 +4,10 @@ import * as moment from "moment";
 import { useMutation } from "@apollo/client";
 import { ADD_APPOINTMENT } from "../../../utils/mutations";
 import { useParams, useNavigate } from "react-router-dom";
+import ServiceDesriptionModal from "../../modals/ServiceDescriptionModal";
 import Auth from "../../../utils/auth";
 import toast from "react-hot-toast";
+import { Reoverlay } from "reoverlay";
 
 export default function Services({ serviceUser, refetch }) {
   const { serviceType } = serviceUser;
@@ -121,6 +123,12 @@ export default function Services({ serviceUser, refetch }) {
     setmodalIsOpen(false);
   }
 
+  const descriptionModal = (serviceDescription) => {
+    Reoverlay.showModal(ServiceDesriptionModal, {
+      serviceDescription: serviceDescription
+    })
+  }
+
   const timeSlotStateData = timeSlots?.sort((a, b) => a.timeSlot - b.timeSlot)
     .slice(0, 10)
     .map((timeSlotState) => (
@@ -142,7 +150,7 @@ export default function Services({ serviceUser, refetch }) {
       <td className="px-5 py-8 border-b border-gray-200 bg-white text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
         <div className="flex items-center">
           <div className="pl-3">
-            <p className="whitespace-no-wrap">{service.serviceName}</p>
+            <button onClick={()=> descriptionModal(service.serviceDescription)} className="whitespace-no-wrap font-bold">{service.serviceName}</button>
           </div>
         </div>
       </td>
@@ -255,7 +263,6 @@ export default function Services({ serviceUser, refetch }) {
         </thead>
 
         <tbody>
-          {/* SERVICETYPE ROW SUB COMPONENT TO POPULATE FROM BACKEND */}
           {services}
         </tbody>
       </table>
