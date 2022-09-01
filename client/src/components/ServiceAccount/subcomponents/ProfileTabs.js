@@ -35,7 +35,7 @@ export default function ProfileTabs({ serviceUser, refetch }) {
         <>
             <aside className="md:border-r">
                 {/* Avatar image, User/Service user info */}
-                <div class="flex items-center space-x-4 p-2 border-b">
+                <div className="flex items-center space-x-4 p-2 border-b">
                     <img className="w-10 h-10 rounded-full" src={serviceUser.photo} alt="avatar" />
                     <div className="font-bold">
                         <div>{serviceUser.firstName} {serviceUser.lastName}</div>
@@ -43,7 +43,7 @@ export default function ProfileTabs({ serviceUser, refetch }) {
                     </div>
                 </div>
                 {/* Tabs */}
-                <ul className>
+                <ul>
                     {profileTabs.map((tabs) => (
                         <li className="flex items-center justify-between border-b  p-3  hover:text-gray-900 hover:bg-[#fafafa] dark:hover:bg-gray-800 dark:hover:text-white" key={tabs.name}>
                             <button

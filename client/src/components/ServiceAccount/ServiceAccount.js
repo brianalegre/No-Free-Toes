@@ -20,7 +20,7 @@ export default function ServiceAccount() {
             setServiceUser(data.serviceUser);
         }
     }, [data]);
-    console.log(serviceUser)
+    // console.log(serviceUser)
 
     // const serviceUserData = data?.serviceUser || []
     // // DESTRUCTURE TO GET SERVICE USER DATA

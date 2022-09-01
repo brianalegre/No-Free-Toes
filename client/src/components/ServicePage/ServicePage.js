@@ -21,7 +21,7 @@ export default function ServicePage() {
   }, [data]);
   // console.log(data)
 
-  console.log(serviceUser)
+  // console.log(serviceUser)
 
   return (
     <>
