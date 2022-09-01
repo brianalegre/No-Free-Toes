@@ -66,16 +66,48 @@ const [addAppointment, { error, data }] = useMutation(ADD_APPOINTMENT);
 
   // MODAL FOR BOOKING
   const customStyles = {
-    content: {
+    overlay: {
+      height: '38%',
       top: '50%',
       left: '50%',
       right: 'auto',
+      width: '50%',
       bottom: 'auto',
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
-      width: '50%',
+      border: 'none'
     },
+    content: {
+      border: 'none',
+    },
+
   };
+
+//   const customStyles = {
+//     overlay: {
+//         position: 'absolute',
+//         top: '95px',
+//         bottom: '70px',
+//         left: '50%',
+//         marginLeft: '35px',
+//         marginRight: 'auto',
+//         transform: 'translate(-50%, -0%)',
+//         backgroundColor: 'rgba(255, 255, 255, 0.75)',
+//         border: 'none',
+//     },
+//     content: {
+//         position: 'absolute',
+//         top: '0px',
+//         left: '0px',
+//         right: '0px',
+//         bottom: '0px',
+//         background: '#fff',
+//         overflow: 'auto',
+//         WebkitOverflowScrolling: 'touch',
+//         padding: '10px',
+//         border: 'none',
+//     }
+// };
 
   // let subtitle;
   const [modalIsOpen, setmodalIsOpen] = useState(false);
@@ -104,13 +136,13 @@ const [addAppointment, { error, data }] = useMutation(ADD_APPOINTMENT);
   const timeSlotStateData = timeSlots?.sort(((a,b) => a.timeSlot - b.timeSlot)).slice(0, 10).map((timeSlotState) => ( 
     <button
     onClick={handleChange}
-    className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+    className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-xs px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
     value={timeSlotState._id}
     name="timeSlotId"
     data-id={timeSlotState._id}
     // >{moment.unix(timeSlotState.timeSlot).format('lll')}</button>
     >
-      {moment.unix(timeSlotState.timeSlot).format('ddd MM/DD HH:mm')}
+      {moment.unix(timeSlotState.timeSlot).format('ddd M/D hh:mm A')}
     </button>
 
   ));
@@ -142,8 +174,9 @@ const [addAppointment, { error, data }] = useMutation(ADD_APPOINTMENT);
           <span className="relative">available</span>
         </span>
       </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
+      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
         <button 
+        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
           onClick={openModal}
 
           value={service._id}
@@ -162,10 +195,10 @@ const [addAppointment, { error, data }] = useMutation(ADD_APPOINTMENT);
           {/* <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2> */}
           <div className="m-5 p-5">
             <div className="flex">
-              <h2 className="text-center w-full font-semibold" >Pick an Available Time Slot</h2>
+              <h2 className="text-center w-full font-semibold top-0" >Pick an Available Time Slot</h2>
               <button onClick={closeModal} className="text-red-500 font-extrabold text-right">X</button>
             </div>
-            <div className="w-full grid grid-cols-5 gap-3 pt-5">
+            <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-3 pt-5">
               {timeSlotStateData}
             </div>
             <div className="flex justify-end pt-5">
