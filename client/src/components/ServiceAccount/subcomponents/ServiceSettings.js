@@ -19,7 +19,7 @@ const isLoggedIn = Auth.loggedIn() ? true : false;
 const serviceCategoryId = isLoggedIn ? Auth.getProfile().data.serviceCategory : null;
 
 export default function ServiceSettings({ loggedInUserId, serviceUser, refetch }) {
-    
+
     // DESTRUCTURE SERVICE TYPES
     const { serviceType } = serviceUser
 
@@ -56,7 +56,7 @@ export default function ServiceSettings({ loggedInUserId, serviceUser, refetch }
                 });
 
                 refetch();
-                toast.success("Review successfully deleted!");
+                toast.success("Service type successfully deleted!");
                 return Reoverlay.hideModal();
             },
         });
@@ -75,13 +75,29 @@ export default function ServiceSettings({ loggedInUserId, serviceUser, refetch }
         }
     }
     // console.log(serviceInfo)
-    
+
     // MAPPING SERVICE TYPE CARD
     const services = serviceType?.map((service) => (
         <div key={service._id}>
-            <h1>
+
+            <li className="py-3 sm:py-4">
+                <div className="flex items-center space-x-4">
+                    <div className="flex-1 min-w-0">
+                        <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
+                            {service.serviceName}
+                        </p>
+                        <p className="text-sm text-gray-500 truncate dark:text-gray-400">
+                            {service.serviceDescription}
+                        </p>
+                    </div>
+                    <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                        ${service.servicePrice}
+                    </div>
+                </div>
+            </li>
+            {/* <h1>
                 {service.serviceName}: {service.serviceDescription}<br></br> ${service.servicePrice}
-            </h1>
+            </h1> */}
 
             <button
                 className="inline-flex items-center justify-center w-5 h-5 mr-2 text-pink-100 transition delay-50 ease-in-out bg-red-500 rounded-lg focus:shadow-outline hover:bg-red-700"
@@ -107,12 +123,18 @@ export default function ServiceSettings({ loggedInUserId, serviceUser, refetch }
     ))
 
     return (
-        <div>
+        <section className="mt-5 md:ml-5 md:mt-0">
             <h1>
                 services page
             </h1>
+            <div class="p-4 w-full max-w-md bg-white rounded-lg border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+                <div className="flow-root">
+                    <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
+                    {services}
+                    </ul>
+                </div>
+            </div>
             <div>
-                {services}
                 <button
                     type="submit"
                     className="text-white bg-green-400 hover:bg-green-800 font-medium rounded-lg text-sm px-2 py-1 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700"
@@ -134,7 +156,7 @@ export default function ServiceSettings({ loggedInUserId, serviceUser, refetch }
                     <input onChange={handleUserInput} type="text" name="serviceDescription" id="floating_text" placeholder="Service Description" className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
                 </div> */}
             </div>
-        </div>
+        </section>
     )
 }
 
