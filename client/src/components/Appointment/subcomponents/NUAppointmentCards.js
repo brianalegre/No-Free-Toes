@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { useQuery, useMutation } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import { QUERY_SINGLE_NORMALUSER } from "../../../utils/queries";
@@ -10,21 +10,26 @@ import moment from "moment";
 import NoAppointmentCard from "./NoAppointmentCard";
 import RedirectModal from "../../modals/RedirectModal";
 import { useNavigate } from "react-router-dom";
+import {
+  AiOutlineCheckCircle,
+  AiOutlineCloseCircle,
+  AiOutlineUser,
+} from "react-icons/ai";
 
 export default function AppointmentCards() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [deleteAppointment] = useMutation(DELETE_APPOINTMENT);
   const { loggedInUserId } = useParams();
   const { data, loading, error, refetch } = useQuery(QUERY_SINGLE_NORMALUSER, {
     variables: { normalUserId: loggedInUserId },
   });
 
-  useEffect(()=> {
-    refetch()
-  }, [data, refetch])
+  useEffect(() => {
+    refetch();
+  }, [data, refetch]);
 
   const deleteApptHandler = (appointment, serviceUser) => {
-     Reoverlay.showModal(ConfirmationModal, {
+    Reoverlay.showModal(ConfirmationModal, {
       confirmText: "Would you like to mark this appointment completed?",
       onConfirm: async () => {
         await deleteAppointment({
@@ -34,20 +39,20 @@ export default function AppointmentCards() {
             serviceUserId: serviceUser,
           },
         });
-        
-        refetch()
-        toast.success("Appointment successfully deleted");
-        Reoverlay.hideModal()
 
-       Reoverlay.showModal(RedirectModal, {
+        refetch();
+        toast.success("Appointment successfully deleted");
+        Reoverlay.hideModal();
+
+        Reoverlay.showModal(RedirectModal, {
           redirectText: "Don't forget to leave a review!",
           onConfirm: () => {
-            Reoverlay.hideModal()
-            navigate(`/service/${serviceUser}`)
-          }
-        })
+            Reoverlay.hideModal();
+            navigate(`/service/${serviceUser}`);
+          },
+        });
       },
-    })
+    });
   };
 
   const userAppointments = data?.normalUser?.appointments.map((appt, i) => (
@@ -84,7 +89,7 @@ export default function AppointmentCards() {
         </div>
         <div className="flex flex-col p-4 w-96">
           <h5 className="mb-8 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-            {moment.unix(appt.timeSlot.timeSlot).format("ddd MM/DD HH:mm")}
+            {moment.unix(appt.timeSlot.timeSlot).format("ddd MM/DD hh:mm A")}
           </h5>
           <span className="dark:text-gray-200">Appointment with:</span>
           <h5 className="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -94,10 +99,16 @@ export default function AppointmentCards() {
             {appt.serviceType.serviceName}
           </p>
         </div>
-        <div className="pt-0 md:pt-28">
-          <button onClick={()=>navigate(`/service/${appt.serviceUser._id}`)} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1.5 md:px-5 md:py-2.5 mr-3 mb-3 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+        <div className="pt-0 md:pt-28 flex gap-1 pr-3">
+          <AiOutlineCloseCircle className="w-6 h-6"></AiOutlineCloseCircle>
+          <AiOutlineCheckCircle className="w-6 h-6"></AiOutlineCheckCircle>
+          <AiOutlineUser className="w-6 h-6"></AiOutlineUser>
+          {/* <button
+            onClick={() => navigate(`/service/${appt.serviceUser._id}`)}
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1.5 md:px-5 md:py-2.5 mr-3 mb-3 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+          >
             View Profile
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

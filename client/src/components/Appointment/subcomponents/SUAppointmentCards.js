@@ -75,7 +75,7 @@ export default function SUAppointmentCards() {
         </div>
         <div className="flex flex-col p-4 w-96">
           <h5 className="mb-8 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-            {moment.unix(appt.timeSlot.timeSlot).format("ddd MM/DD HH:mm")}
+            {moment.unix(appt.timeSlot.timeSlot).format("ddd MM/DD hh:mm A")}
           </h5>
           <span className="dark:text-gray-200">Appointment with:</span>
           <h5 className="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
