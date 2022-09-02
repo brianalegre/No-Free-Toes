@@ -6,6 +6,7 @@ import ConfirmationModal from "../../modals/ConfirmationModal";
 import AddServiceTypeModal from "../../modals/AddServiceTypeModal";
 import { Reoverlay } from "reoverlay";
 import toast from "react-hot-toast";
+import { AiOutlinePlus} from "react-icons/ai";
 
 import Auth from "../../../utils/auth"
 
@@ -25,7 +26,7 @@ export default function ServiceSettings({ loggedInUserId, serviceUser, refetch }
     //     serviceDescription: "",
     //     serviceCategory: serviceCategoryId
     // });
-    
+
 
     // const handleUserInput = (event) => {
     //     const { name, value } = event.target;
@@ -72,7 +73,7 @@ export default function ServiceSettings({ loggedInUserId, serviceUser, refetch }
     //     }
     // }
     // console.log(serviceInfo)
-    
+
     // VARIABLES FOR ADDING SERVICE TYPE
     // serviceCategory: "631144879ba5fa453a850d14"
     // serviceDescription: "the freshest"
@@ -86,8 +87,8 @@ export default function ServiceSettings({ loggedInUserId, serviceUser, refetch }
             serviceDescription: "",
             serviceName: "",
             servicePrice: "",
-            serviceUser: serviceUser
-
+            serviceUser: serviceUser,
+            refetch: refetch
         })
     }
 
@@ -135,16 +136,18 @@ export default function ServiceSettings({ loggedInUserId, serviceUser, refetch }
 
     return (
         <section className="mt-5 md:ml-10 md:mt-0">
-            <h1 className="py-2 text-xl">
-                Service Types
-            </h1>
-            <button
-                type="submit"
-                className="text-white bg-green-600 hover:bg-green-800 font-medium rounded-lg text-sm px-2 py-1 mr-2 mb-2"
-                onClick={serviceModal}
-            >
-                Add Service Type
-            </button>
+            <div className="flex items-center gap-2">
+                <h1 className="py-2 text-xl">
+                    Service Types
+                </h1>
+                <button
+                    type="submit"
+                    className="inline-flex items-center justify-center rounded-lg transition delay-50 ease-in-out bg-green-600 hover:bg-green-500 w-4 h-4 mr-2"
+                    onClick={serviceModal}
+                >
+                    <AiOutlinePlus color="white" />
+                </button>
+            </div>
             <div class="p-3 w-full max-w-3xl bg-white rounded-lg border shadow-md sm:p-4">
                 <div className="flow-root">
                     <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
