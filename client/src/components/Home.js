@@ -59,7 +59,7 @@ const Home = () => {
           {isLoggedIn ? null : (
             <button className="py-2 px-3 text-lg bg-green-300 hover:bg-green-700 text-black hover:text-gray-100 rounded transition duration-300">
               <Link to="/signup">
-                <div>
+                <div className="text-kanit font-semibold">
                   <p>Sign Up Today!</p>
                 </div>
               </Link>

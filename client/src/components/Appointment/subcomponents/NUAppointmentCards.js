@@ -106,7 +106,7 @@ export default function AppointmentCards() {
             onClick={() => cancelApptHandler(appt._id, appt.serviceUser._id)}
           />
           <AiOutlineUser
-            className="w-6 h-6 cursor-pointer dark:text-gray-200 hover:text-gray-400 transition ease-in-out duration-300"
+            className="w-6 h-6 cursor-pointer dark:text-gray-200 hover:text-blue-600 transition ease-in-out duration-300"
             onClick={() => navigate(`/service/${appt.serviceUser._id}`)}
           />
         </div>

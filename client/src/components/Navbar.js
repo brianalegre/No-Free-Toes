@@ -14,7 +14,6 @@ const userType = isLoggedIn ? Auth.getProfile().data.userType : null;
 
 // const userInfo = Auth.getProfile()
 
-
 const userLink =
   userType === "normalUser"
     ? "/nuser/" + loggedInUserId
@@ -24,18 +23,18 @@ const visitorNavLinks = [
   {
     name: "Home",
     link: "/",
-    class: "py-5 px-3 hover:text-pink-600 transition duration-300",
+    class: "font-kanit py-5 px-3 hover:text-pink-600 transition duration-300",
   },
   {
     name: "Login",
     link: "/login",
-    class: "py-5 px-3 hover:text-pink-600 transition duration-300",
+    class: "font-kanit py-5 px-3 hover:text-pink-600 transition duration-300",
   },
   {
     name: "Sign Up",
     link: "/signup",
     class:
-      "py-2 px-3 bg-green-300 hover:bg-green-700 text-black hover:text-gray-100 rounded transition duration-300",
+      "font-kanit py-2 px-3 bg-green-300 hover:bg-green-700 text-black hover:text-gray-100 rounded transition duration-300",
   },
 ];
 
@@ -46,11 +45,11 @@ const memberNavLinks = [
   },
   {
     name: "Appointments",
-    link: `/appointments/${loggedInUserId}`
+    link: `/appointments/${loggedInUserId}`,
   },
   {
     name: "Account",
-    link: userLink
+    link: userLink,
   },
   // {
   //   name: "Service Account",
@@ -59,45 +58,38 @@ const memberNavLinks = [
 ];
 
 const visitorLgNav = visitorNavLinks.map((navlinks, i) => (
-
   <Link to={navlinks.link} key={"visitor_large_nav_link " + i}>
-    <div className={navlinks.class}>
-      {navlinks.name}
-    </div>
+    <div className={navlinks.class}>{navlinks.name}</div>
   </Link>
-
 ));
 
 const visitorMobileNav = visitorNavLinks.map((navlinks, i) => (
-
   <Link to={navlinks.link} key={"visitor_mobile_nav_link " + i}>
     <div
-
       href={navlinks.link}
-      className="block py-2 px-4 text-sm text-black hover:text-pink-500"
+      className="font-kanit text-black block py-2 px-4 text-sm hover:text-pink-700 transition ease-in-out duration-300"
     >
       {navlinks.name}
     </div>
   </Link>
-
 ));
 
 const memberLgNav = memberNavLinks.map((navlinks, i) => (
-    <Link to={navlinks.link} key={"member_large_nav_link " + i}>
-      <div
-        href={navlinks.link}
-        className="font-kanit py-5 px-3"
-      >
-        {navlinks.name}
-      </div>
-    </Link>
+  <Link to={navlinks.link} key={"member_large_nav_link " + i}>
+    <div
+      href={navlinks.link}
+      className="font-kanit py-5 px-3 hover:text-pink-700 transition ease-in-out duration-300"
+    >
+      {navlinks.name}
+    </div>
+  </Link>
 ));
 
 const memberMobileNav = memberNavLinks.map((navlinks, i) => (
   <Link to={navlinks.link} key={"member_mobile_nav_link " + i}>
     <div
       href={navlinks.link}
-      className="block py-2 px-4 text-sm text-black hover:text-pink-500"
+      className="font-kanit block py-2 px-4 text-sm text-black hover:text-pink-700 transition ease-in-out duration-300"
     >
       {navlinks.name}
     </div>
@@ -124,13 +116,18 @@ export default function Navbar() {
             <div>
               <a href="/" className="flex items-center py-5 px-2 text-gray-700">
                 <img src={logo} className="h-10 w-10 mr-3" alt="logo" />
-                <span className="font-bold">No Free Toes Scheduler</span>
+                <span className="font-nato text-black hover:text-pink-700 font-bold transition ease-in-out duration-300">
+                  No Free Toes Scheduler
+                </span>
               </a>
             </div>
           </div>
 
           {/* large screen visitor nav */}
-          <div className="hidden lg:flex items-center gap-x-16" key='lg-scrn-visit'>
+          <div
+            className="hidden lg:flex items-center gap-x-16"
+            key="lg-scrn-visit"
+          >
             {/* FOR USE WHEN WE IMPLEMENT LOGGED IN FUNCTIONALITY */}
             {/* {isLoggedIn ? visitorLgNav : memberLgNav} */}
 
@@ -138,9 +135,9 @@ export default function Navbar() {
               <>
                 {memberLgNav}
                 <button
-                  key='lg-logout'
+                  key="lg-logout"
                   onClick={logout}
-                  className="py-2 px-3 bg-green-300 hover:bg-green-700 text-black hover:text-gray-100 rounded transition duration-300"
+                  className="font-kanit py-2 px-3 bg-green-300 hover:bg-green-700 text-black hover:text-gray-100 rounded transition duration-300"
                 >
                   {" "}
                   Logout
@@ -152,9 +149,8 @@ export default function Navbar() {
           </div>
 
           {/* hamburger menu button */}
-          <div className="lg:hidden flex items-center" key='hamburger'>
-            <button
-              onClick={mobileBtnHandler} className="mobile-menu-button">
+          <div className="lg:hidden flex items-center" key="hamburger">
+            <button onClick={mobileBtnHandler} className="mobile-menu-button">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6"
@@ -175,7 +171,10 @@ export default function Navbar() {
       </div>
 
       {/* mobile nav */}
-      <div className={isActive ? "hidden lg:hidden" : "lg:hidden"} key='movile-nav'>
+      <div
+        className={isActive ? "hidden lg:hidden" : "lg:hidden"}
+        key="movile-nav"
+      >
         {Auth.loggedIn() ? (
           <>
             {memberMobileNav}
