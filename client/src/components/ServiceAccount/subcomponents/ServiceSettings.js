@@ -80,7 +80,7 @@ export default function ServiceSettings({ loggedInUserId, serviceUser, refetch }
                         <p className="text-sm font-medium text-gray-900 truncate ">
                             {service.serviceName} ${service.servicePrice}
                         </p>
-                        <p className="text-sm text-gray-500 truncate dark:text-gray-400">
+                        <p className="text-sm text-gray-500 truncate">
                             {service.serviceDescription}
                         </p>
                     </div>
@@ -118,12 +118,12 @@ export default function ServiceSettings({ loggedInUserId, serviceUser, refetch }
             </h1>
             <button
                 type="submit"
-                className="text-white bg-green-400 hover:bg-green-800 font-medium rounded-lg text-sm px-2 py-1 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700"
+                className="text-white bg-green-600 hover:bg-green-800 font-medium rounded-lg text-sm px-2 py-1 mr-2 mb-2"
                 onClick={handleFormSubmit}
             >
                 Add Service Type
             </button>
-            <div class="p-3 w-full max-w-2xl bg-white rounded-lg border shadow-md sm:p-4 dark:bg-gray-800 dark:border-gray-700">
+            <div class="p-3 w-full max-w-2xl bg-white rounded-lg border shadow-md sm:p-4">
                 <div className="flow-root">
                     <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
                         {services}
