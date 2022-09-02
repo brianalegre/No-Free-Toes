@@ -72,8 +72,8 @@ export default function ProfileSettings({ loggedInUserId, serviceUser, refetch }
                     <input onChange={handleUserInput} type="text" name="location" id="floating_location" className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder={location} required />
                 </div>
                 <div className="relative z-0 mb-6 w-full group">
-                    <label for="floating_location" className="text-xs">Bio</label>
-                    <input onChange={handleUserInput} type="text" name="bio" id="floating_bio" className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder={bio} required />
+                    <label htmlFor="floating_bio" className="text-xs">Bio</label>
+                    <input onChange={handleUserInput} defaultValue={bio} type="text" name="bio" id="floating_bio" className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder={bio} required />
                     <p id="floating_helper_text" className="mt-2 text-xs text-gray-500 dark:text-gray-400">Tell us about yourself.... </p>
                 </div>
                 <div className="grid md:grid-cols-2 md:gap-6">
@@ -86,8 +86,7 @@ export default function ProfileSettings({ loggedInUserId, serviceUser, refetch }
                         <input onChange={handleUserInput} type="text" name="lastName" id="floating_ln" className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder={lastName} required />
                     </div>
                 </div>
-                <button onClick={handleFormSubmit} type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Update
-                </button>
+                <button onClick={handleFormSubmit} type="submit" className="mb-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Update</button>
             </form>
         </section>
     )
