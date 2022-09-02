@@ -9,15 +9,17 @@ import { toast } from "react-hot-toast";
 import TimeSlotModal from "../../modals/TimeSlotModal";
 import ConfirmationModal from "../../modals/ConfirmationModal";
 import moment from "moment";
+import TimeSlotCreator from "./TimeSlotCreator";
 
-export default function TimeSlotSettings({serviceUser, refetch}) {
+export default function TimeSlotSettings({ serviceUser, refetch }) {
+  const [renderDatePicker, setRenderDatePicker] = useState(false);
   const { loggedInUserId } = useParams();
   const { data, loading, error } = useQuery(QUERY_SERVICEUSER, {
     variables: { serviceUserId: loggedInUserId },
   });
   const [removeTimeSlot] = useMutation(DELETE_TIMESLOT);
   const { timeSlots } = serviceUser;
-  
+
   const addTimeSlotHandler = () => {
     Reoverlay.showModal(TimeSlotModal, {
       loggedInUserId: loggedInUserId,
@@ -71,26 +73,35 @@ export default function TimeSlotSettings({serviceUser, refetch}) {
   return (
     <div>
       <div className="flex justify-center pt-20 md:pt-24">
-        <button
-          onClick={addTimeSlotHandler}
-          className="inline-flex px-5 py-3 justify-center text-gray-100 bg-green-700 hover:bg-green-800 hover:text-white transition ease-in-out duration-200 rounded-lg ml-4 mb-3"
-        >
-          <svg
-            aria-hidden="true"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            className="flex-shrink-0 h-6 w-6 -ml-1 mr-2"
+        {renderDatePicker === true ? (
+          <TimeSlotCreator
+            refetch={refetch}
+            loggedInUserId={loggedInUserId}
+            renderDatePicker={renderDatePicker}
+            setRenderDatePicker={setRenderDatePicker}
+          />
+        ) : (
+          <button
+            onClick={() => setRenderDatePicker(true)}
+            className="inline-flex px-5 py-3 justify-center text-gray-100 bg-green-700 hover:bg-green-800 hover:text-white transition ease-in-out duration-200 rounded-lg ml-4 mb-3"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-            />
-          </svg>
-          Add A New Timeslot
-        </button>
+            <svg
+              aria-hidden="true"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              className="flex-shrink-0 h-6 w-6 -ml-1 mr-2"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+              />
+            </svg>
+            Add A New Timeslot
+          </button>
+        )}
       </div>
       <div className="py-32 md:py-64 w-full h-full">
         <div className="pl-10 text-center md:text-2xl">

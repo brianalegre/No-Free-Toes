@@ -180,7 +180,7 @@ export default function Navbar() {
             {memberMobileNav}
             <button
               onClick={logout}
-              className="block py-2 px-4 text-sm text-black hover:text-pink-500"
+              className="font-kanit text-black block py-2 px-4 text-sm hover:text-pink-700 transition ease-in-out duration-300"
             >
               {" "}
               Logout
