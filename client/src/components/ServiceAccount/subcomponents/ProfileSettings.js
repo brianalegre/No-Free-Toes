@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { EDIT_SERVICEUSER } from "../../../utils/mutations"
-import { toast } from 'react-hot-toast'
+import { EDIT_SERVICEUSER } from "../../../utils/mutations";
+import { toast } from 'react-hot-toast';
 
 
 export default function ProfileSettings({ loggedInUserId, serviceUser, refetch }) {

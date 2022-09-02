@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { EDIT_NORMALUSER } from "../../../utils/mutations"
+import { EDIT_NORMALUSER } from "../../../utils/mutations";
+import { toast } from 'react-hot-toast';
 
 
 export default function ProfileSettings({ loggedInUserId, email, firstName, lastName, location, refetch }) {
@@ -38,8 +39,10 @@ export default function ProfileSettings({ loggedInUserId, email, firstName, last
                 variables: { ...userInfo },
             });
             refetch()
+            toast.success("Profile updated!")
         } catch (error) {
             console.error(error);
+            return toast.error("Something went wrong")
         }
     };
 
@@ -77,7 +80,7 @@ export default function ProfileSettings({ loggedInUserId, email, firstName, last
                         <input onChange={handleUserInput} type="text" name="lastName" id="floating_ln" className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder={lastName} required />
                     </div>
                 </div>
-                <button onClick={handleFormSubmit} type="submit" className="mb-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                <button onClick={handleFormSubmit} type="submit" className="mb-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Update</button>
             </form>
         </section>
     )

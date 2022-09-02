@@ -11,9 +11,6 @@ export default function ProfileTabs({ loggedInUserId, serviceUser, refetch }) {
             name: "Profile",
         },
         {
-            name: "Reviews",
-        },
-        {
             name: "Services",
         },
         {
