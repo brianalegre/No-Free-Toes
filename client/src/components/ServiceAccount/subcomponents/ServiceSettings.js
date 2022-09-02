@@ -97,9 +97,9 @@ export default function ServiceSettings({ loggedInUserId, serviceUser, refetch }
                                 stroke="currentColor"
                             >
                                 <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
                                     d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
                                 />
                             </svg>
@@ -123,7 +123,7 @@ export default function ServiceSettings({ loggedInUserId, serviceUser, refetch }
             >
                 Add Service Type
             </button>
-            <div class="p-3 w-full max-w-2xl bg-white rounded-lg border shadow-md sm:p-4">
+            <div className="p-3 w-full max-w-2xl bg-white rounded-lg border shadow-md sm:p-4">
                 <div className="flow-root">
                     <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
                         {services}
@@ -134,11 +134,11 @@ export default function ServiceSettings({ loggedInUserId, serviceUser, refetch }
 
 
                 <div className="relative z-0 mb-6 w-full group">
-                    <label for="floating_email" className="text-xs">Service Name</label>
+                    <label htmlFor="floating_text" className="text-xs">Service Name</label>
                     <input onChange={handleUserInput} type="text" name="serviceName" id="floating_text" placeholder="Service Name" className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
                 </div>
                 <div className="relative z-0 mb-6 w-full group">
-                    <label for="floating_email" className="text-xs">Service Price</label>
+                    <label htmlFor="floating_text" className="text-xs">Service Price</label>
                     <input onChange={handleUserInput} type="number" name="servicePrice" id="floating_text" placeholder="Service Price" className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
                 </div>
                 {/* <div className="relative z-0 mb-6 w-full group">
