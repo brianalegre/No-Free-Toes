@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { useQuery } from '@apollo/client';
+import React, { useState, useEffect } from "react";
+import { useQuery } from "@apollo/client";
 import heroImg from "../images/hero_image.svg";
 import { QUERY_ALL_SERVICECATEGORIES } from "../../src/utils/queries";
 import { Link } from "react-router-dom";
-
+import Auth from "../utils/auth";
 
 const Home = () => {
-
+  const isLoggedIn = Auth.loggedIn() ? true : false;
   // CREATE STATE TO HOLD CATEGORIES
   const [savedCategories, setSavedCategories] = useState([]);
 
   // QUERY FOR ALL CATEGORIES
   const { loading, error, data } = useQuery(QUERY_ALL_SERVICECATEGORIES, {
-    fetchPolicy: "no-cache"
+    fetchPolicy: "no-cache",
   });
 
   // IF QUERY IS SUCCESSFUL, SET STATE TO CATEGORIES
@@ -56,13 +56,15 @@ const Home = () => {
             difficulties of creating, setting up, attending or even providing
             appointments. Click the button below to get started.
           </p>
-          <button className="py-2 px-3 text-lg bg-green-300 hover:bg-green-700 text-black hover:text-gray-100 rounded transition duration-300">
-            <Link to="/signup">
-              <div>
-                <p>Sign Up Today!</p>
-              </div>
-            </Link>
-          </button>
+          {isLoggedIn ? null : (
+            <button className="py-2 px-3 text-lg bg-green-300 hover:bg-green-700 text-black hover:text-gray-100 rounded transition duration-300">
+              <Link to="/signup">
+                <div className="text-kanit font-semibold">
+                  <p>Sign Up Today!</p>
+                </div>
+              </Link>
+            </button>
+          )}
         </div>
       </div>
 
@@ -73,6 +75,6 @@ const Home = () => {
       </div>
     </>
   );
-}
+};
 
-export default Home; 
+export default Home;

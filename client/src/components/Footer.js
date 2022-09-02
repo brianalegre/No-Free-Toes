@@ -29,7 +29,7 @@ const teamMembers = teamArray.map((member) => (
       <a href={member.github}>
         <button
           type="button"
-          className="w-38 text-white bg-transparent font-medium hover:text-red-300 text-sm px-5 py-2.5 text-center inline-flex items-center mr-2"
+          className="w-38 text-white bg-transparent font-medium hover:text-red-300 text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 transition ease-in-out duration-300"
         >
           <svg
             aria-hidden="true"
@@ -70,7 +70,7 @@ export default function Footer() {
                 <div className="justify-center">
                   <a
                     href="/"
-                    className="flex items-center justify-center px-2 text-red-300"
+                    className="flex items-center justify-center px-2 text-red-300 hover:text-red-600 transition ease-in-out duration-300"
                   >
                     <img
                       key="Footer Logo"
@@ -78,7 +78,7 @@ export default function Footer() {
                       className="h-12 w-12 sm:h-24 sm:w-24 mr-3"
                       alt="logo"
                     />
-                    <span className="text-2xl font-bold">
+                    <span className="font-nato text-2xl font-bold">
                       No Free Toes Scheduler
                     </span>
                   </a>
@@ -102,7 +102,7 @@ export default function Footer() {
 
           <div className="mt-6 sm:pt-6 sm:mt-12 border-t border-gray-400">
             <div className="text-center sm:flex sm:justify-between sm:text-left">
-              <p className="mt-4 text-sm text-white sm:order-first sm:mt-0">
+              <p className="font-kanit mt-4 text-bold text-sm text-white sm:order-first sm:mt-0">
                 &copy; 2022 No Free Toes Scheduler
               </p>
             </div>
