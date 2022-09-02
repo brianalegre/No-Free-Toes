@@ -84,22 +84,14 @@ export default function ServiceSettings({ loggedInUserId, serviceUser, refetch }
                 <div className="flex items-center space-x-4">
                     <div className="flex-1 min-w-0">
                         <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
-                            {service.serviceName}
+                            {service.serviceName} ${service.servicePrice}
                         </p>
                         <p className="text-sm text-gray-500 truncate dark:text-gray-400">
                             {service.serviceDescription}
                         </p>
                     </div>
                     <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                        ${service.servicePrice}
-                    </div>
-                </div>
-            </li>
-            {/* <h1>
-                {service.serviceName}: {service.serviceDescription}<br></br> ${service.servicePrice}
-            </h1> */}
-
-            <button
+                    <button
                 className="inline-flex items-center justify-center w-5 h-5 mr-2 text-pink-100 transition delay-50 ease-in-out bg-red-500 rounded-lg focus:shadow-outline hover:bg-red-700"
                 onClick={() => deleteService(service._id)}
             >
@@ -118,16 +110,42 @@ export default function ServiceSettings({ loggedInUserId, serviceUser, refetch }
                     />
                 </svg>
             </button>
+                    </div>
+                </div>
+            </li>
+            {/* <h1>
+                {service.serviceName}: {service.serviceDescription}<br></br> ${service.servicePrice}
+            </h1> */}
+
+            {/* <button
+                className="inline-flex items-center justify-center w-5 h-5 mr-2 text-pink-100 transition delay-50 ease-in-out bg-red-500 rounded-lg focus:shadow-outline hover:bg-red-700"
+                onClick={() => deleteService(service._id)}
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                    />
+                </svg>
+            </button> */}
         </div>
 
     ))
 
     return (
         <section className="mt-5 md:ml-5 md:mt-0">
-            <h1>
-                services page
-            </h1>
-            <div class="p-4 w-full max-w-md bg-white rounded-lg border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+            <h1 className="py-2 text-xl">
+                    Account Details
+                </h1>
+            <div class="p-3 w-full max-w-2xl bg-white rounded-lg border shadow-md sm:p-4 dark:bg-gray-800 dark:border-gray-700">
                 <div className="flow-root">
                     <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
                     {services}
