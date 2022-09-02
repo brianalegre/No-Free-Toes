@@ -52,6 +52,18 @@ export const QUERY_SINGLE_NORMALUSER = gql`
           _id
           serviceName
         }
+        serviceComments {
+          _id
+          commentText
+          commentCreated
+          serviceRating
+          serviceUser {
+            firstName
+            lastName
+            serviceCategory{
+              _id
+              categoryName
+        }
       }
     }
   }
