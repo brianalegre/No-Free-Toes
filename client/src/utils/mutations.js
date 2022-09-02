@@ -150,6 +150,37 @@ export const EDIT_NORMALUSER = gql`
   }
 `;
 
+// EDIT SERVICE USER
+export const EDIT_SERVICEUSER = gql`
+mutation Mutation(
+  $serviceUserId: ID!, 
+  $firstName: String, 
+  $lastName: String, 
+  $email: String, 
+  $password: String, 
+  $bio: String, 
+  $location: String
+  ) {
+  editServiceUser(
+    serviceUserId: $serviceUserId, 
+    firstName: $firstName, 
+    lastName: $lastName, 
+    email: $email, 
+    password: $password, 
+    bio: $bio, 
+    location: $location
+    ) {
+    _id
+    firstName
+    lastName
+    email
+    password
+    bio
+    location
+  }
+}
+`;
+
 export const ADD_TIMESLOT = gql`
   mutation AddTimeSlot($timeSlot: String!, $serviceUserId: ID!) {
     addTimeSlot(timeSlot: $timeSlot, serviceUserId: $serviceUserId) {
@@ -202,6 +233,24 @@ export const DELETE_APPOINTMENT = gql`
     }
   }
 `;
+
+export const ADD_SERVICETYPE = gql`
+  mutation Mutation($serviceName: String!, $servicePrice: String!, $serviceUserId: ID!, $serviceCategory: ID!) {
+  addServiceType(serviceName: $serviceName, servicePrice: $servicePrice, serviceUserId: $serviceUserId, serviceCategory: $serviceCategory) {
+    _id
+  }
+}
+`;
+
+export const DELETE_SERVICETYPE = gql`
+  mutation Mutation($serviceTypeId: ID!, $serviceUserId: ID!) {
+  removeServiceType(serviceTypeId: $serviceTypeId, serviceUserId: $serviceUserId) {
+    _id
+  }
+}
+`
+
+
 
 // export const ADD_NORMALUSER2 = gql`
 // mutation Mutation($firstName: String!, $lastName: String!, $email: String!, $password: String!, $location: String!) {

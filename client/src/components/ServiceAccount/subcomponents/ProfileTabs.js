@@ -5,7 +5,7 @@ import TimeSlotSettings from "./TimeSlotSettings"
 const avatarImg = ".././assets/images/man.png";
 
 
-export default function ProfileTabs({ serviceUser, refetch }) {
+export default function ProfileTabs({ loggedInUserId, serviceUser, refetch }) {
     const [profileTabs] = useState([
         {
             name: "Profile",
@@ -27,6 +27,7 @@ export default function ProfileTabs({ serviceUser, refetch }) {
     // console.log(serviceCategory)
 
     const { categoryName } = serviceUser?.serviceCategory || [];
+    const { _id } = serviceUser?.serviceCategory || {}
     // console.log(categoryName)
     // const { firstName, lastName, photo } = serviceUser;
 
@@ -59,63 +60,25 @@ export default function ProfileTabs({ serviceUser, refetch }) {
             </aside>
 
             <div className={currentTab.name === "Profile" ? null : "hidden"}>
-                {/* Form Card template, TODO update to fit needs */}
+                {/* Form Card template */}
                 <ProfileSettings
-                    // email={email}
-                    // loggedInUserId={loggedInUserId}
-                    // firstName={firstName}
-                    // lastName={lastName}
-                    // photo={photo}
-                    // location={location}
-                    // refetch={refetch}
+                    loggedInUserId={loggedInUserId}
                     serviceUser={serviceUser}
+                    refetch={refetch}
                 />
             </div>
             <div className={currentTab.name === "Services" ? null : "hidden"}>
-                {/* <ServiceSettings
+                <ServiceSettings
+                    loggedInUserId={loggedInUserId}
                     serviceUser={serviceUser}
-                /> */}
+                    refetch={refetch}
+                    _id={_id}
+                />
             </div>
             <div className={currentTab.name === "Timeslots" ? null : "hidden"}>
-                        <TimeSlotSettings serviceUser={serviceUser} refetch={refetch} />
+                <TimeSlotSettings serviceUser={serviceUser} refetch={refetch} />
             </div>
         </>
 
     );
 }
-
-// OLD CODE
-{/* <ul className>
-                <li className="flex items-center justify-between border-b p-2">
-                    <button
-                        className="inline-block py-3 px-3 rounded-lg w-full text-left hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white">
-                        <span className="text-red-600">My Profile</span>
-                    </button>
-                </li>
-                <li className="flex items-center justify-between border-b p-2">My Reviews</li>
-                <li className="flex items-center justify-between border-b p-2">My Services</li>
-                <li className="flex items-center justify-between border-b p-2">My Payment</li>
-            </ul> */}
-
-
-
-
-            // OLD CODE
-        //     <li className="flex items-center justify-between border-b p-2">
-        //     <button
-        //         className="inline-block py-3 px-3 rounded-lg w-full text-left hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white">
-        //         <span className="text-black">Reviews</span>
-        //     </button>
-        // </li>
-        // <li className="flex items-center justify-between border-b p-2">
-        //     <button
-        //         className="inline-block py-3 px-3 rounded-lg w-full text-left hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white">
-        //         <span className="text-black">Services</span>
-        //     </button>
-        // </li>
-        // <li className="flex items-center justify-between border-b p-2">
-        //     <button
-        //         className="inline-block py-3 px-3 rounded-lg w-full text-left hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white">
-        //         <span className="text-black">Payment</span>
-        //     </button>
-        // </li>

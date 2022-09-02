@@ -10,7 +10,7 @@ const typeDefs = gql`
     type ServiceType {
         _id: ID
         serviceName: String
-        servicePrice: Float
+        servicePrice: String
         serviceDuration: Float
         serviceDescription: String
         serviceCategory: ServiceCategory
@@ -124,7 +124,7 @@ const typeDefs = gql`
 
     type Mutation {
         # SERVICE TYPE
-        addServiceType(serviceName: String!, servicePrice: Float!, serviceDuration: Float, serviceDescription: String, serviceUserId: ID!, serviceCategory: ID!): ServiceType
+        addServiceType(serviceName: String!, servicePrice: String!, serviceDuration: Float, serviceDescription: String, serviceUserId: ID!, serviceCategory: ID!): ServiceType
         editServiceType(serviceTypeId: ID!, serviceName: String, servicePrice: Float, serviceDuration: Float, serviceDescription: String): ServiceType
         removeServiceType(serviceTypeId: ID!, serviceUserId: ID!): ServiceType
 
@@ -139,8 +139,8 @@ const typeDefs = gql`
         
         # SERVICE USER
         addServiceUser(firstName: String!, lastName: String!, email: String!, password: String!, bio: String!, location: String!, serviceCategory: ID!): ServiceAuth
-        editServiceUser(firstName: String, lastName: String, email: String, password: String, photo: String, bio:String, location: String, serviceCategory: ID, serviceType: [ID], timeSlots: [ID]): ServiceUser
-        removeServiceUser(_id: ID!): ServiceUser
+        editServiceUser(serviceUserId: ID!, firstName: String, lastName: String, email: String, password: String, photo: String, bio:String, location: String, serviceCategory: ID, serviceType: [ID], timeSlots: [ID]): ServiceUser
+        removeServiceUser(_id: ID !): ServiceUser
         loginServiceUser(email: String!, password: String!): ServiceAuth
         
         # APPOINTMENT

@@ -63,39 +63,3 @@ export default function ProfileTabs({loggedInUserId, email, firstName, lastName,
 
     );
 }
-
-// OLD CODE
-{/* <ul className>
-                <li className="flex items-center justify-between border-b p-2">
-                    <button
-                        className="inline-block py-3 px-3 rounded-lg w-full text-left hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white">
-                        <span className="text-red-600">My Profile</span>
-                    </button>
-                </li>
-                <li className="flex items-center justify-between border-b p-2">My Reviews</li>
-                <li className="flex items-center justify-between border-b p-2">My Services</li>
-                <li className="flex items-center justify-between border-b p-2">My Payment</li>
-            </ul> */}
-
-
-
-
-            // OLD CODE
-        //     <li className="flex items-center justify-between border-b p-2">
-        //     <button
-        //         className="inline-block py-3 px-3 rounded-lg w-full text-left hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white">
-        //         <span className="text-black">Reviews</span>
-        //     </button>
-        // </li>
-        // <li className="flex items-center justify-between border-b p-2">
-        //     <button
-        //         className="inline-block py-3 px-3 rounded-lg w-full text-left hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white">
-        //         <span className="text-black">Services</span>
-        //     </button>
-        // </li>
-        // <li className="flex items-center justify-between border-b p-2">
-        //     <button
-        //         className="inline-block py-3 px-3 rounded-lg w-full text-left hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white">
-        //         <span className="text-black">Payment</span>
-        //     </button>
-        // </li>
