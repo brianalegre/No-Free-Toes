@@ -42,9 +42,10 @@ export default function ProfileReviews({ loggedInUserId, refetch }) {
 
     return (
     
-    <div className="flex pl-3 sm:pl-4 py-4 m-2 border-rounded text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
-     <div className="pl-2 sm:pl-3 flex flex-col align-middle">
-      <div className="text-md font-bold">
+    <section className="mt-5 md:ml-5 md:mt-0">
+    <div className="flex pl-3 sm:pl-4 py-4 m-2 rounded-lg text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white max-w-lg">
+     <div className="pl-2 sm:pl-3 flex flex-col align-middle ">
+      <div className="text-lg font-bold">
         {comments.serviceUser.firstName} {comments.serviceUser.lastName} :  {comments.serviceUser.serviceCategory.categoryName}
       </div>
       <div className="text-xs">
@@ -58,6 +59,7 @@ export default function ProfileReviews({ loggedInUserId, refetch }) {
       </div>
       </div>
     </div>
+    </section>
     )
   });
 
