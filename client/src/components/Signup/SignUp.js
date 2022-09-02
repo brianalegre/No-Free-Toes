@@ -13,10 +13,10 @@ const Signup = () => {
           <img src={heroImg} alt="hero" className="w-2/3" />
         </div>
         <div className="flex flex-col w-full lg:w-2/3 justify-center items-start py-12 px-6">
-          <h1 className="my-4 text-2xl text-bold lg:text-3xl">
+          <h1 className="text-black font-nato text-bold my-4 text-2xl text-bold lg:text-3xl">
             No Free Toes Scheduler
           </h1>
-          <p className="leading-normal mb-4">
+          <p className="font-kanit text-lg leading-normal mb-6 mt-4">
             No Free Toes Scheduler is a solution to all of your scheduling
             needs, for whatever service you may need. We aim to ease the
             difficulties of creating, setting up, attending or even providing
@@ -24,7 +24,7 @@ const Signup = () => {
           </p>
         </div>
       </div>
-        <div className="p-10 min-w-center m-auto w-full text-center max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 md:p-8 bg-gray-800 border-gray-700">
+        <div className="p-10 min-w-center m-auto w-full text-center max-w-sm rounded-lg border shadow-md sm:p-6 md:p-8 bg-gray-800 border-gray-700">
             <h5 className="mb-3 text-3xl font-bold text-white">Select Sign Up</h5>
             <p className="mb-5 text-base text-gray-400 sm:text-lg ">Sign Up for No Free Toes Scheduler</p>
             <div className="flex flex-col items-center sm:justify-between sm:items-center sm:flex">
@@ -44,6 +44,5 @@ const Signup = () => {
         );
         };
 
-       
-       
+      
         export default Signup;

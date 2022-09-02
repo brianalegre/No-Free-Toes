@@ -62,9 +62,11 @@ export default function UserProfile() {
   // IF NOT A NORMAL USER, MESSAGE DISPLAYS BELOW
   else {
     return (
-      <h1>
-        You need to be a client to access page
-      </h1>
+      <main className="bg-white mt-10 min-h-screen text-lg">
+                <div className="flex justify-center bg-gray-50 content-center py-24 mx-8 my-8 md:mx-12 md:my-12 rounded-lg">
+                    <span className="text-xl">Client is required to access this page</span>
+                </div>
+            </main>
     )
   }
 }

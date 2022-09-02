@@ -48,8 +48,8 @@ export default function ServiceAccount() {
                         <div className="grid grid-cols-1 md:grid-cols-[25%_75%]">
                             {/* Tabs */}
                             <ProfileTabs
-                                loggedInUserId= {loggedInUserId}
-                                serviceUser= {serviceUser}
+                                loggedInUserId={loggedInUserId}
+                                serviceUser={serviceUser}
                                 refetch={refetch}
                             />
                         </div>
@@ -61,9 +61,11 @@ export default function ServiceAccount() {
     // IF NOT A SERVICE USER, MESSAGE DISPLAYS BELOW
     else {
         return (
-            <h1>
-                You need to be Service Provider to Access page
-            </h1>
+            <main className="bg-white mt-10 min-h-screen text-lg">
+                <div className="flex justify-center bg-gray-50 content-center py-24 mx-8 my-8 md:mx-12 md:my-12 rounded-lg">
+                    <span className="text-xl">Provider is required to access this page</span>
+                </div>
+            </main>
         )
     }
 }

@@ -33,52 +33,6 @@ db.once("open", async () => {
   // ])
 
   // CREATE TIMESLOT DATA
-  const timeSlot831 = await TimeSlot.insertMany([
-    {
-      // 8/30 @ 2200
-      timeSlot: 1661907600,
-
-    },
-    // 8/31/22
-    {
-      // 8/31 @ 0900
-      timeSlot: 1661961600,
-    },
-    {
-      // 8/31 @ 1000
-      timeSlot: 1661965200,
-    },
-    {
-      // 8/31 @ 1100
-      timeSlot: 1661968800,
-    },
-    {
-      // 8/31 @ 1200
-      timeSlot: 1661972400,
-    },
-    {
-      // 8/31 @ 1300
-      timeSlot: 1661976000,
-    },
-    {
-      // 8/31 @ 1400
-      timeSlot: 1661979600,
-    },
-    {
-      // 8/31 @ 1500
-      timeSlot: 1661983200,
-    },
-    {
-      // 8/31 @ 1600
-      timeSlot: 1661986800,
-    },
-    {
-      // 8/31 @ 1700
-      timeSlot: 1661990400,
-    },
-  ]);
-
-  // CREATE TIMESLOT DATA
   const timeSlot95 = await TimeSlot.insertMany([
     // 9/5/22
     {
@@ -295,35 +249,35 @@ db.once("open", async () => {
 
     // Eyelashes [10-14]
     {
-      serviceName: "Eyelash Extensions1",
+      serviceName: "Eyelash Extensions - Curl",
       servicePrice: 50,
       serviceDuration: 40,
-      serviceDescription: "Uses high quality synthetic eyelash, ABG approved",
+      serviceDescription: "The curl of lashes used in a set will depend on the style desired",
       serviceCategory: serviceCategorySeed[2]._id,
     },
     {
-      serviceName: "Eyelash Extensions2",
+      serviceName: "Eyelash Extensions - Express",
       servicePrice: 50,
       serviceDuration: 40,
-      serviceDescription: "Uses high quality synthetic eyelash, ABG approved",
+      serviceDescription: "Individual synthetic mink lashes are applied across the lash line to provide beautiful lashes",
       serviceCategory: serviceCategorySeed[2]._id,
     },
     {
-      serviceName: "Eyelash Extensions3",
+      serviceName: "Eyelash Extensions - Russian",
       servicePrice: 50,
       serviceDuration: 40,
-      serviceDescription: "Uses high quality synthetic eyelash, ABG approved",
+      serviceDescription: "A technique that uses more than one lash to create a personalised fan",
       serviceCategory: serviceCategorySeed[2]._id,
     },
     {
-      serviceName: "Eyelash Extensions4",
+      serviceName: "Eyelash Extensions - Hybrid",
       servicePrice: 50,
       serviceDuration: 40,
-      serviceDescription: "Uses high quality synthetic eyelash, ABG approved",
+      serviceDescription: "Hybrid lash extensions are a blend of two lash types - Classic lashes and Russian lashes",
       serviceCategory: serviceCategorySeed[2]._id,
     },
     {
-      serviceName: "Eyelash Extensions",
+      serviceName: "Eyelash Extensions - Classic",
       servicePrice: 50,
       serviceDuration: 40,
       serviceDescription: "Uses high quality synthetic eyelash, ABG approved",
@@ -778,13 +732,12 @@ db.once("open", async () => {
     password: "test1234",
     serviceCategory: serviceCategorySeed[0]._id,
     photo:
-      "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
-    bio: "First testing bio",
+      ".././assets/images/man.png",
+    bio: "I began cutting my own hair in high school and continued on through his college days. For over fifteen years, I have been a family and community barber",
     location: "Garden Grove, CA",
     serviceType: [serviceTypeSeed[0]._id, serviceTypeSeed[2]._id, serviceTypeSeed[4]._id],
     timeSlots: [timeSlot95[0]._id, timeSlot95[1]._id, timeSlot95[2]._id, timeSlot95[3]._id, timeSlot95[4]._id, timeSlot95[5]._id, timeSlot95[6]._id, timeSlot95[7]._id, timeSlot95[8]._id,
     timeSlot96[0]._id, timeSlot96[1]._id, timeSlot96[2]._id, timeSlot96[3]._id, timeSlot96[4]._id, timeSlot96[5]._id, timeSlot96[6]._id, timeSlot96[7]._id, timeSlot96[8]._id,
-    timeSlot831[0]._id, timeSlot831[1]._id, timeSlot831[2]._id, timeSlot831[3]._id, timeSlot831[4]._id, timeSlot831[5]._id, timeSlot831[6]._id, timeSlot831[7]._id, timeSlot831[8]._id,
     ],
   });
 
@@ -797,8 +750,8 @@ db.once("open", async () => {
     password: "test1234",
     serviceCategory: serviceCategorySeed[1]._id,
     photo:
-      "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
-    bio: "Second testing bio",
+      ".././assets/images/man.png",
+    bio: "Hi, my name is Kevin, owner of Nelipot’s Mind & Body Rejuvenation. I attended Anthem College in Brookfield and earned my associates degree in massage therapy in 2012. My goal is to help people live better lives by utilizing the healing benefits of massage and Reiki.",
     location: "Hacienda Heights, CA",
     serviceType: [serviceTypeSeed[6]._id, serviceTypeSeed[8]._id, serviceTypeSeed[9]._id]
   });
@@ -812,8 +765,8 @@ db.once("open", async () => {
     password: "test1234",
     serviceCategory: serviceCategorySeed[2]._id,
     photo:
-      "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
-    bio: "Third testing bio",
+      ".././assets/images/man.png",
+    bio: "As a certified eyelash artist,  I guarantee the highest level of technical and artistic skill, specializing in a safe and healthy application.",
     location: "Anaheim, CA",
     serviceType: [serviceTypeSeed[10]._id, serviceTypeSeed[12]._id, serviceTypeSeed[14]._id]
   });
@@ -827,8 +780,8 @@ db.once("open", async () => {
     password: "test1234",
     serviceCategory: serviceCategorySeed[3]._id,
     photo:
-      "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
-    bio: "fourth testing bio",
+      ".././assets/images/man.png",
+    bio: "Nails: one thing you can get into shape without exercise.",
     location: "Irvine, CA",
     serviceType: [serviceTypeSeed[15]._id, serviceTypeSeed[17]._id, serviceTypeSeed[19]._id, serviceTypeSeed[21]._id]
   });
@@ -842,8 +795,8 @@ db.once("open", async () => {
     password: "test1234",
     serviceCategory: serviceCategorySeed[4]._id,
     photo:
-      "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
-    bio: "fifth testing bio",
+      ".././assets/images/man.png",
+    bio: "I train in all forms of dance, but especially enjoys modern, contemporary and acro",
     location: "Los Angeles, CA",
     serviceType: [serviceTypeSeed[22]._id, serviceTypeSeed[24]._id, serviceTypeSeed[26]._id, serviceTypeSeed[28]._id]
   });
@@ -857,8 +810,8 @@ db.once("open", async () => {
     password: "test1234",
     serviceCategory: serviceCategorySeed[5]._id,
     photo:
-      "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
-    bio: "Sixth testing bio",
+      ".././assets/images/man.png",
+    bio: "I care deeply about my clients, and there’s nothing of more value to me than helping somebody go through an experience that makes them happy, confident, and strong.",
     location: "San francisco, CA",
     serviceType: [serviceTypeSeed[30]._id, serviceTypeSeed[32]._id, serviceTypeSeed[34]._id, serviceTypeSeed[36]._id, serviceTypeSeed[38]._id]
   });
@@ -873,8 +826,8 @@ db.once("open", async () => {
     password: "test1234",
     serviceCategory: serviceCategorySeed[6]._id,
     photo:
-      "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
-    bio: "Seventh testing bio",
+      ".././assets/images/man.png",
+    bio: "I have loved animals all of my life, always gravitating towards dogs even at a young age.  Growing up with cats and dogs, I eventually pursued dog training before transitioning into dog grooming.",
     location: "Orange, CA",
     serviceType: [serviceTypeSeed[39]._id, serviceTypeSeed[41]._id, serviceTypeSeed[43]._id, serviceTypeSeed[45]._id]
   });
@@ -888,8 +841,8 @@ db.once("open", async () => {
     password: "test1234",
     serviceCategory: serviceCategorySeed[7]._id,
     photo:
-      "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
-    bio: "Tony testing bio",
+      ".././assets/images/man.png",
+    bio: "Among my 8 As that I attained at UCI, I am most adept in Chemistry",
     location: "Los Angeles, CA",
     serviceType: [serviceTypeSeed[46]._id, serviceTypeSeed[48]._id, serviceTypeSeed[50]._id]
   });
@@ -904,8 +857,8 @@ db.once("open", async () => {
     password: "test1234",
     serviceCategory: serviceCategorySeed[8]._id,
     photo:
-      "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
-    bio: "Vy testing bio",
+      ".././assets/images/woman.png",
+    bio: "Exceptional images deserve an exceptional presentation.",
     location: "Fountain Valley, CA",
     serviceType: [serviceTypeSeed[52]._id, serviceTypeSeed[54]._id, serviceTypeSeed[56]._id]
   });
@@ -919,8 +872,8 @@ db.once("open", async () => {
     password: "test1234",
     serviceCategory: serviceCategorySeed[9]._id,
     photo:
-      "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
-    bio: "Marina testing bio",
+      ".././assets/images/woman.png",
+    bio: "Opera, Pop, Jazz, or Rock - I can teach you how to sing it all!",
     location: "Fountain Valley, CA",
     serviceType: [serviceTypeSeed[58]._id, serviceTypeSeed[60]._id, serviceTypeSeed[62]._id, serviceTypeSeed[64]._id]
   });
@@ -935,8 +888,8 @@ db.once("open", async () => {
     password: "test1234",
     serviceCategory: serviceCategorySeed[0]._id,
     photo:
-      "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
-    bio: "Ghazaleh testing bio",
+      ".././assets/images/woman.png",
+    bio: "Having more than 20 years of experience, finishing multiple training programs, and winning quite a few awards, I am passionate about bringing my Salon to the top of the industry.",
     location: "Orange, CA",
     serviceType: [serviceTypeSeed[1]._id, serviceTypeSeed[3]._id]
   });
@@ -949,9 +902,8 @@ db.once("open", async () => {
     email: "john@gmail.com",
     password: "test1234",
     serviceCategory: serviceCategorySeed[1]._id,
-    photo:
-      "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
-    bio: "John testing bio",
+    photo: ".././assets/images/man.png",
+    bio: "Massaging is my hobby, I really enjoy doing it. Keep calm and book a massage.Massage is what the body needs. Ahh, the great things that can happen when you kick off your shoes and give your feet a massage",
     location: "Orange County, CA",
     serviceType: [serviceTypeSeed[5]._id, serviceTypeSeed[7]._id]
   });
@@ -965,8 +917,8 @@ db.once("open", async () => {
     password: "test1234",
     serviceCategory: serviceCategorySeed[2]._id,
     photo:
-      "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
-    bio: "fifth testing bio",
+      ".././assets/images/man.png",
+    bio: "Lashes that amazes everyone. ",
     location: "Irvine, CA",
     serviceType: [serviceTypeSeed[11]._id, serviceTypeSeed[13]._id]
   });
@@ -975,13 +927,13 @@ db.once("open", async () => {
   // NAILCARE CATEGORY
   const serviceUserSeedFourteen = await ServiceUser.create({
     firstName: "Connor",
-    lastName: "Mictcher",
+    lastName: "Mitcher",
     email: "conner@gmail.com",
     password: "test1234",
     serviceCategory: serviceCategorySeed[3]._id,
     photo:
-      "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
-    bio: "Connor testing bio",
+      ".././assets/images/man.png",
+    bio: "Don't cry because it's Monday. Smile because your nails are on point.",
     location: "Orange County, CA",
     serviceType: [serviceTypeSeed[16]._id, serviceTypeSeed[18]._id, serviceTypeSeed[20]._id]
   });
@@ -995,8 +947,8 @@ db.once("open", async () => {
     password: "test1234",
     serviceCategory: serviceCategorySeed[4]._id,
     photo:
-      "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
-    bio: "Matt testing bio",
+      ".././assets/images/man.png",
+    bio: "I am currently an apprentice with the Next Generation Ballet program at the Patel Conservatory",
     location: "Los Angeles, CA",
     serviceType: [serviceTypeSeed[23]._id, serviceTypeSeed[25]._id, serviceTypeSeed[27]._id, serviceTypeSeed[29]._id]
   });
@@ -1010,8 +962,8 @@ db.once("open", async () => {
     password: "test1234",
     serviceCategory: serviceCategorySeed[5]._id,
     photo:
-      "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
-    bio: "Ian testing bio",
+      ".././assets/images/man.png",
+    bio: "I am very passionate about helping others find happiness in life and feel good about themselves. I believe that when you FEEL GOOD, you excel in life.",
     location: "Orange, CA",
     serviceType: [serviceTypeSeed[30]._id, serviceTypeSeed[32]._id, serviceTypeSeed[34]._id, serviceTypeSeed[36]._id, serviceTypeSeed[38]._id]
   });
@@ -1025,8 +977,8 @@ db.once("open", async () => {
     password: "test1234",
     serviceCategory: serviceCategorySeed[6]._id,
     photo:
-      "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
-    bio: "Wilson testing bio",
+      ".././assets/images/man.png",
+    bio: "I have had a lifelong love for animals, and now after a full career at Door Dash, I can finally fulfill my passion to work with clients of the 'fluffy' variety. ",
     location: "Irvine, CA",
     serviceType: [serviceTypeSeed[40]._id, serviceTypeSeed[42]._id, serviceTypeSeed[44]._id]
   });
@@ -1040,8 +992,8 @@ db.once("open", async () => {
     password: "test1234",
     serviceCategory: serviceCategorySeed[7]._id,
     photo:
-      "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
-    bio: "Liberato testing bio",
+      ".././assets/images/man.png",
+    bio: "Being once an Arts Student, my perspectives that I will provide in our lesson content are largely from historic and literary fields.",
     location: "Irvine, CA",
     serviceType: [serviceTypeSeed[47]._id, serviceTypeSeed[49]._id, serviceTypeSeed[51]._id]
   });
@@ -1055,8 +1007,8 @@ db.once("open", async () => {
     password: "test1234",
     serviceCategory: serviceCategorySeed[8]._id,
     photo:
-      "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
-    bio: "Luna testing bio",
+      ".././assets/images/woman.png",
+    bio: "Quality service. Quality videos. Creating moments, Creating life.",
     location: "Monterey Park, CA",
     serviceType: [serviceTypeSeed[53]._id, serviceTypeSeed[55]._id, serviceTypeSeed[57]._id]
   });
@@ -1070,8 +1022,8 @@ db.once("open", async () => {
     password: "test1234",
     serviceCategory: serviceCategorySeed[9]._id,
     photo:
-      "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
-    bio: "Jasmine testing bio",
+      ".././assets/images/woman.png",
+    bio: "I am a professional singer and voice teacher. I have been teaching voice for over 10 years and have a degree in music education.",
     location: "Los Angeles, CA",
     serviceType: [serviceTypeSeed[58]._id, serviceTypeSeed[61]._id, serviceTypeSeed[63]._id,]
   });
