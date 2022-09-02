@@ -19,12 +19,6 @@ export default function ProfileTabs({
     {
       name: "Reviews",
     },
-    {
-      name: "Services",
-    },
-    {
-      name: "Payment",
-    },
   ]);
 
     const [currentTab, setCurrentTab] = useState(profileTabs[0]);
