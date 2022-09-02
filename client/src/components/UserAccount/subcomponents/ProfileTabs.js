@@ -12,9 +12,6 @@ export default function ProfileTabs({loggedInUserId, email, firstName, lastName,
             name: "Reviews",
         },
         {
-            name: "Services",
-        },
-        {
             name: "Payment",
         },
     ])

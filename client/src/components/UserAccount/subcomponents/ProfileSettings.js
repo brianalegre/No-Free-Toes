@@ -45,7 +45,7 @@ export default function ProfileSettings({ loggedInUserId, email, firstName, last
 
     return (
         // Section div needs wrap each profile component
-        <section className="mt-5 md:ml-5 md:mt-0">
+        <section className="mt-5 md:ml-10 md:mt-0">
             {/* Form place holder for Profile Settings */}
             <form className="">
                 <h1 className="py-2 text-xl">

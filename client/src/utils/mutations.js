@@ -235,8 +235,8 @@ export const DELETE_APPOINTMENT = gql`
 `;
 
 export const ADD_SERVICETYPE = gql`
-  mutation Mutation($serviceName: String!, $servicePrice: String!, $serviceUserId: ID!, $serviceCategory: ID!) {
-  addServiceType(serviceName: $serviceName, servicePrice: $servicePrice, serviceUserId: $serviceUserId, serviceCategory: $serviceCategory) {
+  mutation Mutation($serviceName: String!, $servicePrice: String!, $serviceUserId: ID!, $serviceCategory: ID!, $serviceDescription: String) {
+  addServiceType(serviceName: $serviceName, servicePrice: $servicePrice, serviceUserId: $serviceUserId, serviceCategory: $serviceCategory, serviceDescription: $serviceDescription) {
     _id
   }
 }

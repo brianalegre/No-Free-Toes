@@ -19,17 +19,10 @@ export default function ProfileTabs({ loggedInUserId, serviceUser, refetch }) {
         {
             name: "Timeslots",
         },
-        {
-            name: "Payment",
-        },
     ])
-    // const { serviceCategory } = serviceUser
-    // console.log(serviceCategory)
 
     const { categoryName } = serviceUser?.serviceCategory || [];
-    const { _id } = serviceUser?.serviceCategory || {}
-    // console.log(categoryName)
-    // const { firstName, lastName, photo } = serviceUser;
+
 
     const [currentTab, setCurrentTab] = useState(profileTabs[0]);
     return (
@@ -72,7 +65,6 @@ export default function ProfileTabs({ loggedInUserId, serviceUser, refetch }) {
                     loggedInUserId={loggedInUserId}
                     serviceUser={serviceUser}
                     refetch={refetch}
-                    _id={_id}
                 />
             </div>
             <div className={currentTab.name === "Timeslots" ? null : "hidden"}>
