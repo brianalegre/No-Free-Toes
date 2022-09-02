@@ -10,6 +10,7 @@ import {
     OneStar,
     ZeroStar,
   } from "../../ServicePage/subcomponents/StaticStars";
+import NoProfileReviews from "./NoProfileReviews";
    
 export default function ProfileReviews({ loggedInUserId, refetch }) {
 
@@ -63,5 +64,7 @@ export default function ProfileReviews({ loggedInUserId, refetch }) {
     )
   });
 
-  return <>{commentsData}</>;
-}
+  const length = commentsData?.length;
+  return <div>{length !== 0 ? commentsData : <NoProfileReviews />}</div>;
+  
+  }
