@@ -40,23 +40,25 @@ export default function ProfileTabs({
   });
 
   console.log("----SERVICES----", normalUser);
-  // console.log("--DATE---", serviceComments[0].commentCreated);
+  console.log("--DATE---", useQuery);
 
-  const profileReviews =
-    normalUser?.map((review) => ({
-      _Id: review._id,
-      reviewText: review.commentText,
-      reviewedServicer: `${review.serviceUser.firstName} ${review.serviceUser.lastName}`,
-      reviewCreated: review.commentCreated,
-      // // reviewCreated: moment.unix(review[0].commentCreated).format("MM/DD/YYYY"),
-      reviewRating: review.serviceRating,
-      // serviceUserReviewed: `${review.serviceUser.firstName} ${review.serviceUser.lastName}`,
-      // serviceUserReviewedCat: review.serviceUser.serviceCategory,
-      
-    })) || [];
+  // const profileReviews =
+  //   normalUser?.serviceComments?.serviceUser?.map(reviews => {
+  //     const {
+  //       _id: serviceCommentId,
+  //     commentText,
+  //     commentCreated,
+  //     serviceRating,
+  //     serviceUser: {
+  //       _id: reviewCreatorUserId,
+  //       firstName: serviceUserFn,
+  //       lastName: serviceUserLn,
+  //     },
+  //   } = reviews;
 
 
-  console.log("---REVIEWS----", profileReviews);
+  // console.log("---REVIEWS----", profileReviews);
+    
   
   // console.log(serviceComments.normalUser)
 

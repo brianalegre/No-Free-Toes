@@ -186,7 +186,9 @@ query Query($normalUserId: ID!) {
         firstName
         lastName
         serviceCategory{
+          _id
           categoryName
+          categoryIcon
         }
       }
     }
