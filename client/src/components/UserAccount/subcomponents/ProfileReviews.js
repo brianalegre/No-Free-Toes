@@ -39,14 +39,13 @@ export default function ProfileReviews({ loggedInUserId, refetch }) {
     if (comments.serviceRating === 0) {
       showRating = <ZeroStar />;
     }
-    
+
     return (
     
-    <div className="flex pl-3 sm:pl-4 py-4 m-2 text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
+    <div className="flex pl-3 sm:pl-4 py-4 m-2 border-rounded text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
      <div className="pl-2 sm:pl-3 flex flex-col align-middle">
       <div className="text-md font-bold">
-        {comments.serviceUser.firstName} {comments.serviceUser.lastName}
-      {comments.serviceUser.serviceCategory.categoryName}
+        {comments.serviceUser.firstName} {comments.serviceUser.lastName} :  {comments.serviceUser.serviceCategory.categoryName}
       </div>
       <div className="text-xs">
         {moment.unix(comments.commentCreated/1000).format('lll')}
