@@ -100,7 +100,7 @@ export default function Reviews() {
       showRating = <ZeroStar />;
     }
 
-    // confirmation modal when user tries to delet a review
+    // confirmation modal when user tries to delete a review
     const deletePost = () => {
       Reoverlay.showModal(ConfirmationModal, {
         confirmText: "Are you sure you want to delete this review?",

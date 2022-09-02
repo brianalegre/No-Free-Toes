@@ -17,7 +17,7 @@ export default function ProfileTabs({ loggedInUserId, serviceUser, refetch }) {
             name: "Services",
         },
         {
-            name: "Time Slots",
+            name: "Timeslots",
         },
         {
             name: "Payment",
@@ -82,8 +82,8 @@ export default function ProfileTabs({ loggedInUserId, serviceUser, refetch }) {
                     _id={_id}
                 />
             </div>
-            <div className={currentTab.name === "Time Slots" ? null : "hidden"}>
-                <TimeSlotSettings serviceUser={serviceUser} />
+            <div className={currentTab.name === "Timeslots" ? null : "hidden"}>
+                        <TimeSlotSettings serviceUser={serviceUser} refetch={refetch} />
             </div>
         </>
 
