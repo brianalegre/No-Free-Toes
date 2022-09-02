@@ -207,7 +207,7 @@ export const QUERY_SERVICETYPES = gql`
     }
   }
 }
-`
+`;
 
 // Reviews
 export const QUERY_REVIEWS_BY_NORMAL_USER = gql `
@@ -233,22 +233,4 @@ query Query($normalUserId: ID!) {
     }
   }
 }
-`
-
-
 `;
-
-// export const QUERY_SERVICEUSERS_CATEGORY = gql`
-//   query serviceUsersCategory($serviceCategory: ID) {
-//     serviceUsersCategory(serviceCategory: $serviceCategory) {
-//       firstName
-//       lastName
-//       photo
-//       bio
-//       location
-//       serviceCategory {
-//         categoryName
-//       }
-//     }
-// }
-// `;

@@ -30,13 +30,13 @@ export default function ProfileTabs({
     },
   ]);
 
-  const {
-    data: normalUser, 
-    error: serviceError,
-    loading,
-  } = useQuery(QUERY_REVIEWS_BY_NORMAL_USER, {
-    variables: { normalUserId: loggedInUserId },
-  });
+  // const {
+  //   data: normalUser, 
+  //   error: serviceError,
+  //   loading,
+  // } = useQuery(QUERY_REVIEWS_BY_NORMAL_USER, {
+  //   variables: { normalUserId: loggedInUserId },
+  // });
 
     const [currentTab, setCurrentTab] = useState(profileTabs[0]);
     return (
@@ -90,23 +90,3 @@ export default function ProfileTabs({
     </>
   );
 }
-
-// OLD CODE
-//     <li className="flex items-center justify-between border-b p-2">
-//     <button
-//         className="inline-block py-3 px-3 rounded-lg w-full text-left hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white">
-//         <span className="text-black">Reviews</span>
-//     </button>
-// </li>
-// <li className="flex items-center justify-between border-b p-2">
-//     <button
-//         className="inline-block py-3 px-3 rounded-lg w-full text-left hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white">
-//         <span className="text-black">Services</span>
-//     </button>
-// </li>
-// <li className="flex items-center justify-between border-b p-2">
-//     <button
-//         className="inline-block py-3 px-3 rounded-lg w-full text-left hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white">
-//         <span className="text-black">Payment</span>
-//     </button>
-// </li>

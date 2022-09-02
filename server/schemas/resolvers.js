@@ -8,7 +8,7 @@ const {
   Appointment,
 } = require("../models");
 
-const { signToken } = require("../utils/auth");
+const { signToken, removeNullishFields } = require("../utils/auth");
 const { AuthenticationError } = require("apollo-server-express");
 const { isObjectIdOrHexString, trusted } = require("mongoose");
 
@@ -78,6 +78,7 @@ const resolvers = {
             model: "TimeSlot",
           },
         });
+
     },
     // GET ALL SERVICE USERS
     serviceUsers: async () => {
@@ -101,7 +102,8 @@ const resolvers = {
     },
     // GET ALL SERVICE TYPES + SERVICE USERS
     serviceTypes: async () => {
-      return await ServiceType.find({});
+      return await ServiceType.find({})
+        .populate("serviceCategory");
     },
     // GET ALL SERVICE COMMENTS
     serviceComments: async (parent, { serviceUserId, normalUserId }) => {
@@ -181,11 +183,12 @@ const resolvers = {
     // EDIT NORMAL USER
     editNormalUser: async (
       parent,
-      { normalUserId, firstName, lastName, email, password, location }
+      { normalUserId, ...normalUserInfo }
     ) => {
+      const cleanedInfo = removeNullishFields(normalUserInfo)
       const user = await NormalUser.findByIdAndUpdate(
         normalUserId,
-        { $set: { firstName, lastName, email, password, location } },
+        { $set: cleanedInfo },
         { new: true }
       );
       return user;
@@ -225,6 +228,19 @@ const resolvers = {
       const token = signToken(user);
 
       return { token, user };
+    },
+    // EDIT SERVICE USER
+    editServiceUser: async (
+      parent,
+      { serviceUserId, ...serviceUserInfo }
+    ) => {
+      const cleanedInfo = removeNullishFields(serviceUserInfo);
+      const user = await ServiceUser.findByIdAndUpdate(
+        serviceUserId,
+        { $set: cleanedInfo },
+        { new: true }
+      );
+      return user;
     },
 
     // LOGIN SERVICE USER

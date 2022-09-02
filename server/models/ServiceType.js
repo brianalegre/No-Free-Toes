@@ -8,9 +8,8 @@ const serviceTypeSchema = new Schema({
     trim: true,
   },
   servicePrice: {
-    type: Number,
+    type: String,
     required: true,
-    min: 0.99,
   },
   // service duration in minutes
   serviceDuration: {
