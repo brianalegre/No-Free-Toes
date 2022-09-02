@@ -6,7 +6,7 @@ import { Link, useParams } from "react-router-dom"
 
 
 // IMPORT IMAGES
-const defaultImg = ".././assets/images/man.png";
+// const defaultImg = ".././assets/images/man.png";
 
 function CategoryPage() {
 
@@ -30,7 +30,7 @@ function CategoryPage() {
     if (data) {
       setGetServiceUsers(data.serviceUsersCategory)
       setCategoryName(data.serviceUsersCategory[0].serviceCategory.categoryName);
-      
+
     }
   }, [data]);
 
@@ -43,7 +43,7 @@ function CategoryPage() {
     <div key={serviceUser._id} id="serviceUser-card" className='py-5 flex justify-center'>
       <div href="##" className="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-3xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
         <div className="">
-          <img className="object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg p-2" src={defaultImg} alt="default" />
+          <img className="object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg p-2" src={serviceUser.photo} alt="default" />
         </div>
         <div className="flex flex-col justify-between p-4 leading-normal w-96">
           <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{serviceUser.firstName} {serviceUser.lastName}</h5>
