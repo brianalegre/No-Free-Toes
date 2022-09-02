@@ -3,7 +3,6 @@ import ProfileSettings from "./ProfileSettings";
 import { useQuery } from "@apollo/client";
 import moment from "moment";
 import { QUERY_REVIEWS_BY_NORMAL_USER } from "../../../utils/queries";
-import TimeSlot from "../../TimeSlotCreator";
 const avatarImg = ".././assets/images/man.png";
 
 
@@ -39,72 +38,31 @@ export default function ProfileTabs({
     variables: { normalUserId: loggedInUserId },
   });
 
-  console.log("----SERVICES----", normalUser);
-  console.log("--DATE---", useQuery);
-
-  // const profileReviews =
-  //   normalUser?.serviceComments?.serviceUser?.map(reviews => {
-  //     const {
-  //       _id: serviceCommentId,
-  //     commentText,
-  //     commentCreated,
-  //     serviceRating,
-  //     serviceUser: {
-  //       _id: reviewCreatorUserId,
-  //       firstName: serviceUserFn,
-  //       lastName: serviceUserLn,
-  //     },
-  //   } = reviews;
-
-
-  // console.log("---REVIEWS----", profileReviews);
-    
-  
-  // console.log(serviceComments.normalUser)
-
-  // const { firstName, lastName, photo } = serviceUser;
-
-  const [currentTab, setCurrentTab] = useState(profileTabs[0]);
-  console.log("CURRENT TAB", currentTab)
-  return (
-    <>
-      <aside className="md:border-r">
-        {/* Avatar image, User/Service user info */}
-        <div className="flex items-center space-x-4 p-2 border-b">
-          <img className="w-10 h-10 rounded-full" src={photo} alt="avatar" />
-          <div className="font-medium dark:text-white">
-            <div>
-              {firstName} {lastName}
-            </div>
-            <div className="text-base text-gray-500 dark:text-gray-400">
-              Client
-            </div>
-          </div>
-        </div>
-        {/* Tabs */}
-        <ul className>
-          {profileTabs.map((tabs) => (
-            <li
-              className="flex items-center justify-between border-b  p-3  hover:text-gray-900 hover:bg-[#fafafa] dark:hover:bg-gray-800 dark:hover:text-white"
-              key={tabs.name}
-            >
-              <button
-                className="inline-block rounded-lg w-full text-left"
-                onClick={() => setCurrentTab(tabs)}
-              >
-                <span
-                  className={
-                    currentTab.name === tabs.name
-                      ? "border-l-4 border-[#fca5a5] px-2"
-                      : null
-                  }
-                >
-                  {tabs.name}
-                </span>
-              </button>
-            </li>
-          ))}
-        </ul>
+    const [currentTab, setCurrentTab] = useState(profileTabs[0]);
+    return (
+        <>
+            <aside className="md:border-r">
+                {/* Avatar image, User/Service user info */}
+                <div className="flex items-center space-x-4 p-2 border-b">
+                    <img className="w-10 h-10 rounded-full" src={photo} alt="avatar" />
+                    <div className="font-bold">
+                        <div>{firstName} {lastName}</div>
+                        <div className="text-base text-gray-500 dark:text-gray-400">Client</div>
+                    </div>
+                </div>
+                {/* Tabs */}
+                <ul>
+                    {profileTabs.map((tabs) => (
+                        <li className="flex items-center justify-between border-b  p-3  hover:text-gray-900 hover:bg-[#fafafa] dark:hover:bg-gray-800 dark:hover:text-white" key={tabs.name}>
+                            <button
+                                className="inline-block rounded-lg w-full text-left"
+                                onClick={() => setCurrentTab(tabs)}
+                            >
+                                <span className={currentTab.name === tabs.name ? "border-l-4 border-[#fca5a5] px-2" : null}>{tabs.name}</span>
+                            </button>
+                        </li>
+                    ))}
+                </ul>
       </aside>
 
       <div className={currentTab.name === "Profile" ? null : "hidden"}>

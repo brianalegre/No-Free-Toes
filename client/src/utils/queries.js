@@ -11,8 +11,6 @@ export const QUERY_ALL_SERVICECATEGORIES = gql`
   }
 `;
 
-
-
 // GET ALL NORMAL USERS
 export const QUERY_ALL_NORMALUSERS = gql`
   query normalUsers {
@@ -26,21 +24,38 @@ export const QUERY_ALL_NORMALUSERS = gql`
   }
 `;
 
-
 // GET SINGLE NORMAL USER
 export const QUERY_SINGLE_NORMALUSER = gql`
-query NormalUser($normalUserId: ID!) {
-  normalUser(normalUserId: $normalUserId) {
-    _id
-    firstName
-    lastName
-    email
-    photo
-    location
+  query NormalUser($normalUserId: ID!) {
+    normalUser(normalUserId: $normalUserId) {
+      _id
+      firstName
+      lastName
+      email
+      photo
+      location
+      appointments {
+        _id
+        serviceUser {
+          _id
+          firstName
+          lastName
+          photo
+          email
+          location
+        }
+        timeSlot {
+          _id
+          timeSlot
+        }
+        serviceType {
+          _id
+          serviceName
+        }
+      }
+    }
   }
-}
-`
-
+`;
 
 // // GET ALL SERVICE USERS
 // export const QUERY_ALL_SERVICEUSERS = gql`
@@ -100,6 +115,24 @@ export const QUERY_SERVICEUSER = gql`
         _id
         timeSlot
       }
+      appointments {
+        _id
+        normalUser {
+          _id
+          firstName
+          lastName
+          photo
+        }
+        timeSlot {
+          _id
+          timeSlot
+        }
+        serviceType {
+          _id
+          serviceName
+          servicePrice
+        }
+      }
     }
   }
 `;
@@ -128,43 +161,49 @@ export const QUERY_SERVICECOMMENTS_BY_SERVICEUSERID = gql`
 // SINGLE SERVICE USER
 export const QUERY_SINGLE_SERVICEUSER = gql`
   query ServiceUser($serviceUserId: ID!) {
-  serviceUser(serviceUserId: $serviceUserId) {
-    _id
-    firstName
-    lastName
-    email
-    password
-    photo
-    bio
-    location
-    serviceCategory {
+    serviceUser(serviceUserId: $serviceUserId) {
       _id
-      categoryName
-    }
-    serviceType {
-      _id
-      serviceName
-      servicePrice
-      serviceDescription
+      firstName
+      lastName
+      email
+      password
+      photo
+      bio
+      location
+      serviceCategory {
+        _id
+        categoryName
+      }
+      serviceType {
+        _id
+        serviceName
+        servicePrice
+        serviceDescription
+      }
+      timeSlots {
+        _id
+        timeSlot
+      }
+      
     }
   }
-}
-`
+`;
 
 // SERVICE TYPES
-export const QUERY_SERVICETYPES = gql `
+export const QUERY_SERVICETYPES = gql`
   query ServiceUser($serviceUserId: ID!) {
-  serviceUser(serviceUserId: $serviceUserId) {
-    _id
-    serviceCategory {
+    serviceUser(serviceUserId: $serviceUserId) {
       _id
-      categoryName
-    }
-    serviceType {
-      _id
-      serviceName
-      servicePrice
-      serviceDescription
+      serviceCategory {
+        _id
+        categoryName
+      }
+      serviceType {
+        _id
+        serviceName
+        servicePrice
+        serviceDescription
+      }
     }
   }
 }
@@ -197,6 +236,7 @@ query Query($normalUserId: ID!) {
 `
 
 
+`;
 
 // export const QUERY_SERVICEUSERS_CATEGORY = gql`
 //   query serviceUsersCategory($serviceCategory: ID) {

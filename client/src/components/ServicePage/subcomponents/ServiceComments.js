@@ -3,6 +3,8 @@ import { useQuery, useMutation } from "@apollo/client";
 import { useParams, useNavigate } from "react-router-dom";
 import { QUERY_SERVICECOMMENTS_BY_SERVICEUSERID } from "../../../utils/queries";
 import { DELETE_SERVICECOMMENT } from "../../../utils/mutations";
+import { Reoverlay } from "reoverlay";
+import ConfirmationModal from "../../modals/ConfirmationModal";
 import toast from "react-hot-toast";
 import {
   FiveStar,
@@ -33,19 +35,18 @@ export default function Reviews() {
   const isLoggedIn = Auth.loggedIn() ? true : false;
 
   //create navigate function to assign to useNavigate to redirect user to login page if not logged in
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  // if isLoggedin true then get the user id from the token
-  // else set the user id to null
+  // if isLoggedin true then get the user id + userType from the token
+  // else set to null
   const loggedInUserId = isLoggedIn ? Auth.getProfile().data._id : null;
-
+  const userType = isLoggedIn ? Auth.getProfile().data.userType : null;
 
   // using the useQuery hook to retrieve data from the back end
   const { loading, error, data, refetch } = useQuery(
     QUERY_SERVICECOMMENTS_BY_SERVICEUSERID,
     {
       variables: { serviceUserId: serviceUserId },
-      fetchPolicy: "no-cache",
     }
   );
 
@@ -99,8 +100,27 @@ export default function Reviews() {
       showRating = <ZeroStar />;
     }
 
+    // confirmation modal when user tries to delete a review
+    const deletePost = () => {
+      Reoverlay.showModal(ConfirmationModal, {
+        confirmText: "Are you sure you want to delete this review?",
+        onConfirm: async () => {
+          await deleteReview({
+            variables: {
+              serviceCommentId,
+              normalUser: loggedInUserId,
+            },
+          });
+
+          refetch();
+          toast.success("Review successfully deleted!");
+          return Reoverlay.hideModal();
+        },
+      });
+    };
+
     return (
-      <>
+      <div className="review" key={serviceCommentId}>
         <div
           key={normalUserFn + normalUserLn + "review card " + i}
           className="min-w-full h-auto bg-white dark:border-gray-700 dark:bg-gray-800"
@@ -136,26 +156,7 @@ export default function Reviews() {
               <div className="absolute bottom-28 -right-0.5">
                 <button
                   className="inline-flex items-center justify-center w-5 h-5 mr-2 text-pink-100 transition delay-50 ease-in-out bg-red-500 rounded-lg focus:shadow-outline hover:bg-red-700"
-                  onClick={() => {
-                    deleteReview({
-                      variables: {
-                        serviceCommentId,
-                        normalUser: loggedInUserId,
-                      },
-                    });
-
-                    // error handling
-                    if (!deleteReview)
-                      return toast.error(
-                        "Something went wrong. Unable to delete review."
-                      );
-
-                    // provide user a visual confirmation
-                    else {
-                      refetch();
-                      return toast.success("Review successfully deleted!");
-                    }
-                  }}
+                  onClick={() => deletePost()}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -165,9 +166,9 @@ export default function Reviews() {
                     stroke="currentColor"
                   >
                     <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                       d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
                     />
                   </svg>
@@ -179,7 +180,7 @@ export default function Reviews() {
         <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 bg-gray-100">
           <div className="inline-block min-w-full"></div>
         </div>
-      </>
+      </div>
     );
   });
 
@@ -189,21 +190,27 @@ export default function Reviews() {
       {renderReviewForm === false ? (
         <div className="-mx-6 sm:-mx-8 px-4 sm:px-6 bg-gray-100">
           <div className="flex justify-end">
-            <button
-              type="button"
-              className="text-white bg-green-400 hover:bg-green-800 font-medium rounded-lg text-sm px-2 py-1 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700"
-              onClick={() =>
-                Auth.loggedIn() === true
-                  ? setRenderReviewForm(true)
-                  : navigate("/login")
-              }
-            >
-              Leave Review
-            </button>
+            {userType !== "normalUser" ? null : (
+              <button
+                type="button"
+                className="text-white bg-green-400 hover:bg-green-800 font-medium rounded-lg text-sm px-2 py-1 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700"
+                onClick={() =>
+                  Auth.loggedIn() === true
+                    ? setRenderReviewForm(true)
+                    : navigate("/login")
+                }
+              >
+                Leave Review
+              </button>
+            )}
           </div>
         </div>
       ) : (
-        <ReviewForm renderReviewForm={renderReviewForm} refetch={refetch} data={data} />
+        <ReviewForm
+          renderReviewForm={renderReviewForm}
+          refetch={refetch}
+          data={data}
+        />
       )}
       <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 bg-gray-100">
         <div className="inline-block min-w-full"></div>

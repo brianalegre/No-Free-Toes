@@ -5,7 +5,7 @@ import TimeSlotSettings from "./TimeSlotSettings"
 const avatarImg = ".././assets/images/man.png";
 
 
-export default function ProfileTabs({ serviceUser }) {
+export default function ProfileTabs({ serviceUser, refetch }) {
     const [profileTabs] = useState([
         {
             name: "Profile",
@@ -17,7 +17,7 @@ export default function ProfileTabs({ serviceUser }) {
             name: "Services",
         },
         {
-            name: "Time Slots",
+            name: "Timeslots",
         },
         {
             name: "Payment",
@@ -35,15 +35,15 @@ export default function ProfileTabs({ serviceUser }) {
         <>
             <aside className="md:border-r">
                 {/* Avatar image, User/Service user info */}
-                <div class="flex items-center space-x-4 p-2 border-b">
+                <div className="flex items-center space-x-4 p-2 border-b">
                     <img className="w-10 h-10 rounded-full" src={serviceUser.photo} alt="avatar" />
-                    <div className="font-medium dark:text-white">
+                    <div className="font-bold">
                         <div>{serviceUser.firstName} {serviceUser.lastName}</div>
                         <div className="text-base text-gray-500 dark:text-gray-400">{categoryName}</div>
                     </div>
                 </div>
                 {/* Tabs */}
-                <ul className>
+                <ul>
                     {profileTabs.map((tabs) => (
                         <li className="flex items-center justify-between border-b  p-3  hover:text-gray-900 hover:bg-[#fafafa] dark:hover:bg-gray-800 dark:hover:text-white" key={tabs.name}>
                             <button
@@ -76,8 +76,8 @@ export default function ProfileTabs({ serviceUser }) {
                     serviceUser={serviceUser}
                 /> */}
             </div>
-            <div className={currentTab.name === "Time Slots" ? null : "hidden"}>
-                        <TimeSlotSettings />
+            <div className={currentTab.name === "Timeslots" ? null : "hidden"}>
+                        <TimeSlotSettings serviceUser={serviceUser} refetch={refetch} />
             </div>
         </>
 

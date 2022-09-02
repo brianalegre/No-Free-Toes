@@ -158,15 +158,50 @@ export const ADD_TIMESLOT = gql`
   }
 `;
 
+// DELETE TIMESLOT
+export const DELETE_TIMESLOT = gql`
+  mutation RemoveTimeSlot($timeSlotId: ID!, $serviceUserId: ID!) {
+    removeTimeSlot(timeSlotId: $timeSlotId, serviceUserId: $serviceUserId) {
+      _id
+    }
+  }
+`;
 
 // ADD APPOINTMENT
 export const ADD_APPOINTMENT = gql`
-mutation Mutation($normalUserId: ID!, $serviceUserId: ID!, $timeSlotId: ID!, $serviceTypeId: ID!) {
-  addAppointment(normalUserId: $normalUserId, serviceUserId: $serviceUserId, timeSlotId: $timeSlotId, serviceTypeId: $serviceTypeId) {
-    _id
+  mutation Mutation(
+    $normalUserId: ID!
+    $serviceUserId: ID!
+    $timeSlotId: ID!
+    $serviceTypeId: ID!
+  ) {
+    addAppointment(
+      normalUserId: $normalUserId
+      serviceUserId: $serviceUserId
+      timeSlotId: $timeSlotId
+      serviceTypeId: $serviceTypeId
+    ) {
+      _id
+    }
   }
-}
-  `
+`;
+
+// DELETE APPOINTMENT
+export const DELETE_APPOINTMENT = gql`
+  mutation Mutation(
+    $appointmentId: ID!
+    $serviceUserId: ID!
+    $normalUserId: ID!
+  ) {
+    removeAppointment(
+      appointmentId: $appointmentId
+      serviceUserId: $serviceUserId
+      normalUserId: $normalUserId
+    ) {
+      _id
+    }
+  }
+`;
 
 // export const ADD_NORMALUSER2 = gql`
 // mutation Mutation($firstName: String!, $lastName: String!, $email: String!, $password: String!, $location: String!) {
