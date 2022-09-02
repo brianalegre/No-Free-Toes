@@ -64,7 +64,7 @@ const ClientLogin = () => {
           </div>
         </div>
         <main className=" p-10 min-w-center m-auto w-full text-center max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 md:p-8 bg-gray-800 border-gray-700">
-            <div className="col-12 col-lg-10">
+            <div className="p-2 col-12 col-lg-10">
                 <div className="card">
                     <h4 className="mb-2 text-3xl font-bold text-white">Client Login</h4>
                     <div className="card-body text-green-500">
