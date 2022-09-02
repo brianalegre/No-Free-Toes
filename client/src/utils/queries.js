@@ -52,6 +52,7 @@ export const QUERY_SINGLE_NORMALUSER = gql`
           _id
           serviceName
         }
+        
       }
     }
   }
@@ -208,17 +209,27 @@ export const QUERY_SERVICETYPES = gql`
   }
 `;
 
-// export const QUERY_SERVICEUSERS_CATEGORY = gql`
-//   query serviceUsersCategory($serviceCategory: ID) {
-//     serviceUsersCategory(serviceCategory: $serviceCategory) {
-//       firstName
-//       lastName
-//       photo
-//       bio
-//       location
-//       serviceCategory {
-//         categoryName
-//       }
-//     }
-// }
-// `;
+// Reviews
+export const QUERY_REVIEWS_BY_NORMAL_USER = gql`
+query Query($normalUserId: ID!) {
+  normalUser(normalUserId: $normalUserId) {
+    _id
+    firstName
+    lastName
+    serviceComments {
+      _id
+      commentText
+      commentCreated
+      serviceRating
+      serviceUser {
+        firstName
+        lastName
+        serviceCategory{
+          _id
+          categoryName
+        }
+      }
+    }
+  }
+}
+`;

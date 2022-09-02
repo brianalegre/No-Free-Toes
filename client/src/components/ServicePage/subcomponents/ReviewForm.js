@@ -69,7 +69,7 @@ export default function ReviewForm({ refetch, data }) {
           <button
             onClick={() => {
               // error handling
-              if (commentText == "")
+              if (commentText === "")
                 return toast.error(
                   "Please make sure to fill in all required fields."
                 );

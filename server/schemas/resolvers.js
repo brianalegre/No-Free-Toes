@@ -23,7 +23,17 @@ const resolvers = {
     // GET SINGLE NORMAL USER
     normalUser: async (parent, { normalUserId }) => {
       return await NormalUser.findOne({ _id: normalUserId })
-        .populate("serviceComments")
+        .populate({
+          path: "serviceComments",
+          populate: { 
+            path: "serviceUser",
+            model: "ServiceUser",
+            populate: { 
+              path: "serviceCategory",
+              model: "ServiceCategory",
+            },
+        },
+        })
         .populate({
           path: "appointments",
           populate: {
