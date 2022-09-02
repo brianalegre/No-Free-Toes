@@ -75,9 +75,9 @@ export default function ProfileTabs({ loggedInUserId, serviceUser, refetch }) {
                     _id={_id}
                 />
             </div>
-            {/* <div className={currentTab.name === "Timeslots" ? null : "hidden"}>
+            <div className={currentTab.name === "Timeslots" ? null : "hidden"}>
                 <TimeSlotSettings serviceUser={serviceUser} refetch={refetch} />
-            </div> */}
+            </div>
         </>
 
     );

@@ -1,3 +1,67 @@
+import React, {useState} from 'react'
+import { LocalizationProvider } from '@mui/x-date-pickers'
+import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment'
+import { DesktopDateTimePicker } from '@mui/x-date-pickers'
+import {TextField} from '@mui/material'
+
+
+export default function TimeSlotCreator({loggedInUserId, refetch}) {
+    const [value, setValue] = useState(0)
+  return (
+    <LocalizationProvider dateAdapter={AdapterMoment}>
+        {/* <DesktopDateTimePicker />
+         */}
+        <DesktopDateTimePicker
+          label="For desktop"
+          value={value}
+          onChange={(newValue) => {
+        setValue(newValue);
+          }}
+          renderInput={(params) => <TextField {...params} />}
+        />
+    </LocalizationProvider>
+  )
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // import React, { useState } from "react";
 // import { useMutation } from "@apollo/client";
 // import { ADD_TIMESLOT } from "../../../utils/mutations";
@@ -78,3 +142,5 @@
 //     </div>
 //   );
 // }
+
+

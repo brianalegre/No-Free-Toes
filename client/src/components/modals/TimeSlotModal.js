@@ -10,7 +10,8 @@ const TimeSlotModal = ({ loggedInUserId, refetch }) => {
 
   return (
     <ModalWrapper>
-      <div className="bg-gray-200 px-24">
+      {/* <div className="bg-gray-200 px-24"> */}
+      <div className="bg-gray-200 px-24 py-36">
           <TimeSlotCreator loggedInUserId={loggedInUserId} refetch={refetch} />
         <div className="flex justify-around pb-8">
           <button
