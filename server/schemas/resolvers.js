@@ -25,8 +25,13 @@ const resolvers = {
       return await NormalUser.findOne({ _id: normalUserId })
         .populate({
           path: "serviceComments",
-          populate: { path: "serviceUser",
-          populate: { path: "serviceCategory"},
+          populate: { 
+            path: "serviceUser",
+            model: "ServiceUser",
+            populate: { 
+              path: "serviceCategory",
+              model: "ServiceCategory",
+            },
         },
         })
         .populate({

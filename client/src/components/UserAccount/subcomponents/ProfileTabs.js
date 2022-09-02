@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import ProfileSettings from "./ProfileSettings";
-import { useQuery } from "@apollo/client";
-import moment from "moment";
-import { QUERY_REVIEWS_BY_NORMAL_USER } from "../../../utils/queries";
-const avatarImg = ".././assets/images/man.png";
+import ProfileReviews from "./ProfileReviews";
 
 
 export default function ProfileTabs({
@@ -29,14 +26,6 @@ export default function ProfileTabs({
       name: "Payment",
     },
   ]);
-
-  // const {
-  //   data: normalUser, 
-  //   error: serviceError,
-  //   loading,
-  // } = useQuery(QUERY_REVIEWS_BY_NORMAL_USER, {
-  //   variables: { normalUserId: loggedInUserId },
-  // });
 
     const [currentTab, setCurrentTab] = useState(profileTabs[0]);
     return (
@@ -78,15 +67,10 @@ export default function ProfileTabs({
         />
       </div>
 
-      {/* <div className={currentTab.name === "Reviews" ? null : "hidden"}>
-        {reviews.length === 0 ? (
-          <h3>No reviews.</h3>
-        ) : (
-          reviews.map((r) => 
-          <h3 key={r._id}>{r.reviewText}</h3>)
-        )}
-        ;
-      </div> */}
+      <div className={currentTab.name === "Reviews" ? null : "hidden"}>
+        <ProfileReviews
+        />
+      </div>
     </>
   );
 }

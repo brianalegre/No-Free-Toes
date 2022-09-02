@@ -206,11 +206,10 @@ export const QUERY_SERVICETYPES = gql`
       }
     }
   }
-}
 `;
 
 // Reviews
-export const QUERY_REVIEWS_BY_NORMAL_USER = gql `
+export const QUERY_REVIEWS_BY_NORMAL_USER = gql`
 query Query($normalUserId: ID!) {
   normalUser(normalUserId: $normalUserId) {
     _id
@@ -227,7 +226,6 @@ query Query($normalUserId: ID!) {
         serviceCategory{
           _id
           categoryName
-          categoryIcon
         }
       }
     }

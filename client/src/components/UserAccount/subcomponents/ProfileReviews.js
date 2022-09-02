@@ -7,7 +7,7 @@
 //     email, 
 //     firstName, 
 //     lastName, 
-//     location, 
+//     serviceComments, 
 //     refetch }) {
 
 //     const {
