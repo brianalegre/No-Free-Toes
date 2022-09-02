@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import moment from "moment";
 import { useQuery } from "@apollo/client";
 import { QUERY_REVIEWS_BY_NORMAL_USER } from "../../../utils/queries";
@@ -11,6 +11,7 @@ import {
     ZeroStar,
   } from "../../ServicePage/subcomponents/StaticStars";
 import NoProfileReviews from "./NoProfileReviews";
+
    
 export default function ProfileReviews({ loggedInUserId, refetch }) {
 
@@ -44,7 +45,7 @@ export default function ProfileReviews({ loggedInUserId, refetch }) {
     return (
     
     <section className="mt-5 md:ml-5 md:mt-0">
-    <div className="flex pl-3 sm:pl-4 py-4 m-2 rounded-lg text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white max-w-lg">
+    <div className=" shadow-md first-line:flex pl-3 sm:pl-4 py-4 m-2 rounded-lg text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white max-w-lg">
      <div className="pl-2 sm:pl-3 flex flex-col align-middle ">
       <div className="text-lg font-bold">
         {comments.serviceUser.firstName} {comments.serviceUser.lastName} :  {comments.serviceUser.serviceCategory.categoryName}
@@ -63,6 +64,8 @@ export default function ProfileReviews({ loggedInUserId, refetch }) {
     </section>
     )
   });
+
+  refetch();
 
   const length = commentsData?.length;
   return <div>{length !== 0 ? commentsData : <NoProfileReviews />}</div>;
