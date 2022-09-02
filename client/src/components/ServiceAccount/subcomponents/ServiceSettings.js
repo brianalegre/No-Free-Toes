@@ -122,7 +122,7 @@ export default function ServiceSettings({ loggedInUserId, serviceUser, refetch }
 
 
     const length = serviceType?.length
-    console.log(length)
+    
     // IF NO EXISTING SERVICE TYPES, DISPLAYS
     if (length === 0) {
         return (
@@ -156,7 +156,7 @@ export default function ServiceSettings({ loggedInUserId, serviceUser, refetch }
                     <GoPlus className="text-gray-600 hover:text-green-600 transition ease-in-out duration-300" />
                 </button>
             </div>
-            <div class="p-3 w-full max-w-3xl bg-white rounded-lg border shadow-md sm:p-4">
+            <div className="p-3 w-full max-w-3xl bg-white rounded-lg border shadow-md sm:p-4">
                 <div className="flow-root">
                     <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
                         {services}
