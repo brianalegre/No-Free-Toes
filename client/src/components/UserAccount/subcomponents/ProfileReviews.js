@@ -47,7 +47,7 @@ export default function ProfileReviews({ loggedInUserId, refetch }) {
 
     return (
 
-      <section className="mt-5 md:ml-5 md:mt-0">
+      <section key={comments._id} className="mt-5 md:ml-5 md:mt-0">
         <div className=" shadow-md first-line:flex pl-3 sm:pl-4 py-4 m-2 rounded-lg text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white max-w-2xl">
           <div className="pl-2 sm:pl-3 flex flex-col align-middle ">
             <div className="text-lg font-bold">
