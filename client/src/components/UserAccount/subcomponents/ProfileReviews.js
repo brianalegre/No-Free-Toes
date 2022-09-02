@@ -21,6 +21,9 @@ export default function ProfileReviews({ loggedInUserId, refetch }) {
 
   const commentsData = data?.normalUser?.serviceComments?.map((comments) => {
 
+    // parsing the UNIX date that received from backend using moment.js
+    const parsedDate = moment.unix(comments.commentCreated/1000).format('lll');
+
     let showRating;
 
     if (comments.serviceRating === 5) {
@@ -51,7 +54,7 @@ export default function ProfileReviews({ loggedInUserId, refetch }) {
         {comments.serviceUser.firstName} {comments.serviceUser.lastName} :  {comments.serviceUser.serviceCategory.categoryName}
       </div>
       <div className="text-xs">
-        {moment.unix(comments.commentCreated/1000).format('lll')}
+        {parsedDate}
       </div>
       <div className="flex flex-row">
         {showRating}
