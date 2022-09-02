@@ -1,22 +1,28 @@
 import React, { useState } from "react";
 import ProfileSettings from "./ProfileSettings";
-const avatarImg = ".././assets/images/man.png";
+import ProfileReviews from "./ProfileReviews";
 
 
-export default function ProfileTabs({loggedInUserId, email, firstName, lastName, photo, location, refetch }) {
-    const [profileTabs] = useState([
-        {
-            name: "Profile",
-        },
-        {
-            name: "Reviews",
-        },
-        {
-            name: "Payment",
-        },
-    ])
-
-    // const { firstName, lastName, photo } = serviceUser;
+export default function ProfileTabs({
+  loggedInUserId,
+  email,
+  firstName,
+  lastName,
+  photo,
+  location,
+  refetch,
+}) {
+  const [profileTabs] = useState([
+    {
+      name: "Profile",
+    },
+    {
+      name: "Reviews",
+    },
+    {
+      name: "Services",
+    },
+  ]);
 
     const [currentTab, setCurrentTab] = useState(profileTabs[0]);
     return (
@@ -43,20 +49,26 @@ export default function ProfileTabs({loggedInUserId, email, firstName, lastName,
                         </li>
                     ))}
                 </ul>
+      </aside>
 
-            </aside>
+      <div className={currentTab.name === "Profile" ? null : "hidden"}>
+        {/* Form Card template, TODO update to fit needs */}
+        <ProfileSettings
+          email={email}
+          loggedInUserId={loggedInUserId}
+          firstName={firstName}
+          lastName={lastName}
+          photo={photo}
+          location={location}
+          refetch={refetch}
+        />
+      </div>
 
-            <div className={currentTab.name === "Profile" ? null : "hidden"}>
-                {/* Form Card template, TODO update to fit needs */}
-                <ProfileSettings email={email}
-                    loggedInUserId={loggedInUserId}
-                    firstName={firstName}
-                    lastName={lastName}
-                    photo={photo}
-                    location={location}
-                    refetch={refetch} />
-            </div>
-        </>
-
-    );
+      <div className={currentTab.name === "Reviews" ? null : "hidden"}>
+        <ProfileReviews 
+        loggedInUserId={loggedInUserId} 
+        refetch={refetch} />
+      </div>
+    </>
+  );
 }
