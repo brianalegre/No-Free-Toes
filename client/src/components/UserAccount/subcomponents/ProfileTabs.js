@@ -68,8 +68,7 @@ export default function ProfileTabs({
       </div>
 
       <div className={currentTab.name === "Reviews" ? null : "hidden"}>
-        <ProfileReviews
-        />
+        <ProfileReviews loggedInUserId={loggedInUserId} refetch={refetch} />
       </div>
     </>
   );
