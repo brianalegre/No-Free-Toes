@@ -147,6 +147,7 @@ const ProviderSignup = () => {
                       type="password"
                       value={formState.password}
                       onChange={handleChange}
+                      autoComplete='off'
                     />
 
                     <textarea
