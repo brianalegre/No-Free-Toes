@@ -44,10 +44,10 @@ const ProviderLogin = () => {
   };
 
   return (
-    <div className="p-6 sm:p-20 min-h-screen grid gap-6 mb-6 md:grid-cols-2">
+    <div className="pt-16 px-5 min-h-screen flex flex-col-reverse lg:grid lg:grid-cols-2">
     {/* HERO SECTION */}
-    <div className="container mx-auto flex flex-col md:flex-row items-center my-12">
-      <div className="pl-24 w-full">
+    <div className="container flex mx-auto flex-row items-center my-12">
+      <div className="hidden md:flex pl-24 w-full">
         <img src={heroImg} alt="hero" className="w-2/3" />
       </div>
       <div className="flex flex-col w-full lg:w-2/3 justify-center items-start py-12 px-6">
@@ -62,7 +62,7 @@ const ProviderLogin = () => {
         </p>
       </div>
     </div>
-    <main className=" p-10 min-w-center m-auto w-full text-center max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 md:p-8 bg-gray-800 border-gray-700">
+    <main className="p-10 min-w-center m-auto w-full text-center max-w-sm rounded-lg border shadow-md bg-gray-800 border-gray-700">
         <div className="p-1 col-12 col-lg-10">
             <div className="card">
                 <h4 className="mb-2 text-3xl font-bold text-white">Service Provider Login</h4>

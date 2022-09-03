@@ -49,9 +49,9 @@ const ClientSignup = () => {
 
   return (
 
-<div className="p-10 min-h-screen grid gap-6 mb-6 md:grid-cols-2">
+<div className="pt-16 px-5 min-h-screen flex flex-col-reverse lg:grid lg:grid-cols-2">
 <div className="container flex flex-col md:flex-row items-center my-12">
-        <div className="pl-24 w-full">
+        <div className="hidden md:flex pl-24 w-full">
           <img src={heroImg} alt="hero" className="w-2/3" />
         </div>
         <div className="flex flex-col w-full lg:w-2/3 justify-center items-start py-12 px-6">
@@ -66,8 +66,8 @@ const ClientSignup = () => {
           </p>
         </div>
       </div>
-    <main className="p-3 min-w-center m-auto w-full text-center max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 md:p-8 bg-gray-800 border-gray-700">
-      <div className="p-1 col-12 col-lg-10">
+    <main className="p-3 min-w-center m-auto w-full text-center max-w-sm rounded-lg border shadow-md bg-gray-800 border-gray-700">
+      <div className="py-8 px-4 col-12">
         <div className="card">
           <h4 className="mb-4 text-3xl font-bold text-white">Client Sign Up</h4>
           <h5 className="mb-4 text-sm font-bold text-white">Please fill out the form below:</h5>
@@ -79,7 +79,7 @@ const ClientSignup = () => {
               </p>
             ) : (
               <form onSubmit={handleFormSubmit}>
-              <div className="grid gap-6 mb-6 md:grid-cols-2">
+              <div className="grid gap-6 mb-6 grid-cols-2">
                 <input
                   className="form-input bg-gray-100 border border-green-300 text-gray-900 text-sm rounded-lg focus:ring-green-700 focus:border-green-700 block w-full p-2.5"
                   placeholder="Your first name"
