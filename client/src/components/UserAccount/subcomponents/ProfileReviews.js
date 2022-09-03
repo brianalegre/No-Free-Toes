@@ -12,17 +12,16 @@ import {
 } from "../../ServicePage/subcomponents/StaticStars";
 import NoProfileReviews from "./NoProfileReviews";
 
-
 export default function ProfileReviews({ loggedInUserId, refetch }) {
-
   const { data, loading, error } = useQuery(QUERY_REVIEWS_BY_NORMAL_USER, {
     variables: { normalUserId: loggedInUserId },
   });
 
   const commentsData = data?.normalUser?.serviceComments?.map((comments) => {
-
     // parsing the UNIX date that received from backend using moment.js
-    const parsedDate = moment.unix(comments.commentCreated / 1000).format('lll');
+    const parsedDate = moment
+      .unix(comments.commentCreated / 1000)
+      .format("lll");
 
     let showRating;
 
@@ -46,31 +45,26 @@ export default function ProfileReviews({ loggedInUserId, refetch }) {
     }
 
     return (
-
       <section key={comments._id} className="mt-5 md:ml-5 md:mt-0">
         <div className=" shadow-md first-line:flex pl-3 sm:pl-4 py-4 m-2 rounded-lg text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white max-w-2xl">
           <div className="pl-2 sm:pl-3 flex flex-col align-middle ">
             <div className="text-lg font-bold">
-              {comments.serviceUser.firstName} {comments.serviceUser.lastName} :  {comments.serviceUser.serviceCategory.categoryName}
+              {comments.serviceUser.firstName} {comments.serviceUser.lastName} :{" "}
+              {comments.serviceUser.serviceCategory.categoryName}
             </div>
-            <div className="text-xs">
-              {parsedDate}
-            </div>
-            <div className="flex flex-row">
-              {showRating}
-            </div>
+            <div className="text-xs">{parsedDate}</div>
+            <div className="flex flex-row">{showRating}</div>
             <div className="px-2 pb-2 text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
               {comments.commentText}
             </div>
           </div>
         </div>
       </section>
-    )
+    );
   });
 
   refetch();
 
   const length = commentsData?.length;
   return <div>{length !== 0 ? commentsData : <NoProfileReviews />}</div>;
-
 }

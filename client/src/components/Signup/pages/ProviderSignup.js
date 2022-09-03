@@ -7,7 +7,6 @@ import Auth from "../../../utils/auth";
 import Select from "react-select";
 import heroImg from "../../../images/hero_image.svg";
 
-
 // PROVIDER SIGNUP
 const ProviderSignup = () => {
   const {
@@ -22,7 +21,6 @@ const ProviderSignup = () => {
   // setErrorMessage('Please fill out all necessary info!');
 
   const [selectedOption, setSelectedOption] = useState(null);
-
 
   // MUTATION TO ADD SERVICE USER
   const [addServiceUser, { error, data }] = useMutation(ADD_SERVICEUSER);
@@ -48,15 +46,14 @@ const ProviderSignup = () => {
     });
   };
 
-  const handleSelectedOption = val => {
-    setSelectedOption(val)
+  const handleSelectedOption = (val) => {
+    setSelectedOption(val);
     const { serviceCategory } = val;
     setFormState({
       ...formState,
       serviceCategory: serviceCategory,
     });
-  }
-
+  };
 
   // SUBMIT FORM
   const handleFormSubmit = async (event) => {
@@ -71,16 +68,14 @@ const ProviderSignup = () => {
     } catch (e) {
       console.error(e);
     }
-
   };
 
-  // SERVICE DROPDOWN 
+  // SERVICE DROPDOWN
   const cats4Dropdown =
     categories?.serviceCategories?.map((cat) => ({
       serviceCategory: cat._id,
       label: cat.categoryName,
     })) || [];
-
 
   return (
     <div className="pt-16 px-5 min-h-screen flex flex-col-reverse lg:grid lg:grid-cols-2">
@@ -103,8 +98,12 @@ const ProviderSignup = () => {
       <main className="p-8 min-w-center m-auto w-full text-center max-w-sm rounded-lg bordershadow-md bg-gray-800 border-gray-700">
         <div className="col-12">
           <div className="card">
-            <h4 className="mb-4 text-3xl font-bold text-white">Provider Sign Up</h4>
-            <h5 className="mb-4 text-sm font-bold text-white">Please fill out the form below:</h5>
+            <h4 className="mb-4 text-3xl font-bold text-white">
+              Provider Sign Up
+            </h4>
+            <h5 className="mb-4 text-sm font-bold text-white">
+              Please fill out the form below:
+            </h5>
             <div className="card-body text-green-500">
               {data ? (
                 <p>
@@ -187,7 +186,13 @@ const ProviderSignup = () => {
                     </button>
                     <div className="text-sm font-medium text-gray-300">
                       Already registered?
-                      <Link to="/login" className="text-green-500 hover:underline"> Login</Link>
+                      <Link
+                        to="/login"
+                        className="text-green-500 hover:underline"
+                      >
+                        {" "}
+                        Login
+                      </Link>
                     </div>
                   </div>
                 </form>
