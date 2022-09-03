@@ -22,7 +22,7 @@ const Login = () => {
           </p>
         </div>
       </div>
-      <section className="p-20 min-w-center m-auto w-full text-center max-w-sm rounded-lg bordershadow-md bg-gray-800 border-gray-700">
+      <section className="py-20 min-w-center m-auto w-full text-center max-w-sm rounded-lg bordershadow-md bg-gray-800 border-gray-700">
         <h5 className="mb-2 text-3xl font-bold text-white">Select Login</h5>
         <p className="mb-5 text-gray-400 text-lg">
           Login to No Free Toes Scheduler
