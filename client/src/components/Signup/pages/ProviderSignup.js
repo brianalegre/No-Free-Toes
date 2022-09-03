@@ -7,7 +7,6 @@ import Auth from "../../../utils/auth";
 import Select from "react-select";
 import heroImg from "../../../images/hero_image.svg";
 
-
 // PROVIDER SIGNUP
 const ProviderSignup = () => {
   const {
@@ -22,7 +21,6 @@ const ProviderSignup = () => {
   // setErrorMessage('Please fill out all necessary info!');
 
   const [selectedOption, setSelectedOption] = useState(null);
-
 
   // MUTATION TO ADD SERVICE USER
   const [addServiceUser, { error, data }] = useMutation(ADD_SERVICEUSER);
@@ -48,20 +46,18 @@ const ProviderSignup = () => {
     });
   };
 
-  const handleSelectedOption = val => {
-    setSelectedOption(val)
+  const handleSelectedOption = (val) => {
+    setSelectedOption(val);
     const { serviceCategory } = val;
     setFormState({
       ...formState,
       serviceCategory: serviceCategory,
     });
-  }
-
+  };
 
   // SUBMIT FORM
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log('FORMSTATE -----', formState);
 
     try {
       const { data } = await addServiceUser({
@@ -72,24 +68,22 @@ const ProviderSignup = () => {
     } catch (e) {
       console.error(e);
     }
-
   };
 
-  // SERVICE DROPDOWN 
+  // SERVICE DROPDOWN
   const cats4Dropdown =
     categories?.serviceCategories?.map((cat) => ({
       serviceCategory: cat._id,
       label: cat.categoryName,
     })) || [];
 
-
   return (
-    <div className="p-10 min-h-screen grid gap-6 mb-6 md:grid-cols-2">
+    <div className="pt-16 px-5 min-h-screen flex flex-col-reverse lg:grid lg:grid-cols-2">
       <div className="container mx-auto flex flex-col md:flex-row items-center my-12">
-        <div className="pl-24 w-full">
+        <div className="hidden md:flex pl-24 w-full">
           <img src={heroImg} alt="hero" className="w-2/3" />
         </div>
-        <div className="flex flex-col w-full justify-center items-start py-12 px-6">
+        <div className="flex flex-col w-full lg:w-2/3 justify-center items-start py-12 px-6">
           <h1 className="text-black font-nato text-bold my-4 text-2xl text-bold lg:text-3xl">
             No Free Toes Scheduler
           </h1>
@@ -101,11 +95,15 @@ const ProviderSignup = () => {
           </p>
         </div>
       </div>
-      <main className="p-5 min-w-center m-auto w-full text-center max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 md:p-8 bg-gray-800 border-gray-700">
-        <div className="p-a col-12 col-lg-10">
+      <main className="p-8 min-w-center m-auto w-full text-center max-w-sm rounded-lg bordershadow-md bg-gray-800 border-gray-700">
+        <div className="col-12">
           <div className="card">
-            <h4 className="mb-4 text-3xl font-bold text-white">Provider Sign Up</h4>
-            <h5 className="mb-4 text-sm font-bold text-white">Please fill out the form below:</h5>
+            <h4 className="mb-4 text-3xl font-bold text-white">
+              Provider Sign Up
+            </h4>
+            <h5 className="mb-4 text-sm font-bold text-white">
+              Please fill out the form below:
+            </h5>
             <div className="card-body text-green-500">
               {data ? (
                 <p>
@@ -114,7 +112,7 @@ const ProviderSignup = () => {
                 </p>
               ) : (
                 <form onSubmit={handleFormSubmit}>
-                  <div className="grid gap-6 mb-6 md:grid-cols-2">
+                  <div className="grid gap-6 mb-6 grid-cols-2">
                     <input
                       className="form-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
                       placeholder="Your first name"
@@ -149,6 +147,7 @@ const ProviderSignup = () => {
                       type="password"
                       value={formState.password}
                       onChange={handleChange}
+                      autoComplete='off'
                     />
 
                     <textarea
@@ -179,7 +178,7 @@ const ProviderSignup = () => {
                       className="text-gray-900 rounded-lg block w-full"
                     />
                     <button
-                      className="py-3 px-5 mr-5 w-full text-lg font-semibold focus:outline-none rounded-full text-center bg-green-300 hover:bg-green-700 text-black hover:text-gray-100 rounded transition duration-300 btn btn-block"
+                      className="py-3 px-5 mr-5 w-full text-lg font-semibold focus:outline-none rounded-full text-center bg-green-300 hover:bg-green-700 text-black hover:text-gray-100 transition duration-300 btn btn-block"
                       style={{ cursor: "pointer" }}
                       type="submit"
                       onClick={() => handleFormSubmit()}
@@ -188,7 +187,13 @@ const ProviderSignup = () => {
                     </button>
                     <div className="text-sm font-medium text-gray-300">
                       Already registered?
-                      <Link to="/login" className="text-green-500 hover:underline"> Login</Link>
+                      <Link
+                        to="/login"
+                        className="text-green-500 hover:underline"
+                      >
+                        {" "}
+                        Login
+                      </Link>
                     </div>
                   </div>
                 </form>
