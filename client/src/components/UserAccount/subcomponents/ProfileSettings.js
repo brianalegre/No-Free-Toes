@@ -58,7 +58,7 @@ export default function ProfileSettings({
                 <h1 className="py-2 text-xl">Account Details</h1>
                 <div className="relative z-0 mb-6 w-full group">
                     <label htmlFor="floating_email" className="text-xs font-semibold">
-                        Email address
+                        Email Address
                     </label>
                     <input
                         onChange={handleUserInput}
@@ -94,7 +94,7 @@ export default function ProfileSettings({
                 <div className="grid md:grid-cols-2 md:gap-6">
                     <div className="relative z-0 mb-6 w-full group">
                         <label htmlFor="floating_fn" className="text-xs font-semibold">
-                            First name
+                            First Name
                         </label>
                         <input
                             onChange={handleUserInput}
@@ -108,7 +108,7 @@ export default function ProfileSettings({
                     </div>
                     <div className="relative z-0 mb-6 w-full group">
                         <label htmlFor="floating_ln" className="text-xs font-semibold">
-                            Last name
+                            Last Name
                         </label>
                         <input
                             onChange={handleUserInput}
