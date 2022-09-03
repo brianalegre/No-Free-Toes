@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useMutation } from "@apollo/client";
 import { LOGIN_SERVICEUSER } from "../../../utils/mutations";
 import Auth from "../../../utils/auth";
 import heroImg from "../../../images/hero_image.svg";
 
 const ProviderLogin = () => {
-
   // CREATE STATE FOR FORM
-  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [formState, setFormState] = useState({ email: "", password: "" });
   // MUTATION FOR LOGIN NORMAL USER
   const [loginServiceUser, { error, data }] = useMutation(LOGIN_SERVICEUSER);
 
@@ -37,16 +36,23 @@ const ProviderLogin = () => {
 
     // CLEAR FORM VARIABLES
     setFormState({
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     });
   };
 
   return (
+<<<<<<< HEAD
     <div className="p-6 sm:p-20 min-h-screen grid gap-6 mb-6 md:grid-cols-2">
       {/* HERO SECTION */}
       <div className="container mx-auto flex flex-col md:flex-row items-center my-12">
         <div className="pl-24 w-full">
+=======
+    <div className="pt-16 px-5 min-h-screen flex flex-col-reverse lg:grid lg:grid-cols-2">
+      {/* HERO SECTION */}
+      <div className="container flex mx-auto flex-row items-center my-12">
+        <div className="hidden md:flex pl-24 w-full">
+>>>>>>> 31b7a4e0aa852cf98aa957c36ddc016eab647666
           <img src={heroImg} alt="hero" className="w-2/3" />
         </div>
         <div className="flex flex-col w-full lg:w-2/3 justify-center items-start py-12 px-6">
@@ -61,6 +67,7 @@ const ProviderLogin = () => {
           </p>
         </div>
       </div>
+<<<<<<< HEAD
       <main className=" p-10 min-w-center m-auto w-full text-center max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 md:p-8 bg-gray-800 border-gray-700">
         <div className="p-1 col-12 col-lg-10">
           <div className="card">
@@ -69,11 +76,32 @@ const ProviderLogin = () => {
               {data ? (
                 <p>
                   Success! You may now head{' '}
+=======
+      <main className="p-10 min-w-center m-auto w-full text-center max-w-sm rounded-lg border shadow-md bg-gray-800 border-gray-700">
+        <div className="p-1 col-12 col-lg-10">
+          <div className="card">
+            <h4 className="mb-2 text-3xl font-bold text-white">
+              Service Provider Login
+            </h4>
+            <div className="card-body text-green-500">
+              {data ? (
+                <p>
+                  Success! You may now head{" "}
+>>>>>>> 31b7a4e0aa852cf98aa957c36ddc016eab647666
                   <Link to="/">back to the homepage.</Link>
                 </p>
               ) : (
                 <form onSubmit={handleFormSubmit}>
+<<<<<<< HEAD
                   <label htmlFor="email" className="block m-4 text-sm font-medium text-gray-300">Please enter your email</label>
+=======
+                  <label
+                    htmlFor="email"
+                    className="block m-4 text-sm font-medium text-gray-300"
+                  >
+                    Please enter your email
+                  </label>
+>>>>>>> 31b7a4e0aa852cf98aa957c36ddc016eab647666
                   <input
                     className="form-input bg-gray-100 border border-green-300 text-gray-900 text-sm rounded-lg focus:ring-green-700 focus:border-green-700 block w-full p-2.5 "
                     placeholder="Your email"
@@ -82,7 +110,16 @@ const ProviderLogin = () => {
                     value={formState.email}
                     onChange={handleChange}
                   />
+<<<<<<< HEAD
                   <label htmlFor="password" className="block m-4 text-sm font-medium text-gray-300">Please enter your password</label>
+=======
+                  <label
+                    htmlFor="password"
+                    className="block m-4 text-sm font-medium text-gray-300"
+                  >
+                    Please enter your password
+                  </label>
+>>>>>>> 31b7a4e0aa852cf98aa957c36ddc016eab647666
                   <input
                     className="form-input mb-8 bg-gray-100 border border-green-300 text-gray-900 text-sm rounded-lg focus:ring-green-700 focus:border-green-700 block w-full p-2.5 "
                     placeholder="********"
@@ -90,7 +127,10 @@ const ProviderLogin = () => {
                     type="password"
                     value={formState.password}
                     onChange={handleChange}
+<<<<<<< HEAD
                     autoComplete='off'
+=======
+>>>>>>> 31b7a4e0aa852cf98aa957c36ddc016eab647666
                   />
                   {/* <div className="flex items-start">
                             <div className="flex items-center h-5">
@@ -100,13 +140,27 @@ const ProviderLogin = () => {
                             </div> */}
                   <button
                     className="py-3 px-5 mr-5 w-full mb-5 text-lg font-semibold focus:outline-none rounded-full text-center bg-green-300 hover:bg-green-700 text-black hover:text-gray-100 rounded transition duration-300 btn btn-block"
+<<<<<<< HEAD
                     style={{ cursor: 'pointer' }}
+=======
+                    style={{ cursor: "pointer" }}
+>>>>>>> 31b7a4e0aa852cf98aa957c36ddc016eab647666
                     type="submit"
                   >
                     Submit
                   </button>
                   <div className="text-sm font-medium text-gray-300">
+<<<<<<< HEAD
                     Not registered? <Link to="/signup" className="text-green-500 hover:underline">Sign Up</Link>
+=======
+                    Not registered?{" "}
+                    <Link
+                      to="/signup"
+                      className="text-green-500 hover:underline"
+                    >
+                      Sign Up
+                    </Link>
+>>>>>>> 31b7a4e0aa852cf98aa957c36ddc016eab647666
                   </div>
                 </form>
               )}
@@ -121,7 +175,10 @@ const ProviderLogin = () => {
         </div>
       </main>
     </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 31b7a4e0aa852cf98aa957c36ddc016eab647666
   );
 };
 
