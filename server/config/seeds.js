@@ -927,7 +927,7 @@ db.once("open", async () => {
   // NAILCARE CATEGORY
   const serviceUserSeedFourteen = await ServiceUser.create({
     firstName: "Connor",
-    lastName: "Mitcher",
+    lastName: "Mitchener",
     email: "conner@gmail.com",
     password: "test1234",
     serviceCategory: serviceCategorySeed[3]._id,
