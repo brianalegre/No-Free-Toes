@@ -201,7 +201,8 @@ const ProviderSignup = () => {
 
               {error && (
                 <div className="my-3 p-3 bg-danger text-red-500">
-                  {error.message}
+                  <span> Please fill out fields correctly </span>
+
                 </div>
               )}
             </div>
