@@ -25,7 +25,6 @@ const ProviderLogin = () => {
   // SUBMIT FORM
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(formState);
     try {
       const { data } = await loginServiceUser({
         variables: { ...formState },
