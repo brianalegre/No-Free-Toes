@@ -32,7 +32,6 @@ const ClientSignup = () => {
   // SUBMIT FORM
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(formState);
 
     try {
       const { data } = await addNormalUser({

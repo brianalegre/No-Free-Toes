@@ -61,7 +61,6 @@ const ProviderSignup = () => {
   // SUBMIT FORM
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log('FORMSTATE -----', formState);
 
     try {
       const { data } = await addServiceUser({
