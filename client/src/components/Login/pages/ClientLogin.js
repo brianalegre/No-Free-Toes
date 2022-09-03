@@ -99,6 +99,7 @@ const ClientLogin = () => {
                     type="password"
                     value={formState.password}
                     onChange={handleChange}
+                    autoComplete='off'
                   />
                   {/* <div className="flex items-start">
                                 <div className="flex items-center h-5">

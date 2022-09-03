@@ -31,7 +31,6 @@ const ClientSignup = () => {
   // SUBMIT FORM
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
     try {
       const { data } = await addNormalUser({
         variables: { ...formState },
@@ -112,6 +111,7 @@ const ClientSignup = () => {
                       type="password"
                       value={formState.password}
                       onChange={handleChange}
+                      autoComplete='off'
                     />
                     <input
                       className="form-input bg-gray-100 border border-green-300 text-gray-900 text-sm rounded-lg focus:ring-green-700 focus:border-green-700 block w-full p-2.5"

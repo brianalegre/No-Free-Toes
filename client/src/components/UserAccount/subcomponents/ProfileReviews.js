@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import moment from "moment";
 import { useQuery } from "@apollo/client";
 import { QUERY_REVIEWS_BY_NORMAL_USER } from "../../../utils/queries";
@@ -12,12 +12,23 @@ import {
 } from "../../ServicePage/subcomponents/StaticStars";
 import NoProfileReviews from "./NoProfileReviews";
 
-export default function ProfileReviews({ loggedInUserId, refetch }) {
-  const { data, loading, error } = useQuery(QUERY_REVIEWS_BY_NORMAL_USER, {
+
+export default function ProfileReviews({ loggedInUserId }) {
+
+
+  const [dataComments, setDataComments] = useState([]);
+  const { data, loading, error, refetch } = useQuery(QUERY_REVIEWS_BY_NORMAL_USER, {
     variables: { normalUserId: loggedInUserId },
   });
 
-  const commentsData = data?.normalUser?.serviceComments?.map((comments) => {
+  useEffect(() => {
+    if (data) {
+      setDataComments(data)
+    }
+  }, [data]);
+
+  const commentsData = dataComments?.normalUser?.serviceComments?.map((comments) => {
+
     // parsing the UNIX date that received from backend using moment.js
     const parsedDate = moment
       .unix(comments.commentCreated / 1000)
