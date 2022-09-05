@@ -109,9 +109,9 @@ export default function SUAppointmentCards() {
       {length !== 0 ? (
         userAppointments
       ) : (
-        <div className="flex justify-center bg-gray-50 content-center py-24 mx-8 my-8 md:mx-12 md:my-12 rounded-lg">
+        <div className="flex justify-center bg-gray-50 content-center py-24 mx-8 my-8 md:mx-12 md:my-12 rounded-lg shadow-xl">
           <span className="text-xl">No appointments available.</span>
-        </div>
+        </div> 
       )}
     </div>
   );

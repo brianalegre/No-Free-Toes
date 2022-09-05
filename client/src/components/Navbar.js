@@ -109,7 +109,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-gradient-to-r from-red-100 to-red-300">
+    <nav className="bg-gradient-to-r from-red-100 to-red-300 shadow-lg">
       <div className="xl:max-w-8xl mx-auto px-4">
         <div className="flex justify-between">
           <div className="flex space-x-4">
