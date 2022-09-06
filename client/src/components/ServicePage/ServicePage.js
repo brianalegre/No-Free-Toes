@@ -26,7 +26,7 @@ export default function ServicePage() {
       <div className="flex flex-col min-h-screen w-full justify-center items-center bg-gray-100">
         {loading ? (
           <div className="flex justify-center align-middle">
-            <SyncLoader />
+            <SyncLoader color="#E96458" />
           </div>
         ) : (
           <div className="container mx-auto px-4 sm:px-8 max-w-3xl">

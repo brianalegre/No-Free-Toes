@@ -89,7 +89,7 @@ function CategoryPage() {
 
         {loading && (
           <div className="min-h-3/4 flex justify-center align-middle">
-            <SyncLoader />
+            <SyncLoader color="#E96458" />
           </div>
         )}
       </main>
