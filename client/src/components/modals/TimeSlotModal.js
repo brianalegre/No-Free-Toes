@@ -11,14 +11,14 @@ const TimeSlotModal = ({ loggedInUserId, refetch }) => {
   return (
     <ModalWrapper>
       {/* <div className="bg-gray-200 px-24"> */}
-      <div className="bg-gray-200 px-24 pt-24 m-3 rounded-xl shadow-xl">
-          <TimeSlotCreator loggedInUserId={loggedInUserId} refetch={refetch} />
+      <div className="bg-gray-200 px-24 pt-24 shadow-xl">
+        <TimeSlotCreator loggedInUserId={loggedInUserId} refetch={refetch} />
         <div className="flex justify-around pb-8">
           <button
             className="outline outline-1 outline-gray-500 py-2 px-6 rounded-xl transition ease-in-out duration-150 hover:bg-red-600 hover:text-white shadow-lg"
             onClick={closeModal}
           >
-            Close 
+            Close
           </button>
         </div>
       </div>

@@ -6,7 +6,7 @@ export default function RedirectModal({ redirectText, onConfirm }) {
 
   return (
     <ModalWrapper>
-      <div className="bg-gray-200 py-24 px-24 m-3 rounded-xl shadow-xl">
+      <div className="bg-gray-200 py-24 px-24 shadow-xl">
         <span className="text-xl">{redirectText}</span>
         <div className="flex justify-around mt-12 -mb-12">
           <button

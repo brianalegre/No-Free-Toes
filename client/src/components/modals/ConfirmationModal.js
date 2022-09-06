@@ -9,7 +9,7 @@ const ConfirmationModal = ({ confirmText, onConfirm }) => {
 
   return (
     <ModalWrapper>
-      <div className="bg-gray-200 py-24 px-12 m-3 rounded-xl shadow-xl">
+      <div className="bg-gray-200 py-24 px-12 shadow-xl">
         <span className="text-xl">{confirmText}</span>
         <div className="flex justify-around mt-12 -mb-12">
           <button
