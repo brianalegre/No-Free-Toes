@@ -82,16 +82,17 @@ function CategoryPage() {
   return (
     <>
       <div className="pb-2 text-center my-4 text-3xl text-bold lg:text-4xl pt-10">
-        <h1 className="font-nato">Category: {categoryName}</h1>
+        <h1 className="font-nato">{categoryName}</h1>
       </div>
       <main className="flex flex-col min-h-screen pb-4">
         {serviceUsers}
 
         {loading && (
-          <div className="min-h-3/4 flex justify-center align-middle">
+          <div className="pt-64 flex justify-center">
             <SyncLoader color="#E96458" />
           </div>
         )}
+
       </main>
     </>
   );
