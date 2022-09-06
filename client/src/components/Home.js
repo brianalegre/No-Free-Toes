@@ -68,7 +68,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="bg-slate-50 py-12 rounded-lg">
+      <div className="bg-slate-50 py-12 rounded-lg shadow-inner">
         <main className="px-16 py-12 place-items-center lg:h-3/4 lg:px-32 lg:py-12 grid grid-cols-2 md:grid-cols-5 gap-x-12 gap-y-24">
           {categoryItems}
         </main>

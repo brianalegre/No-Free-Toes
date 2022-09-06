@@ -6,13 +6,13 @@ export default function RedirectModal({ redirectText, onConfirm }) {
 
   return (
     <ModalWrapper>
-      <div className="bg-gray-200 py-24 px-24">
+      <div className="bg-gray-200 py-24 px-24 shadow-xl">
         <span className="text-xl">{redirectText}</span>
         <div className="flex justify-around mt-12 -mb-12">
           <button
             onClick={onConfirm}
             type="button"
-            class="text-gray-200 bg-green-700 hover:bg-green-800 hover:text-white transition ease-in-out duration-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
+            className="text-gray-200 bg-green-700 hover:bg-green-800 hover:text-white transition ease-in-out duration-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center shadow-lg"
           >
             Leave A Review
             <svg
