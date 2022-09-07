@@ -703,7 +703,7 @@ db.once("open", async () => {
     email: "test@gmail.com",
     password: "test1234",
     photo:
-      "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
+      ".././assets/images/man.png",
     location: "Test Location, CA",
   });
 
@@ -714,7 +714,7 @@ db.once("open", async () => {
     email: "normalUserEmail@gmail.com",
     password: "normalUserPassword",
     photo:
-      "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
+      ".././assets/images/man.png",
     location: "normalUserLocation",
   });
   // LOG TO BACKEND CONSOLE
