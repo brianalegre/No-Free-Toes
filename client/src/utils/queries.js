@@ -154,6 +154,7 @@ export const QUERY_SERVICECOMMENTS_BY_SERVICEUSERID = gql`
         _id
         firstName
         lastName
+        photo
       }
     }
   }

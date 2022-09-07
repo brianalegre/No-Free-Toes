@@ -72,6 +72,7 @@ export default function Reviews() {
         _id: reviewCreatorUserId,
         firstName: normalUserFn,
         lastName: normalUserLn,
+        photo: normalUserPhoto,
       },
     } = reviews;
 
@@ -131,7 +132,7 @@ export default function Reviews() {
           >
             <img
               className="w-16"
-              src="https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png"
+              src={normalUserPhoto}
               alt="default avatar"
             />
             <div className="pl-2 sm:pl-3 flex flex-col align-middle">

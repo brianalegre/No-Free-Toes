@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { QUERY_SERVICEUSER } from "../../../src/utils/queries";
 import ServiceUserProfile from "./subcomponents/ServiceUserProfile";
 import Tabs from "./subcomponents/Tabs";
+import { SyncLoader } from "react-spinners";
 
 export default function ServicePage() {
   const { serviceUserId } = useParams();
@@ -19,23 +20,25 @@ export default function ServicePage() {
       setServiceUser(data.serviceUser);
     }
   }, [data]);
-  // console.log(data)
-
-  // console.log(serviceUser)
 
   return (
     <>
       <div className="flex flex-col min-h-screen w-full justify-center items-center bg-gray-100">
-        <div className="container mx-auto px-4 sm:px-8 max-w-3xl">
-          <div className="py-8">
-            <ServiceUserProfile serviceUser={serviceUser} />
-
-            <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 bg-gray-100">
-              <div className="inline-block min-w-full"></div>
-            </div>
-            <Tabs serviceUser={serviceUser} refetch={refetch} />
+        {loading ? (
+          <div className="flex justify-center">
+            <SyncLoader color="#E96458" />
           </div>
-        </div>
+        ) : (
+          <div className="container mx-auto px-4 sm:px-8 max-w-3xl">
+            <div className="py-8">
+              <ServiceUserProfile serviceUser={serviceUser} />
+              <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 bg-gray-100">
+                <div className="inline-block min-w-full"></div>
+              </div>
+              <Tabs serviceUser={serviceUser} refetch={refetch} />
+            </div>
+          </div>
+        )}
       </div>
     </>
   );

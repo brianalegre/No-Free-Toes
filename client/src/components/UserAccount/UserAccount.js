@@ -4,6 +4,7 @@ import { useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import { QUERY_SINGLE_NORMALUSER } from "../../utils/queries";
 import Auth from "../../utils/auth";
+import { SyncLoader } from "react-spinners";
 
 const avatarImg = ".././assets/images/man.png";
 
@@ -15,14 +16,17 @@ export default function UserProfile() {
     fetchPolicy: "no-cache",
   });
 
-  const { email, firstName, lastName, photo, location } = data?.normalUser || {};
+  const { email, firstName, lastName, photo, location } =
+    data?.normalUser || {};
 
   // USER NEEDS TO BE LOGGED IN TO DISPLAY
   const isLoggedIn = Auth.loggedIn() ? true : false;
 
   const loggedInServiceUserId = isLoggedIn ? Auth.getProfile().data._id : null;
 
-  const userType = loggedInServiceUserId ? Auth.getProfile().data.userType : null;
+  const userType = loggedInServiceUserId
+    ? Auth.getProfile().data.userType
+    : null;
 
   // CONIDITIONAL TO CHECK IF USER IS LOGGED IN, IF NOT DISPLAYS BELOW
   if (!Auth.loggedIn()) {
@@ -39,22 +43,25 @@ export default function UserProfile() {
     return (
       <>
         <main className="bg-white mx-20 mt-10 min-h-screen text-lg">
-          {/* Wrapper for main section */}
-          <div id="wrapper" className="max-w-screen-xl mx-auto">
-            {/* Grid cols for tabs/form */}
-            <div className="grid grid-cols-1 md:grid-cols-[25%_75%]">
-              {/* Tabs */}
-              <ProfileTabs
-                loggedInUserId={loggedInUserId}
-                email={email}
-                firstName={firstName}
-                lastName={lastName}
-                photo={photo}
-                location={location}
-                refetch={refetch}
-              />
+          {loading ? (
+            <div className="pt-48 flex justify-center align-middle">
+              <SyncLoader color="#E96458" />
             </div>
-          </div>
+          ) : (
+            <div id="wrapper" className="max-w-screen-xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-[25%_75%]">
+                <ProfileTabs
+                  loggedInUserId={loggedInUserId}
+                  email={email}
+                  firstName={firstName}
+                  lastName={lastName}
+                  photo={photo}
+                  location={location}
+                  refetch={refetch}
+                />
+              </div>
+            </div>
+          )}
         </main>
       </>
     );
@@ -63,17 +70,17 @@ export default function UserProfile() {
   else {
     return (
       <main className="bg-white mt-10 min-h-screen text-lg">
-                <div className="flex justify-center bg-gray-50 content-center py-24 mx-8 my-8 md:mx-12 md:my-12 rounded-lg">
-                    <span className="text-xl">Client is required to access this page</span>
-                </div>
-            </main>
-    )
+        <div className="flex justify-center bg-gray-50 content-center py-24 mx-8 my-8 md:mx-12 md:my-12 rounded-lg">
+          <span className="text-xl">
+            Client is required to access this page
+          </span>
+        </div>
+      </main>
+    );
   }
 }
-
 
 /* <section className="mt-5 md:ml-5 md:mt-0">
   Form Card template, TODO update to fit needs
   <ProfileSettings />
 </section> */
-
