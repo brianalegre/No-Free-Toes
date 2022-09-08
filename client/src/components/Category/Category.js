@@ -50,7 +50,7 @@ function CategoryPage() {
     >
       <div
         href="##"
-        className="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-3xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
+        className="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-3xl dark:border-gray-700 dark:bg-gray-800"
       >
         <div className="">
           <img
@@ -70,7 +70,7 @@ function CategoryPage() {
         <Link to={`/service/` + serviceUser._id}>
           <button
             type="button"
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-3 mb-3 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+            className="text-white bg-red-500 hover:bg-red-700 dark:bg-red-700 dark:hover:bg-red-500 dark:hover:text-white transition ease-in-out duration-200 font-semibold rounded-lg text-sm px-5 py-2.5 mr-3 mb-3"
           >
             View Profile
           </button>

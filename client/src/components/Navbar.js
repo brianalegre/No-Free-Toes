@@ -116,7 +116,7 @@ export default function Navbar() {
             <div>
               <a href="/" className="flex items-center py-5 px-2 text-gray-700">
                 <img src={logo} className="h-10 w-10 mr-3" alt="logo" />
-                <span className="font-nato text-black hover:text-pink-700 font-bold transition ease-in-out duration-300">
+                <span className="font-nato text-black hover:text-red-500 font-bold transition ease-in-out duration-300">
                   No Free Toes Scheduler
                 </span>
               </a>
@@ -137,7 +137,7 @@ export default function Navbar() {
                 <button
                   key="lg-logout"
                   onClick={logout}
-                  className="font-kanit py-2 px-3 bg-green-300 hover:bg-green-700 text-black hover:text-gray-100 rounded transition duration-300"
+                  className="font-kanit py-2 px-3 bg-red-500 hover:bg-red-700 text-white hover:text-gray-100 rounded transition duration-300"
                 >
                   {" "}
                   Logout
