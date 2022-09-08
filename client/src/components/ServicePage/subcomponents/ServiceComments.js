@@ -193,7 +193,7 @@ export default function Reviews() {
             {userType !== "normalUser" ? null : (
               <button
                 type="button"
-                className="text-white bg-green-600 hover:bg-green-800 font-medium rounded-lg text-sm px-2 py-1 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700"
+                className="text-white bg-red-500 hover:bg-red-700 dark:bg-red-700 dark:hover:bg-red-500 transition ease-in-out duration-200 font-medium rounded-lg text-sm px-2 py-1 mr-2 mb-2"
                 onClick={() =>
                   Auth.loggedIn() === true
                     ? setRenderReviewForm(true)
