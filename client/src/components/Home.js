@@ -4,6 +4,7 @@ import heroImg from "../images/hero_image.svg";
 import { QUERY_ALL_SERVICECATEGORIES } from "../../src/utils/queries";
 import { Link } from "react-router-dom";
 import Auth from "../utils/auth";
+import { SyncLoader } from "react-spinners";
 
 const Home = () => {
   const isLoggedIn = Auth.loggedIn() ? true : false;
@@ -57,7 +58,7 @@ const Home = () => {
             appointments. Click the button below to get started.
           </p>
           {isLoggedIn ? null : (
-            <button className="py-2 px-3 text-lg bg-green-300 hover:bg-green-700 text-black hover:text-gray-100 rounded transition duration-300">
+            <button className="py-2 px-3 text-lg ring-2 ring-offset-1 ring-red-400 bg-red-300 text-black hover:bg-red-700 hover:text-white rounded transition duration-300">
               <Link to="/signup">
                 <div className="text-kanit font-semibold">
                   <p>Sign Up Today!</p>
@@ -69,9 +70,15 @@ const Home = () => {
       </div>
 
       <div className="bg-slate-50 py-12 rounded-lg shadow-inner">
-        <main className="px-16 py-12 place-items-center lg:h-3/4 lg:px-32 lg:py-12 grid grid-cols-2 md:grid-cols-5 gap-x-12 gap-y-24">
-          {categoryItems}
-        </main>
+        {loading ? (
+          <div className="py-24 flex justify-center">
+            <SyncLoader color="#E96458" />
+          </div>
+        ) : (
+          <main className="px-16 py-12 place-items-center lg:h-3/4 lg:px-32 lg:py-12 grid grid-cols-2 md:grid-cols-5 gap-x-12 gap-y-24">
+            {categoryItems}
+          </main>
+        )}
       </div>
     </>
   );
