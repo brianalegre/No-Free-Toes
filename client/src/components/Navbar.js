@@ -24,18 +24,18 @@ const visitorNavLinks = [
   {
     name: "Home",
     link: "/",
-    class: "font-kanit py-5 px-3 hover:text-pink-600 transition duration-300",
+    class: "font-kanit py-5 px-3 hover:text-red-700 transition duration-300",
   },
   {
     name: "Login",
     link: "/login",
-    class: "font-kanit py-5 px-3 hover:text-pink-600 transition duration-300",
+    class: "font-kanit py-5 px-3 hover:text-red-700 transition duration-300",
   },
   {
     name: "Sign Up",
     link: "/signup",
     class:
-      "font-kanit py-2 px-3 bg-green-300 hover:bg-green-700 text-black hover:text-gray-100 rounded transition duration-300",
+      "font-kanit py-2 px-3 ring-2 ring-offset-1 ring-red-400 bg-red-300 text-black hover:bg-red-600 hover:text-white rounded transition duration-300 rounded transition duration-300",
   },
 ];
 
@@ -68,7 +68,7 @@ const visitorMobileNav = visitorNavLinks.map((navlinks, i) => (
   <Link to={navlinks.link} key={"visitor_mobile_nav_link " + i}>
     <div
       href={navlinks.link}
-      className="font-kanit text-black block py-2 px-4 text-sm hover:text-pink-700 transition ease-in-out duration-300"
+      className="font-kanit text-black block py-2 px-4 text-sm hover:text-red-700 transition ease-in-out duration-300"
     >
       {navlinks.name}
     </div>
@@ -79,7 +79,7 @@ const memberLgNav = memberNavLinks.map((navlinks, i) => (
   <Link to={navlinks.link} key={"member_large_nav_link " + i}>
     <div
       href={navlinks.link}
-      className="font-kanit py-5 px-3 hover:text-pink-700 transition ease-in-out duration-300"
+      className="font-kanit py-5 px-3 hover:text-red-700 transition ease-in-out duration-300"
     >
       {navlinks.name}
     </div>
@@ -90,7 +90,7 @@ const memberMobileNav = memberNavLinks.map((navlinks, i) => (
   <Link to={navlinks.link} key={"member_mobile_nav_link " + i}>
     <div
       href={navlinks.link}
-      className="font-kanit block py-2 px-4 text-sm text-black hover:text-pink-700 transition ease-in-out duration-300"
+      className="font-kanit block py-2 px-4 text-sm text-black hover:text-red-700 transition ease-in-out duration-300"
     >
       {navlinks.name}
     </div>
@@ -138,7 +138,7 @@ export default function Navbar() {
                 <button
                   key="lg-logout"
                   onClick={logout}
-                  className="inline-flex bg-red-400 ring-2 ring-offset-1 ring-red-400 hover:ring-red-700 items-center gap-x-2 font-kanit py-2 px-3 bg-transparent hover:bg-red-700 text-black hover:text-gray-100 rounded transition duration-300"
+                  className="inline-flex py-2 px-3 font-kanit gap-x-2 items-center bg-red-300 ring-2 ring-offset-1 ring-red-400 hover:ring-red-700 hover:bg-red-700 text-black hover:text-gray-100 rounded transition duration-300"
                 >
                   {" "}
                   Logout
@@ -175,14 +175,14 @@ export default function Navbar() {
       {/* mobile nav */}
       <div
         className={isActive ? "hidden lg:hidden" : "lg:hidden"}
-        key="movile-nav"
+        key="mobile-nav"
       >
         {Auth.loggedIn() ? (
           <>
             {memberMobileNav}
             <button
               onClick={logout}
-              className="inline-flex gap-x-2 items-center font-kanit text-black py-2 px-4 text-sm hover:text-pink-700 transition ease-in-out duration-300"
+              className="inline-flex gap-x-2 items-center font-kanit text-black py-2 px-4 text-sm hover:text-red-600 transition ease-in-out duration-300"
             >
               {" "}
               Logout
