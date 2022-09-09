@@ -92,7 +92,6 @@ function CategoryPage() {
             <SyncLoader color="#E96458" />
           </div>
         )}
-
       </main>
     </>
   );

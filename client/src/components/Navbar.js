@@ -138,7 +138,7 @@ export default function Navbar() {
                 <button
                   key="lg-logout"
                   onClick={logout}
-                  className="inline-flex bg-red-400 ring-2 ring-red-400 hover:ring-red-700 items-center gap-x-2 font-kanit py-2 px-3 bg-transparent hover:bg-red-700 text-black hover:text-gray-100 rounded transition duration-300"
+                  className="inline-flex bg-red-400 ring-2 ring-offset-1 ring-red-400 hover:ring-red-700 items-center gap-x-2 font-kanit py-2 px-3 bg-transparent hover:bg-red-700 text-black hover:text-gray-100 rounded transition duration-300"
                 >
                   {" "}
                   Logout
