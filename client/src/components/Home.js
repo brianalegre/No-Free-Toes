@@ -4,6 +4,7 @@ import heroImg from "../images/hero_image.svg";
 import { QUERY_ALL_SERVICECATEGORIES } from "../../src/utils/queries";
 import { Link } from "react-router-dom";
 import Auth from "../utils/auth";
+import { SyncLoader } from "react-spinners";
 
 const Home = () => {
   const isLoggedIn = Auth.loggedIn() ? true : false;
@@ -69,9 +70,16 @@ const Home = () => {
       </div>
 
       <div className="bg-slate-50 py-12 rounded-lg shadow-inner">
+      {loading ? (
+         <div className="py-24 flex justify-center">
+            <SyncLoader color="#E96458" />
+          </div>
+      ) : (
         <main className="px-16 py-12 place-items-center lg:h-3/4 lg:px-32 lg:py-12 grid grid-cols-2 md:grid-cols-5 gap-x-12 gap-y-24">
           {categoryItems}
         </main>
+
+      )}
       </div>
     </>
   );

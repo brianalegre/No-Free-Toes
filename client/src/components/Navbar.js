@@ -3,6 +3,7 @@ import { useState } from "react";
 import logo from "../images/icons/navlogo.svg";
 import Auth from "../utils/auth";
 import { Link } from "react-router-dom";
+import { FiLogOut } from "react-icons/fi";
 
 // CHECK IF LOGGED
 const isLoggedIn = Auth.loggedIn() ? true : false;
@@ -137,10 +138,11 @@ export default function Navbar() {
                 <button
                   key="lg-logout"
                   onClick={logout}
-                  className="font-kanit py-2 px-3 bg-red-500 hover:bg-red-700 text-white hover:text-gray-100 rounded transition duration-300"
+                  className="inline-flex bg-red-400 ring-2 ring-red-400 hover:ring-red-700 items-center gap-x-2 font-kanit py-2 px-3 bg-transparent hover:bg-red-700 text-black hover:text-gray-100 rounded transition duration-300"
                 >
                   {" "}
                   Logout
+                  <FiLogOut />
                 </button>
               </>
             ) : (
@@ -180,10 +182,11 @@ export default function Navbar() {
             {memberMobileNav}
             <button
               onClick={logout}
-              className="font-kanit text-black block py-2 px-4 text-sm hover:text-pink-700 transition ease-in-out duration-300"
+              className="inline-flex gap-x-2 items-center font-kanit text-black py-2 px-4 text-sm hover:text-pink-700 transition ease-in-out duration-300"
             >
               {" "}
               Logout
+              <FiLogOut />
             </button>
           </>
         ) : (
