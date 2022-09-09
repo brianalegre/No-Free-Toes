@@ -135,17 +135,14 @@ export default function Services({ serviceUser, refetch }) {
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm dark:border-gray-700 dark:bg-gray-800">
         <div className="sm:pl-0 sm:mr-12">
           {userType == "serviceUser" ? (
-            <button className="cursor-not-allowed opacity-50 text-white bg-red-500 hover:line-through dark:bg-red-700 transition ease-in-out duration-200 font-semibold rounded-lg px-1.5 sm:px-2 py-1.5 mr-2 mb-2"
-            onClick={()=>toast.error("Unable to book an appointment as a service user. Please create a client account to book an appointment.")}>Book Now</button>
+            <button className="cursor-not-allowed opacity-50 text-white bg-red-500 hover:line-through decoration-[3px] dark:bg-red-700 transition ease-in-out duration-200 font-semibold rounded-lg px-1.5 sm:px-2 py-1.5 mr-2 mb-2"
+              onClick={() => toast.error("Unable to book an appointment as a Service Provider. Please create a Client account to book an appointment.")}>Book Now</button>
           ) : (
             <button
               className="text-white bg-red-500 hover:bg-red-700 dark:bg-red-700 dark:hover:bg-red-500 transition ease-in-out duration-200 font-semibold rounded-lg px-1.5 sm:px-2 py-1.5 mr-2 mb-2"
               onClick={
                 userType !== "normalUser"
-                  ? () =>
-                      toast.error(
-                        "You must be logged in to book an appointment!"
-                      )(navigate("/login"))
+                  ? () => toast.error("Please Login to Book an Appointment", navigate("/login"))
                   : openModal
               }
               value={service._id}
