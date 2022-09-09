@@ -37,13 +37,13 @@
      - ***MIT***
 
 ##  Contribution Guidelines 
-- All contributors are welcome! Please don't hesitate to contact me below to contribute to this project.
+- All contributors are welcome! Please don't hesitate to contact us below to contribute to this project.
 
 ##  Heroku
 - [No Free Toes Heroku](https://nofreetoes.herokuapp.com/)
 
 ##  Github Repository 
-- [No Free ToesRepository](https://github.com/brianalegre/No-Free-Toes)
+- [No Free Toes Repository](https://github.com/brianalegre/No-Free-Toes)
 
 ##  Contact Information
 - Github Profiles:
