@@ -153,10 +153,10 @@ export default function ServiceSettings({ loggedInUserId, serviceUser, refetch }
                     className="inline-flex items-center justify-center rounded-lg w-4 h-4 mr-2"
                     onClick={serviceModal}
                 >
-                    <GoPlus className="text-gray-600 hover:text-green-600 transition ease-in-out duration-300" />
+                    <GoPlus className="text-green-600 hover:text-blue-500 transition ease-in-out duration-100" />
                 </button>
             </div>
-            <div className="p-3 w-full max-w-3xl bg-white rounded-lg border shadow-md sm:p-4">
+            <div className="p-3 w-full bg-white rounded-lg border shadow-md sm:p-4">
                 <div className="flow-root">
                     <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
                         {services}
